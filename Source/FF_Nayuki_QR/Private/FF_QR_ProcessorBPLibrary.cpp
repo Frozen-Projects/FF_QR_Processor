@@ -1,15 +1,15 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "FF_Nayuki_QRBPLibrary.h"
-#include "FF_Nayuki_QR.h"
+#include "FF_QR_ProcessorBPLibrary.h"
+#include "FF_QR_Processor.h"
 
-UFF_Nayuki_QRBPLibrary::UFF_Nayuki_QRBPLibrary(const FObjectInitializer& ObjectInitializer)
+UFF_QR_ProcessorBPLibrary::UFF_QR_ProcessorBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {
 
 }
 
-void UFF_Nayuki_QRBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, FVector2D Resolution, ENayukiQrTolerance ErrorTolerance, FColor BlackColor, FColor WhiteColor)
+void UFF_QR_ProcessorBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, FVector2D Resolution, int32 Border, ENayukiQrTolerance ErrorTolerance, FColor BlackColor, FColor WhiteColor)
 {
     if (In_Text.IsEmpty())
     {
@@ -21,7 +21,7 @@ void UFF_Nayuki_QRBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D Delegate
         return;
     }
 
-    AsyncTask(ENamedThreads::AnyNormalThreadNormalTask, [DelegateTexture2D, In_Text, Resolution, ErrorTolerance, BlackColor, WhiteColor]()
+    AsyncTask(ENamedThreads::AnyNormalThreadNormalTask, [DelegateTexture2D, In_Text, Resolution, Border, ErrorTolerance, BlackColor, WhiteColor]()
         {
             qrcodegen::QrCode::Ecc ToleranceLevel = qrcodegen::QrCode::Ecc::LOW;
 
@@ -46,7 +46,7 @@ void UFF_Nayuki_QRBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D Delegate
 
             qrcodegen::QrCode QRCode = qrcodegen::QrCode::encodeText(TCHAR_TO_UTF8(*In_Text), ToleranceLevel);
 
-            uint8 QRSize = QRCode.getSize();
+            int32 QRSize = QRCode.getSize();
 
             if (Resolution.X < QRSize || Resolution.Y < QRSize)
             {
@@ -58,23 +58,26 @@ void UFF_Nayuki_QRBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D Delegate
                 );
             }
 
-            TArray<FColor> QR_Pixels_Raw;
-            QR_Pixels_Raw.SetNumZeroed(QRSize * QRSize);
+            int32 Margin = Border * 2;
 
-            for (uint8 x = 0; x < QRSize; x++)
+            TArray<FColor> QR_Pixels_Raw;
+            QR_Pixels_Raw.Init(BlackColor, (QRSize + Margin) * (QRSize + Margin));
+            
+            for (int32 x = 0; x < QRSize + 0; x++)
             {
-                for (uint8 y = 0; y < QRSize; y++)
+                for (int32 y = 0; y < QRSize + 0; y++)
                 {
+                    int32 Index_Pixel = ((x + Border) + (y + Border) * (QRSize + Margin));
                     FColor EachPixel = QRCode.getModule(x, y) ? WhiteColor : BlackColor;
-                    QR_Pixels_Raw[x + y * QRSize] = EachPixel;
+                    QR_Pixels_Raw[Index_Pixel] = EachPixel;
                 }
             }
 
-            AsyncTask(ENamedThreads::GameThread, [DelegateTexture2D, Resolution, QRSize, QR_Pixels_Raw]()
+            AsyncTask(ENamedThreads::GameThread, [DelegateTexture2D, Resolution, QRSize, QR_Pixels_Raw, Margin]()
                 {
                     TArray<FColor> QR_Pixels_Resized;
                     QR_Pixels_Resized.SetNumZeroed(Resolution.X * Resolution.Y);
-                    FImageUtils::ImageResize(QRSize, QRSize, QR_Pixels_Raw, Resolution.X, Resolution.Y, QR_Pixels_Resized, false);
+                    FImageUtils::ImageResize(QRSize + Margin, QRSize + Margin, QR_Pixels_Raw, Resolution.X, Resolution.Y, QR_Pixels_Resized, false);
 
                     UTexture2D* Texture = UTexture2D::CreateTransient(Resolution.X, Resolution.Y, EPixelFormat::PF_B8G8R8A8, "QRCode");
                     Texture->Filter = TextureFilter::TF_Nearest;
@@ -107,7 +110,7 @@ void UFF_Nayuki_QRBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D Delegate
     );
 }
 
-EZXingFormat UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBpFormat(ZXing::BarcodeFormat Format)
+EZXingFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(ZXing::BarcodeFormat Format)
 {
     switch (Format)
     {
@@ -152,7 +155,7 @@ EZXingFormat UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBpFormat(ZXing::BarcodeForma
     }
 }
 
-ZXing::BarcodeFormat UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBarcodeFormat(EZXingFormat Format)
+ZXing::BarcodeFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(EZXingFormat Format)
 {
     switch (Format)
     {
@@ -197,7 +200,7 @@ ZXing::BarcodeFormat UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBarcodeFormat(EZXing
     }
 }
 
-void UFF_Nayuki_QRBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, EZXingFormat Format, FVector2D Resolution, int32 Margin, FColor BlackColor, FColor WhiteColor)
+void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, EZXingFormat Format, FVector2D Resolution, int32 Border, FColor BlackColor, FColor WhiteColor)
 {
     if (In_Text.IsEmpty())
     {
@@ -209,9 +212,9 @@ void UFF_Nayuki_QRBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, 
         return;
     }
 
-    AsyncTask(ENamedThreads::AnyNormalThreadNormalTask, [DelegateTexture2D, In_Text, Format, Resolution, Margin, BlackColor, WhiteColor]()
+    AsyncTask(ENamedThreads::AnyNormalThreadNormalTask, [DelegateTexture2D, In_Text, Format, Resolution, Border, BlackColor, WhiteColor]()
         {
-            ZXing::MultiFormatWriter Writer = ZXing::MultiFormatWriter(UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBarcodeFormat(Format)).setMargin(Margin).setEncoding(ZXing::CharacterSet::UTF8);
+            ZXing::MultiFormatWriter Writer = ZXing::MultiFormatWriter(UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(Format)).setMargin(Border).setEncoding(ZXing::CharacterSet::UTF8);
             ZXing::BitMatrix Matrix = Writer.encode(TCHAR_TO_UTF8(*In_Text), Resolution.X, Resolution.Y);
             ZXing::Matrix<uint8_t> Qr_Matrix = ToMatrix<uint8_t>(Matrix);
 
@@ -267,7 +270,7 @@ void UFF_Nayuki_QRBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, 
     );
 }
 
-bool UFF_Nayuki_QRBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& OutResults, FString& Out_Code, const FVector4& InRect, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
+bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& OutResults, FString& Out_Code, const FVector4& InRect, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
 {
     if (In_Buffer.IsEmpty())
     {
@@ -676,7 +679,7 @@ bool UFF_Nayuki_QRBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& OutResults, 
             Result.QR_Points.Add(FVector2D(BottomRight));
             Result.QR_Points.Add(FVector2D(TopRight));
 
-            Result.QR_Format = UFF_Nayuki_QRBPLibrary::ZXing_ConvertToBpFormat(Results[i].format());
+            Result.QR_Format = UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(Results[i].format());
 
             OutResults.Add(Result);
         }

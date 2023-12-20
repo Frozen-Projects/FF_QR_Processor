@@ -4,9 +4,9 @@ using System;
 using System.IO;
 using UnrealBuildTool;
 
-public class FF_Nayuki_QR : ModuleRules
+public class FF_QR_Processor : ModuleRules
 {
-	public FF_Nayuki_QR(ReadOnlyTargetRules Target) : base(Target)
+	public FF_QR_Processor(ReadOnlyTargetRules Target) : base(Target)
 	{
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         bEnableExceptions = true;
@@ -30,8 +30,6 @@ public class FF_Nayuki_QR : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"RHI",
-                "RenderCore",
                 "ExtendedVars",
 				// ... add private dependencies that you statically link with here ...	
 			}

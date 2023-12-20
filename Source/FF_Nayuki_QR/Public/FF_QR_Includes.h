@@ -4,7 +4,7 @@
 #include "ExtendedVarsBPLibrary.h"
 
 // Custom Includes.
-#include "FF_Nayuki_QR_Enums.h"
+#include "FF_QR_Enums.h"
 
 // UE Includes
 #include "ImageUtils.h"                         // Resize Nayuki QR

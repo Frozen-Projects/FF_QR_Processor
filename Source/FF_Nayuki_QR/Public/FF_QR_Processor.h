@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-class FFF_Nayuki_QRModule : public IModuleInterface
+class FFF_QR_ProcessorModule : public IModuleInterface
 {
 public:
 

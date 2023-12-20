@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "FF_Nayuki_QR",
+	"FriendlyName": "FF QR Processor",
 	"Description": "",
 	"Category": "Frozen Forest",
 	"CreatedBy": "Frozen Forest Reality Technologies",
@@ -16,7 +16,7 @@
 	"Installed": false,
 	"Modules": [
 		{
-			"Name": "FF_Nayuki_QR",
+			"Name": "FF_QR_Processor",
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
 			"PlatformAllowList": [
