@@ -6,9 +6,12 @@
 // Custom Includes.
 #include "FF_Nayuki_QR_Enums.h"
 
+// UE Includes
+#include "ImageUtils.h"                         // Resize Nayuki QR
+
 THIRD_PARTY_INCLUDES_START
 // Nayuki QR.
-#include "qrcodegen.hpp"                            // https://github.com/nayuki/QR-Code-generator
+#include "qrcodegen.hpp"                        // https://github.com/nayuki/QR-Code-generator
 
 #include "ReadBarcode.h"
 #include "GTIN.h"
