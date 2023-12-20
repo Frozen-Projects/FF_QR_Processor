@@ -8,25 +8,17 @@ public class FF_Nayuki_QR : ModuleRules
 {
 	public FF_Nayuki_QR(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				// ... add public include paths required here ...
-			}
-			);
-				
-		PrivateIncludePaths.AddRange(
-			new string[] {
-                "../Source/FF_Nayuki_QR/ThirdParty/nayuki_qr/",
-				// ... add other private include paths required here ...
-			}
-			);
-			
-		PublicDependencyModuleNames.AddRange(
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        bEnableExceptions = true;
+        bUseRTTI = true;
+
+		PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty", "nayuki_qr"));
+
+        PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
+				"ZXing",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -38,6 +30,9 @@ public class FF_Nayuki_QR : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"RHI",
+                "RenderCore",
+                "ExtendedVars",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

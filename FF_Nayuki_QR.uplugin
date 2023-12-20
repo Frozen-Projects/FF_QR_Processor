@@ -18,7 +18,17 @@
 		{
 			"Name": "FF_Nayuki_QR",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreLoadingScreen",
+			"PlatformAllowList": [
+				"Win64",
+				"Android"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ExtendedVars",
+			"Enabled": true
 		}
 	]
 }
