@@ -200,6 +200,57 @@ ZXing::BarcodeFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(EZX
     }
 }
 
+bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>& OutResults, FString& Out_Code, uint8* In_Buffer, FIntRect Rect, ZXing::ImageFormat ZXing_Image_Format)
+{
+    if (!In_Buffer)
+    {
+        Out_Code = "QR decode with ZXing is NOT successful. Buffer is not valid.";
+        return false;
+    }
+
+    ZXing::ImageView ZXing_Image
+    {
+        reinterpret_cast<uint8*>(In_Buffer), Rect.Width(), Rect.Height(), ZXing_Image_Format
+    };
+
+    ZXing::DecodeHints hints;
+    hints.setTextMode(ZXing::TextMode::HRI);
+    hints.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
+    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, hints);
+    if (!Results.empty())
+    {
+        for (int32 i = 0; i < Results.size(); i++)
+        {
+            FZXingScanResult Result;
+
+            Result.QR_Text = ANSI_TO_TCHAR(Results[i].text().c_str());
+
+            FVector2D TopLeft = FVector2D(Results[i].position().topLeft().x, Results[i].position().topLeft().y);
+            FVector2D TopRight = FVector2D(Results[i].position().topRight().x, Results[i].position().topRight().y);
+            FVector2D BottomLeft = FVector2D(Results[i].position().bottomLeft().x, Results[i].position().bottomLeft().y);
+            FVector2D BottomRight = FVector2D(Results[i].position().bottomRight().x, Results[i].position().bottomRight().y);
+
+            Result.QR_Points.Add(FVector2D(TopLeft));
+            Result.QR_Points.Add(FVector2D(BottomLeft));
+            Result.QR_Points.Add(FVector2D(BottomRight));
+            Result.QR_Points.Add(FVector2D(TopRight));
+
+            Result.QR_Format = UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(Results[i].format());
+
+            OutResults.Add(Result);
+        }
+
+        Out_Code = "QR decode with ZXing is successful.";
+        return true;
+    }
+
+    else
+    {
+        Out_Code = "QR decode with ZXing is NOT successful.";
+        return false;
+    }
+}
+
 void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, EZXingFormat Format, FVector2D Resolution, int32 Border, FColor BlackColor, FColor WhiteColor)
 {
     if (In_Text.IsEmpty())
@@ -270,7 +321,7 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2
     );
 }
 
-bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& OutResults, FString& Out_Code, const FVector4& InRect, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
+bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, const FVector4& In_Rect, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
 {
     if (In_Buffer.IsEmpty())
     {
@@ -646,52 +697,11 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& OutResult
         break;
     }
 
-    FIntRect Rect(InRect.X, InRect.Y, InRect.Z, InRect.W);
+    FIntRect Rect(In_Rect.X, In_Rect.Y, In_Rect.Z, In_Rect.W);
     if (Rect == FIntRect(0, 0, 0, 0))
     {
         Rect = FIntRect(0, 0, In_Size.X, In_Size.Y);
     }
 
-    ZXing::ImageView ZXing_Image
-    { 
-        reinterpret_cast<uint8*>(In_Buffer.GetData()), Rect.Width(), Rect.Height(), ZXing_Image_Format
-    };
-
-    ZXing::DecodeHints hints;
-    hints.setTextMode(ZXing::TextMode::HRI);
-    hints.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
-    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, hints);
-    if (!Results.empty())
-    {
-        for (int32 i = 0; i < Results.size(); i++)
-        {
-            FZXingScanResult Result;
-
-            Result.QR_Text = ANSI_TO_TCHAR(Results[i].text().c_str());
-
-            FVector2D TopLeft = FVector2D(Results[i].position().topLeft().x, Results[i].position().topLeft().y);
-            FVector2D TopRight = FVector2D(Results[i].position().topRight().x, Results[i].position().topRight().y);
-            FVector2D BottomLeft = FVector2D(Results[i].position().bottomLeft().x, Results[i].position().bottomLeft().y);
-            FVector2D BottomRight = FVector2D(Results[i].position().bottomRight().x, Results[i].position().bottomRight().y);
-
-            Result.QR_Points.Add(FVector2D(TopLeft));
-            Result.QR_Points.Add(FVector2D(BottomLeft));
-            Result.QR_Points.Add(FVector2D(BottomRight));
-            Result.QR_Points.Add(FVector2D(TopRight));
-
-            Result.QR_Format = UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(Results[i].format());
-
-            OutResults.Add(Result);
-        }
-
-        Out_Code = "QR decode with ZXing is successful.";
-        return true;
-    }
-
-    else
-    {
-        Out_Code = "QR decode with ZXing is NOT successful.";
-        return false;
-    }
-
+    return UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(Out_Results, Out_Code, In_Buffer.GetData(), Rect, ZXing_Image_Format);
 }

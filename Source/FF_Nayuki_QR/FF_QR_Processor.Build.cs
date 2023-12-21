@@ -19,7 +19,7 @@ public class FF_QR_Processor : ModuleRules
 			{
 				"Core",
 				"ZXing",
-				// ... add other public dependencies that you statically link with here ...
+                "ExtendedVars",		// Other plugins which use this plugin, requires ExtendedVars. This satisy that requirement.
 			}
 			);
 			
@@ -30,8 +30,6 @@ public class FF_QR_Processor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-                "ExtendedVars",
-				// ... add private dependencies that you statically link with here ...	
 			}
 			);
 		
