@@ -1,5 +1,3 @@
-// Copyright 2018 FeiSu All rights reserved.
-
 namespace UnrealBuildTool.Rules
 {
     using System.IO;
