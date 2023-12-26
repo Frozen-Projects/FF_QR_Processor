@@ -83,7 +83,6 @@ void UFF_QR_ProcessorBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D Deleg
                     Texture->Filter = TextureFilter::TF_Nearest;
                     Texture->SRGB = false;
                     Texture->CompressionSettings = TextureCompressionSettings::TC_VectorDisplacementmap;
-                    Texture->CompressionNoAlpha = true;
 
                     void* data = Texture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_ONLY);
                     FMemory::Memcpy(data, QR_Pixels_Resized.GetData(), QR_Pixels_Resized.Num() * 4);
@@ -286,12 +285,6 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2
                     Texture->Filter = TextureFilter::TF_Nearest;
                     Texture->SRGB = false;
                     Texture->CompressionSettings = TextureCompressionSettings::TC_VectorDisplacementmap;
-                    Texture->CompressionNoAlpha = true;
-
-#ifdef WITH_EDITOR
-                    Texture->MipGenSettings = TextureMipGenSettings::TMGS_NoMipmaps;
-#endif // WITH_EDITOR
-
                     Texture->AddressX = TextureAddress::TA_Clamp;
                     Texture->AddressY = TextureAddress::TA_Clamp;
 
