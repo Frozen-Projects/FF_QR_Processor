@@ -12,7 +12,7 @@
 USTRUCT(BlueprintType)
 struct FF_QR_PROCESSOR_API FZXingScanResult
 {
-	GENERATED_USTRUCT_BODY()
+	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "ZXing")
 	EZXingFormat QR_Format;
