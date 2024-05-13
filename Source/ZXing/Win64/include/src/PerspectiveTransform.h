@@ -20,11 +20,12 @@ namespace ZXing {
 class PerspectiveTransform
 {
 	using value_t = PointF::value_t;
-	value_t a11, a12, a13, a21, a22, a23, a31, a32, a33 = NAN;
+	value_t a11, a12, a13, a21, a22, a23, a31, a32, a33;
+	bool _isValid = false;
 
 	PerspectiveTransform(value_t a11, value_t a21, value_t a31, value_t a12, value_t a22, value_t a32, value_t a13,
 						 value_t a23, value_t a33)
-		: a11(a11), a12(a12), a13(a13), a21(a21), a22(a22), a23(a23), a31(a31), a32(a32), a33(a33)
+		: a11(a11), a12(a12), a13(a13), a21(a21), a22(a22), a23(a23), a31(a31), a32(a32), a33(a33), _isValid(true)
 	{}
 
 	PerspectiveTransform inverse() const;
@@ -39,7 +40,7 @@ public:
 	/// Project from the destination space (grid of modules) into the image space (bit matrix)
 	PointF operator()(PointF p) const;
 
-	bool isValid() const { return !std::isnan(a33); }
+	bool isValid() const { return _isValid; }
 };
 
 } // ZXing

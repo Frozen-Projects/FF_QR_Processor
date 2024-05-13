@@ -5,29 +5,29 @@
 
 #pragma once
 
-#include "ReaderOptions.h"
+#include "DecodeHints.h"
 #include "ImageView.h"
-#include "Barcode.h"
+#include "Result.h"
 
 namespace ZXing {
 
 /**
  * Read barcode from an ImageView
  *
- * @param image  view of the image data including layout and format
- * @param options  optional ReaderOptions to parameterize / speed up detection
- * @return #Barcode structure
+ * @param buffer  view of the image data including layout and format
+ * @param hints  optional DecodeHints to parameterize / speed up decoding
+ * @return #Result structure
  */
-Barcode ReadBarcode(const ImageView& image, const ReaderOptions& options = {});
+Result ReadBarcode(const ImageView& buffer, const DecodeHints& hints = {});
 
 /**
  * Read barcodes from an ImageView
  *
- * @param image  view of the image data including layout and format
- * @param options  optional ReaderOptions to parameterize / speed up detection
- * @return #Barcodes  list of barcodes found, may be empty
+ * @param buffer  view of the image data including layout and format
+ * @param hints  optional DecodeHints to parameterize / speed up decoding
+ * @return #Results list of results found, may be empty
  */
-Barcodes ReadBarcodes(const ImageView& image, const ReaderOptions& options = {});
+Results ReadBarcodes(const ImageView& buffer, const DecodeHints& hints = {});
 
 } // ZXing
 

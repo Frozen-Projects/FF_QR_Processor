@@ -8,7 +8,6 @@
 
 namespace ZXing::QRCode {
 
-enum class Type;
 class Version;
 
 /**
@@ -31,11 +30,11 @@ enum class CodecMode
 
 /**
  * @param bits variable number of bits encoding a QR Code data mode
- * @param type type of QR Code
+ * @param isMicro is this a MicroQRCode
  * @return Mode encoded by these bits
- * @throws FormatError if bits do not correspond to a known mode
+ * @throws std::invalid_argument if bits do not correspond to a known mode
  */
-CodecMode CodecModeForBits(int bits, Type type);
+CodecMode CodecModeForBits(int bits, bool isMirco = false);
 
 /**
  * @param version version in question

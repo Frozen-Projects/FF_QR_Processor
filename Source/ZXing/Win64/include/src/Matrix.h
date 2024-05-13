@@ -9,10 +9,10 @@
 #include "Point.h"
 #include "ZXAlgorithms.h"
 
-#include <stdexcept>
 #include <algorithm>
 #include <cassert>
 #include <vector>
+#include <stdexcept>
 
 namespace ZXing {
 
@@ -35,16 +35,16 @@ private:
 public:
 	Matrix() = default;
 
-#if defined(__llvm__) || (defined(__GNUC__) && (__GNUC__ > 7))
+#ifdef __GNUC__
 	__attribute__((no_sanitize("signed-integer-overflow")))
 #endif
 	Matrix(int width, int height, value_t val = {}) : _width(width), _height(height), _data(_width * _height, val) {
 		if (width != 0 && Size(_data) / width != height)
-			throw std::invalid_argument("Invalid size: width * height is too big");
+			throw std::invalid_argument("invalid size: width * height is too big");
 	}
 
-	Matrix(Matrix&&) noexcept = default;
-	Matrix& operator=(Matrix&&) noexcept = default;
+	Matrix(Matrix&&) = default;
+	Matrix& operator=(Matrix&&) = default;
 
 	Matrix copy() const {
 		return *this;
@@ -78,16 +78,16 @@ public:
 		return operator()(x, y);
 	}
 
-	value_t& set(int x, int y, value_t value) {
-		return operator()(x, y) = value;
+	void set(int x, int y, value_t value) {
+		operator()(x, y) = value;
 	}
 
 	const value_t& get(PointI p) const {
 		return operator()(p.x, p.y);
 	}
 
-	value_t& set(PointI p, value_t value) {
-		return operator()(p.x, p.y) = value;
+	void set(PointI p, value_t value) {
+		operator()(p.x, p.y) = value;
 	}
 
 	const value_t* data() const {
@@ -99,14 +99,6 @@ public:
 	}
 
 	const value_t* end() const {
-		return _data.data() + _width * _height;
-	}
-
-	value_t* begin() {
-		return _data.data();
-	}
-
-	value_t* end() {
 		return _data.data() + _width * _height;
 	}
 

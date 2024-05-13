@@ -32,10 +32,9 @@ struct DataBlock
  *
  * @param rawCodewords bytes as read directly from the Data Matrix Code
  * @param version version of the Data Matrix Code
- * @param fix259 see https://github.com/zxing-cpp/zxing-cpp/issues/259
  * @return DataBlocks containing original bytes, "de-interleaved" from representation in the
  *         Data Matrix Code
  */
-std::vector<DataBlock> GetDataBlocks(const ByteArray& rawCodewords, const Version& version, bool fix259 = false);
+std::vector<DataBlock> GetDataBlocks(const ByteArray& rawCodewords, const Version& version);
 
 } // namespace ZXing::DataMatrix

@@ -11,4 +11,14 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+#ifdef _WIN64
+
+	void* Handle_OpenCV = nullptr;
+	//void* Handle_Intel_Realsense;
+
+	void* Handle_OpenCV_D = nullptr;
+	//void* Handle_Intel_Realsense;
+
+#endif
 };

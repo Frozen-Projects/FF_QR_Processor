@@ -28,12 +28,4 @@ ErrorCorrectionLevel ECLevelFromString(const char* str);
 ErrorCorrectionLevel ECLevelFromBits(int bits, const bool isMicro = false);
 int BitsFromECLevel(ErrorCorrectionLevel l);
 
-enum class Type
-{
-	Model1,
-	Model2,
-	Micro,
-	rMQR,
-};
-
 } // namespace ZXing::QRCode

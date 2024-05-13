@@ -13,8 +13,10 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdint>
+#include <iterator>
 #include <stdexcept>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 namespace ZXing {
@@ -156,7 +158,7 @@ public:
 
 	BitArrayView& skipBits(int n)
 	{
-		if (cur + n > bits.end())
+		if (n > bits.size())
 			throw std::out_of_range("BitArrayView::skipBits() out of range.");
 		cur += n;
 		return *this;
@@ -165,7 +167,7 @@ public:
 	int peakBits(int n) const
 	{
 		assert(n <= 32);
-		if (cur + n > bits.end())
+		if (n > bits.size())
 			throw std::out_of_range("BitArrayView::peakBits() out of range.");
 		int res = 0;
 		for (auto i = cur; n > 0; --n, i++)

@@ -20,7 +20,8 @@ public class FF_QR_Processor : ModuleRules
 				"Core",
 				"ZXing",
                 "ExtendedVars",		// Other plugins which use this plugin, requires ExtendedVars. This satisy that requirement.
-			}
+				"OpenCV_Libs",
+            }
 			);
 			
 		PrivateDependencyModuleNames.AddRange(
@@ -30,7 +31,8 @@ public class FF_QR_Processor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-			}
+                "Projects",
+            }
 			);
 		
 		DynamicallyLoadedModuleNames.AddRange(

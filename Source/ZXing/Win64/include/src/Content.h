@@ -7,7 +7,7 @@
 
 #include "ByteArray.h"
 #include "CharacterSet.h"
-#include "ReaderOptions.h"
+#include "DecodeHints.h"
 
 #include <string>
 #include <vector>

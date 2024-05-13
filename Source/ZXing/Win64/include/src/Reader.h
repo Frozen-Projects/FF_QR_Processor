@@ -6,32 +6,32 @@
 
 #pragma once
 
-#include "ReaderOptions.h"
-#include "Barcode.h"
+#include "DecodeHints.h"
+#include "Result.h"
 
 namespace ZXing {
 
 class BinaryBitmap;
-class ReaderOptions;
+class DecodeHints;
 
 class Reader
 {
 protected:
-	const ReaderOptions& _opts;
+	const DecodeHints& _hints;
 
 public:
 	const bool supportsInversion;
 
-	explicit Reader(const ReaderOptions& opts, bool supportsInversion = false) : _opts(opts), supportsInversion(supportsInversion) {}
-	explicit Reader(ReaderOptions&& opts) = delete;
+	explicit Reader(const DecodeHints& hints, bool supportsInversion = false) : _hints(hints), supportsInversion(supportsInversion) {}
+	explicit Reader(DecodeHints&& hints) = delete;
 	virtual ~Reader() = default;
 
-	virtual Barcode decode(const BinaryBitmap& image) const = 0;
+	virtual Result decode(const BinaryBitmap& image) const = 0;
 
 	// WARNING: this API is experimental and may change/disappear
-	virtual Barcodes decode(const BinaryBitmap& image, [[maybe_unused]] int maxSymbols) const {
+	virtual Results decode(const BinaryBitmap& image, [[maybe_unused]] int maxSymbols) const {
 		auto res = decode(image);
-		return res.isValid() || (_opts.returnErrors() && res.format() != BarcodeFormat::None) ? Barcodes{std::move(res)} : Barcodes{};
+		return res.isValid() || (_hints.returnErrors() && res.format() != BarcodeFormat::None) ? Results{std::move(res)} : Results{};
 	}
 };
 

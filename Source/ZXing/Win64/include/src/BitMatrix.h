@@ -11,8 +11,10 @@
 #include "Point.h"
 #include "Range.h"
 
+#include <algorithm>
 #include <cstdint>
 #include <stdexcept>
+#include <utility>
 #include <vector>
 
 namespace ZXing {
@@ -28,6 +30,9 @@ class BitMatrix
 	int _width = 0;
 	int _height = 0;
 	using data_t = uint8_t;
+	static constexpr data_t SET_V = 0xff; // allows playing with SIMD binarization
+	static constexpr data_t UNSET_V = 0;
+	static_assert(bool(SET_V) && !bool(UNSET_V), "SET_V needs to evaluate to true, UNSET_V to false, see iterator usage");
 
 	std::vector<data_t> _bits;
 	// There is nothing wrong to support this but disable to make it explicit since we may copy something very big here.
@@ -50,19 +55,15 @@ class BitMatrix
 	bool getBottomRightOnBit(int &right, int& bottom) const;
 
 public:
-	static constexpr data_t SET_V = 0xff; // allows playing with SIMD binarization
-	static constexpr data_t UNSET_V = 0;
-	static_assert(bool(SET_V) && !bool(UNSET_V), "SET_V needs to evaluate to true, UNSET_V to false, see iterator usage");
-
 	BitMatrix() = default;
 
-#if defined(__llvm__) || (defined(__GNUC__) && (__GNUC__ > 7))
+#ifdef __GNUC__
 	__attribute__((no_sanitize("signed-integer-overflow")))
 #endif
 	BitMatrix(int width, int height) : _width(width), _height(height), _bits(width * height, UNSET_V)
 	{
 		if (width != 0 && Size(_bits) / width != height)
-			throw std::invalid_argument("Invalid size: width * height is too big");
+			throw std::invalid_argument("invalid size: width * height is too big");
 	}
 
 	explicit BitMatrix(int dimension) : BitMatrix(dimension, dimension) {} // Construct a square matrix.
@@ -75,12 +76,9 @@ public:
 	Range<data_t*> row(int y) { return {_bits.data() + y * _width, _bits.data() + (y + 1) * _width}; }
 	Range<const data_t*> row(int y) const { return {_bits.data() + y * _width, _bits.data() + (y + 1) * _width}; }
 
-	Range<StrideIter<const data_t*>> col(int x) const
-	{
-		return {{_bits.data() + x + (_height - 1) * _width, -_width}, {_bits.data() + x - _width, -_width}};
-	}
+	Range<StrideIter<const data_t*>> col(int x) const { return {{_bits.data() + x, _width}, {_bits.data() + x + _height * _width, _width}}; }
 
-	bool get(int x, int y) const { return get(y * _width + x); }
+	bool get(int x, int y) const { return (bool)get(y * _width + x); }
 	void set(int x, int y, bool val = true) { get(y * _width + x) = val * SET_V; }
 
 	/**
@@ -98,7 +96,7 @@ public:
 	void flipAll()
 	{
 		for (auto& i : _bits)
-			i = !i * SET_V;
+			i = !i;
 	}
 
 	/**
@@ -151,7 +149,7 @@ void GetPatternRow(const BitMatrix& matrix, int r, std::vector<uint16_t>& pr, bo
 
 /**
  * @brief Inflate scales a BitMatrix up and adds a quiet Zone plus padding
- * @param input matrix to be expanded
+ * @param matrix input to be expanded
  * @param width new width in bits (pixel)
  * @param height new height in bits (pixel)
  * @param quietZone size of quiet zone to add in modules
@@ -161,7 +159,7 @@ BitMatrix Inflate(BitMatrix&& input, int width, int height, int quietZone);
 
 /**
  * @brief Deflate (crop + subsample) a bit matrix
- * @param input matrix to be shrinked
+ * @param matrix
  * @param width new width
  * @param height new height
  * @param top cropping starts at top row
@@ -169,7 +167,7 @@ BitMatrix Inflate(BitMatrix&& input, int width, int height, int quietZone);
  * @param subSampling typically the module size
  * @return deflated input
  */
-BitMatrix Deflate(const BitMatrix& input, int width, int height, float top, float left, float subSampling);
+BitMatrix Deflate(const BitMatrix& matrix, int width, int height, float top, float left, float subSampling);
 
 template<typename T>
 BitMatrix ToBitMatrix(const Matrix<T>& in, T trueValue = {true})

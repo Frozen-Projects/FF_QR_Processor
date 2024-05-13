@@ -43,4 +43,8 @@ class UFF_QR_ProcessorBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, zxing"), Category = "Frozen Forest|QR|ZXing")
 	static FF_QR_PROCESSOR_API bool ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, const FVector4& In_Rect, TArray<uint8> In_Buffer, FVector2D In_Size = FVector2D(512, 512), EPixelFormat PixelFormat = EPixelFormat::PF_B8G8R8A8);
 
+	static FF_QR_PROCESSOR_API bool OpenCV_QR_Decoder_Callback(FString& DecodedString, uint8* Buffer, FVector2D ImageSize);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, zxing"), Category = "Frozen Forest|QR|ZXing")
+	static FF_QR_PROCESSOR_API bool OpenCV_QR_Decoder(FString& DecodedString, TArray<uint8> Buffer, FVector2D ImageSize);
 };

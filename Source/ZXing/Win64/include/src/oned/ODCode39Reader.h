@@ -20,7 +20,7 @@ public:
 	*/
 	using RowReader::RowReader;
 
-	Barcode decodePattern(int rowNumber, PatternView& next, std::unique_ptr<DecodingState>&) const override;
+	Result decodePattern(int rowNumber, PatternView& next, std::unique_ptr<DecodingState>&) const override;
 };
 
 } // namespace ZXing::OneD

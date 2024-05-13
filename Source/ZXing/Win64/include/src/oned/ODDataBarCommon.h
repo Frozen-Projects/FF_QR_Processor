@@ -7,7 +7,7 @@
 
 #include "ODRowReader.h"
 #include "Pattern.h"
-#include "Barcode.h"
+#include "Result.h"
 
 #include <array>
 #include <cmath>

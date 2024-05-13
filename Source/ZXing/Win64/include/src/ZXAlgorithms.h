@@ -47,24 +47,14 @@ inline bool Contains(const char* str, char c) {
 }
 
 template <template <typename...> typename C, typename... Ts>
-auto FirstOrDefault(C<Ts...>&& container)
+auto FirstOrDefault(C<Ts...>&& results)
 {
-	return container.empty() ? typename C<Ts...>::value_type() : std::move(container.front());
-}
-
-template <typename Iterator, typename Value = typename std::iterator_traits<Iterator>::value_type, typename Op = std::plus<Value>>
-Value Reduce(Iterator b, Iterator e, Value v = Value{}, Op op = {}) {
-	// std::reduce() first sounded like a better implementation because it is not implemented as a strict left-fold
-	// operation, meaning the order of the op-application is not specified. This sounded like an optimization opportunity
-	// but it turns out that for this use case it actually does not make a difference (falsepositives runtime). And
-	// when tested with a large std::vector<uint16_t> and proper autovectorization (e.g. clang++ -O2) it turns out that
-	// std::accumulate can be twice as fast as std::reduce.
-	return std::accumulate(b, e, v, op);
+	return results.empty() ? typename C<Ts...>::value_type() : std::move(results.front());
 }
 
 template <typename Container, typename Value = typename Container::value_type, typename Op = std::plus<Value>>
 Value Reduce(const Container& c, Value v = Value{}, Op op = {}) {
-	return Reduce(std::begin(c), std::end(c), v, op);
+	return std::accumulate(std::begin(c), std::end(c), v, op);
 }
 
 // see C++20 ssize
@@ -115,32 +105,6 @@ std::string ToString(T val, int len)
 	if (val)
 		throw FormatError("Invalid value");
 	return result;
-}
-
-template <typename T>
-void UpdateMin(T& min, T val)
-{
-	min = std::min(min, val);
-}
-
-template <typename T>
-void UpdateMax(T& max, T val)
-{
-	max = std::max(max, val);
-}
-
-template <typename T>
-void UpdateMinMax(T& min, T& max, T val)
-{
-	min = std::min(min, val);
-	max = std::max(max, val);
-
-	// Note: the above code is not equivalent to
-	//    if (val < min)        min = val;
-	//    else if (val > max)   max = val;
-	// It is basically the same but without the 'else'. For the 'else'-variant to work,
-	// both min and max have to be initialized with a value that is part of the sequence.
-	// Also it turns out clang and gcc can vectorize the code above but not the code below.
 }
 
 } // ZXing
