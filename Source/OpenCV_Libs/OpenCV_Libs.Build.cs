@@ -24,6 +24,7 @@ namespace UnrealBuildTool.Rules
                 PublicDelayLoadDLLs.Add("opencv_world490d.dll");
             }
 
+            /*
             if (Target.Platform == UnrealTargetPlatform.Android)
             {
                 PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "Android", "include"));
@@ -44,6 +45,7 @@ namespace UnrealBuildTool.Rules
                 PublicAdditionalLibraries.Add(Path.Combine(ModuleDirectory, "Android", "lib", "libopencv_video.a"));
                 PublicAdditionalLibraries.Add(Path.Combine(ModuleDirectory, "Android", "lib", "libopencv_videoio.a"));
             }
+            */
         }
     }
 }
