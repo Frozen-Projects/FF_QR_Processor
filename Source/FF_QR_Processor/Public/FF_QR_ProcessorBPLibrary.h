@@ -25,26 +25,31 @@ struct FF_QR_PROCESSOR_API FZXingScanResult
 	TArray<FVector2D> QR_Points;
 };
 
+UDELEGATE(BlueprintAuthorityOnly)
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FDelegateQrEncode, bool, bIsSuccessfull, FString, ErrorCode, UTexture2D*, Out);
+
 UCLASS()
 class UFF_QR_ProcessorBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Nayuki QR - Encode QR Code", ToolTip = "Description.", Keywords = "generate, encode, qr, nayuki"), Category = "Frozen Forest|QR|Nayuki")
-	static FF_QR_PROCESSOR_API void NayukiQr_GenerateQRCode(FDelegateTexture2D DelegateTexture2D, const FString Text, FVector2D Resolution = FVector2D(512, 512), int32 Border = 0, ENayukiQrTolerance ErrorTolerance = ENayukiQrTolerance::High, FColor BlackColor = FColor::Black, FColor WhiteColor = FColor::White);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Nayuki QR - Encode QR Code", ToolTip = "Description.", Keywords = "generate, encode, qr, nayuki"), Category = "Frozen Forest|FF QR Processor|Nayuki")
+	static FF_QR_PROCESSOR_API void NayukiQr_GenerateQRCode(FDelegateQrEncode DelegateTexture2D, const FString Text, FVector2D Resolution = FVector2D(512, 512), int32 Border = 0, ENayukiQrTolerance ErrorTolerance = ENayukiQrTolerance::High, FColor BlackColor = FColor::Black, FColor WhiteColor = FColor::White);
 
 	static FF_QR_PROCESSOR_API EZXingFormat ZXing_ConvertToBpFormat(ZXing::BarcodeFormat Format);
 	static FF_QR_PROCESSOR_API ZXing::BarcodeFormat ZXing_ConvertToBarcodeFormat(EZXingFormat Format);
-	static FF_QR_PROCESSOR_API bool ZXing_Decoder_Callback(TArray<FZXingScanResult>& OutResults, FString& Out_Code, uint8* In_Buffer, FIntRect Rect, ZXing::ImageFormat ZXing_Image_Format);
+	static FF_QR_PROCESSOR_API bool ZXing_Decoder_Callback(TArray<FZXingScanResult>& OutResults, FString& Out_Code, uint8* In_Buffer, FVector2D Size, ZXing::ImageFormat ZXing_Image_Format);
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Encode QR Code", ToolTip = "Description.", Keywords = "generate, encode, qr, zxing"), Category = "Frozen Forest|QR|ZXing")
-	static FF_QR_PROCESSOR_API void ZXing_Encode(FDelegateTexture2D DelegateTexture2D, const FString Text, EZXingFormat Format = EZXingFormat::QRCode, FVector2D Resolution = FVector2D(512, 512), int32 Border = 0, FColor BlackColor = FColor::Black, FColor WhiteColor = FColor::White);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Encode QR Code", ToolTip = "Description.", Keywords = "generate, encode, qr, zxing"), Category = "Frozen Forest|FR QR Processor|ZXing")
+	static FF_QR_PROCESSOR_API void ZXing_Encode(FDelegateQrEncode DelegateTexture2D, const FString Text, EZXingFormat Format = EZXingFormat::QRCode, FVector2D Resolution = FVector2D(512, 512), int32 Border = 0, FColor BlackColor = FColor::Black, FColor WhiteColor = FColor::White);
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, zxing"), Category = "Frozen Forest|QR|ZXing")
-	static FF_QR_PROCESSOR_API bool ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, const FVector4& In_Rect, TArray<uint8> In_Buffer, FVector2D In_Size = FVector2D(512, 512), EPixelFormat PixelFormat = EPixelFormat::PF_B8G8R8A8);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, zxing"), Category = "Frozen Forest|FF QR Processor|ZXing")
+	static FF_QR_PROCESSOR_API bool ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, TArray<uint8> In_Buffer, FVector2D In_Size = FVector2D(512, 512), EPixelFormat PixelFormat = EPixelFormat::PF_B8G8R8A8);
 
+#ifdef _WIN64
 	static FF_QR_PROCESSOR_API bool OpenCV_QR_Decoder_Callback(FString& DecodedString, uint8* Buffer, FVector2D ImageSize);
+#endif
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ZXing - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, zxing"), Category = "Frozen Forest|QR|ZXing")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "OpenCV - Decode QR Code", ToolTip = "Description.", Keywords = "decode, qr, opencv"), Category = "Frozen Forest|QR Processor|OpenCV")
 	static FF_QR_PROCESSOR_API bool OpenCV_QR_Decoder(FString& DecodedString, TArray<uint8> Buffer, FVector2D ImageSize);
 };

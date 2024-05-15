@@ -1,8 +1,5 @@
 #pragma once
 
-// External Includes.
-#include "ExtendedVarsBPLibrary.h"
-
 // Custom Includes.
 #include "FF_QR_Enums.h"
 
@@ -19,10 +16,12 @@ THIRD_PARTY_INCLUDES_START
 #include "MultiFormatWriter.h"
 #include "BitMatrix.h"
 
+#ifdef _WIN64
 // OpenCV.
 #include <opencv2/objdetect.hpp>
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/dnn/dnn.hpp"
 #include "opencv2/opencv.hpp"
+#endif
 THIRD_PARTY_INCLUDES_END

@@ -9,7 +9,7 @@ UFF_QR_ProcessorBPLibrary::UFF_QR_ProcessorBPLibrary(const FObjectInitializer& O
 
 }
 
-void UFF_QR_ProcessorBPLibrary::NayukiQr_GenerateQRCode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, FVector2D Resolution, int32 Border, ENayukiQrTolerance ErrorTolerance, FColor BlackColor, FColor WhiteColor)
+void UFF_QR_ProcessorBPLibrary::NayukiQr_GenerateQRCode(FDelegateQrEncode DelegateTexture2D, const FString In_Text, FVector2D Resolution, int32 Border, ENayukiQrTolerance ErrorTolerance, FColor BlackColor, FColor WhiteColor)
 {
     if (In_Text.IsEmpty())
     {
@@ -199,7 +199,7 @@ ZXing::BarcodeFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(EZX
     }
 }
 
-void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2D, const FString In_Text, EZXingFormat Format, FVector2D Resolution, int32 Border, FColor BlackColor, FColor WhiteColor)
+void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateQrEncode DelegateTexture2D, const FString In_Text, EZXingFormat Format, FVector2D Resolution, int32 Border, FColor BlackColor, FColor WhiteColor)
 {
     if (In_Text.IsEmpty())
     {
@@ -263,7 +263,7 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateTexture2D DelegateTexture2
     );
 }
 
-bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>& OutResults, FString& Out_Code, uint8* In_Buffer, FIntRect Rect, ZXing::ImageFormat ZXing_Image_Format)
+bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>& OutResults, FString& Out_Code, uint8* In_Buffer, FVector2D Size, ZXing::ImageFormat ZXing_Image_Format)
 {
     if (!In_Buffer)
     {
@@ -271,17 +271,17 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>&
         return false;
     }
 
-    if (Rect.Height() == 0 && Rect.Width() == 0)
+    if (Size.X == 0 && Size.Y == 0)
     {
-        Out_Code = "QR decode with ZXing is NOT successful. Width and height shouldn't be 0.";
+        Out_Code = "QR decode with ZXing is NOT successful. Width or height shouldn't be 0.";
         return false;
     }
 
     ZXing::ImageView ZXing_Image
     {
-        In_Buffer, Rect.Width(), Rect.Height(), ZXing_Image_Format
+        (uint8_t*)In_Buffer, (int32)Size.X, (int32)Size.Y, ZXing_Image_Format
     };
-    
+
     ZXing::DecodeHints hints;
     hints.setTextMode(ZXing::TextMode::HRI);
     hints.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
@@ -322,11 +322,17 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>&
     return false;
 }
 
-bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, const FVector4& In_Rect, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
+bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& Out_Results, FString& Out_Code, TArray<uint8> In_Buffer, FVector2D In_Size, EPixelFormat PixelFormat)
 {
     if (In_Buffer.IsEmpty())
     {
         Out_Code = "Target buffer is empty.";
+        return false;
+    }
+
+    if (In_Size.X == 0 && In_Size.Y == 0)
+    {
+        Out_Code = "QR decode with ZXing is NOT successful. Width or height shouldn't be 0.";
         return false;
     }
 
@@ -355,15 +361,10 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& Out_Resul
             return false;
     }
 
-    FIntRect Rect(In_Rect.X, In_Rect.Y, In_Rect.Z, In_Rect.W);
-    if (Rect == FIntRect(0, 0, 0, 0))
-    {
-        Rect = FIntRect(0, 0, In_Size.X, In_Size.Y);
-    }
-
-    return UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(Out_Results, Out_Code, In_Buffer.GetData(), Rect, ZXing_Image_Format);
+    return UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(Out_Results, Out_Code, In_Buffer.GetData(), In_Size, ZXing_Image_Format);
 }
 
+#ifdef _WIN64
 bool UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder_Callback(FString& DecodedString, uint8* Buffer, FVector2D ImageSize)
 {
     if (!Buffer)
@@ -382,25 +383,26 @@ bool UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder_Callback(FString& DecodedStrin
 
     cv::QRCodeDetector QR_Detector;
 
-#ifdef _WIN64
-    QR_Detector = cv::QRCodeDetector::QRCodeDetector();
-#endif
 
-#ifdef __ANDROID__
-    QR_Detector = cv::QRCodeDetector();
-#endif
+    QR_Detector = cv::QRCodeDetector::QRCodeDetector();
+
 
     DecodedString = QR_Detector.detectAndDecode(Image, Points, Output).c_str();
 
     return true;
 }
+#endif
 
 bool UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder(FString& DecodedString, TArray<uint8> Buffer, FVector2D ImageSize)
 {
+#ifdef _WIN64
     if (Buffer.IsEmpty())
     {
         return false;
     }
 
     return UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder_Callback(DecodedString, Buffer.GetData(), ImageSize);
+#else
+    return false;
+#endif
 }

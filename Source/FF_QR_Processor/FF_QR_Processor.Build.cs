@@ -10,16 +10,16 @@ public class FF_QR_Processor : ModuleRules
 	{
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         bEnableExceptions = true;
-        bUseRTTI = true;
 
-		PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty", "nayuki_qr"));
+        bUseUnity = false;
+
+        PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty", "nayuki_qr"));
 
         PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
 				"ZXing",
-                "ExtendedVars",		// Other plugins which use this plugin, requires ExtendedVars. This satisy that requirement.
 				"OpenCV_Libs",
             }
 			);
