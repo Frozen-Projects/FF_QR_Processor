@@ -285,10 +285,11 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>&
         (uint8_t*)In_Buffer, (int32)Size.X, (int32)Size.Y, ZXing_Image_Format
     };
 
-    ZXing::DecodeHints hints;
-    hints.setTextMode(ZXing::TextMode::HRI);
-    hints.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
-    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, hints);
+    ZXing::ReaderOptions ReaderOptions;
+    ReaderOptions.setTextMode(ZXing::TextMode::HRI);
+    ReaderOptions.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
+    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, ReaderOptions);
+   
     if (!Results.empty())
     {
         for (int32 i = 0; i < Results.size(); i++)
