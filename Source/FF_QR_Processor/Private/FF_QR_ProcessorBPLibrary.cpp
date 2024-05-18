@@ -386,10 +386,7 @@ bool UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder_Callback(FString& DecodedStrin
     cv::Mat Output;
 
     cv::QRCodeDetector QR_Detector;
-
-
     QR_Detector = cv::QRCodeDetector::QRCodeDetector();
-
 
     DecodedString = QR_Detector.detectAndDecode(Image, Points, Output).c_str();
 
