@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- init section is always evaluated once per architecture -->
+	<init>
+		<log text="FF_QR_Processor"/>
+	</init>
+
+	<gradleProperties>
+		<insert>
+			android.useAndroidX=true
+			android.enableJetifier=true
+		</insert>
+	</gradleProperties>
+
+	<proguardAdditions>
+		<insert>
+			-dontwarn com.Plugins.**
+			-keep class com.Plugins.** { *; }
+			-keep interface com.Plugins.** { *; }
+			-keep public class com.Plugins.FF_QR_Processor.** { public protected *; }
+
+			-dontwarn androidx.**
+			-keep class androidx.** { *; }
+			-keep interface androidx.** { *; }
+
+		</insert>
+	</proguardAdditions>
+	
+	<resourceCopies>
+		
+		<isArch arch="arm64-v8a">
+				<log text="Copying libzxingcpp_android.so"/>
+				<copyFile src="$S(PluginDir)/Android/lib/arm64-v8a/libzxingcpp_android.so"
+							dst="$S(BuildDir)/libs/$S(Architecture)/libzxingcpp_android.so" />
+		</isArch>
+			
+		<isArch arch="armeabi-v7a">
+				<log text="Copying libzxingcpp_android.so"/>
+				<copyFile src="$S(PluginDir)/Android/lib/armeabi-v7a/libzxingcpp_android.so"
+							dst="$S(BuildDir)/libs/$S(Architecture)/libzxingcpp_android.so" />
+		</isArch>
+
+		<isArch arch="x86">
+				<log text="Copying libzxingcpp_android.so"/>
+				<copyFile src="$S(PluginDir)/Android/lib/x86/libzxingcpp_android.so"
+							dst="$S(BuildDir)/libs/$S(Architecture)/libzxingcpp_android.so" />
+		</isArch>
+
+		<isArch arch="x86_64">
+				<log text="Copying libzxingcpp_android.so"/>
+				<copyFile src="$S(PluginDir)/Android/lib/x86_64/libzxingcpp_android.so"
+							dst="$S(BuildDir)/libs/$S(Architecture)/libzxingcpp_android.so" />
+		</isArch>		
+		
+	</resourceCopies>
+
+	<!-- optional libraries to load in GameActivity.java before libUnreal.so -->
+	<soLoadLibrary>
+	
+		<isArch arch="arm64-v8a">
+			<loadLibrary name="libzxingcpp_android" failmsg="libzxingcpp_android library not loaded and may be required for FF_RealSense." />
+		</isArch>
+		
+		<isArch arch="armeabi-v7a">
+			<loadLibrary name="libzxingcpp_android" failmsg="libzxingcpp_android library not loaded and may be required for FF_RealSense." />
+		</isArch>
+
+		<isArch arch="x86">
+			<loadLibrary name="libzxingcpp_android" failmsg="libzxingcpp_android library not loaded and may be required for FF_RealSense." />
+		</isArch>
+
+		<isArch arch="x86_64">
+			<loadLibrary name="libzxingcpp_android" failmsg="libzxingcpp_android library not loaded and may be required for FF_RealSense." />
+		</isArch>		
+	
+	</soLoadLibrary>
+</root>

@@ -213,7 +213,10 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateQrEncode DelegateTexture2D
 
     AsyncTask(ENamedThreads::AnyNormalThreadNormalTask, [DelegateTexture2D, In_Text, Format, Resolution, Border, BlackColor, WhiteColor]()
         {
-            ZXing::MultiFormatWriter Writer = ZXing::MultiFormatWriter(UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(Format)).setMargin(Border).setEncoding(ZXing::CharacterSet::UTF8);
+            ZXing::MultiFormatWriter Writer = ZXing::MultiFormatWriter(UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(Format));
+            Writer.setEncoding(ZXing::CharacterSet::UTF8);
+            Writer.setMargin(Border);
+
             ZXing::BitMatrix Matrix = Writer.encode(TCHAR_TO_UTF8(*In_Text), Resolution.X, Resolution.Y);
             ZXing::Matrix<uint8_t> Qr_Matrix = ToMatrix<uint8_t>(Matrix);
 
