@@ -217,7 +217,7 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateQrEncode DelegateTexture2D
             Writer.setEncoding(ZXing::CharacterSet::UTF8);
             Writer.setMargin(Border);
 
-            ZXing::BitMatrix Matrix = Writer.encode(TCHAR_TO_UTF8(*In_Text), Resolution.X, Resolution.Y);
+            ZXing::BitMatrix Matrix = Writer.encode((const std::string)TCHAR_TO_UTF8(*In_Text), (int)Resolution.X, (int)Resolution.Y);
             ZXing::Matrix<uint8_t> Qr_Matrix = ToMatrix<uint8_t>(Matrix);
 
             const size_t QR_BufferSize = Qr_Matrix.size();
@@ -285,10 +285,11 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>&
         (uint8_t*)In_Buffer, (int32)Size.X, (int32)Size.Y, ZXing_Image_Format
     };
 
-    ZXing::DecodeHints hints;
-    hints.setTextMode(ZXing::TextMode::HRI);
-    hints.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
-    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, hints);
+    ZXing::ReaderOptions ReaderOptions;
+    ReaderOptions.setTextMode(ZXing::TextMode::HRI);
+    ReaderOptions.setEanAddOnSymbol(ZXing::EanAddOnSymbol::Read);
+    ZXing::Results Results = ZXing::ReadBarcodes(ZXing_Image, ReaderOptions);
+
     if (!Results.empty())
     {
         for (int32 i = 0; i < Results.size(); i++)
