@@ -6,11 +6,9 @@
 
 #pragma once
 
-#include "ByteArray.h"
 #include "Content.h"
 #include "Error.h"
 #include "StructuredAppend.h"
-#include "ZXAlgorithms.h"
 
 #include <memory>
 #include <string>
@@ -41,11 +39,11 @@ public:
 	DecoderResult(Content&& bytes) : _content(std::move(bytes)) {}
 
 	DecoderResult(DecoderResult&&) noexcept = default;
-	DecoderResult& operator=(DecoderResult&&) = default;
+	DecoderResult& operator=(DecoderResult&&) noexcept = default;
 
 	bool isValid(bool includeErrors = false) const
 	{
-		return includeErrors || (_content.symbology.code != 0 && !_error);
+		return (!_content.bytes.empty() && !_error) || (includeErrors && !!_error);
 	}
 
 	const Content& content() const & { return _content; }

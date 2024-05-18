@@ -342,17 +342,17 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decode(TArray<FZXingScanResult>& Out_Resul
     {
         case PF_B8G8R8A8:
         
-            ZXing_Image_Format = ZXing::ImageFormat::BGRX;
+            ZXing_Image_Format = ZXing::ImageFormat::BGRA;
             break;
     
         case PF_R8G8B8A8:
         
-            ZXing_Image_Format = ZXing::ImageFormat::RGBX;
+            ZXing_Image_Format = ZXing::ImageFormat::RGBA;
             break;
 
         case PF_A8R8G8B8:
         
-            ZXing_Image_Format = ZXing::ImageFormat::XRGB;
+            ZXing_Image_Format = ZXing::ImageFormat::ARGB;
             break;
     
         default:
