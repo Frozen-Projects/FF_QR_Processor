@@ -292,23 +292,23 @@ bool UFF_QR_ProcessorBPLibrary::ZXing_Decoder_Callback(TArray<FZXingScanResult>&
    
     if (!Results.empty())
     {
-        for (int32 i = 0; i < Results.size(); i++)
+        for (int32 Index_QR = 0; Index_QR < Results.size(); Index_QR++)
         {
             FZXingScanResult Result;
 
-            Result.QR_Text = ANSI_TO_TCHAR(Results[i].text().c_str());
+            Result.QR_Text = ANSI_TO_TCHAR(Results[Index_QR].text().c_str());
 
-            FVector2D TopLeft = FVector2D(Results[i].position().topLeft().x, Results[i].position().topLeft().y);
-            FVector2D TopRight = FVector2D(Results[i].position().topRight().x, Results[i].position().topRight().y);
-            FVector2D BottomLeft = FVector2D(Results[i].position().bottomLeft().x, Results[i].position().bottomLeft().y);
-            FVector2D BottomRight = FVector2D(Results[i].position().bottomRight().x, Results[i].position().bottomRight().y);
+            FVector2D TopLeft = FVector2D(Results[Index_QR].position().topLeft().x, Results[Index_QR].position().topLeft().y);
+            FVector2D TopRight = FVector2D(Results[Index_QR].position().topRight().x, Results[Index_QR].position().topRight().y);
+            FVector2D BottomLeft = FVector2D(Results[Index_QR].position().bottomLeft().x, Results[Index_QR].position().bottomLeft().y);
+            FVector2D BottomRight = FVector2D(Results[Index_QR].position().bottomRight().x, Results[Index_QR].position().bottomRight().y);
 
             Result.QR_Points.Add(FVector2D(TopLeft));
             Result.QR_Points.Add(FVector2D(BottomLeft));
             Result.QR_Points.Add(FVector2D(BottomRight));
             Result.QR_Points.Add(FVector2D(TopRight));
 
-            Result.QR_Format = UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(Results[i].format());
+            Result.QR_Format = UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(Results[Index_QR].format());
 
             OutResults.Add(Result);
         }
