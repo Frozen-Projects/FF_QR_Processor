@@ -217,7 +217,7 @@ void UFF_QR_ProcessorBPLibrary::ZXing_Encode(FDelegateQrEncode DelegateTexture2D
             Writer.setEncoding(ZXing::CharacterSet::UTF8);
             Writer.setMargin(Border);
 
-            ZXing::BitMatrix Matrix = Writer.encode(TCHAR_TO_UTF8(*In_Text), Resolution.X, Resolution.Y);
+            ZXing::BitMatrix Matrix = Writer.encode((const std::string)TCHAR_TO_UTF8(*In_Text), (int)Resolution.X, (int)Resolution.Y);
             ZXing::Matrix<uint8_t> Qr_Matrix = ToMatrix<uint8_t>(Matrix);
 
             const size_t QR_BufferSize = Qr_Matrix.size();
