@@ -22,6 +22,15 @@ namespace UnrealBuildTool.Rules
                 PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "Android", "include", "src"));
                 
                 string AndroidLibs = Path.Combine(ModuleDirectory, "Android", "lib");
+
+                PublicAdditionalLibraries.AddRange(new string[] {
+                    Path.Combine(AndroidLibs, "arm64-v8a", "libzxing.a"),
+                    Path.Combine(AndroidLibs, "armeabi-v7a", "libzxing.a"),
+                    Path.Combine(AndroidLibs, "x86", "libzxing.a"),
+                    Path.Combine(AndroidLibs, "x86_64", "libzxing.a"),
+                });
+
+                /*
                 PublicAdditionalLibraries.AddRange(new string[] 
                 {
                     Path.Combine(AndroidLibs, "arm64-v8a", "libzxingcpp_android.so"),
@@ -31,6 +40,7 @@ namespace UnrealBuildTool.Rules
                 });
 
                 AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(ModuleDirectory, "ZXing_UPL_Android.xml"));
+                */
             }
         }
     }
