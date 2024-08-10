@@ -27,21 +27,25 @@ void UFF_QR_ProcessorBPLibrary::NayukiQr_GenerateQRCode(FDelegateQrEncode Delega
 
             switch (ErrorTolerance)
             {
-            case ENayukiQrTolerance::Quartile:
-                ToleranceLevel = qrcodegen::QrCode::Ecc::QUARTILE;
-                break;
-            case ENayukiQrTolerance::Low:
-                ToleranceLevel = qrcodegen::QrCode::Ecc::LOW;
-                break;
-            case ENayukiQrTolerance::Mid:
-                ToleranceLevel = qrcodegen::QrCode::Ecc::MEDIUM;
-                break;
-            case ENayukiQrTolerance::High:
-                ToleranceLevel = qrcodegen::QrCode::Ecc::HIGH;
-                break;
-            default:
-                ToleranceLevel = qrcodegen::QrCode::Ecc::LOW;
-                break;
+                case ENayukiQrTolerance::Quartile:
+                    ToleranceLevel = qrcodegen::QrCode::Ecc::QUARTILE;
+                    break;
+               
+                case ENayukiQrTolerance::Low:
+                    ToleranceLevel = qrcodegen::QrCode::Ecc::LOW;
+                    break;
+               
+                case ENayukiQrTolerance::Mid:
+                    ToleranceLevel = qrcodegen::QrCode::Ecc::MEDIUM;
+                    break;
+               
+                case ENayukiQrTolerance::High:
+                    ToleranceLevel = qrcodegen::QrCode::Ecc::HIGH;
+                    break;
+                
+                default:
+                    ToleranceLevel = qrcodegen::QrCode::Ecc::LOW;
+                    break;
             }
 
             qrcodegen::QrCode QRCode = qrcodegen::QrCode::encodeText(TCHAR_TO_UTF8(*In_Text), ToleranceLevel);
@@ -113,44 +117,62 @@ EZXingFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBpFormat(ZXing::BarcodeFo
 {
     switch (Format)
     {
-    case ZXing::BarcodeFormat::None:
-        return EZXingFormat::None;
-    case ZXing::BarcodeFormat::Aztec:
-        return EZXingFormat::Aztec;
-    case ZXing::BarcodeFormat::Codabar:
-        return EZXingFormat::Codabar;
-    case ZXing::BarcodeFormat::Code39:
-        return EZXingFormat::Code39;
-    case ZXing::BarcodeFormat::Code93:
-        return EZXingFormat::Code93;
-    case ZXing::BarcodeFormat::Code128:
-        return EZXingFormat::Code128;
-    case ZXing::BarcodeFormat::DataBar:
-        return EZXingFormat::DataBar;
-    case ZXing::BarcodeFormat::DataBarExpanded:
-        return EZXingFormat::DataBarExpanded;
-    case ZXing::BarcodeFormat::DataMatrix:
-        return EZXingFormat::DataMatrix;
-    case ZXing::BarcodeFormat::EAN8:
-        return EZXingFormat::EAN8;
-    case ZXing::BarcodeFormat::EAN13:
-        return EZXingFormat::EAN13;
-    case ZXing::BarcodeFormat::ITF:
-        return EZXingFormat::ITF;
-    case ZXing::BarcodeFormat::MaxiCode:
-        return EZXingFormat::MaxiCode;
-    case ZXing::BarcodeFormat::PDF417:
-        return EZXingFormat::PDF417;
-    case ZXing::BarcodeFormat::QRCode:
-        return EZXingFormat::QRCode;
-    case ZXing::BarcodeFormat::UPCA:
-        return EZXingFormat::UPCA;
-    case ZXing::BarcodeFormat::UPCE:
-        return EZXingFormat::UPCE;
-    case ZXing::BarcodeFormat::MicroQRCode:
-        return EZXingFormat::MicroQRCode;
-    default:
-        return EZXingFormat::None;
+        case ZXing::BarcodeFormat::None:
+            return EZXingFormat::None;
+        
+        case ZXing::BarcodeFormat::Aztec:
+            return EZXingFormat::Aztec;
+       
+        case ZXing::BarcodeFormat::Codabar:
+            return EZXingFormat::Codabar;
+        
+        case ZXing::BarcodeFormat::Code39:
+            return EZXingFormat::Code39;
+       
+        case ZXing::BarcodeFormat::Code93:
+            return EZXingFormat::Code93;
+        
+        case ZXing::BarcodeFormat::Code128:
+            return EZXingFormat::Code128;
+        
+        case ZXing::BarcodeFormat::DataBar:
+            return EZXingFormat::DataBar;
+        
+        case ZXing::BarcodeFormat::DataBarExpanded:
+            return EZXingFormat::DataBarExpanded;
+        
+        case ZXing::BarcodeFormat::DataMatrix:
+            return EZXingFormat::DataMatrix;
+       
+        case ZXing::BarcodeFormat::EAN8:
+            return EZXingFormat::EAN8;
+        
+        case ZXing::BarcodeFormat::EAN13:
+            return EZXingFormat::EAN13;
+       
+        case ZXing::BarcodeFormat::ITF:
+            return EZXingFormat::ITF;
+        
+        case ZXing::BarcodeFormat::MaxiCode:
+            return EZXingFormat::MaxiCode;
+        
+        case ZXing::BarcodeFormat::PDF417:
+            return EZXingFormat::PDF417;
+       
+        case ZXing::BarcodeFormat::QRCode:
+            return EZXingFormat::QRCode;
+        
+        case ZXing::BarcodeFormat::UPCA:
+            return EZXingFormat::UPCA;
+       
+        case ZXing::BarcodeFormat::UPCE:
+            return EZXingFormat::UPCE;
+       
+        case ZXing::BarcodeFormat::MicroQRCode:
+            return EZXingFormat::MicroQRCode;
+       
+        default:
+            return EZXingFormat::None;
     }
 }
 
@@ -158,44 +180,62 @@ ZXing::BarcodeFormat UFF_QR_ProcessorBPLibrary::ZXing_ConvertToBarcodeFormat(EZX
 {
     switch (Format)
     {
-    case EZXingFormat::None:
-        return ZXing::BarcodeFormat::None;
-    case EZXingFormat::Aztec:
-        return ZXing::BarcodeFormat::Aztec;
-    case EZXingFormat::Codabar:
-        return ZXing::BarcodeFormat::Codabar;
-    case EZXingFormat::Code39:
-        return ZXing::BarcodeFormat::Code39;
-    case EZXingFormat::Code93:
-        return ZXing::BarcodeFormat::Code93;
-    case EZXingFormat::Code128:
-        return ZXing::BarcodeFormat::Code128;
-    case EZXingFormat::DataBar:
-        return ZXing::BarcodeFormat::DataBar;
-    case EZXingFormat::DataBarExpanded:
-        return ZXing::BarcodeFormat::DataBarExpanded;
-    case EZXingFormat::DataMatrix:
-        return ZXing::BarcodeFormat::DataMatrix;
-    case EZXingFormat::EAN8:
-        return ZXing::BarcodeFormat::EAN8;
-    case EZXingFormat::EAN13:
-        return ZXing::BarcodeFormat::EAN13;
-    case EZXingFormat::ITF:
-        return ZXing::BarcodeFormat::ITF;
-    case EZXingFormat::MaxiCode:
-        return ZXing::BarcodeFormat::MaxiCode;
-    case EZXingFormat::PDF417:
-        return ZXing::BarcodeFormat::PDF417;
-    case EZXingFormat::QRCode:
-        return ZXing::BarcodeFormat::QRCode;
-    case EZXingFormat::UPCA:
-        return ZXing::BarcodeFormat::UPCA;
-    case EZXingFormat::UPCE:
-        return ZXing::BarcodeFormat::UPCE;
-    case EZXingFormat::MicroQRCode:
-        return ZXing::BarcodeFormat::MicroQRCode;
-    default:
-        return ZXing::BarcodeFormat::None;
+        case EZXingFormat::None:
+            return ZXing::BarcodeFormat::None;
+        
+        case EZXingFormat::Aztec:
+            return ZXing::BarcodeFormat::Aztec;
+       
+        case EZXingFormat::Codabar:
+            return ZXing::BarcodeFormat::Codabar;
+       
+        case EZXingFormat::Code39:
+            return ZXing::BarcodeFormat::Code39;
+       
+        case EZXingFormat::Code93:
+            return ZXing::BarcodeFormat::Code93;
+        
+        case EZXingFormat::Code128:
+            return ZXing::BarcodeFormat::Code128;
+       
+        case EZXingFormat::DataBar:
+            return ZXing::BarcodeFormat::DataBar;
+        
+        case EZXingFormat::DataBarExpanded:
+            return ZXing::BarcodeFormat::DataBarExpanded;
+       
+        case EZXingFormat::DataMatrix:
+            return ZXing::BarcodeFormat::DataMatrix;
+        
+        case EZXingFormat::EAN8:
+            return ZXing::BarcodeFormat::EAN8;
+        
+        case EZXingFormat::EAN13:
+            return ZXing::BarcodeFormat::EAN13;
+       
+        case EZXingFormat::ITF:
+            return ZXing::BarcodeFormat::ITF;
+        
+        case EZXingFormat::MaxiCode:
+            return ZXing::BarcodeFormat::MaxiCode;
+       
+        case EZXingFormat::PDF417:
+            return ZXing::BarcodeFormat::PDF417;
+       
+        case EZXingFormat::QRCode:
+            return ZXing::BarcodeFormat::QRCode;
+        
+        case EZXingFormat::UPCA:
+            return ZXing::BarcodeFormat::UPCA;
+        
+        case EZXingFormat::UPCE:
+            return ZXing::BarcodeFormat::UPCE;
+       
+        case EZXingFormat::MicroQRCode:
+            return ZXing::BarcodeFormat::MicroQRCode;
+        
+        default:
+            return ZXing::BarcodeFormat::None;
     }
 }
 
@@ -381,13 +421,11 @@ bool UFF_QR_ProcessorBPLibrary::OpenCV_QR_Decoder_Callback(FString& DecodedStrin
         return false;
     }
 
-    cv::Mat Image(cv::Size((int32)ImageSize.X, (int32)ImageSize.Y), CV_8UC4, Buffer);
+    const cv::Mat Image(cv::Size((int32)ImageSize.X, (int32)ImageSize.Y), CV_8UC4, Buffer);
     cv::Mat Points;
     cv::Mat Output;
 
-    cv::QRCodeDetector QR_Detector;
-    QR_Detector = cv::QRCodeDetector::QRCodeDetector();
-
+    const cv::QRCodeDetector QR_Detector = cv::QRCodeDetector::QRCodeDetector();
     DecodedString = QR_Detector.detectAndDecode(Image, Points, Output).c_str();
 
     return true;
