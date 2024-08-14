@@ -15,7 +15,7 @@ struct FF_QR_PROCESSOR_API FZXingScanResult
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, Category = "ZXing")
-	EZXingFormat QR_Format;
+	EZXingFormat QR_Format = EZXingFormat::QRCode;
 	
 	UPROPERTY(BlueprintReadWrite, Category = "ZXing")
 	FString QR_Text;
