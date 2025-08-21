@@ -34,10 +34,10 @@ class CV_EXPORTS_W CharucoDetector : public Algorithm {
 public:
     /** @brief Basic CharucoDetector constructor
      *
-     * @param board ChAruco board
-     * @param charucoParams charuco detection parameters
-     * @param detectorParams marker detection parameters
-     * @param refineParams marker refine detection parameters
+     *  board ChAruco board
+     *  charucoParams charuco detection parameters
+     *  detectorParams marker detection parameters
+     *  refineParams marker refine detection parameters
      */
     CV_WRAP CharucoDetector(const CharucoBoard& board,
                             const CharucoParameters& charucoParams = CharucoParameters(),
@@ -58,15 +58,15 @@ public:
 
     /**
      * @brief detect aruco markers and interpolate position of ChArUco board corners
-     * @param image input image necesary for corner refinement. Note that markers are not detected and
+     *  image input image necesary for corner refinement. Note that markers are not detected and
      * should be sent in corners and ids parameters.
-     * @param charucoCorners interpolated chessboard corners.
-     * @param charucoIds interpolated chessboard corners identifiers.
-     * @param markerCorners vector of already detected markers corners. For each marker, its four
+     *  charucoCorners interpolated chessboard corners.
+     *  charucoIds interpolated chessboard corners identifiers.
+     *  markerCorners vector of already detected markers corners. For each marker, its four
      * corners are provided, (e.g std::vector<std::vector<cv::Point2f> > ). For N detected markers, the
      * dimensions of this array should be Nx4. The order of the corners should be clockwise.
      * If markerCorners and markerCorners are empty, the function detect aruco markers and ids.
-     * @param markerIds list of identifiers for each marker in corners.
+     *  markerIds list of identifiers for each marker in corners.
      *  If markerCorners and markerCorners are empty, the function detect aruco markers and ids.
      *
      * This function receives the detected markers and returns the 2D position of the chessboard corners
@@ -85,16 +85,16 @@ public:
     /**
      * @brief Detect ChArUco Diamond markers
      *
-     * @param image input image necessary for corner subpixel.
-     * @param diamondCorners output list of detected diamond corners (4 corners per diamond). The order
+     *  image input image necessary for corner subpixel.
+     *  diamondCorners output list of detected diamond corners (4 corners per diamond). The order
      * is the same than in marker corners: top left, top right, bottom right and bottom left. Similar
      * format than the corners returned by detectMarkers (e.g std::vector<std::vector<cv::Point2f> > ).
-     * @param diamondIds ids of the diamonds in diamondCorners. The id of each diamond is in fact of
+     *  diamondIds ids of the diamonds in diamondCorners. The id of each diamond is in fact of
      * type Vec4i, so each diamond has 4 ids, which are the ids of the aruco markers composing the
      * diamond.
-     * @param markerCorners list of detected marker corners from detectMarkers function.
+     *  markerCorners list of detected marker corners from detectMarkers function.
      * If markerCorners and markerCorners are empty, the function detect aruco markers and ids.
-     * @param markerIds list of marker ids in markerCorners.
+     *  markerIds list of marker ids in markerCorners.
      * If markerCorners and markerCorners are empty, the function detect aruco markers and ids.
      *
      * This function detects Diamond markers from the previous detected ArUco markers. The diamonds
@@ -112,11 +112,11 @@ protected:
 
 /**
  * @brief Draws a set of Charuco corners
- * @param image input/output image. It must have 1 or 3 channels. The number of channels is not
+ *  image input/output image. It must have 1 or 3 channels. The number of channels is not
  * altered.
- * @param charucoCorners vector of detected charuco corners
- * @param charucoIds list of identifiers for each corner in charucoCorners
- * @param cornerColor color of the square surrounding each corner
+ *  charucoCorners vector of detected charuco corners
+ *  charucoIds list of identifiers for each corner in charucoCorners
+ *  cornerColor color of the square surrounding each corner
  *
  * This function draws a set of detected Charuco corners. If identifiers vector is provided, it also
  * draws the id of each corner.
@@ -127,15 +127,15 @@ CV_EXPORTS_W void drawDetectedCornersCharuco(InputOutputArray image, InputArray 
 /**
  * @brief Draw a set of detected ChArUco Diamond markers
  *
- * @param image input/output image. It must have 1 or 3 channels. The number of channels is not
+ *  image input/output image. It must have 1 or 3 channels. The number of channels is not
  * altered.
- * @param diamondCorners positions of diamond corners in the same format returned by
+ *  diamondCorners positions of diamond corners in the same format returned by
  * detectCharucoDiamond(). (e.g std::vector<std::vector<cv::Point2f> > ). For N detected markers,
  * the dimensions of this array should be Nx4. The order of the corners should be clockwise.
- * @param diamondIds vector of identifiers for diamonds in diamondCorners, in the same format
+ *  diamondIds vector of identifiers for diamonds in diamondCorners, in the same format
  * returned by detectCharucoDiamond() (e.g. std::vector<Vec4i>).
  * Optional, if not provided, ids are not painted.
- * @param borderColor color of marker borders. Rest of colors (text color and first corner color)
+ *  borderColor color of marker borders. Rest of colors (text color and first corner color)
  * are calculated based on this one.
  *
  * Given an array of detected diamonds, this functions draws them in the image. The marker borders

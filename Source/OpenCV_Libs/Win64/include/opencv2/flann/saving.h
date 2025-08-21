@@ -81,8 +81,8 @@ struct IndexHeader
 /**
  * Saves index header to stream
  *
- * @param stream - Stream to save to
- * @param index - The index to save
+ *  stream - Stream to save to
+ *  index - The index to save
  */
 template<typename Distance>
 void save_header(FILE* stream, const NNIndex<Distance>& index)
@@ -103,7 +103,7 @@ void save_header(FILE* stream, const NNIndex<Distance>& index)
 
 /**
  *
- * @param stream - Stream to load from
+ *  stream - Stream to load from
  * @return Index header
  */
 inline IndexHeader load_header(FILE* stream)

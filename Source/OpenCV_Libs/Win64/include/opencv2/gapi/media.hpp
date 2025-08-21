@@ -74,7 +74,7 @@ public:
      * @brief Constructs a MediaFrame with the given
      * Adapter. MediaFrame takes ownership over the passed adapter.
      *
-     * @param p an unique pointer to instance of IAdapter derived class.
+     *  p an unique pointer to instance of IAdapter derived class.
      */
     explicit MediaFrame(AdapterPtr &&p);
 
@@ -83,7 +83,7 @@ public:
      * @brief Constructs a MediaFrame with the given parameters for
      * the Adapter. The adapter of type `T` is costructed on the fly.
      *
-     * @param args list of arguments to construct an adapter of type
+     *  args list of arguments to construct an adapter of type
      * `T`.
      */
     template<class T, class... Args> static cv::MediaFrame Create(Args&&... args);
@@ -97,7 +97,7 @@ public:
      * costly (if the underlying memory is external or device
      * memory).
      *
-     * @param mode an access mode flag
+     *  mode an access mode flag
      * @return a MediaFrame::View object. The views should be handled
      * carefully, refer to the MediaFrame::View documentation for details.
      */
@@ -142,7 +142,7 @@ public:
      * @note The actual logic is implemented by frame's adapter class.
      * Does nothing by default.
      *
-     * @param os Bytestream to store serialized MediaFrame data in.
+     *  os Bytestream to store serialized MediaFrame data in.
      */
     void serialize(cv::gapi::s11n::IOStream& os) const;
 

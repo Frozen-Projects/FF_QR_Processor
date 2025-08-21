@@ -288,11 +288,11 @@ enum BorderTypes {
 By default the function prints information about the error to stderr,
 then it either stops if setBreakOnError() had been called before or raises the exception.
 It is possible to alternate error processing by using redirectError().
-@param _code - error code (Error::Code)
-@param _err - error description
-@param _func - function name. Available only when the compiler supports getting it
-@param _file - source file name where the error has occurred
-@param _line - line number in the source file where the error has occurred
+ _code - error code (Error::Code)
+ _err - error description
+ _func - function name. Available only when the compiler supports getting it
+ _file - source file name where the error has occurred
+ _line - line number in the source file where the error has occurred
 @see CV_Error, CV_Error_, CV_Assert, CV_DbgAssert
  */
 CV_EXPORTS CV_NORETURN void error(int _code, const String& _err, const char* _func, const char* _file, int _line);
@@ -314,8 +314,8 @@ error stream `stderr`. In the Debug configuration, it then provokes memory acces
 the execution stack and all the parameters can be analyzed by the debugger. In the Release
 configuration, the exception is thrown.
 
-@param code one of Error::Code
-@param msg error message
+ code one of Error::Code
+ msg error message
 */
 #define CV_Error( code, msg ) cv::error( code, msg, CV_Func, __FILE__, __LINE__ )
 
@@ -328,8 +328,8 @@ for example:
     CV_Error_(Error::StsOutOfRange,
     ("the value at (%d, %d)=%g is out of range", badPt.x, badPt.y, badValue));
 @endcode
-@param code one of Error::Code
-@param args printf-like formatted error message in parentheses
+ code one of Error::Code
+ args printf-like formatted error message in parentheses
 */
 #define CV_Error_( code, args ) cv::error( code, cv::format args, CV_Func, __FILE__, __LINE__ )
 
@@ -534,7 +534,7 @@ _AccTp normInf(const _Tp* a, const _Tp* b, int n)
  The function cubeRoot computes \f$\sqrt[3]{\texttt{val}}\f$. Negative arguments are handled correctly.
  NaN and Inf are not handled. The accuracy approaches the maximum possible accuracy for
  single-precision data.
- @param val A function argument.
+  val A function argument.
  */
 CV_EXPORTS_W float cubeRoot(float val);
 
@@ -552,8 +552,8 @@ double cubeRoot(double val)
 
  The function fastAtan2 calculates the full-range angle of an input 2D vector. The angle is measured
  in degrees and varies from 0 to 360 degrees. The accuracy is about 0.3 degrees.
- @param x x-coordinate of the vector.
- @param y y-coordinate of the vector.
+  x x-coordinate of the vector.
+  y y-coordinate of the vector.
  */
 CV_EXPORTS_W float fastAtan2(float y, float x);
 

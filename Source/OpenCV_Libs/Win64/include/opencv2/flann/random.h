@@ -56,7 +56,7 @@ inline int rand()
 
 /**
  * Seeds the random number generator
- *  @param seed Random seed
+ *   seed Random seed
  */
 inline void seed_random(unsigned int seed)
 {
@@ -72,8 +72,8 @@ inline void seed_random(unsigned int seed)
  */
 /**
  * Generates a random double value.
- * @param high Upper limit
- * @param low Lower limit
+ *  high Upper limit
+ *  low Lower limit
  * @return Random double value
  */
 inline double rand_double(double high = 1.0, double low = 0)
@@ -83,8 +83,8 @@ inline double rand_double(double high = 1.0, double low = 0)
 
 /**
  * Generates a random integer value.
- * @param high Upper limit
- * @param low Lower limit
+ *  high Upper limit
+ *  low Lower limit
  * @return Random integer value
  */
 inline int rand_int(int high = RAND_MAX, int low = 0)
@@ -105,7 +105,7 @@ class UniqueRandom
 public:
     /**
      * Constructor.
-     * @param n Size of the interval from which to generate
+     *  n Size of the interval from which to generate
      */
     UniqueRandom(int n)
     {
@@ -114,7 +114,7 @@ public:
 
     /**
      * Initializes the number generator.
-     * @param n the size of the interval from which to generate random numbers.
+     *  n the size of the interval from which to generate random numbers.
      */
     void init(int n)
     {

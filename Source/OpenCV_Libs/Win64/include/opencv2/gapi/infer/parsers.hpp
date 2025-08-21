@@ -56,11 +56,11 @@ filters it by given confidence and label.
 
 @note Function textual ID is "org.opencv.nn.parsers.parseSSD_BL"
 
-@param in Input CV_32F tensor with {1,1,N,7} dimensions.
-@param inSz Size to project detected boxes to (size of the input image).
-@param confidenceThreshold If confidence of the
+ in Input CV_32F tensor with {1,1,N,7} dimensions.
+ inSz Size to project detected boxes to (size of the input image).
+ confidenceThreshold If confidence of the
 detection is smaller than confidence threshold, detection is rejected.
-@param filterLabel If provided (!= -1), only detections with
+ filterLabel If provided (!= -1), only detections with
 given label will get to the output.
 @return a tuple with a vector of detected boxes and a vector of appropriate labels.
 */
@@ -76,14 +76,14 @@ filters it by given confidence and by going out of bounds.
 
 @note Function textual ID is "org.opencv.nn.parsers.parseSSD"
 
-@param in Input CV_32F tensor with {1,1,N,7} dimensions.
-@param inSz Size to project detected boxes to (size of the input image).
-@param confidenceThreshold If confidence of the
+ in Input CV_32F tensor with {1,1,N,7} dimensions.
+ inSz Size to project detected boxes to (size of the input image).
+ confidenceThreshold If confidence of the
 detection is smaller than confidence threshold, detection is rejected.
-@param alignmentToSquare If provided true, bounding boxes are extended to squares.
+ alignmentToSquare If provided true, bounding boxes are extended to squares.
 The center of the rectangle remains unchanged, the side of the square is
 the larger side of the rectangle.
-@param filterOutOfBounds If provided true, out-of-frame boxes are filtered.
+ filterOutOfBounds If provided true, out-of-frame boxes are filtered.
 @return a vector of detected bounding boxes.
 */
 GAPI_EXPORTS_W GArray<Rect> parseSSD(const GMat& in,
@@ -99,16 +99,16 @@ filters it by given confidence and performs non-maximum suppression for overlapp
 
 @note Function textual ID is "org.opencv.nn.parsers.parseYolo"
 
-@param in Input CV_32F tensor with {1,13,13,N} dimensions, N should satisfy:
+ in Input CV_32F tensor with {1,13,13,N} dimensions, N should satisfy:
 \f[\texttt{N} = (\texttt{num_classes} + \texttt{5}) * \texttt{5},\f]
 where num_classes - a number of classes Yolo network was trained with.
-@param inSz Size to project detected boxes to (size of the input image).
-@param confidenceThreshold If confidence of the
+ inSz Size to project detected boxes to (size of the input image).
+ confidenceThreshold If confidence of the
 detection is smaller than confidence threshold, detection is rejected.
-@param nmsThreshold Non-maximum suppression threshold which controls minimum
+ nmsThreshold Non-maximum suppression threshold which controls minimum
 relative box intersection area required for rejecting the box with a smaller confidence.
 If 1.f, nms is not performed and no boxes are rejected.
-@param anchors Anchors Yolo network was trained with.
+ anchors Anchors Yolo network was trained with.
 @note The default anchor values are specified for YOLO v2 Tiny as described in Intel Open Model Zoo
 <a href="https://github.com/openvinotoolkit/open_model_zoo/blob/master/models/public/yolo-v2-tiny-tf/yolo-v2-tiny-tf.md">documentation</a>.
 @return a tuple with a vector of detected boxes and a vector of appropriate labels.

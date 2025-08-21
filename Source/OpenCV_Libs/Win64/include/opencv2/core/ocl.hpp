@@ -234,7 +234,7 @@ public:
     CV_WRAP static const Device& getDefault();
 
     /**
-     * @param d OpenCL handle (cl_device_id). clRetainDevice() is called on success.
+     *  d OpenCL handle (cl_device_id). clRetainDevice() is called on success.
      *
      * @note Ownership of the passed device is passed to OpenCV on success.
      * The caller should additionally call `clRetainDevice` on it if it intends
@@ -285,7 +285,7 @@ public:
 
     /**
      * @brief Get OpenCL context property specified on context creation
-     * @param propertyId Property id (CL_CONTEXT_* as defined in cl_context_properties type)
+     *  propertyId Property id (CL_CONTEXT_* as defined in cl_context_properties type)
      * @returns Property value if property was specified on clCreateContext, or NULL if context created without the property
      */
     void* getOpenCLContextProperty(int propertyId) const;
@@ -294,7 +294,7 @@ public:
     void setUseSVM(bool enabled);
 
     /**
-     * @param context OpenCL handle (cl_context). clRetainContext() is called on success
+     *  context OpenCL handle (cl_context). clRetainContext() is called on success
      */
     static Context fromHandle(void* context);
     static Context fromDevice(const ocl::Device& device);
@@ -353,10 +353,10 @@ protected:
   OpenCV will check if available OpenCL platform has platformName name, then assign context to
   OpenCV and call `clRetainContext` function. The deviceID device will be used as target device and
   new command queue will be created.
-@param platformName name of OpenCL platform to attach, this string is used to check if platform is available to OpenCV at runtime
-@param platformID ID of platform attached context was created for
-@param context OpenCL context to be attached to OpenCV
-@param deviceID ID of device, must be created from attached context
+ platformName name of OpenCL platform to attach, this string is used to check if platform is available to OpenCV at runtime
+ platformID ID of platform attached context was created for
+ context OpenCL context to be attached to OpenCV
+ deviceID ID of device, must be created from attached context
 */
 CV_EXPORTS void attachContext(const String& platformName, void* platformID, void* context, void* deviceID);
 
@@ -365,12 +365,12 @@ CV_EXPORTS void attachContext(const String& platformName, void* platformID, void
   OpenCL buffer (cl_mem_buffer) should contain 2D image data, compatible with OpenCV. Memory
   content is not copied from `clBuffer` to UMat. Instead, buffer handle assigned to UMat and
   `clRetainMemObject` is called.
-@param cl_mem_buffer source clBuffer handle
-@param step num of bytes in single row
-@param rows number of rows
-@param cols number of cols
-@param type OpenCV type of image
-@param dst destination UMat
+ cl_mem_buffer source clBuffer handle
+ step num of bytes in single row
+ rows number of rows
+ cols number of cols
+ type OpenCV type of image
+ dst destination UMat
 */
 CV_EXPORTS void convertFromBuffer(void* cl_mem_buffer, size_t step, int rows, int cols, int type, UMat& dst);
 
@@ -378,8 +378,8 @@ CV_EXPORTS void convertFromBuffer(void* cl_mem_buffer, size_t step, int rows, in
 @note
   OpenCL `image2d_t` (cl_mem_image), should be compatible with OpenCV UMat formats. Memory content
   is copied from image to UMat with `clEnqueueCopyImageToBuffer` function.
-@param cl_mem_image source image2d_t handle
-@param dst destination UMat
+ cl_mem_image source image2d_t handle
+ dst destination UMat
 */
 CV_EXPORTS void convertFromImage(void* cl_mem_image, UMat& dst);
 
@@ -501,14 +501,14 @@ public:
 
     /** @brief Run the OpenCL kernel (globalsize value may be adjusted)
 
-    @param dims the work problem dimensions. It is the length of globalsize and localsize. It can be either 1, 2 or 3.
-    @param globalsize work items for each dimension. It is not the final globalsize passed to
+     dims the work problem dimensions. It is the length of globalsize and localsize. It can be either 1, 2 or 3.
+     globalsize work items for each dimension. It is not the final globalsize passed to
       OpenCL. Each dimension will be adjusted to the nearest integer divisible by the corresponding
       value in localsize. If localsize is NULL, it will still be adjusted depending on dims. The
       adjusted values are greater than or equal to the original values.
-    @param localsize work-group size for each dimension.
-    @param sync specify whether to wait for OpenCL computation to finish before return.
-    @param q command queue
+     localsize work-group size for each dimension.
+     sync specify whether to wait for OpenCL computation to finish before return.
+     q command queue
 
     @note Use run_() if your kernel code doesn't support adjusted globalsize.
     */
@@ -517,11 +517,11 @@ public:
 
     /** @brief Run the OpenCL kernel
      *
-     * @param dims the work problem dimensions. It is the length of globalsize and localsize. It can be either 1, 2 or 3.
-     * @param globalsize work items for each dimension. This value is passed to OpenCL without changes.
-     * @param localsize work-group size for each dimension.
-     * @param sync specify whether to wait for OpenCL computation to finish before return.
-     * @param q command queue
+     *  dims the work problem dimensions. It is the length of globalsize and localsize. It can be either 1, 2 or 3.
+     *  globalsize work items for each dimension. This value is passed to OpenCL without changes.
+     *  localsize work-group size for each dimension.
+     *  sync specify whether to wait for OpenCL computation to finish before return.
+     *  q command queue
      */
     bool run_(int dims, size_t globalsize[], size_t localsize[], bool sync, const Queue& q=Queue());
 
@@ -570,7 +570,7 @@ public:
      *
      * @sa ProgramSource::fromBinary
      *
-     * @param[out] binary output buffer
+     * [out] binary output buffer
      */
     void getBinary(std::vector<char>& binary) const;
 
@@ -617,11 +617,11 @@ public:
      *
      * This kind of binary is not portable between platforms in general - it is specific to OpenCL vendor / device / driver version.
      *
-     * @param module name of program owner module
-     * @param name unique name of program (module+name is used as key for OpenCL program caching)
-     * @param binary buffer address. See buffer lifetime requirement in description.
-     * @param size buffer size
-     * @param buildOptions additional program-related build options passed to clBuildProgram()
+     *  module name of program owner module
+     *  name unique name of program (module+name is used as key for OpenCL program caching)
+     *  binary buffer address. See buffer lifetime requirement in description.
+     *  size buffer size
+     *  buildOptions additional program-related build options passed to clBuildProgram()
      * @return created ProgramSource object
      */
     static ProgramSource fromBinary(const String& module, const String& name,
@@ -641,11 +641,11 @@ public:
      *
      * Note: these programs can't support vendor specific extensions, like 'cl_intel_subgroups'.
      *
-     * @param module name of program owner module
-     * @param name unique name of program (module+name is used as key for OpenCL program caching)
-     * @param binary buffer address. See buffer lifetime requirement in description.
-     * @param size buffer size
-     * @param buildOptions additional program-related build options passed to clBuildProgram()
+     *  module name of program owner module
+     *  name unique name of program (module+name is used as key for OpenCL program caching)
+     *  binary buffer address. See buffer lifetime requirement in description.
+     *  size buffer size
+     *  buildOptions additional program-related build options passed to clBuildProgram()
      *        (these options are added automatically: '-x spir' and '-spir-std=1.2')
      * @return created ProgramSource object.
      */
@@ -670,7 +670,7 @@ class CV_EXPORTS PlatformInfo
 public:
     PlatformInfo() CV_NOEXCEPT;
     /**
-     * @param id pointer cl_platform_id (cl_platform_id*)
+     *  id pointer cl_platform_id (cl_platform_id*)
      */
     explicit PlatformInfo(void* id);
     ~PlatformInfo();
@@ -743,9 +743,9 @@ public:
     Image2D() CV_NOEXCEPT;
 
     /**
-    @param src UMat object from which to get image properties and data
-    @param norm flag to enable the use of normalized channel data types
-    @param alias flag indicating that the image should alias the src UMat. If true, changes to the
+     src UMat object from which to get image properties and data
+     norm flag to enable the use of normalized channel data types
+     alias flag indicating that the image should alias the src UMat. If true, changes to the
         image or src will be reflected in both objects.
     */
     explicit Image2D(const UMat &src, bool norm = false, bool alias = false);
@@ -838,7 +838,7 @@ public:
 
     /** Creates new execution context with same OpenCV context and device
      *
-     * @param q OpenCL queue
+     *  q OpenCL queue
      */
     OpenCLExecutionContext cloneWithNewQueue(const ocl::Queue& q) const;
     /** @overload */
@@ -853,18 +853,18 @@ public:
      * The caller should additionally call `clRetainContext` and/or `clRetainDevice`
      * to increase the reference count if it wishes to continue using them.
      *
-     * @param platformName name of OpenCL platform to attach, this string is used to check if platform is available to OpenCV at runtime
-     * @param platformID ID of platform attached context was created for (cl_platform_id)
-     * @param context OpenCL context to be attached to OpenCV (cl_context)
-     * @param deviceID OpenCL device (cl_device_id)
+     *  platformName name of OpenCL platform to attach, this string is used to check if platform is available to OpenCV at runtime
+     *  platformID ID of platform attached context was created for (cl_platform_id)
+     *  context OpenCL context to be attached to OpenCV (cl_context)
+     *  deviceID OpenCL device (cl_device_id)
      */
     static OpenCLExecutionContext create(const std::string& platformName, void* platformID, void* context, void* deviceID);
 
     /** @brief Creates OpenCL execution context
      *
-     * @param context non-empty OpenCL context
-     * @param device non-empty OpenCL device (must be a part of context)
-     * @param queue non-empty OpenCL queue for provided context and device
+     *  context non-empty OpenCL context
+     *  device non-empty OpenCL device (must be a part of context)
+     *  queue non-empty OpenCL queue for provided context and device
      */
     static OpenCLExecutionContext create(const Context& context, const Device& device, const ocl::Queue& queue);
     /** @overload */

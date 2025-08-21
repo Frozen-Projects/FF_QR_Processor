@@ -87,9 +87,9 @@ public:
     typedef typename Distance::ResultType DistanceType;
 
     /** Constructor
-     * @param input_data dataset with the input features
-     * @param params parameters passed to the LSH algorithm
-     * @param d the distance used
+     *  input_data dataset with the input features
+     *  params parameters passed to the LSH algorithm
+     *  d the distance used
      */
     LshIndex(const Matrix<ElementType>& input_data, const IndexParams& params = LshIndexParams(),
              Distance d = Distance()) :
@@ -240,10 +240,10 @@ private:
     };
 
     /** Fills the different xor masks to use when getting the neighbors in multi-probe LSH
-     * @param key the key we build neighbors from
-     * @param lowest_index the lowest index of the bit set
-     * @param level the multi-probe level we are at
-     * @param xor_masks all the xor mask
+     *  key the key we build neighbors from
+     *  lowest_index the lowest index of the bit set
+     *  level the multi-probe level we are at
+     *  xor_masks all the xor mask
      */
     void fill_xor_mask(lsh::BucketKey key, int lowest_index, unsigned int level,
                        std::vector<lsh::BucketKey>& xor_masks)
@@ -258,12 +258,12 @@ private:
     }
 
     /** Performs the approximate nearest-neighbor search.
-     * @param vec the feature to analyze
-     * @param do_radius flag indicating if we check the radius too
-     * @param radius the radius if it is a radius search
-     * @param do_k flag indicating if we limit the number of nn
-     * @param k_nn the number of nearest neighbors
-     * @param checked_average used for debugging
+     *  vec the feature to analyze
+     *  do_radius flag indicating if we check the radius too
+     *  radius the radius if it is a radius search
+     *  do_k flag indicating if we limit the number of nn
+     *  k_nn the number of nearest neighbors
+     *  checked_average used for debugging
      */
     void getNeighbors(const ElementType* vec, bool /*do_radius*/, float radius, bool do_k, unsigned int k_nn,
                       float& /*checked_average*/)
@@ -339,7 +339,7 @@ private:
 
     /** Performs the approximate nearest-neighbor search.
      * This is a slower version than the above as it uses the ResultSet
-     * @param vec the feature to analyze
+     *  vec the feature to analyze
      */
     void getNeighbors(const ElementType* vec, ResultSet<DistanceType>& result)
     {

@@ -127,7 +127,7 @@ CV__DNN_INLINE_NS_BEGIN
 
     /**
      * @brief Enables detailed logging of the DNN model loading with CV DNN API.
-     * @param[in] isDiagnosticsMode Indicates whether diagnostic mode should be set.
+     * [in] isDiagnosticsMode Indicates whether diagnostic mode should be set.
      *
      * Diagnostic mode provides detailed logging of the model loading stage to explore
      * potential problems (ex.: not implemented layer type).
@@ -175,8 +175,8 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Wrap cv::Mat for specific backend and target.
-         * @param[in] targetId Target identifier.
-         * @param[in] m cv::Mat for wrapping.
+         * [in] targetId Target identifier.
+         * [in] m cv::Mat for wrapping.
          *
          * Make CPU->GPU data transfer if it's require for the target.
          */
@@ -184,8 +184,8 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Make wrapper for reused cv::Mat.
-         * @param[in] base Wrapper of cv::Mat that will be reused.
-         * @param[in] shape Specific shape.
+         * [in] base Wrapper of cv::Mat that will be reused.
+         * [in] shape Specific shape.
          *
          * Initialize wrapper from another one. It'll wrap the same host CPU
          * memory and mustn't allocate memory on device(i.e. GPU). It might
@@ -226,8 +226,8 @@ CV__DNN_INLINE_NS_BEGIN
 
         /** @brief Computes and sets internal parameters according to inputs, outputs and blobs.
          *  @deprecated Use Layer::finalize(InputArrayOfArrays, OutputArrayOfArrays) instead
-         *  @param[in]  input  vector of already allocated input blobs
-         *  @param[out] output vector of already allocated output blobs
+         *  [in]  input  vector of already allocated input blobs
+         *  [out] output vector of already allocated output blobs
          *
          * If this method is called after network has allocated all memory for input and output blobs
          * and before inferencing.
@@ -236,8 +236,8 @@ CV__DNN_INLINE_NS_BEGIN
         virtual void finalize(const std::vector<Mat*> &input, std::vector<Mat> &output);
 
         /** @brief Computes and sets internal parameters according to inputs, outputs and blobs.
-         *  @param[in]  inputs  vector of already allocated input blobs
-         *  @param[out] outputs vector of already allocated output blobs
+         *  [in]  inputs  vector of already allocated input blobs
+         *  [out] outputs vector of already allocated output blobs
          *
          * If this method is called after network has allocated all memory for input and output blobs
          * and before inferencing.
@@ -246,33 +246,33 @@ CV__DNN_INLINE_NS_BEGIN
 
         /** @brief Given the @p input blobs, computes the output @p blobs.
          *  @deprecated Use Layer::forward(InputArrayOfArrays, OutputArrayOfArrays, OutputArrayOfArrays) instead
-         *  @param[in]  input  the input blobs.
-         *  @param[out] output allocated output blobs, which will store results of the computation.
-         *  @param[out] internals allocated internal blobs
+         *  [in]  input  the input blobs.
+         *  [out] output allocated output blobs, which will store results of the computation.
+         *  [out] internals allocated internal blobs
          */
         CV_DEPRECATED_EXTERNAL
         virtual void forward(std::vector<Mat*> &input, std::vector<Mat> &output, std::vector<Mat> &internals);
 
         /** @brief Given the @p input blobs, computes the output @p blobs.
-         *  @param[in]  inputs  the input blobs.
-         *  @param[out] outputs allocated output blobs, which will store results of the computation.
-         *  @param[out] internals allocated internal blobs
+         *  [in]  inputs  the input blobs.
+         *  [out] outputs allocated output blobs, which will store results of the computation.
+         *  [out] internals allocated internal blobs
          */
         virtual void forward(InputArrayOfArrays inputs, OutputArrayOfArrays outputs, OutputArrayOfArrays internals);
 
         /** @brief Tries to quantize the given layer and compute the quantization parameters required for fixed point implementation.
-         *  @param[in] scales input and output scales.
-         *  @param[in] zeropoints input and output zeropoints.
-         *  @param[out] params Quantized parameters required for fixed point implementation of that layer.
+         *  [in] scales input and output scales.
+         *  [in] zeropoints input and output zeropoints.
+         *  [out] params Quantized parameters required for fixed point implementation of that layer.
          *  @returns True if layer can be quantized.
          */
         virtual bool tryQuantize(const std::vector<std::vector<float> > &scales,
                                  const std::vector<std::vector<int> > &zeropoints, LayerParams& params);
 
         /** @brief Given the @p input blobs, computes the output @p blobs.
-         *  @param[in]  inputs  the input blobs.
-         *  @param[out] outputs allocated output blobs, which will store results of the computation.
-         *  @param[out] internals allocated internal blobs
+         *  [in]  inputs  the input blobs.
+         *  [out] outputs allocated output blobs, which will store results of the computation.
+         *  [out] internals allocated internal blobs
          */
         void forward_fallback(InputArrayOfArrays inputs, OutputArrayOfArrays outputs, OutputArrayOfArrays internals);
 
@@ -296,7 +296,7 @@ CV__DNN_INLINE_NS_BEGIN
                                        CV_IN_OUT std::vector<Mat> &internals);
 
         /** @brief Returns index of input blob into the input array.
-         *  @param inputName label of input blob
+         *   inputName label of input blob
          *
          * Each layer input and output can be labeled to easily identify them using "%<layer_name%>[.output_name]" notation.
          * This method maps label of input blob to its index into input vector.
@@ -309,14 +309,14 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Ask layer if it support specific backend for doing computations.
-         * @param[in] backendId computation backend identifier.
+         * [in] backendId computation backend identifier.
          * @see Backend
          */
         virtual bool supportBackend(int backendId);  // FIXIT const
 
         /**
          * @brief Returns Halide backend node.
-         * @param[in] inputs Input Halide buffers.
+         * [in] inputs Input Halide buffers.
          * @see BackendNode, BackendWrapper
          *
          * Input buffers should be exactly the same that will be used in forward invocations.
@@ -335,9 +335,9 @@ CV__DNN_INLINE_NS_BEGIN
         /**
          * @brief Returns a CUDA backend node
          *
-         * @param   context  void pointer to CSLContext object
-         * @param   inputs   layer inputs
-         * @param   outputs  layer outputs
+         *    context  void pointer to CSLContext object
+         *    inputs   layer inputs
+         *    outputs  layer outputs
          */
         virtual Ptr<BackendNode> initCUDA(
             void *context,
@@ -348,10 +348,10 @@ CV__DNN_INLINE_NS_BEGIN
         /**
          * @brief Returns a TimVX backend node
          *
-         * @param   timVxInfo  void pointer to CSLContext object
-         * @param   inputsWrapper   layer inputs
-         * @param   outputsWrapper  layer outputs
-         * @param   isLast if the node is the last one of the TimVX Graph.
+         *    timVxInfo  void pointer to CSLContext object
+         *    inputsWrapper   layer inputs
+         *    outputsWrapper  layer outputs
+         *    isLast if the node is the last one of the TimVX Graph.
          */
         virtual Ptr<BackendNode> initTimVX(void* timVxInfo,
                                            const std::vector<Ptr<BackendWrapper> > &inputsWrapper,
@@ -361,9 +361,9 @@ CV__DNN_INLINE_NS_BEGIN
         /**
          * @brief Returns a CANN backend node
          *
-         * @param   inputs   input tensors of CANN operator
-         * @param   outputs  output tensors of CANN operator
-         * @param   nodes           nodes of input tensors
+         *    inputs   input tensors of CANN operator
+         *    outputs  output tensors of CANN operator
+         *    nodes           nodes of input tensors
          */
         virtual Ptr<BackendNode> initCann(const std::vector<Ptr<BackendWrapper> > &inputs,
                                           const std::vector<Ptr<BackendWrapper> > &outputs,
@@ -371,10 +371,10 @@ CV__DNN_INLINE_NS_BEGIN
 
        /**
         * @brief Automatic Halide scheduling based on layer hyper-parameters.
-        * @param[in] node Backend node with Halide functions.
-        * @param[in] inputs Blobs that will be used in forward invocations.
-        * @param[in] outputs Blobs that will be used in forward invocations.
-        * @param[in] targetId Target identifier
+        * [in] node Backend node with Halide functions.
+        * [in] inputs Blobs that will be used in forward invocations.
+        * [in] outputs Blobs that will be used in forward invocations.
+        * [in] targetId Target identifier
         * @see BackendNode, Target
         *
         * Layer don't use own Halide::Func members because we can have applied
@@ -387,7 +387,7 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Implement layers fusing.
-         * @param[in] node Backend node of bottom layer.
+         * [in] node Backend node of bottom layer.
          * @see BackendNode
          *
          * Actual for graph-based backends. If layer attached successfully,
@@ -398,7 +398,7 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Tries to attach to the layer the subsequent activation layer, i.e. do the layer fusion in a partial case.
-         * @param[in] layer The subsequent activation layer.
+         * [in] layer The subsequent activation layer.
          *
          * Returns true if the activation layer has been attached successfully.
          */
@@ -406,16 +406,16 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Try to fuse current layer with a next one
-         * @param[in] top Next layer to be fused.
+         * [in] top Next layer to be fused.
          * @returns True if fusion was performed.
          */
         virtual bool tryFuse(Ptr<Layer>& top);
 
         /**
          * @brief Returns parameters of layers with channel-wise multiplication and addition.
-         * @param[out] scale Channel-wise multipliers. Total number of values should
+         * [out] scale Channel-wise multipliers. Total number of values should
          *                   be equal to number of channels.
-         * @param[out] shift Channel-wise offsets. Total number of values should
+         * [out] shift Channel-wise offsets. Total number of values should
          *                   be equal to number of channels.
          *
          * Some layers can fuse their transformations with further layers.
@@ -428,8 +428,8 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Returns scale and zeropoint of layers
-         * @param[out] scale Output scale
-         * @param[out] zeropoint Output zeropoint
+         * [out] scale Output scale
+         * [out] zeropoint Output zeropoint
          *
          * By default, @p scale is 1 and @p zeropoint is 0.
          */
@@ -479,26 +479,26 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP ~Net(); //!< Destructor frees the net only if there aren't references to the net anymore.
 
         /** @brief Create a network from Intel's Model Optimizer intermediate representation (IR).
-         *  @param[in] xml XML configuration file with network's topology.
-         *  @param[in] bin Binary file with trained weights.
+         *  [in] xml XML configuration file with network's topology.
+         *  [in] bin Binary file with trained weights.
          *  Networks imported from Intel's Model Optimizer are launched in Intel's Inference Engine
          *  backend.
          */
         CV_WRAP static Net readFromModelOptimizer(const String& xml, const String& bin);
 
         /** @brief Create a network from Intel's Model Optimizer in-memory buffers with intermediate representation (IR).
-         *  @param[in] bufferModelConfig buffer with model's configuration.
-         *  @param[in] bufferWeights buffer with model's trained weights.
+         *  [in] bufferModelConfig buffer with model's configuration.
+         *  [in] bufferWeights buffer with model's trained weights.
          *  @returns Net object.
          */
         CV_WRAP static
         Net readFromModelOptimizer(const std::vector<uchar>& bufferModelConfig, const std::vector<uchar>& bufferWeights);
 
         /** @brief Create a network from Intel's Model Optimizer in-memory buffers with intermediate representation (IR).
-         *  @param[in] bufferModelConfigPtr buffer pointer of model's configuration.
-         *  @param[in] bufferModelConfigSize buffer size of model's configuration.
-         *  @param[in] bufferWeightsPtr buffer pointer of model's trained weights.
-         *  @param[in] bufferWeightsSize buffer size of model's trained weights.
+         *  [in] bufferModelConfigPtr buffer pointer of model's configuration.
+         *  [in] bufferModelConfigSize buffer size of model's configuration.
+         *  [in] bufferWeightsPtr buffer pointer of model's trained weights.
+         *  [in] bufferWeightsSize buffer size of model's trained weights.
          *  @returns Net object.
          */
         static
@@ -514,15 +514,15 @@ CV__DNN_INLINE_NS_BEGIN
          */
         CV_WRAP String dump();
         /** @brief Dump net structure, hyperparameters, backend, target and fusion to dot file
-         *  @param path   path to output file with .dot extension
+         *   path   path to output file with .dot extension
          *  @see dump()
          */
         CV_WRAP void dumpToFile(const String& path);
         /** @brief Adds new layer to the net.
-         *  @param name   unique name of the adding layer.
-         *  @param type   typename of the adding layer (type must be registered in LayerRegister).
-         *  @param dtype  datatype of output blobs.
-         *  @param params parameters which will be used to initialize the creating layer.
+         *   name   unique name of the adding layer.
+         *   type   typename of the adding layer (type must be registered in LayerRegister).
+         *   dtype  datatype of output blobs.
+         *   params parameters which will be used to initialize the creating layer.
          *  @returns unique identifier of created layer, or -1 if a failure will happen.
          */
         int addLayer(const String &name, const String &type, const int &dtype, LayerParams &params);
@@ -566,8 +566,8 @@ CV__DNN_INLINE_NS_BEGIN
         std::vector<Ptr<Layer> > getLayerInputs(int layerId) const; // FIXIT: CV_WRAP
 
         /** @brief Connects output of the first layer to input of the second layer.
-         *  @param outPin descriptor of the first layer output.
-         *  @param inpPin descriptor of the second layer input.
+         *   outPin descriptor of the first layer output.
+         *   inpPin descriptor of the second layer input.
          *
          * Descriptors have the following template <DFN>&lt;layer_name&gt;[.input_number]</DFN>:
          * - the first part of the template <DFN>layer_name</DFN> is string name of the added layer.
@@ -581,10 +581,10 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP void connect(String outPin, String inpPin);
 
         /** @brief Connects #@p outNum output of the first layer to #@p inNum input of the second layer.
-         *  @param outLayerId identifier of the first layer
-         *  @param outNum number of the first layer output
-         *  @param inpLayerId identifier of the second layer
-         *  @param inpNum number of the second layer input
+         *   outLayerId identifier of the first layer
+         *   outNum number of the first layer output
+         *   inpLayerId identifier of the second layer
+         *   inpNum number of the second layer input
          */
         void connect(int outLayerId, int outNum, int inpLayerId, int inpNum);
 
@@ -592,9 +592,9 @@ CV__DNN_INLINE_NS_BEGIN
          *
          *  Function may create additional 'Identity' layer.
          *
-         *  @param outputName identifier of the output
-         *  @param layerId identifier of the second layer
-         *  @param outputPort number of the second layer input
+         *   outputName identifier of the output
+         *   layerId identifier of the second layer
+         *   outputPort number of the second layer input
          *
          *  @returns index of bound layer (the same as layerId or newly created)
          */
@@ -614,14 +614,14 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP void setInputShape(const String &inputName, const MatShape& shape);
 
         /** @brief Runs forward pass to compute output of layer with name @p outputName.
-         *  @param outputName name for layer which output is needed to get
+         *   outputName name for layer which output is needed to get
          *  @return blob for first output of specified layer.
          *  @details By default runs forward pass for the whole network.
          */
         CV_WRAP Mat forward(const String& outputName = String());
 
         /** @brief Runs forward pass to compute output of layer with name @p outputName.
-         *  @param outputName name for layer which output is needed to get
+         *   outputName name for layer which output is needed to get
          *  @details By default runs forward pass for the whole network.
          *
          *  This is an asynchronous version of forward(const String&).
@@ -630,50 +630,50 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP AsyncArray forwardAsync(const String& outputName = String());
 
         /** @brief Runs forward pass to compute output of layer with name @p outputName.
-         *  @param outputBlobs contains all output blobs for specified layer.
-         *  @param outputName name for layer which output is needed to get
+         *   outputBlobs contains all output blobs for specified layer.
+         *   outputName name for layer which output is needed to get
          *  @details If @p outputName is empty, runs forward pass for the whole network.
          */
         CV_WRAP void forward(OutputArrayOfArrays outputBlobs, const String& outputName = String());
 
         /** @brief Runs forward pass to compute outputs of layers listed in @p outBlobNames.
-         *  @param outputBlobs contains blobs for first outputs of specified layers.
-         *  @param outBlobNames names for layers which outputs are needed to get
+         *   outputBlobs contains blobs for first outputs of specified layers.
+         *   outBlobNames names for layers which outputs are needed to get
          */
         CV_WRAP void forward(OutputArrayOfArrays outputBlobs,
                              const std::vector<String>& outBlobNames);
 
         /** @brief Runs forward pass to compute outputs of layers listed in @p outBlobNames.
-         *  @param outputBlobs contains all output blobs for each layer specified in @p outBlobNames.
-         *  @param outBlobNames names for layers which outputs are needed to get
+         *   outputBlobs contains all output blobs for each layer specified in @p outBlobNames.
+         *   outBlobNames names for layers which outputs are needed to get
          */
         CV_WRAP_AS(forwardAndRetrieve) void forward(CV_OUT std::vector<std::vector<Mat> >& outputBlobs,
                                                     const std::vector<String>& outBlobNames);
 
         /** @brief Returns a quantized Net from a floating-point Net.
-         *  @param calibData Calibration data to compute the quantization parameters.
-         *  @param inputsDtype Datatype of quantized net's inputs. Can be CV_32F or CV_8S.
-         *  @param outputsDtype Datatype of quantized net's outputs. Can be CV_32F or CV_8S.
-         *  @param perChannel Quantization granularity of quantized Net. The default is true, that means quantize model
+         *   calibData Calibration data to compute the quantization parameters.
+         *   inputsDtype Datatype of quantized net's inputs. Can be CV_32F or CV_8S.
+         *   outputsDtype Datatype of quantized net's outputs. Can be CV_32F or CV_8S.
+         *   perChannel Quantization granularity of quantized Net. The default is true, that means quantize model
          *  in per-channel way (channel-wise). Set it false to quantize model in per-tensor way (or tensor-wise).
          */
         CV_WRAP Net quantize(InputArrayOfArrays calibData, int inputsDtype, int outputsDtype, bool perChannel=true);
 
         /** @brief Returns input scale and zeropoint for a quantized Net.
-         *  @param scales output parameter for returning input scales.
-         *  @param zeropoints output parameter for returning input zeropoints.
+         *   scales output parameter for returning input scales.
+         *   zeropoints output parameter for returning input zeropoints.
          */
         CV_WRAP void getInputDetails(CV_OUT std::vector<float>& scales, CV_OUT std::vector<int>& zeropoints) const;
 
         /** @brief Returns output scale and zeropoint for a quantized Net.
-         *  @param scales output parameter for returning output scales.
-         *  @param zeropoints output parameter for returning output zeropoints.
+         *   scales output parameter for returning output scales.
+         *   zeropoints output parameter for returning output zeropoints.
          */
         CV_WRAP void getOutputDetails(CV_OUT std::vector<float>& scales, CV_OUT std::vector<int>& zeropoints) const;
 
         /**
          * @brief Compile Halide layers.
-         * @param[in] scheduler Path to YAML file with scheduling directives.
+         * [in] scheduler Path to YAML file with scheduling directives.
          * @see setPreferableBackend
          *
          * Schedule layers that support Halide backend. Then compile them for
@@ -684,14 +684,14 @@ CV__DNN_INLINE_NS_BEGIN
 
         /**
          * @brief Ask network to use specific computation backend where it supported.
-         * @param[in] backendId backend identifier.
+         * [in] backendId backend identifier.
          * @see Backend
          */
         CV_WRAP void setPreferableBackend(int backendId);
 
         /**
          * @brief Ask network to make computations on specific target device.
-         * @param[in] targetId target identifier.
+         * [in] targetId target identifier.
          * @see Target
          *
          * List of supported combinations backend / target:
@@ -709,10 +709,10 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP void setPreferableTarget(int targetId);
 
         /** @brief Sets the new input value for the network
-         *  @param blob        A new blob. Should have CV_32F or CV_8U depth.
-         *  @param name        A name of input layer.
-         *  @param scalefactor An optional normalization scale.
-         *  @param mean        An optional mean subtraction values.
+         *   blob        A new blob. Should have CV_32F or CV_8U depth.
+         *   name        A name of input layer.
+         *   scalefactor An optional normalization scale.
+         *   mean        An optional mean subtraction values.
          *  @see connect(String, String) to know format of the descriptor.
          *
          *  If scale or mean values are specified, a final input blob is computed
@@ -723,9 +723,9 @@ CV__DNN_INLINE_NS_BEGIN
                               double scalefactor = 1.0, const Scalar& mean = Scalar());
 
         /** @brief Sets the new value for the learned param of the layer.
-         *  @param layer name or id of the layer.
-         *  @param numParam index of the layer parameter in the Layer::blobs array.
-         *  @param blob the new value.
+         *   layer name or id of the layer.
+         *   numParam index of the layer parameter in the Layer::blobs array.
+         *   blob the new value.
          *  @see Layer::blobs
          *  @note If shape of the new blob differs from the previous shape,
          *  then the following forward pass may fail.
@@ -734,8 +734,8 @@ CV__DNN_INLINE_NS_BEGIN
         CV_WRAP inline void setParam(const String& layerName, int numParam, const Mat &blob) { return setParam(getLayerId(layerName), numParam, blob); }
 
         /** @brief Returns parameter blob of the layer.
-         *  @param layer name or id of the layer.
-         *  @param numParam index of the layer parameter in the Layer::blobs array.
+         *   layer name or id of the layer.
+         *   numParam index of the layer parameter in the Layer::blobs array.
          *  @see Layer::blobs
          */
         CV_WRAP Mat getParam(int layer, int numParam = 0) const;
@@ -755,11 +755,11 @@ CV__DNN_INLINE_NS_BEGIN
 
         /** @brief Returns input and output shapes for all layers in loaded model;
          *  preliminary inferencing isn't necessary.
-         *  @param netInputShapes shapes for all input blobs in net input layer.
-         *  @param layersIds output parameter for layer IDs.
-         *  @param inLayersShapes output parameter for input layers shapes;
+         *   netInputShapes shapes for all input blobs in net input layer.
+         *   layersIds output parameter for layer IDs.
+         *   inLayersShapes output parameter for input layers shapes;
          * order is the same as in layersIds
-         *  @param outLayersShapes output parameter for output layers shapes;
+         *   outLayersShapes output parameter for output layers shapes;
          * order is the same as in layersIds
          */
         CV_WRAP void getLayersShapes(const std::vector<MatShape>& netInputShapes,
@@ -775,11 +775,11 @@ CV__DNN_INLINE_NS_BEGIN
 
         /** @brief Returns input and output shapes for layer with specified
          * id in loaded model; preliminary inferencing isn't necessary.
-         *  @param netInputShape shape input blob in net input layer.
-         *  @param layerId id for layer.
-         *  @param inLayerShapes output parameter for input layers shapes;
+         *   netInputShape shape input blob in net input layer.
+         *   layerId id for layer.
+         *   inLayerShapes output parameter for input layers shapes;
          * order is the same as in layersIds
-         *  @param outLayerShapes output parameter for output layers shapes;
+         *   outLayerShapes output parameter for output layers shapes;
          * order is the same as in layersIds
          */
         void getLayerShapes(const MatShape& netInputShape,
@@ -794,7 +794,7 @@ CV__DNN_INLINE_NS_BEGIN
                                     CV_OUT std::vector<MatShape>& outLayerShapes) const; // FIXIT: CV_WRAP
 
         /** @brief Computes FLOP for whole loaded model with specified input shapes.
-         * @param netInputShapes vector of shapes for all net inputs.
+         *  netInputShapes vector of shapes for all net inputs.
          * @returns computed FLOP.
          */
         CV_WRAP int64 getFLOPS(const std::vector<MatShape>& netInputShapes) const;
@@ -808,21 +808,21 @@ CV__DNN_INLINE_NS_BEGIN
                                const MatShape& netInputShape) const;
 
         /** @brief Returns list of types for layer used in model.
-         * @param layersTypes output parameter for returning types.
+         *  layersTypes output parameter for returning types.
          */
         CV_WRAP void getLayerTypes(CV_OUT std::vector<String>& layersTypes) const;
 
         /** @brief Returns count of layers of specified type.
-         * @param layerType type.
+         *  layerType type.
          * @returns count of layers
          */
         CV_WRAP int getLayersCount(const String& layerType) const;
 
         /** @brief Computes bytes number which are required to store
          * all weights and intermediate blobs for model.
-         * @param netInputShapes vector of shapes for all net inputs.
-         * @param weights output parameter to store resulting bytes for weights.
-         * @param blobs output parameter to store resulting bytes for intermediate blobs.
+         *  netInputShapes vector of shapes for all net inputs.
+         *  weights output parameter to store resulting bytes for weights.
+         *  blobs output parameter to store resulting bytes for intermediate blobs.
          */
         void getMemoryConsumption(const std::vector<MatShape>& netInputShapes,
                                           CV_OUT size_t& weights, CV_OUT size_t& blobs) const; // FIXIT: CV_WRAP
@@ -840,10 +840,10 @@ CV__DNN_INLINE_NS_BEGIN
 
         /** @brief Computes bytes number which are required to store
          * all weights and intermediate blobs for each layer.
-         * @param netInputShapes vector of shapes for all net inputs.
-         * @param layerIds output vector to save layer IDs.
-         * @param weights output parameter to store resulting bytes for weights.
-         * @param blobs output parameter to store resulting bytes for intermediate blobs.
+         *  netInputShapes vector of shapes for all net inputs.
+         *  layerIds output vector to save layer IDs.
+         *  weights output parameter to store resulting bytes for weights.
+         *  blobs output parameter to store resulting bytes for intermediate blobs.
          */
         void getMemoryConsumption(const std::vector<MatShape>& netInputShapes,
                                           CV_OUT std::vector<int>& layerIds,
@@ -856,13 +856,13 @@ CV__DNN_INLINE_NS_BEGIN
                                           CV_OUT std::vector<size_t>& blobs) const; // FIXIT: CV_WRAP
 
         /** @brief Enables or disables layer fusion in the network.
-         * @param fusion true to enable the fusion, false to disable. The fusion is enabled by default.
+         *  fusion true to enable the fusion, false to disable. The fusion is enabled by default.
          */
         CV_WRAP void enableFusion(bool fusion);
 
         /** @brief Enables or disables the Winograd compute branch. The Winograd compute branch can speed up
          * 3x3 Convolution at a small loss of accuracy.
-        * @param useWinograd true to enable the Winograd compute branch. The default is true.
+        *  useWinograd true to enable the Winograd compute branch. The default is true.
         */
         CV_WRAP void enableWinograd(bool useWinograd);
 
@@ -871,7 +871,7 @@ CV__DNN_INLINE_NS_BEGIN
          * Indexes in returned vector correspond to layers ids. Some layers can be fused with others,
          * in this case zero ticks count will be return for that skipped layers. Supported by DNN_BACKEND_OPENCV on DNN_TARGET_CPU only.
          *
-         * @param[out] timings vector for tick timings for all layers.
+         * [out] timings vector for tick timings for all layers.
          * @return overall ticks for model inference.
          */
         CV_WRAP int64 getPerfProfile(CV_OUT std::vector<double>& timings);
@@ -886,40 +886,40 @@ CV__DNN_INLINE_NS_BEGIN
     };
 
     /** @brief Reads a network model stored in <a href="https://pjreddie.com/darknet/">Darknet</a> model files.
-    *  @param cfgFile      path to the .cfg file with text description of the network architecture.
-    *  @param darknetModel path to the .weights file with learned network.
+    *   cfgFile      path to the .cfg file with text description of the network architecture.
+    *   darknetModel path to the .weights file with learned network.
     *  @returns Network object that ready to do forward, throw an exception in failure cases.
     */
     CV_EXPORTS_W Net readNetFromDarknet(const String &cfgFile, const String &darknetModel = String());
 
     /** @brief Reads a network model stored in <a href="https://pjreddie.com/darknet/">Darknet</a> model files.
-     *  @param bufferCfg   A buffer contains a content of .cfg file with text description of the network architecture.
-     *  @param bufferModel A buffer contains a content of .weights file with learned network.
+     *   bufferCfg   A buffer contains a content of .cfg file with text description of the network architecture.
+     *   bufferModel A buffer contains a content of .weights file with learned network.
      *  @returns Net object.
      */
     CV_EXPORTS_W Net readNetFromDarknet(const std::vector<uchar>& bufferCfg,
                                         const std::vector<uchar>& bufferModel = std::vector<uchar>());
 
     /** @brief Reads a network model stored in <a href="https://pjreddie.com/darknet/">Darknet</a> model files.
-     *  @param bufferCfg   A buffer contains a content of .cfg file with text description of the network architecture.
-     *  @param lenCfg      Number of bytes to read from bufferCfg
-     *  @param bufferModel A buffer contains a content of .weights file with learned network.
-     *  @param lenModel    Number of bytes to read from bufferModel
+     *   bufferCfg   A buffer contains a content of .cfg file with text description of the network architecture.
+     *   lenCfg      Number of bytes to read from bufferCfg
+     *   bufferModel A buffer contains a content of .weights file with learned network.
+     *   lenModel    Number of bytes to read from bufferModel
      *  @returns Net object.
      */
     CV_EXPORTS Net readNetFromDarknet(const char *bufferCfg, size_t lenCfg,
                                       const char *bufferModel = NULL, size_t lenModel = 0);
 
     /** @brief Reads a network model stored in <a href="http://caffe.berkeleyvision.org">Caffe</a> framework's format.
-      * @param prototxt   path to the .prototxt file with text description of the network architecture.
-      * @param caffeModel path to the .caffemodel file with learned network.
+      *  prototxt   path to the .prototxt file with text description of the network architecture.
+      *  caffeModel path to the .caffemodel file with learned network.
       * @returns Net object.
       */
     CV_EXPORTS_W Net readNetFromCaffe(const String &prototxt, const String &caffeModel = String());
 
     /** @brief Reads a network model stored in Caffe model in memory.
-      * @param bufferProto buffer containing the content of the .prototxt file
-      * @param bufferModel buffer containing the content of the .caffemodel file
+      *  bufferProto buffer containing the content of the .prototxt file
+      *  bufferModel buffer containing the content of the .caffemodel file
       * @returns Net object.
       */
     CV_EXPORTS_W Net readNetFromCaffe(const std::vector<uchar>& bufferProto,
@@ -928,18 +928,18 @@ CV__DNN_INLINE_NS_BEGIN
     /** @brief Reads a network model stored in Caffe model in memory.
       * @details This is an overloaded member function, provided for convenience.
       * It differs from the above function only in what argument(s) it accepts.
-      * @param bufferProto buffer containing the content of the .prototxt file
-      * @param lenProto length of bufferProto
-      * @param bufferModel buffer containing the content of the .caffemodel file
-      * @param lenModel length of bufferModel
+      *  bufferProto buffer containing the content of the .prototxt file
+      *  lenProto length of bufferProto
+      *  bufferModel buffer containing the content of the .caffemodel file
+      *  lenModel length of bufferModel
       * @returns Net object.
       */
     CV_EXPORTS Net readNetFromCaffe(const char *bufferProto, size_t lenProto,
                                     const char *bufferModel = NULL, size_t lenModel = 0);
 
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/">TensorFlow</a> framework's format.
-      * @param model  path to the .pb file with binary protobuf description of the network architecture
-      * @param config path to the .pbtxt file that contains text graph definition in protobuf format.
+      *  model  path to the .pb file with binary protobuf description of the network architecture
+      *  config path to the .pbtxt file that contains text graph definition in protobuf format.
       *               Resulting Net object is built by text graph using weights from a binary one that
       *               let us make it more flexible.
       * @returns Net object.
@@ -947,8 +947,8 @@ CV__DNN_INLINE_NS_BEGIN
     CV_EXPORTS_W Net readNetFromTensorflow(const String &model, const String &config = String());
 
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/">TensorFlow</a> framework's format.
-      * @param bufferModel buffer containing the content of the pb file
-      * @param bufferConfig buffer containing the content of the pbtxt file
+      *  bufferModel buffer containing the content of the pb file
+      *  bufferConfig buffer containing the content of the pbtxt file
       * @returns Net object.
       */
     CV_EXPORTS_W Net readNetFromTensorflow(const std::vector<uchar>& bufferModel,
@@ -957,22 +957,22 @@ CV__DNN_INLINE_NS_BEGIN
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/">TensorFlow</a> framework's format.
       * @details This is an overloaded member function, provided for convenience.
       * It differs from the above function only in what argument(s) it accepts.
-      * @param bufferModel buffer containing the content of the pb file
-      * @param lenModel length of bufferModel
-      * @param bufferConfig buffer containing the content of the pbtxt file
-      * @param lenConfig length of bufferConfig
+      *  bufferModel buffer containing the content of the pb file
+      *  lenModel length of bufferModel
+      *  bufferConfig buffer containing the content of the pbtxt file
+      *  lenConfig length of bufferConfig
       */
     CV_EXPORTS Net readNetFromTensorflow(const char *bufferModel, size_t lenModel,
                                          const char *bufferConfig = NULL, size_t lenConfig = 0);
 
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/lite">TFLite</a> framework's format.
-      * @param model  path to the .tflite file with binary flatbuffers description of the network architecture
+      *  model  path to the .tflite file with binary flatbuffers description of the network architecture
       * @returns Net object.
       */
     CV_EXPORTS_W Net readNetFromTFLite(const String &model);
 
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/lite">TFLite</a> framework's format.
-      * @param bufferModel buffer containing the content of the tflite file
+      *  bufferModel buffer containing the content of the tflite file
       * @returns Net object.
       */
     CV_EXPORTS_W Net readNetFromTFLite(const std::vector<uchar>& bufferModel);
@@ -980,16 +980,16 @@ CV__DNN_INLINE_NS_BEGIN
     /** @brief Reads a network model stored in <a href="https://www.tensorflow.org/lite">TFLite</a> framework's format.
       * @details This is an overloaded member function, provided for convenience.
       * It differs from the above function only in what argument(s) it accepts.
-      * @param bufferModel buffer containing the content of the tflite file
-      * @param lenModel length of bufferModel
+      *  bufferModel buffer containing the content of the tflite file
+      *  lenModel length of bufferModel
       */
     CV_EXPORTS Net readNetFromTFLite(const char *bufferModel, size_t lenModel);
 
     /**
      *  @brief Reads a network model stored in <a href="http://torch.ch">Torch7</a> framework's format.
-     *  @param model    path to the file, dumped from Torch by using torch.save() function.
-     *  @param isBinary specifies whether the network was serialized in ascii mode or binary.
-     *  @param evaluate specifies testing phase of network. If true, it's similar to evaluate() method in Torch.
+     *   model    path to the file, dumped from Torch by using torch.save() function.
+     *   isBinary specifies whether the network was serialized in ascii mode or binary.
+     *   evaluate specifies testing phase of network. If true, it's similar to evaluate() method in Torch.
      *  @returns Net object.
      *
      *  @note Ascii mode of Torch serializer is more preferable, because binary mode extensively use `long` type of C language,
@@ -1015,7 +1015,7 @@ CV__DNN_INLINE_NS_BEGIN
 
      /**
       * @brief Read deep learning network represented in one of the supported formats.
-      * @param[in] model Binary file contains trained weights. The following file
+      * [in] model Binary file contains trained weights. The following file
       *                  extensions are expected for models from different frameworks:
       *                  * `*.caffemodel` (Caffe, http://caffe.berkeleyvision.org/)
       *                  * `*.pb` (TensorFlow, https://www.tensorflow.org/)
@@ -1023,13 +1023,13 @@ CV__DNN_INLINE_NS_BEGIN
       *                  * `*.weights` (Darknet, https://pjreddie.com/darknet/)
       *                  * `*.bin` | `*.onnx` (OpenVINO, https://software.intel.com/openvino-toolkit)
       *                  * `*.onnx` (ONNX, https://onnx.ai/)
-      * @param[in] config Text file contains network configuration. It could be a
+      * [in] config Text file contains network configuration. It could be a
       *                   file with the following extensions:
       *                  * `*.prototxt` (Caffe, http://caffe.berkeleyvision.org/)
       *                  * `*.pbtxt` (TensorFlow, https://www.tensorflow.org/)
       *                  * `*.cfg` (Darknet, https://pjreddie.com/darknet/)
       *                  * `*.xml` (OpenVINO, https://software.intel.com/openvino-toolkit)
-      * @param[in] framework Explicit framework name tag to determine a format.
+      * [in] framework Explicit framework name tag to determine a format.
       * @returns Net object.
       *
       * This function automatically detects an origin framework of trained model
@@ -1043,9 +1043,9 @@ CV__DNN_INLINE_NS_BEGIN
       * @brief Read deep learning network represented in one of the supported formats.
       * @details This is an overloaded member function, provided for convenience.
       *          It differs from the above function only in what argument(s) it accepts.
-      * @param[in] framework    Name of origin framework.
-      * @param[in] bufferModel  A buffer with a content of binary file with weights
-      * @param[in] bufferConfig A buffer with a content of text file contains network configuration.
+      * [in] framework    Name of origin framework.
+      * [in] bufferModel  A buffer with a content of binary file with weights
+      * [in] bufferConfig A buffer with a content of text file contains network configuration.
       * @returns Net object.
       */
      CV_EXPORTS_W Net readNet(const String& framework, const std::vector<uchar>& bufferModel,
@@ -1057,8 +1057,8 @@ CV__DNN_INLINE_NS_BEGIN
     CV_EXPORTS_W Mat readTorchBlob(const String &filename, bool isBinary = true);
 
     /** @brief Load a network from Intel's Model Optimizer intermediate representation.
-     *  @param[in] xml XML configuration file with network's topology.
-     *  @param[in] bin Binary file with trained weights.
+     *  [in] xml XML configuration file with network's topology.
+     *  [in] bin Binary file with trained weights.
      *  @returns Net object.
      *  Networks imported from Intel's Model Optimizer are launched in Intel's Inference Engine
      *  backend.
@@ -1067,8 +1067,8 @@ CV__DNN_INLINE_NS_BEGIN
     Net readNetFromModelOptimizer(const String &xml, const String &bin = "");
 
     /** @brief Load a network from Intel's Model Optimizer intermediate representation.
-     *  @param[in] bufferModelConfig Buffer contains XML configuration with network's topology.
-     *  @param[in] bufferWeights Buffer contains binary data with trained weights.
+     *  [in] bufferModelConfig Buffer contains XML configuration with network's topology.
+     *  [in] bufferWeights Buffer contains binary data with trained weights.
      *  @returns Net object.
      *  Networks imported from Intel's Model Optimizer are launched in Intel's Inference Engine
      *  backend.
@@ -1077,10 +1077,10 @@ CV__DNN_INLINE_NS_BEGIN
     Net readNetFromModelOptimizer(const std::vector<uchar>& bufferModelConfig, const std::vector<uchar>& bufferWeights);
 
     /** @brief Load a network from Intel's Model Optimizer intermediate representation.
-     *  @param[in] bufferModelConfigPtr Pointer to buffer which contains XML configuration with network's topology.
-     *  @param[in] bufferModelConfigSize Binary size of XML configuration data.
-     *  @param[in] bufferWeightsPtr Pointer to buffer which contains binary data with trained weights.
-     *  @param[in] bufferWeightsSize Binary size of trained weights data.
+     *  [in] bufferModelConfigPtr Pointer to buffer which contains XML configuration with network's topology.
+     *  [in] bufferModelConfigSize Binary size of XML configuration data.
+     *  [in] bufferWeightsPtr Pointer to buffer which contains binary data with trained weights.
+     *  [in] bufferWeightsSize Binary size of trained weights data.
      *  @returns Net object.
      *  Networks imported from Intel's Model Optimizer are launched in Intel's Inference Engine
      *  backend.
@@ -1090,15 +1090,15 @@ CV__DNN_INLINE_NS_BEGIN
                                            const uchar* bufferWeightsPtr, size_t bufferWeightsSize);
 
     /** @brief Reads a network model <a href="https://onnx.ai/">ONNX</a>.
-     *  @param onnxFile path to the .onnx file with text description of the network architecture.
+     *   onnxFile path to the .onnx file with text description of the network architecture.
      *  @returns Network object that ready to do forward, throw an exception in failure cases.
      */
     CV_EXPORTS_W Net readNetFromONNX(const String &onnxFile);
 
     /** @brief Reads a network model from <a href="https://onnx.ai/">ONNX</a>
      *         in-memory buffer.
-     *  @param buffer memory address of the first byte of the buffer.
-     *  @param sizeBuffer size of the buffer.
+     *   buffer memory address of the first byte of the buffer.
+     *   sizeBuffer size of the buffer.
      *  @returns Network object that ready to do forward, throw an exception
      *        in failure cases.
      */
@@ -1106,29 +1106,29 @@ CV__DNN_INLINE_NS_BEGIN
 
     /** @brief Reads a network model from <a href="https://onnx.ai/">ONNX</a>
      *         in-memory buffer.
-     *  @param buffer in-memory buffer that stores the ONNX model bytes.
+     *   buffer in-memory buffer that stores the ONNX model bytes.
      *  @returns Network object that ready to do forward, throw an exception
      *        in failure cases.
      */
     CV_EXPORTS_W Net readNetFromONNX(const std::vector<uchar>& buffer);
 
     /** @brief Creates blob from .pb file.
-     *  @param path to the .pb file with input tensor.
+     *   path to the .pb file with input tensor.
      *  @returns Mat.
      */
     CV_EXPORTS_W Mat readTensorFromONNX(const String& path);
 
     /** @brief Creates 4-dimensional blob from image. Optionally resizes and crops @p image from center,
      *  subtract @p mean values, scales values by @p scalefactor, swap Blue and Red channels.
-     *  @param image input image (with 1-, 3- or 4-channels).
-     *  @param scalefactor multiplier for @p images values.
-     *  @param size spatial size for output image
-     *  @param mean scalar with mean values which are subtracted from channels. Values are intended
+     *   image input image (with 1-, 3- or 4-channels).
+     *   scalefactor multiplier for @p images values.
+     *   size spatial size for output image
+     *   mean scalar with mean values which are subtracted from channels. Values are intended
      *  to be in (mean-R, mean-G, mean-B) order if @p image has BGR ordering and @p swapRB is true.
-     *  @param swapRB flag which indicates that swap first and last channels
+     *   swapRB flag which indicates that swap first and last channels
      *  in 3-channel image is necessary.
-     *  @param crop flag which indicates whether image will be cropped after resize or not
-     *  @param ddepth Depth of output blob. Choose CV_32F or CV_8U.
+     *   crop flag which indicates whether image will be cropped after resize or not
+     *   ddepth Depth of output blob. Choose CV_32F or CV_8U.
      *  @details if @p crop is true, input image is resized so one side after resize is equal to corresponding
      *  dimension in @p size and another one is equal or larger. Then, crop from the center is performed.
      *  If @p crop is false, direct resize without cropping and preserving aspect ratio is performed.
@@ -1153,15 +1153,15 @@ CV__DNN_INLINE_NS_BEGIN
     /** @brief Creates 4-dimensional blob from series of images. Optionally resizes and
      *  crops @p images from center, subtract @p mean values, scales values by @p scalefactor,
      *  swap Blue and Red channels.
-     *  @param images input images (all with 1-, 3- or 4-channels).
-     *  @param size spatial size for output image
-     *  @param mean scalar with mean values which are subtracted from channels. Values are intended
+     *   images input images (all with 1-, 3- or 4-channels).
+     *   size spatial size for output image
+     *   mean scalar with mean values which are subtracted from channels. Values are intended
      *  to be in (mean-R, mean-G, mean-B) order if @p image has BGR ordering and @p swapRB is true.
-     *  @param scalefactor multiplier for @p images values.
-     *  @param swapRB flag which indicates that swap first and last channels
+     *   scalefactor multiplier for @p images values.
+     *   swapRB flag which indicates that swap first and last channels
      *  in 3-channel image is necessary.
-     *  @param crop flag which indicates whether image will be cropped after resize or not
-     *  @param ddepth Depth of output blob. Choose CV_32F or CV_8U.
+     *   crop flag which indicates whether image will be cropped after resize or not
+     *   ddepth Depth of output blob. Choose CV_32F or CV_8U.
      *  @details if @p crop is true, input image is resized so one side after resize is equal to corresponding
      *  dimension in @p size and another one is equal or larger. Then, crop from the center is performed.
      *  If @p crop is false, direct resize without cropping and preserving aspect ratio is performed.
@@ -1224,16 +1224,16 @@ CV__DNN_INLINE_NS_BEGIN
         CV_PROP_RW Scalar borderValue;   //!< Value used in padding mode for padding.
 
         /** @brief Get rectangle coordinates in original image system from rectangle in blob coordinates.
-         *  @param rBlob rect in blob coordinates.
-         *  @param size original input image size.
+         *   rBlob rect in blob coordinates.
+         *   size original input image size.
          *  @returns rectangle in original image coordinates.
          */
         CV_WRAP Rect blobRectToImageRect(const Rect &rBlob, const Size &size);
 
         /** @brief Get rectangle coordinates in original image system from rectangle in blob coordinates.
-         *  @param rBlob rect in blob coordinates.
-         *  @param rImg result rect in image coordinates.
-         *  @param size original input image size.
+         *   rBlob rect in blob coordinates.
+         *   rImg result rect in image coordinates.
+         *   size original input image size.
          */
         CV_WRAP void blobRectsToImageRects(const std::vector<Rect> &rBlob, CV_OUT std::vector<Rect>& rImg, const Size& size);
     };
@@ -1243,8 +1243,8 @@ CV__DNN_INLINE_NS_BEGIN
      *  @details This function is an extension of @ref blobFromImage to meet more image preprocess needs.
      *  Given input image and preprocessing parameters, and function outputs the blob.
      *
-     *  @param image input image (all with 1-, 3- or 4-channels).
-     *  @param param struct of Image2BlobParams, contains all parameters needed by processing of image to blob.
+     *   image input image (all with 1-, 3- or 4-channels).
+     *   param struct of Image2BlobParams, contains all parameters needed by processing of image to blob.
      *  @return 4-dimensional Mat.
      */
     CV_EXPORTS_W Mat blobFromImageWithParams(InputArray image, const Image2BlobParams& param = Image2BlobParams());
@@ -1257,8 +1257,8 @@ CV__DNN_INLINE_NS_BEGIN
      *  @details This function is an extension of @ref blobFromImages to meet more image preprocess needs.
      *  Given input image and preprocessing parameters, and function outputs the blob.
      *
-     *  @param images input image (all with 1-, 3- or 4-channels).
-     *  @param param struct of Image2BlobParams, contains all parameters needed by processing of image to blob.
+     *   images input image (all with 1-, 3- or 4-channels).
+     *   param struct of Image2BlobParams, contains all parameters needed by processing of image to blob.
      *  @returns 4-dimensional Mat.
      */
     CV_EXPORTS_W Mat blobFromImagesWithParams(InputArrayOfArrays images, const Image2BlobParams& param = Image2BlobParams());
@@ -1268,19 +1268,19 @@ CV__DNN_INLINE_NS_BEGIN
 
     /** @brief Parse a 4D blob and output the images it contains as 2D arrays through a simpler data structure
      *  (std::vector<cv::Mat>).
-     *  @param[in] blob_ 4 dimensional array (images, channels, height, width) in floating point precision (CV_32F) from
+     *  [in] blob_ 4 dimensional array (images, channels, height, width) in floating point precision (CV_32F) from
      *  which you would like to extract the images.
-     *  @param[out] images_ array of 2D Mat containing the images extracted from the blob in floating point precision
+     *  [out] images_ array of 2D Mat containing the images extracted from the blob in floating point precision
      *  (CV_32F). They are non normalized neither mean added. The number of returned images equals the first dimension
      *  of the blob (batch size). Every image has a number of channels equals to the second dimension of the blob (depth).
      */
     CV_EXPORTS_W void imagesFromBlob(const cv::Mat& blob_, OutputArrayOfArrays images_);
 
     /** @brief Convert all weights of Caffe network to half precision floating point.
-     * @param src Path to origin model from Caffe framework contains single
+     *  src Path to origin model from Caffe framework contains single
      *            precision floating point weights (usually has `.caffemodel` extension).
-     * @param dst Path to destination model with updated weights.
-     * @param layersTypes Set of layers types which parameters will be converted.
+     *  dst Path to destination model with updated weights.
+     *  layersTypes Set of layers types which parameters will be converted.
      *                    By default, converts only Convolutional and Fully-Connected layers'
      *                    weights.
      *
@@ -1293,8 +1293,8 @@ CV__DNN_INLINE_NS_BEGIN
                                        const std::vector<String>& layersTypes = std::vector<String>());
 
     /** @brief Create a text representation for a binary network stored in protocol buffer format.
-     *  @param[in] model  A path to binary network.
-     *  @param[in] output A path to output text file to be created.
+     *  [in] model  A path to binary network.
+     *  [in] output A path to output text file to be created.
      *
      *  @note To reduce output file size, trained weights are not included.
      */
@@ -1302,13 +1302,13 @@ CV__DNN_INLINE_NS_BEGIN
 
     /** @brief Performs non maximum suppression given boxes and corresponding scores.
 
-     * @param bboxes a set of bounding boxes to apply NMS.
-     * @param scores a set of corresponding confidences.
-     * @param score_threshold a threshold used to filter boxes by score.
-     * @param nms_threshold a threshold used in non maximum suppression.
-     * @param indices the kept indices of bboxes after NMS.
-     * @param eta a coefficient in adaptive threshold formula: \f$nms\_threshold_{i+1}=eta\cdot nms\_threshold_i\f$.
-     * @param top_k if `>0`, keep at most @p top_k picked indices.
+     *  bboxes a set of bounding boxes to apply NMS.
+     *  scores a set of corresponding confidences.
+     *  score_threshold a threshold used to filter boxes by score.
+     *  nms_threshold a threshold used in non maximum suppression.
+     *  indices the kept indices of bboxes after NMS.
+     *  eta a coefficient in adaptive threshold formula: \f$nms\_threshold_{i+1}=eta\cdot nms\_threshold_i\f$.
+     *  top_k if `>0`, keep at most @p top_k picked indices.
      */
     CV_EXPORTS void NMSBoxes(const std::vector<Rect>& bboxes, const std::vector<float>& scores,
                                const float score_threshold, const float nms_threshold,
@@ -1327,14 +1327,14 @@ CV__DNN_INLINE_NS_BEGIN
 
     /** @brief Performs batched non maximum suppression on given boxes and corresponding scores across different classes.
 
-     * @param bboxes a set of bounding boxes to apply NMS.
-     * @param scores a set of corresponding confidences.
-     * @param class_ids a set of corresponding class ids. Ids are integer and usually start from 0.
-     * @param score_threshold a threshold used to filter boxes by score.
-     * @param nms_threshold a threshold used in non maximum suppression.
-     * @param indices the kept indices of bboxes after NMS.
-     * @param eta a coefficient in adaptive threshold formula: \f$nms\_threshold_{i+1}=eta\cdot nms\_threshold_i\f$.
-     * @param top_k if `>0`, keep at most @p top_k picked indices.
+     *  bboxes a set of bounding boxes to apply NMS.
+     *  scores a set of corresponding confidences.
+     *  class_ids a set of corresponding class ids. Ids are integer and usually start from 0.
+     *  score_threshold a threshold used to filter boxes by score.
+     *  nms_threshold a threshold used in non maximum suppression.
+     *  indices the kept indices of bboxes after NMS.
+     *  eta a coefficient in adaptive threshold formula: \f$nms\_threshold_{i+1}=eta\cdot nms\_threshold_i\f$.
+     *  top_k if `>0`, keep at most @p top_k picked indices.
      */
     CV_EXPORTS void NMSBoxesBatched(const std::vector<Rect>& bboxes, const std::vector<float>& scores, const std::vector<int>& class_ids,
                                     const float score_threshold, const float nms_threshold,
@@ -1358,15 +1358,15 @@ CV__DNN_INLINE_NS_BEGIN
 
     /** @brief Performs soft non maximum suppression given boxes and corresponding scores.
      * Reference: https://arxiv.org/abs/1704.04503
-     * @param bboxes a set of bounding boxes to apply Soft NMS.
-     * @param scores a set of corresponding confidences.
-     * @param updated_scores a set of corresponding updated confidences.
-     * @param score_threshold a threshold used to filter boxes by score.
-     * @param nms_threshold a threshold used in non maximum suppression.
-     * @param indices the kept indices of bboxes after NMS.
-     * @param top_k keep at most @p top_k picked indices.
-     * @param sigma parameter of Gaussian weighting.
-     * @param method Gaussian or linear.
+     *  bboxes a set of bounding boxes to apply Soft NMS.
+     *  scores a set of corresponding confidences.
+     *  updated_scores a set of corresponding updated confidences.
+     *  score_threshold a threshold used to filter boxes by score.
+     *  nms_threshold a threshold used in non maximum suppression.
+     *  indices the kept indices of bboxes after NMS.
+     *  top_k keep at most @p top_k picked indices.
+     *  sigma parameter of Gaussian weighting.
+     *  method Gaussian or linear.
      * @see SoftNMSMethod
      */
     CV_EXPORTS_W void softNMSBoxes(const std::vector<Rect>& bboxes,
@@ -1400,64 +1400,64 @@ CV__DNN_INLINE_NS_BEGIN
          /**
           * @brief Create model from deep learning network represented in one of the supported formats.
           * An order of @p model and @p config arguments does not matter.
-          * @param[in] model Binary file contains trained weights.
-          * @param[in] config Text file contains network configuration.
+          * [in] model Binary file contains trained weights.
+          * [in] config Text file contains network configuration.
           */
          CV_WRAP Model(const String& model, const String& config = "");
 
          /**
           * @brief Create model from deep learning network.
-          * @param[in] network Net object.
+          * [in] network Net object.
           */
          CV_WRAP Model(const Net& network);
 
          /** @brief Set input size for frame.
-          *  @param[in] size New input size.
+          *  [in] size New input size.
           *  @note If shape of the new blob less than 0, then frame size not change.
          */
          CV_WRAP Model& setInputSize(const Size& size);
 
          /** @overload
-         *  @param[in] width New input width.
-         *  @param[in] height New input height.
+         *  [in] width New input width.
+         *  [in] height New input height.
          */
          CV_WRAP inline
          Model& setInputSize(int width, int height) { return setInputSize(Size(width, height)); }
 
          /** @brief Set mean value for frame.
-          *  @param[in] mean Scalar with mean values which are subtracted from channels.
+          *  [in] mean Scalar with mean values which are subtracted from channels.
          */
          CV_WRAP Model& setInputMean(const Scalar& mean);
 
          /** @brief Set scalefactor value for frame.
-          *  @param[in] scale Multiplier for frame values.
+          *  [in] scale Multiplier for frame values.
          */
          CV_WRAP Model& setInputScale(const Scalar& scale);
 
          /** @brief Set flag crop for frame.
-          *  @param[in] crop Flag which indicates whether image will be cropped after resize or not.
+          *  [in] crop Flag which indicates whether image will be cropped after resize or not.
          */
          CV_WRAP Model& setInputCrop(bool crop);
 
          /** @brief Set flag swapRB for frame.
-          *  @param[in] swapRB Flag which indicates that swap first and last channels.
+          *  [in] swapRB Flag which indicates that swap first and last channels.
          */
          CV_WRAP Model& setInputSwapRB(bool swapRB);
 
          /** @brief Set preprocessing parameters for frame.
-         *  @param[in] size New input size.
-         *  @param[in] mean Scalar with mean values which are subtracted from channels.
-         *  @param[in] scale Multiplier for frame values.
-         *  @param[in] swapRB Flag which indicates that swap first and last channels.
-         *  @param[in] crop Flag which indicates whether image will be cropped after resize or not.
+         *  [in] size New input size.
+         *  [in] mean Scalar with mean values which are subtracted from channels.
+         *  [in] scale Multiplier for frame values.
+         *  [in] swapRB Flag which indicates that swap first and last channels.
+         *  [in] crop Flag which indicates whether image will be cropped after resize or not.
          *  blob(n, c, y, x) = scale * resize( frame(y, x, c) ) - mean(c) )
          */
          CV_WRAP void setInputParams(double scale = 1.0, const Size& size = Size(),
                                      const Scalar& mean = Scalar(), bool swapRB = false, bool crop = false);
 
          /** @brief Given the @p input frame, create input blob, run net and return the output @p blobs.
-          *  @param[in]  frame  The input image.
-          *  @param[out] outs Allocated output blobs, which will store results of the computation.
+          *  [in]  frame  The input image.
+          *  [out] outs Allocated output blobs, which will store results of the computation.
           */
          CV_WRAP void predict(InputArray frame, OutputArrayOfArrays outs) const;
 
@@ -1505,14 +1505,14 @@ CV__DNN_INLINE_NS_BEGIN
          /**
           * @brief Create classification model from network represented in one of the supported formats.
           * An order of @p model and @p config arguments does not matter.
-          * @param[in] model Binary file contains trained weights.
-          * @param[in] config Text file contains network configuration.
+          * [in] model Binary file contains trained weights.
+          * [in] config Text file contains network configuration.
           */
           CV_WRAP ClassificationModel(const String& model, const String& config = "");
 
          /**
           * @brief Create model from deep learning network.
-          * @param[in] network Net object.
+          * [in] network Net object.
           */
          CV_WRAP ClassificationModel(const Net& network);
 
@@ -1523,7 +1523,7 @@ CV__DNN_INLINE_NS_BEGIN
           * to convert the confidences range to [0.0-1.0].
           * This function allows you to toggle this behavior.
           * Please turn true when not contain softmax layer in model.
-          * @param[in] enable Set enable softmax post processing within the classify() function.
+          * [in] enable Set enable softmax post processing within the classify() function.
           */
          CV_WRAP ClassificationModel& setEnableSoftmaxPostProcessing(bool enable);
 
@@ -1535,7 +1535,7 @@ CV__DNN_INLINE_NS_BEGIN
          CV_WRAP bool getEnableSoftmaxPostProcessing() const;
 
          /** @brief Given the @p input frame, create input blob, run net and return top-1 prediction.
-          *  @param[in]  frame  The input image.
+          *  [in]  frame  The input image.
           */
          std::pair<int, float> classify(InputArray frame);
 
@@ -1555,20 +1555,20 @@ CV__DNN_INLINE_NS_BEGIN
          /**
           * @brief Create keypoints model from network represented in one of the supported formats.
           * An order of @p model and @p config arguments does not matter.
-          * @param[in] model Binary file contains trained weights.
-          * @param[in] config Text file contains network configuration.
+          * [in] model Binary file contains trained weights.
+          * [in] config Text file contains network configuration.
           */
           CV_WRAP KeypointsModel(const String& model, const String& config = "");
 
          /**
           * @brief Create model from deep learning network.
-          * @param[in] network Net object.
+          * [in] network Net object.
           */
          CV_WRAP KeypointsModel(const Net& network);
 
          /** @brief Given the @p input frame, create input blob, run net
-          *  @param[in]  frame  The input image.
-          *  @param thresh minimum confidence threshold to select a keypoint
+          *  [in]  frame  The input image.
+          *   thresh minimum confidence threshold to select a keypoint
           *  @returns a vector holding the x and y coordinates of each detected keypoint
           *
           */
@@ -1587,20 +1587,20 @@ CV__DNN_INLINE_NS_BEGIN
          /**
           * @brief Create segmentation model from network represented in one of the supported formats.
           * An order of @p model and @p config arguments does not matter.
-          * @param[in] model Binary file contains trained weights.
-          * @param[in] config Text file contains network configuration.
+          * [in] model Binary file contains trained weights.
+          * [in] config Text file contains network configuration.
           */
           CV_WRAP SegmentationModel(const String& model, const String& config = "");
 
          /**
           * @brief Create model from deep learning network.
-          * @param[in] network Net object.
+          * [in] network Net object.
           */
          CV_WRAP SegmentationModel(const Net& network);
 
          /** @brief Given the @p input frame, create input blob, run net
-          *  @param[in]  frame  The input image.
-          *  @param[out] mask Allocated class prediction for each pixel
+          *  [in]  frame  The input image.
+          *  [out] mask Allocated class prediction for each pixel
           */
          CV_WRAP void segment(InputArray frame, OutputArray mask);
      };
@@ -1618,14 +1618,14 @@ CV__DNN_INLINE_NS_BEGIN
          /**
           * @brief Create detection model from network represented in one of the supported formats.
           * An order of @p model and @p config arguments does not matter.
-          * @param[in] model Binary file contains trained weights.
-          * @param[in] config Text file contains network configuration.
+          * [in] model Binary file contains trained weights.
+          * [in] config Text file contains network configuration.
           */
          CV_WRAP DetectionModel(const String& model, const String& config = "");
 
          /**
           * @brief Create model from deep learning network.
-          * @param[in] network Net object.
+          * [in] network Net object.
           */
          CV_WRAP DetectionModel(const Net& network);
 
@@ -1636,7 +1636,7 @@ CV__DNN_INLINE_NS_BEGIN
           * @brief nmsAcrossClasses defaults to false,
           * such that when non max suppression is used during the detect() function, it will do so per-class.
           * This function allows you to toggle this behaviour.
-          * @param[in] value The new value for nmsAcrossClasses
+          * [in] value The new value for nmsAcrossClasses
           */
          CV_WRAP DetectionModel& setNmsAcrossClasses(bool value);
 
@@ -1647,12 +1647,12 @@ CV__DNN_INLINE_NS_BEGIN
          CV_WRAP bool getNmsAcrossClasses();
 
          /** @brief Given the @p input frame, create input blob, run net and return result detections.
-          *  @param[in]  frame  The input image.
-          *  @param[out] classIds Class indexes in result detection.
-          *  @param[out] confidences A set of corresponding confidences.
-          *  @param[out] boxes A set of bounding boxes.
-          *  @param[in] confThreshold A threshold used to filter boxes by confidences.
-          *  @param[in] nmsThreshold A threshold used in non maximum suppression.
+          *  [in]  frame  The input image.
+          *  [out] classIds Class indexes in result detection.
+          *  [out] confidences A set of corresponding confidences.
+          *  [out] boxes A set of bounding boxes.
+          *  [in] confThreshold A threshold used to filter boxes by confidences.
+          *  [in] nmsThreshold A threshold used in non maximum suppression.
           */
          CV_WRAP void detect(InputArray frame, CV_OUT std::vector<int>& classIds,
                              CV_OUT std::vector<float>& confidences, CV_OUT std::vector<Rect>& boxes,
@@ -1676,15 +1676,15 @@ public:
     /**
      * @brief Create Text Recognition model from deep learning network
      * Call setDecodeType() and setVocabulary() after constructor to initialize the decoding method
-     * @param[in] network Net object
+     * [in] network Net object
      */
     CV_WRAP TextRecognitionModel(const Net& network);
 
     /**
      * @brief Create text recognition model from network represented in one of the supported formats
      * Call setDecodeType() and setVocabulary() after constructor to initialize the decoding method
-     * @param[in] model Binary file contains trained weights
-     * @param[in] config Text file contains network configuration
+     * [in] model Binary file contains trained weights
+     * [in] config Text file contains network configuration
      */
     CV_WRAP inline
     TextRecognitionModel(const std::string& model, const std::string& config = "")
@@ -1692,7 +1692,7 @@ public:
 
     /**
      * @brief Set the decoding method of translating the network output into string
-     * @param[in] decodeType The decoding method of translating the network output into string, currently supported type:
+     * [in] decodeType The decoding method of translating the network output into string, currently supported type:
      *    - `"CTC-greedy"` greedy decoding for the output of CTC-based methods
      *    - `"CTC-prefix-beam-search"` Prefix beam search decoding for the output of CTC-based methods
      */
@@ -1708,8 +1708,8 @@ public:
 
     /**
      * @brief Set the decoding method options for `"CTC-prefix-beam-search"` decode usage
-     * @param[in] beamSize Beam size for search
-     * @param[in] vocPruneSize Parameter to optimize big vocabulary search,
+     * [in] beamSize Beam size for search
+     * [in] vocPruneSize Parameter to optimize big vocabulary search,
      * only take top @p vocPruneSize tokens in each search step, @p vocPruneSize <= 0 stands for disable this prune.
      */
     CV_WRAP
@@ -1717,7 +1717,7 @@ public:
 
     /**
      * @brief Set the vocabulary for recognition.
-     * @param[in] vocabulary the associated vocabulary of the network.
+     * [in] vocabulary the associated vocabulary of the network.
      */
     CV_WRAP
     TextRecognitionModel& setVocabulary(const std::vector<std::string>& vocabulary);
@@ -1731,7 +1731,7 @@ public:
 
     /**
      * @brief Given the @p input frame, create input blob, run net and return recognition result
-     * @param[in] frame The input image
+     * [in] frame The input image
      * @return The text recognition result
      */
     CV_WRAP
@@ -1739,9 +1739,9 @@ public:
 
     /**
      * @brief Given the @p input frame, create input blob, run net and return recognition result
-     * @param[in] frame The input image
-     * @param[in] roiRects List of text detection regions of interest (cv::Rect, CV_32SC4). ROIs is be cropped as the network inputs
-     * @param[out] results A set of text recognition results.
+     * [in] frame The input image
+     * [in] roiRects List of text detection regions of interest (cv::Rect, CV_32SC4). ROIs is be cropped as the network inputs
+     * [out] results A set of text recognition results.
      */
     CV_WRAP
     void recognize(InputArray frame, InputArrayOfArrays roiRects, CV_OUT std::vector<std::string>& results) const;
@@ -1772,9 +1772,9 @@ public:
      *
      * @note If DL model doesn't support that kind of output then result may be derived from detectTextRectangles() output.
      *
-     * @param[in] frame The input image
-     * @param[out] detections array with detections' quadrangles (4 points per result)
-     * @param[out] confidences array with detection confidences
+     * [in] frame The input image
+     * [out] detections array with detections' quadrangles (4 points per result)
+     * [out] confidences array with detection confidences
      */
     CV_WRAP
     void detect(
@@ -1798,9 +1798,9 @@ public:
      *
      * @note Result may be inaccurate in case of strong perspective transformations.
      *
-     * @param[in] frame the input image
-     * @param[out] detections array with detections' RotationRect results
-     * @param[out] confidences array with detection confidences
+     * [in] frame the input image
+     * [out] detections array with detections' RotationRect results
+     * [out] confidences array with detection confidences
      */
     CV_WRAP
     void detectTextRectangles(
@@ -1831,15 +1831,15 @@ public:
 
     /**
      * @brief Create text detection algorithm from deep learning network
-     * @param[in] network Net object
+     * [in] network Net object
      */
     CV_WRAP TextDetectionModel_EAST(const Net& network);
 
     /**
      * @brief Create text detection model from network represented in one of the supported formats.
      * An order of @p model and @p config arguments does not matter.
-     * @param[in] model Binary file contains trained weights.
-     * @param[in] config Text file contains network configuration.
+     * [in] model Binary file contains trained weights.
+     * [in] config Text file contains network configuration.
      */
     CV_WRAP inline
     TextDetectionModel_EAST(const std::string& model, const std::string& config = "")
@@ -1847,7 +1847,7 @@ public:
 
     /**
      * @brief Set the detection confidence threshold
-     * @param[in] confThreshold A threshold used to filter boxes by confidences
+     * [in] confThreshold A threshold used to filter boxes by confidences
      */
     CV_WRAP
     TextDetectionModel_EAST& setConfidenceThreshold(float confThreshold);
@@ -1860,7 +1860,7 @@ public:
 
     /**
      * @brief Set the detection NMS filter threshold
-     * @param[in] nmsThreshold A threshold used in non maximum suppression
+     * [in] nmsThreshold A threshold used in non maximum suppression
      */
     CV_WRAP
     TextDetectionModel_EAST& setNMSThreshold(float nmsThreshold);
@@ -1892,15 +1892,15 @@ public:
 
     /**
      * @brief Create text detection algorithm from deep learning network.
-     * @param[in] network Net object.
+     * [in] network Net object.
      */
     CV_WRAP TextDetectionModel_DB(const Net& network);
 
     /**
      * @brief Create text detection model from network represented in one of the supported formats.
      * An order of @p model and @p config arguments does not matter.
-     * @param[in] model Binary file contains trained weights.
-     * @param[in] config Text file contains network configuration.
+     * [in] model Binary file contains trained weights.
+     * [in] config Text file contains network configuration.
      */
     CV_WRAP inline
     TextDetectionModel_DB(const std::string& model, const std::string& config = "")

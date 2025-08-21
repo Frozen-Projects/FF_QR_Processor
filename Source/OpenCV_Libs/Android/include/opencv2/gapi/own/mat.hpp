@@ -91,16 +91,16 @@ namespace cv { namespace gapi { namespace own {
         Mat() = default;
 
         /** @overload
-        @param _rows Number of rows in a 2D array.
-        @param _cols Number of columns in a 2D array.
-        @param _type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+         _rows Number of rows in a 2D array.
+         _cols Number of columns in a 2D array.
+         _type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
         CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-        @param _data Pointer to the user data. Matrix constructors that take data and step parameters do not
+         _data Pointer to the user data. Matrix constructors that take data and step parameters do not
         allocate matrix data. Instead, they just initialize the matrix header that points to the specified
         data, which means that no data is copied. This operation is very efficient and can be used to
         process external data using OpenCV functions. The external data is not automatically deallocated, so
         you should take care of it.
-        @param _step Number of bytes each matrix row occupies. The value should include the padding bytes at
+         _step Number of bytes each matrix row occupies. The value should include the padding bytes at
         the end of each row, if any. If the parameter is missing (set to AUTO_STEP ), no padding is assumed
         and the actual step is calculated as cols*elemSize(). See Mat::elemSize.
         */
@@ -131,7 +131,7 @@ namespace cv { namespace gapi { namespace own {
         Mat& operator=(Mat&& ) = default;
 
         /** @brief Sets all or some of the array elements to the specified value.
-        @param s Assigned scalar converted to the actual array type.
+         s Assigned scalar converted to the actual array type.
         */
         Mat& operator = (const Scalar& s)
         {
@@ -217,17 +217,17 @@ namespace cv { namespace gapi { namespace own {
         int channels() const        {return dims.empty() ? CV_MAT_CN(flags) : -1;}
 
         /**
-        @param _rows New number of rows.
-        @param _cols New number of columns.
-        @param _type New matrix type.
+         _rows New number of rows.
+         _cols New number of columns.
+         _type New matrix type.
          */
         void create(int _rows, int _cols, int _type)
         {
             create(Size{_cols, _rows}, _type);
         }
         /** @overload
-        @param _size Alternative new matrix size specification: Size(cols, rows)
-        @param _type New matrix type.
+         _size Alternative new matrix size specification: Size(cols, rows)
+         _type New matrix type.
         */
         void create(Size _size, int _type)
         {
@@ -316,7 +316,7 @@ namespace cv { namespace gapi { namespace own {
         }
 
         /** @overload
-        @param roi Extracted submatrix specified as a rectangle.
+         roi Extracted submatrix specified as a rectangle.
         */
         Mat operator()( const Rect& roi ) const
         {
@@ -328,8 +328,8 @@ namespace cv { namespace gapi { namespace own {
 
         The methods return `uchar*` or typed pointer to the specified matrix row. See the sample in
         Mat::isContinuous to know how to use these methods.
-        @param row Index along the dimension 0
-        @param col Index along the dimension 1
+         row Index along the dimension 0
+         col Index along the dimension 1
         */
         uchar* ptr(int row, int col = 0)
         {

@@ -176,7 +176,7 @@ public:
 
     /** @brief Creates a Stitcher configured in one of the stitching modes.
 
-    @param mode Scenario for stitcher operation. This is usually determined by source of images
+     mode Scenario for stitcher operation. This is usually determined by source of images
     to stitch and their transformation. Default parameters will be chosen for operation in given
     scenario.
     @return Stitcher class instance.
@@ -253,8 +253,8 @@ public:
     @note Use the functions only if you're aware of the stitching pipeline, otherwise use
     Stitcher::stitch.
 
-    @param images Input images.
-    @param masks Masks for each input image specifying where to look for keypoints (optional).
+     images Input images.
+     masks Masks for each input image specifying where to look for keypoints (optional).
     @return Status code.
      */
     CV_WRAP Status estimateTransform(InputArrayOfArrays images, InputArrayOfArrays masks = noArray());
@@ -262,9 +262,9 @@ public:
     /** @brief These function restors camera rotation and camera intrinsics of each camera
      *  that can be got with @ref Stitcher::cameras call
 
-    @param images Input images.
-    @param cameras Estimated rotation of cameras for each of the input images.
-    @param component Indices (0-based) of images constituting the final panorama (optional).
+     images Input images.
+     cameras Estimated rotation of cameras for each of the input images.
+     component Indices (0-based) of images constituting the final panorama (optional).
     @return Status code.
      */
     Status setTransform(InputArrayOfArrays images,
@@ -282,8 +282,8 @@ public:
     @note Use the functions only if you're aware of the stitching pipeline, otherwise use
     Stitcher::stitch.
 
-    @param images Input images.
-    @param pano Final pano.
+     images Input images.
+     pano Final pano.
     @return Status code.
      */
     CV_WRAP Status composePanorama(InputArrayOfArrays images, OutputArray pano);
@@ -292,9 +292,9 @@ public:
     CV_WRAP Status stitch(InputArrayOfArrays images, OutputArray pano);
     /** @brief These functions try to stitch the given images.
 
-    @param images Input images.
-    @param masks Masks for each input image specifying where to look for keypoints (optional).
-    @param pano Final pano.
+     images Input images.
+     masks Masks for each input image specifying where to look for keypoints (optional).
+     pano Final pano.
     @return Status code.
      */
     CV_WRAP Status stitch(InputArrayOfArrays images, InputArrayOfArrays masks, OutputArray pano);

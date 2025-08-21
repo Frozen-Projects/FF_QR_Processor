@@ -169,9 +169,9 @@ struct GAPI_EXPORTS CfgParam {
     /**
      * Create generic onevp::GSource configuration parameter.
      *
-     *@param name           name of parameter.
-     *@param value          value of parameter.
-     *@param is_major       TRUE if parameter MUST be provided by OneVPL inner implementation, FALSE for optional (for resolve multiple available implementations).
+     * name           name of parameter.
+     * value          value of parameter.
+     * is_major       TRUE if parameter MUST be provided by OneVPL inner implementation, FALSE for optional (for resolve multiple available implementations).
      *
      */
     template<typename ValueType>

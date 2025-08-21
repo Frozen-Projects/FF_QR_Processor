@@ -31,37 +31,37 @@ namespace wip {
     While output arguments are "captured" by reference(pointer) and therefore _must_ outlive the asynchronous activity
     (i.e. live at least until callback is called or future is unblocked)
 
-    @param gcmpld       Compiled computation (graph) to start asynchronously
-    @param callback     Callback to be called when execution of gcmpld is done
-    @param ins          Input parameters for gcmpld
-    @param outs         Output parameters for gcmpld
+     gcmpld       Compiled computation (graph) to start asynchronously
+     callback     Callback to be called when execution of gcmpld is done
+     ins          Input parameters for gcmpld
+     outs         Output parameters for gcmpld
     */
     GAPI_EXPORTS void                async(GCompiled& gcmpld, std::function<void(std::exception_ptr)>&& callback, GRunArgs &&ins, GRunArgsP &&outs);
 
     /** @overload
-    @param gcmpld       Compiled computation (graph) to run asynchronously
-    @param callback     Callback to be called when execution of gcmpld is done
-    @param ins          Input parameters for gcmpld
-    @param outs         Output parameters for gcmpld
-    @param ctx          Context this request belongs to
+     gcmpld       Compiled computation (graph) to run asynchronously
+     callback     Callback to be called when execution of gcmpld is done
+     ins          Input parameters for gcmpld
+     outs         Output parameters for gcmpld
+     ctx          Context this request belongs to
     @see   async GAsyncContext
     */
     GAPI_EXPORTS void                async(GCompiled& gcmpld, std::function<void(std::exception_ptr)>&& callback, GRunArgs &&ins, GRunArgsP &&outs, GAsyncContext& ctx);
 
     /** @overload
-    @param gcmpld       Compiled computation (graph) to run asynchronously
-    @param ins          Input parameters for gcmpld
-    @param outs         Output parameters for gcmpld
+     gcmpld       Compiled computation (graph) to run asynchronously
+     ins          Input parameters for gcmpld
+     outs         Output parameters for gcmpld
     @return             std::future<void> object to wait for completion of async operation
     @see async
     */
     GAPI_EXPORTS std::future<void>   async(GCompiled& gcmpld, GRunArgs &&ins, GRunArgsP &&outs);
 
     /**
-    @param gcmpld       Compiled computation (graph) to run asynchronously
-    @param ins          Input parameters for gcmpld
-    @param outs         Output parameters for gcmpld
-    @param ctx          Context this request belongs to
+     gcmpld       Compiled computation (graph) to run asynchronously
+     ins          Input parameters for gcmpld
+     outs         Output parameters for gcmpld
+     ctx          Context this request belongs to
     @return             std::future<void> object to wait for completion of async operation
     @see   async GAsyncContext
     */

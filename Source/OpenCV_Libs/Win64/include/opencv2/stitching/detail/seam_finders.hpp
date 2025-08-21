@@ -62,9 +62,9 @@ public:
     enum { NO, VORONOI_SEAM, DP_SEAM };
     /** @brief Estimates seams.
 
-    @param src Source images
-    @param corners Source image top-left corners
-    @param masks Source image masks to update
+     src Source images
+     corners Source image top-left corners
+     masks Source image masks to update
      */
     CV_WRAP virtual void find(const std::vector<UMat> &src, const std::vector<Point> &corners,
                       CV_IN_OUT std::vector<UMat> &masks) = 0;
@@ -91,9 +91,9 @@ protected:
     void run();
     /** @brief Resolves masks intersection of two specified images in the given ROI.
 
-    @param first First image index
-    @param second Second image index
-    @param roi Region of interest
+     first First image index
+     second Second image index
+     roi Region of interest
      */
     virtual void findInPair(size_t first, size_t second, Rect roi) = 0;
 

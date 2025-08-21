@@ -126,9 +126,9 @@ public:
 
     /** @brief Creates a ParamGrid Ptr that can be given to the %SVM::trainAuto method
 
-    @param minVal minimum value of the parameter grid
-    @param maxVal maximum value of the parameter grid
-    @param logstep Logarithmic step for iterating the statmodel parameter
+     minVal minimum value of the parameter grid
+     maxVal maximum value of the parameter grid
+     logstep Logarithmic step for iterating the statmodel parameter
     */
     CV_WRAP static Ptr<ParamGrid> create(double minVal=0., double maxVal=0., double logstep=1.);
 };
@@ -161,11 +161,11 @@ public:
 
     /** @brief Returns matrix of train samples
 
-    @param layout The requested layout. If it's different from the initial one, the matrix is
+     layout The requested layout. If it's different from the initial one, the matrix is
         transposed. See ml::SampleTypes.
-    @param compressSamples if true, the function returns only the training samples (specified by
+     compressSamples if true, the function returns only the training samples (specified by
         sampleIdx)
-    @param compressVars if true, the function returns the shorter training samples, containing only
+     compressVars if true, the function returns the shorter training samples, containing only
         the active variables.
 
     In current implementation the function tries to avoid physical data copying and returns the
@@ -240,28 +240,28 @@ public:
     CV_WRAP virtual void getNames(std::vector<String>& names) const = 0;
 
     /** @brief Extract from 1D vector elements specified by passed indexes.
-    @param vec input vector (supported types: CV_32S, CV_32F, CV_64F)
-    @param idx 1D index vector
+     vec input vector (supported types: CV_32S, CV_32F, CV_64F)
+     idx 1D index vector
      */
     static CV_WRAP Mat getSubVector(const Mat& vec, const Mat& idx);
 
     /** @brief Extract from matrix rows/cols specified by passed indexes.
-    @param matrix input matrix (supported types: CV_32S, CV_32F, CV_64F)
-    @param idx 1D index vector
-    @param layout specifies to extract rows (cv::ml::ROW_SAMPLES) or to extract columns (cv::ml::COL_SAMPLES)
+     matrix input matrix (supported types: CV_32S, CV_32F, CV_64F)
+     idx 1D index vector
+     layout specifies to extract rows (cv::ml::ROW_SAMPLES) or to extract columns (cv::ml::COL_SAMPLES)
      */
     static CV_WRAP Mat getSubMatrix(const Mat& matrix, const Mat& idx, int layout);
 
     /** @brief Reads the dataset from a .csv file and returns the ready-to-use training data.
 
-    @param filename The input file name
-    @param headerLineCount The number of lines in the beginning to skip; besides the header, the
+     filename The input file name
+     headerLineCount The number of lines in the beginning to skip; besides the header, the
         function also skips empty lines and lines staring with `#`
-    @param responseStartIdx Index of the first output variable. If -1, the function considers the
+     responseStartIdx Index of the first output variable. If -1, the function considers the
         last variable as the response
-    @param responseEndIdx Index of the last output variable + 1. If -1, then there is single
+     responseEndIdx Index of the last output variable + 1. If -1, then there is single
         response variable at responseStartIdx.
-    @param varTypeSpec The optional text string that specifies the variables' types. It has the
+     varTypeSpec The optional text string that specifies the variables' types. It has the
         format `ord[n1-n2,n3,n4-n5,...]cat[n6,n7-n8,...]`. That is, variables from `n1 to n2`
         (inclusive range), `n3`, `n4 to n5` ... are considered ordered and `n6`, `n7 to n8` ... are
         considered as categorical. The range `[n1..n2] + [n3] + [n4..n5] + ... + [n6] + [n7..n8]`
@@ -274,8 +274,8 @@ public:
           reported when non-numerical values are used.
         - if there is a single output variable, then if its values are non-numerical or are all
           integers, then it's considered categorical. Otherwise, it's considered ordered.
-    @param delimiter The character used to separate values in each line.
-    @param missch The character used to specify missing measurements. It should not be a digit.
+     delimiter The character used to separate values in each line.
+     missch The character used to specify missing measurements. It should not be a digit.
         Although it's a non-numerical value, it surely does not affect the decision of whether the
         variable ordered or categorical.
     @note If the dataset only contains input variables and no responses, use responseStartIdx = -2
@@ -291,20 +291,20 @@ public:
 
     /** @brief Creates training data from in-memory arrays.
 
-    @param samples matrix of samples. It should have CV_32F type.
-    @param layout see ml::SampleTypes.
-    @param responses matrix of responses. If the responses are scalar, they should be stored as a
+     samples matrix of samples. It should have CV_32F type.
+     layout see ml::SampleTypes.
+     responses matrix of responses. If the responses are scalar, they should be stored as a
         single row or as a single column. The matrix should have type CV_32F or CV_32S (in the
         former case the responses are considered as ordered by default; in the latter case - as
         categorical)
-    @param varIdx vector specifying which variables to use for training. It can be an integer vector
+     varIdx vector specifying which variables to use for training. It can be an integer vector
         (CV_32S) containing 0-based variable indices or byte vector (CV_8U) containing a mask of
         active variables.
-    @param sampleIdx vector specifying which samples to use for training. It can be an integer
+     sampleIdx vector specifying which samples to use for training. It can be an integer
         vector (CV_32S) containing 0-based sample indices or byte vector (CV_8U) containing a mask
         of training samples.
-    @param sampleWeights optional vector with weights for each sample. It should have CV_32F type.
-    @param varType optional vector of type CV_8U and size `<number_of_variables_in_samples> +
+     sampleWeights optional vector with weights for each sample. It should have CV_32F type.
+     varType optional vector of type CV_8U and size `<number_of_variables_in_samples> +
         <number_of_variables_in_responses>`, containing types of each input and output variable. See
         ml::VariableTypes.
      */
@@ -338,30 +338,30 @@ public:
 
     /** @brief Trains the statistical model
 
-    @param trainData training data that can be loaded from file using TrainData::loadFromCSV or
+     trainData training data that can be loaded from file using TrainData::loadFromCSV or
         created with TrainData::create.
-    @param flags optional flags, depending on the model. Some of the models can be updated with the
+     flags optional flags, depending on the model. Some of the models can be updated with the
         new training samples, not completely overwritten (such as NormalBayesClassifier or ANN_MLP).
      */
     CV_WRAP virtual bool train( const Ptr<TrainData>& trainData, int flags=0 );
 
     /** @brief Trains the statistical model
 
-    @param samples training samples
-    @param layout See ml::SampleTypes.
-    @param responses vector of responses associated with the training samples.
+     samples training samples
+     layout See ml::SampleTypes.
+     responses vector of responses associated with the training samples.
     */
     CV_WRAP virtual bool train( InputArray samples, int layout, InputArray responses );
 
     /** @brief Computes error on the training or test dataset
 
-    @param data the training data
-    @param test if true, the error is computed over the test subset of the data, otherwise it's
+     data the training data
+     test if true, the error is computed over the test subset of the data, otherwise it's
         computed over the training subset of the data. Please note that if you loaded a completely
         different dataset to evaluate already trained classifier, you will probably want not to set
         the test subset at all with TrainData::setTrainTestSplitRatio and specify test=false, so
         that the error is computed for the whole new set. Yes, this sounds a bit confusing.
-    @param resp the optional output responses.
+     resp the optional output responses.
 
     The method uses StatModel::predict to compute the error. For regression models the error is
     computed as RMS, for classifiers - as a percent of missclassified samples (0%-100%).
@@ -370,9 +370,9 @@ public:
 
     /** @brief Predicts response(s) for the provided sample(s)
 
-    @param samples The input samples, floating-point matrix
-    @param results The optional output matrix of results.
-    @param flags The optional flags, model-dependent. See cv::ml::StatModel::Flags.
+     samples The input samples, floating-point matrix
+     results The optional output matrix of results.
+     flags The optional flags, model-dependent. See cv::ml::StatModel::Flags.
      */
     CV_WRAP virtual float predict( InputArray samples, OutputArray results=noArray(), int flags=0 ) const = 0;
 
@@ -419,8 +419,8 @@ public:
      * Load the NormalBayesClassifier from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized NormalBayesClassifier
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized NormalBayesClassifier
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<NormalBayesClassifier> load(const String& filepath , const String& nodeName = String());
 };
@@ -463,14 +463,14 @@ public:
 
     /** @brief Finds the neighbors and predicts responses for input vectors.
 
-    @param samples Input samples stored by rows. It is a single-precision floating-point matrix of
+     samples Input samples stored by rows. It is a single-precision floating-point matrix of
         `<number_of_samples> * k` size.
-    @param k Number of used nearest neighbors. Should be greater than 1.
-    @param results Vector with results of prediction (regression or classification) for each input
+     k Number of used nearest neighbors. Should be greater than 1.
+     results Vector with results of prediction (regression or classification) for each input
         sample. It is a single-precision floating-point vector with `<number_of_samples>` elements.
-    @param neighborResponses Optional output values for corresponding neighbors. It is a single-
+     neighborResponses Optional output values for corresponding neighbors. It is a single-
         precision floating-point matrix of `<number_of_samples> * k` size.
-    @param dist Optional output distances from the input vectors to the corresponding neighbors. It
+     dist Optional output distances from the input vectors to the corresponding neighbors. It
         is a single-precision floating-point matrix of `<number_of_samples> * k` size.
 
     For each input vector (a row of the matrix samples), the method finds the k nearest neighbors.
@@ -510,7 +510,7 @@ public:
      * Use KNearest::save to serialize and store an KNearest to disk.
      * Load the KNearest from this file again, by calling this function with the path to the file.
      *
-     * @param filepath path to serialized KNearest
+     *  filepath path to serialized KNearest
      */
     CV_WRAP static Ptr<KNearest> load(const String& filepath);
 };
@@ -677,18 +677,18 @@ public:
 
     /** @brief Trains an %SVM with optimal parameters.
 
-    @param data the training data that can be constructed using TrainData::create or
+     data the training data that can be constructed using TrainData::create or
         TrainData::loadFromCSV.
-    @param kFold Cross-validation parameter. The training set is divided into kFold subsets. One
+     kFold Cross-validation parameter. The training set is divided into kFold subsets. One
         subset is used to test the model, the others form the train set. So, the %SVM algorithm is
         executed kFold times.
-    @param Cgrid grid for C
-    @param gammaGrid grid for gamma
-    @param pGrid grid for p
-    @param nuGrid grid for nu
-    @param coeffGrid grid for coeff
-    @param degreeGrid grid for degree
-    @param balanced If true and the problem is 2-class classification then the method creates more
+     Cgrid grid for C
+     gammaGrid grid for gamma
+     pGrid grid for p
+     nuGrid grid for nu
+     coeffGrid grid for coeff
+     degreeGrid grid for degree
+     balanced If true and the problem is 2-class classification then the method creates more
         balanced cross-validation subsets that is proportions between classes in subsets are close
         to such proportion in the whole train dataset.
 
@@ -720,18 +720,18 @@ public:
 
     /** @brief Trains an %SVM with optimal parameters
 
-    @param samples training samples
-    @param layout See ml::SampleTypes.
-    @param responses vector of responses associated with the training samples.
-    @param kFold Cross-validation parameter. The training set is divided into kFold subsets. One
+     samples training samples
+     layout See ml::SampleTypes.
+     responses vector of responses associated with the training samples.
+     kFold Cross-validation parameter. The training set is divided into kFold subsets. One
         subset is used to test the model, the others form the train set. So, the %SVM algorithm is
-    @param Cgrid grid for C
-    @param gammaGrid grid for gamma
-    @param pGrid grid for p
-    @param nuGrid grid for nu
-    @param coeffGrid grid for coeff
-    @param degreeGrid grid for degree
-    @param balanced If true and the problem is 2-class classification then the method creates more
+     Cgrid grid for C
+     gammaGrid grid for gamma
+     pGrid grid for p
+     nuGrid grid for nu
+     coeffGrid grid for coeff
+     degreeGrid grid for degree
+     balanced If true and the problem is 2-class classification then the method creates more
         balanced cross-validation subsets that is proportions between classes in subsets are close
         to such proportion in the whole train dataset.
 
@@ -775,13 +775,13 @@ public:
 
     /** @brief Retrieves the decision function
 
-    @param i the index of the decision function. If the problem solved is regression, 1-class or
+     i the index of the decision function. If the problem solved is regression, 1-class or
         2-class classification, then there will be just one decision function and the index should
         always be 0. Otherwise, in the case of N-class classification, there will be \f$N(N-1)/2\f$
         decision functions.
-    @param alpha the optional output vector for weights, corresponding to different support vectors.
+     alpha the optional output vector for weights, corresponding to different support vectors.
         In the case of linear %SVM all the alpha's will be 1's.
-    @param svidx the optional output vector of indices of support vectors within the matrix of
+     svidx the optional output vector of indices of support vectors within the matrix of
         support vectors (which can be retrieved by SVM::getSupportVectors). In the case of linear
         %SVM each decision function consists of a single "compressed" support vector.
 
@@ -792,7 +792,7 @@ public:
 
     /** @brief Generates a grid for %SVM parameters.
 
-    @param param_id %SVM parameters IDs that must be one of the SVM::ParamTypes. The grid is
+     param_id %SVM parameters IDs that must be one of the SVM::ParamTypes. The grid is
     generated for the parameter with this ID.
 
     The function generates a grid for the specified parameter of the %SVM algorithm. The grid may be
@@ -802,7 +802,7 @@ public:
 
     /** @brief Generates a grid for %SVM parameters.
 
-    @param param_id %SVM parameters IDs that must be one of the SVM::ParamTypes. The grid is
+     param_id %SVM parameters IDs that must be one of the SVM::ParamTypes. The grid is
     generated for the parameter with this ID.
 
     The function generates a grid pointer for the specified parameter of the %SVM algorithm.
@@ -820,7 +820,7 @@ public:
      * Use SVM::save to serialize and store an SVM to disk.
      * Load the SVM from this file again, by calling this function with the path to the file.
      *
-     * @param filepath path to serialized svm
+     *  filepath path to serialized svm
      */
     CV_WRAP static Ptr<SVM> load(const String& filepath);
 };
@@ -908,19 +908,19 @@ public:
 
     /** @brief Returns posterior probabilities for the provided samples
 
-    @param samples The input samples, floating-point matrix
-    @param results The optional output \f$ nSamples \times nClusters\f$ matrix of results. It contains
+     samples The input samples, floating-point matrix
+     results The optional output \f$ nSamples \times nClusters\f$ matrix of results. It contains
     posterior probabilities for each sample from the input
-    @param flags This parameter will be ignored
+     flags This parameter will be ignored
      */
     CV_WRAP virtual float predict( InputArray samples, OutputArray results=noArray(), int flags=0 ) const CV_OVERRIDE = 0;
 
     /** @brief Returns a likelihood logarithm value and an index of the most probable mixture component
     for the given sample.
 
-    @param sample A sample for classification. It should be a one-channel matrix of
+     sample A sample for classification. It should be a one-channel matrix of
         \f$1 \times dims\f$ or \f$dims \times 1\f$ size.
-    @param probs Optional output matrix that contains posterior probabilities of each component
+     probs Optional output matrix that contains posterior probabilities of each component
         given the sample. It has \f$1 \times nclusters\f$ size and CV_64FC1 type.
 
     The method returns a two-element double vector. Zero element is a likelihood logarithm value for
@@ -945,15 +945,15 @@ public:
     The trained model can be used further for prediction, just like any other classifier. The
     trained model is similar to the NormalBayesClassifier.
 
-    @param samples Samples from which the Gaussian mixture model will be estimated. It should be a
+     samples Samples from which the Gaussian mixture model will be estimated. It should be a
         one-channel matrix, each row of which is a sample. If the matrix does not have CV_64F type
         it will be converted to the inner matrix of such type for the further computing.
-    @param logLikelihoods The optional output matrix that contains a likelihood logarithm value for
+     logLikelihoods The optional output matrix that contains a likelihood logarithm value for
         each sample. It has \f$nsamples \times 1\f$ size and CV_64FC1 type.
-    @param labels The optional output "class label" for each sample:
+     labels The optional output "class label" for each sample:
         \f$\texttt{labels}_i=\texttt{arg max}_k(p_{i,k}), i=1..N\f$ (indices of the most probable
         mixture component for each sample). It has \f$nsamples \times 1\f$ size and CV_32SC1 type.
-    @param probs The optional output matrix that contains posterior probabilities of each Gaussian
+     probs The optional output matrix that contains posterior probabilities of each Gaussian
         mixture component given the each sample. It has \f$nsamples \times nclusters\f$ size and
         CV_64FC1 type.
      */
@@ -968,24 +968,24 @@ public:
     mixture components. Optionally you can pass initial weights \f$\pi_k\f$ and covariance matrices
     \f$S_k\f$ of mixture components.
 
-    @param samples Samples from which the Gaussian mixture model will be estimated. It should be a
+     samples Samples from which the Gaussian mixture model will be estimated. It should be a
         one-channel matrix, each row of which is a sample. If the matrix does not have CV_64F type
         it will be converted to the inner matrix of such type for the further computing.
-    @param means0 Initial means \f$a_k\f$ of mixture components. It is a one-channel matrix of
+     means0 Initial means \f$a_k\f$ of mixture components. It is a one-channel matrix of
         \f$nclusters \times dims\f$ size. If the matrix does not have CV_64F type it will be
         converted to the inner matrix of such type for the further computing.
-    @param covs0 The vector of initial covariance matrices \f$S_k\f$ of mixture components. Each of
+     covs0 The vector of initial covariance matrices \f$S_k\f$ of mixture components. Each of
         covariance matrices is a one-channel matrix of \f$dims \times dims\f$ size. If the matrices
         do not have CV_64F type they will be converted to the inner matrices of such type for the
         further computing.
-    @param weights0 Initial weights \f$\pi_k\f$ of mixture components. It should be a one-channel
+     weights0 Initial weights \f$\pi_k\f$ of mixture components. It should be a one-channel
         floating-point matrix with \f$1 \times nclusters\f$ or \f$nclusters \times 1\f$ size.
-    @param logLikelihoods The optional output matrix that contains a likelihood logarithm value for
+     logLikelihoods The optional output matrix that contains a likelihood logarithm value for
         each sample. It has \f$nsamples \times 1\f$ size and CV_64FC1 type.
-    @param labels The optional output "class label" for each sample:
+     labels The optional output "class label" for each sample:
         \f$\texttt{labels}_i=\texttt{arg max}_k(p_{i,k}), i=1..N\f$ (indices of the most probable
         mixture component for each sample). It has \f$nsamples \times 1\f$ size and CV_32SC1 type.
-    @param probs The optional output matrix that contains posterior probabilities of each Gaussian
+     probs The optional output matrix that contains posterior probabilities of each Gaussian
         mixture component given the each sample. It has \f$nsamples \times nclusters\f$ size and
         CV_64FC1 type.
     */
@@ -1001,16 +1001,16 @@ public:
     This variation starts with Maximization step. You need to provide initial probabilities
     \f$p_{i,k}\f$ to use this option.
 
-    @param samples Samples from which the Gaussian mixture model will be estimated. It should be a
+     samples Samples from which the Gaussian mixture model will be estimated. It should be a
         one-channel matrix, each row of which is a sample. If the matrix does not have CV_64F type
         it will be converted to the inner matrix of such type for the further computing.
-    @param probs0 the probabilities
-    @param logLikelihoods The optional output matrix that contains a likelihood logarithm value for
+     probs0 the probabilities
+     logLikelihoods The optional output matrix that contains a likelihood logarithm value for
         each sample. It has \f$nsamples \times 1\f$ size and CV_64FC1 type.
-    @param labels The optional output "class label" for each sample:
+     labels The optional output "class label" for each sample:
         \f$\texttt{labels}_i=\texttt{arg max}_k(p_{i,k}), i=1..N\f$ (indices of the most probable
         mixture component for each sample). It has \f$nsamples \times 1\f$ size and CV_32SC1 type.
-    @param probs The optional output matrix that contains posterior probabilities of each Gaussian
+     probs The optional output matrix that contains posterior probabilities of each Gaussian
         mixture component given the each sample. It has \f$nsamples \times nclusters\f$ size and
         CV_64FC1 type.
     */
@@ -1031,8 +1031,8 @@ public:
      * Load the EM from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized EM
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized EM
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<EM> load(const String& filepath , const String& nodeName = String());
 };
@@ -1230,8 +1230,8 @@ public:
      * Load the DTree from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized DTree
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized DTree
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<DTrees> load(const String& filepath , const String& nodeName = String());
 };
@@ -1288,9 +1288,9 @@ public:
     results for each of the sample cases. If the model is a classifier, it will return
     a Mat with samples + 1 rows, where the first row gives the class number and the
     following rows return the votes each class had for each sample.
-        @param samples Array containing the samples for which votes will be calculated.
-        @param results Array where the result of the calculation will be written.
-        @param flags Flags for defining the type of RTrees.
+         samples Array containing the samples for which votes will be calculated.
+         results Array where the result of the calculation will be written.
+         flags Flags for defining the type of RTrees.
     */
     CV_WRAP virtual void getVotes(InputArray samples, OutputArray results, int flags) const = 0;
 
@@ -1315,8 +1315,8 @@ public:
      * Load the RTree from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized RTree
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized RTree
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<RTrees> load(const String& filepath , const String& nodeName = String());
 };
@@ -1375,8 +1375,8 @@ public:
      * Load the Boost from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized Boost
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized Boost
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<Boost> load(const String& filepath , const String& nodeName = String());
 };
@@ -1439,9 +1439,9 @@ public:
     };
 
     /** Sets training method and common parameters.
-    @param method Default value is ANN_MLP::RPROP. See ANN_MLP::TrainingMethods.
-    @param param1 passed to setRpropDW0 for ANN_MLP::RPROP and to setBackpropWeightScale for ANN_MLP::BACKPROP and to initialT for ANN_MLP::ANNEAL.
-    @param param2 passed to setRpropDWMin for ANN_MLP::RPROP and to setBackpropMomentumScale for ANN_MLP::BACKPROP and to finalT for ANN_MLP::ANNEAL.
+     method Default value is ANN_MLP::RPROP. See ANN_MLP::TrainingMethods.
+     param1 passed to setRpropDW0 for ANN_MLP::RPROP and to setBackpropWeightScale for ANN_MLP::BACKPROP and to initialT for ANN_MLP::ANNEAL.
+     param2 passed to setRpropDWMin for ANN_MLP::RPROP and to setBackpropMomentumScale for ANN_MLP::BACKPROP and to finalT for ANN_MLP::ANNEAL.
     */
     CV_WRAP virtual void setTrainMethod(int method, double param1 = 0, double param2 = 0) = 0;
 
@@ -1450,9 +1450,9 @@ public:
 
     /** Initialize the activation function for each neuron.
     Currently the default and the only fully supported activation function is ANN_MLP::SIGMOID_SYM.
-    @param type The type of activation function. See ANN_MLP::ActivationFunctions.
-    @param param1 The first parameter of the activation function, \f$\alpha\f$. Default value is 0.
-    @param param2 The second parameter of the activation function, \f$\beta\f$. Default value is 0.
+     type The type of activation function. See ANN_MLP::ActivationFunctions.
+     param1 The first parameter of the activation function, \f$\alpha\f$. Default value is 0.
+     param2 The second parameter of the activation function, \f$\beta\f$. Default value is 0.
     */
     CV_WRAP virtual void setActivationFunction(int type, double param1 = 0, double param2 = 0) = 0;
 
@@ -1608,7 +1608,7 @@ public:
      * Use ANN::save to serialize and store an ANN to disk.
      * Load the ANN from this file again, by calling this function with the path to the file.
      *
-     * @param filepath path to serialized ANN
+     *  filepath path to serialized ANN
      */
     CV_WRAP static Ptr<ANN_MLP> load(const String& filepath);
 
@@ -1683,10 +1683,10 @@ public:
 
     /** @brief Predicts responses for input samples and returns a float type.
 
-    @param samples The input data for the prediction algorithm. Matrix [m x n], where each row
+     samples The input data for the prediction algorithm. Matrix [m x n], where each row
         contains variables (features) of one object being classified. Should have data type CV_32F.
-    @param results Predicted labels as a column matrix of type CV_32S.
-    @param flags Not used.
+     results Predicted labels as a column matrix of type CV_32S.
+     flags Not used.
      */
     CV_WRAP virtual float predict( InputArray samples, OutputArray results=noArray(), int flags=0 ) const CV_OVERRIDE = 0;
 
@@ -1709,8 +1709,8 @@ public:
      * Load the LogisticRegression from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized LogisticRegression
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized LogisticRegression
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<LogisticRegression> load(const String& filepath , const String& nodeName = String());
 };
@@ -1834,14 +1834,14 @@ public:
      * Load the SVMSGD from this file again, by calling this function with the path to the file.
      * Optionally specify the node for the file containing the classifier
      *
-     * @param filepath path to serialized SVMSGD
-     * @param nodeName name of node containing the classifier
+     *  filepath path to serialized SVMSGD
+     *  nodeName name of node containing the classifier
      */
     CV_WRAP static Ptr<SVMSGD> load(const String& filepath , const String& nodeName = String());
 
     /** @brief Function sets optimal parameters values for chosen SVM SGD model.
-     * @param svmsgdType is the type of SVMSGD classifier.
-     * @param marginType is the type of margin constraint.
+     *  svmsgdType is the type of SVMSGD classifier.
+     *  marginType is the type of margin constraint.
     */
     CV_WRAP virtual void setOptimalParameters(int svmsgdType = SVMSGD::ASGD, int marginType = SVMSGD::SOFT_MARGIN) = 0;
 
@@ -1891,10 +1891,10 @@ public:
 
 /** @brief Generates _sample_ from multivariate normal distribution
 
-@param mean an average row vector
-@param cov symmetric covariation matrix
-@param nsamples returned samples count
-@param samples returned samples array
+ mean an average row vector
+ cov symmetric covariation matrix
+ nsamples returned samples count
+ samples returned samples array
 */
 CV_EXPORTS void randMVNormal( InputArray mean, InputArray cov, int nsamples, OutputArray samples);
 
@@ -1927,13 +1927,13 @@ struct SimulatedAnnealingSolverSystem
 
 @cite Kirkpatrick83 for details
 
-@param solverSystem optimization system (see SimulatedAnnealingSolverSystem)
-@param initialTemperature initial temperature
-@param finalTemperature final temperature
-@param coolingRatio temperature step multiplies
-@param iterationsPerStep number of iterations per temperature changing step
-@param lastTemperature optional output for last used temperature
-@param rngEnergy specify custom random numbers generator (cv::theRNG() by default)
+ solverSystem optimization system (see SimulatedAnnealingSolverSystem)
+ initialTemperature initial temperature
+ finalTemperature final temperature
+ coolingRatio temperature step multiplies
+ iterationsPerStep number of iterations per temperature changing step
+ lastTemperature optional output for last used temperature
+ rngEnergy specify custom random numbers generator (cv::theRNG() by default)
 */
 template<class SimulatedAnnealingSolverSystem>
 int simulatedAnnealingSolver(SimulatedAnnealingSolverSystem& solverSystem,

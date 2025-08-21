@@ -148,14 +148,14 @@ public:
     CV_NODISCARD_STD static Matx eye();
     CV_NODISCARD_STD static Matx diag(const diag_type& d);
     /** @brief Generates uniformly distributed random numbers
-    @param a Range boundary.
-    @param b The other range boundary (boundaries don't have to be ordered, the lower boundary is inclusive,
+     a Range boundary.
+     b The other range boundary (boundaries don't have to be ordered, the lower boundary is inclusive,
     the upper one is exclusive).
      */
     CV_NODISCARD_STD static Matx randu(_Tp a, _Tp b);
     /** @brief Generates normally distributed random numbers
-    @param a Mean value.
-    @param b Standard deviation.
+     a Mean value.
+     b Standard deviation.
      */
     CV_NODISCARD_STD static Matx randn(_Tp a, _Tp b);
 

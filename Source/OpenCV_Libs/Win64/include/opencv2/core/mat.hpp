@@ -819,74 +819,74 @@ public:
     Mat() CV_NOEXCEPT;
 
     /** @overload
-    @param rows Number of rows in a 2D array.
-    @param cols Number of columns in a 2D array.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     rows Number of rows in a 2D array.
+     cols Number of columns in a 2D array.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
     */
     Mat(int rows, int cols, int type);
 
     /** @overload
-    @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
+     size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
     number of columns go in the reverse order.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
       */
     Mat(Size size, int type);
 
     /** @overload
-    @param rows Number of rows in a 2D array.
-    @param cols Number of columns in a 2D array.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     rows Number of rows in a 2D array.
+     cols Number of columns in a 2D array.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param s An optional value to initialize each matrix element with. To set all the matrix elements to
+     s An optional value to initialize each matrix element with. To set all the matrix elements to
     the particular value after the construction, use the assignment operator
     Mat::operator=(const Scalar& value) .
     */
     Mat(int rows, int cols, int type, const Scalar& s);
 
     /** @overload
-    @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
+     size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
     number of columns go in the reverse order.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param s An optional value to initialize each matrix element with. To set all the matrix elements to
+     s An optional value to initialize each matrix element with. To set all the matrix elements to
     the particular value after the construction, use the assignment operator
     Mat::operator=(const Scalar& value) .
       */
     Mat(Size size, int type, const Scalar& s);
 
     /** @overload
-    @param ndims Array dimensionality.
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     ndims Array dimensionality.
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
     */
     Mat(int ndims, const int* sizes, int type);
 
     /** @overload
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
     */
     Mat(const std::vector<int>& sizes, int type);
 
     /** @overload
-    @param ndims Array dimensionality.
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     ndims Array dimensionality.
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param s An optional value to initialize each matrix element with. To set all the matrix elements to
+     s An optional value to initialize each matrix element with. To set all the matrix elements to
     the particular value after the construction, use the assignment operator
     Mat::operator=(const Scalar& value) .
     */
     Mat(int ndims, const int* sizes, int type, const Scalar& s);
 
     /** @overload
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param s An optional value to initialize each matrix element with. To set all the matrix elements to
+     s An optional value to initialize each matrix element with. To set all the matrix elements to
     the particular value after the construction, use the assignment operator
     Mat::operator=(const Scalar& value) .
     */
@@ -894,7 +894,7 @@ public:
 
 
     /** @overload
-    @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
+     m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
     by these constructors. Instead, the header pointing to m data or its sub-array is constructed and
     associated with it. The reference counter, if any, is incremented. So, when you modify the matrix
     formed using such a constructor, you also modify the corresponding elements of m . If you want to
@@ -903,110 +903,110 @@ public:
     Mat(const Mat& m);
 
     /** @overload
-    @param rows Number of rows in a 2D array.
-    @param cols Number of columns in a 2D array.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     rows Number of rows in a 2D array.
+     cols Number of columns in a 2D array.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param data Pointer to the user data. Matrix constructors that take data and step parameters do not
+     data Pointer to the user data. Matrix constructors that take data and step parameters do not
     allocate matrix data. Instead, they just initialize the matrix header that points to the specified
     data, which means that no data is copied. This operation is very efficient and can be used to
     process external data using OpenCV functions. The external data is not automatically deallocated, so
     you should take care of it.
-    @param step Number of bytes each matrix row occupies. The value should include the padding bytes at
+     step Number of bytes each matrix row occupies. The value should include the padding bytes at
     the end of each row, if any. If the parameter is missing (set to AUTO_STEP ), no padding is assumed
     and the actual step is calculated as cols*elemSize(). See Mat::elemSize.
     */
     Mat(int rows, int cols, int type, void* data, size_t step=AUTO_STEP);
 
     /** @overload
-    @param size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
+     size 2D array size: Size(cols, rows) . In the Size() constructor, the number of rows and the
     number of columns go in the reverse order.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param data Pointer to the user data. Matrix constructors that take data and step parameters do not
+     data Pointer to the user data. Matrix constructors that take data and step parameters do not
     allocate matrix data. Instead, they just initialize the matrix header that points to the specified
     data, which means that no data is copied. This operation is very efficient and can be used to
     process external data using OpenCV functions. The external data is not automatically deallocated, so
     you should take care of it.
-    @param step Number of bytes each matrix row occupies. The value should include the padding bytes at
+     step Number of bytes each matrix row occupies. The value should include the padding bytes at
     the end of each row, if any. If the parameter is missing (set to AUTO_STEP ), no padding is assumed
     and the actual step is calculated as cols*elemSize(). See Mat::elemSize.
     */
     Mat(Size size, int type, void* data, size_t step=AUTO_STEP);
 
     /** @overload
-    @param ndims Array dimensionality.
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     ndims Array dimensionality.
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param data Pointer to the user data. Matrix constructors that take data and step parameters do not
+     data Pointer to the user data. Matrix constructors that take data and step parameters do not
     allocate matrix data. Instead, they just initialize the matrix header that points to the specified
     data, which means that no data is copied. This operation is very efficient and can be used to
     process external data using OpenCV functions. The external data is not automatically deallocated, so
     you should take care of it.
-    @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
+     steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
     set to the element size). If not specified, the matrix is assumed to be continuous.
     */
     Mat(int ndims, const int* sizes, int type, void* data, const size_t* steps=0);
 
     /** @overload
-    @param sizes Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
+     sizes Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_64FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param data Pointer to the user data. Matrix constructors that take data and step parameters do not
+     data Pointer to the user data. Matrix constructors that take data and step parameters do not
     allocate matrix data. Instead, they just initialize the matrix header that points to the specified
     data, which means that no data is copied. This operation is very efficient and can be used to
     process external data using OpenCV functions. The external data is not automatically deallocated, so
     you should take care of it.
-    @param steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
+     steps Array of ndims-1 steps in case of a multi-dimensional array (the last step is always
     set to the element size). If not specified, the matrix is assumed to be continuous.
     */
     Mat(const std::vector<int>& sizes, int type, void* data, const size_t* steps=0);
 
     /** @overload
-    @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
+     m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
     by these constructors. Instead, the header pointing to m data or its sub-array is constructed and
     associated with it. The reference counter, if any, is incremented. So, when you modify the matrix
     formed using such a constructor, you also modify the corresponding elements of m . If you want to
     have an independent copy of the sub-array, use Mat::clone() .
-    @param rowRange Range of the m rows to take. As usual, the range start is inclusive and the range
+     rowRange Range of the m rows to take. As usual, the range start is inclusive and the range
     end is exclusive. Use Range::all() to take all the rows.
-    @param colRange Range of the m columns to take. Use Range::all() to take all the columns.
+     colRange Range of the m columns to take. Use Range::all() to take all the columns.
     */
     Mat(const Mat& m, const Range& rowRange, const Range& colRange=Range::all());
 
     /** @overload
-    @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
+     m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
     by these constructors. Instead, the header pointing to m data or its sub-array is constructed and
     associated with it. The reference counter, if any, is incremented. So, when you modify the matrix
     formed using such a constructor, you also modify the corresponding elements of m . If you want to
     have an independent copy of the sub-array, use Mat::clone() .
-    @param roi Region of interest.
+     roi Region of interest.
     */
     Mat(const Mat& m, const Rect& roi);
 
     /** @overload
-    @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
+     m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
     by these constructors. Instead, the header pointing to m data or its sub-array is constructed and
     associated with it. The reference counter, if any, is incremented. So, when you modify the matrix
     formed using such a constructor, you also modify the corresponding elements of m . If you want to
     have an independent copy of the sub-array, use Mat::clone() .
-    @param ranges Array of selected ranges of m along each dimensionality.
+     ranges Array of selected ranges of m along each dimensionality.
     */
     Mat(const Mat& m, const Range* ranges);
 
     /** @overload
-    @param m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
+     m Array that (as a whole or partly) is assigned to the constructed matrix. No data is copied
     by these constructors. Instead, the header pointing to m data or its sub-array is constructed and
     associated with it. The reference counter, if any, is incremented. So, when you modify the matrix
     formed using such a constructor, you also modify the corresponding elements of m . If you want to
     have an independent copy of the sub-array, use Mat::clone() .
-    @param ranges Array of selected ranges of m along each dimensionality.
+     ranges Array of selected ranges of m along each dimensionality.
     */
     Mat(const Mat& m, const std::vector<Range>& ranges);
 
     /** @overload
-    @param vec STL vector whose elements form the matrix. The matrix has a single column and the number
+     vec STL vector whose elements form the matrix. The matrix has a single column and the number
     of rows equal to the number of vector elements. Type of the matrix matches the type of vector
     elements. The constructor can handle arbitrary types, for which there is a properly declared
     DataType . This means that the vector elements must be primitive numbers or uni-type numerical
@@ -1015,7 +1015,7 @@ public:
     Mat(vec) explicitly. Unless you copy the data into the matrix ( copyData=true ), no new elements
     will be added to the vector because it can potentially yield vector data reallocation, and, thus,
     the matrix data pointer will be invalid.
-    @param copyData Flag to specify whether the underlying data of the STL vector should be copied
+     copyData Flag to specify whether the underlying data of the STL vector should be copied
     to (true) or shared with (false) the newly constructed matrix. When the data is copied, the
     allocated buffer is managed using Mat reference counting mechanism. While the data is shared,
     the reference counter is NULL, and you should not deallocate the data until the matrix is
@@ -1066,14 +1066,14 @@ public:
 
     These are available assignment operators. Since they all are very different, make sure to read the
     operator parameters description.
-    @param m Assigned, right-hand-side matrix. Matrix assignment is an O(1) operation. This means that
+     m Assigned, right-hand-side matrix. Matrix assignment is an O(1) operation. This means that
     no data is copied but the data is shared and the reference counter, if any, is incremented. Before
     assigning new data, the old data is de-referenced via Mat::release .
      */
     Mat& operator = (const Mat& m);
 
     /** @overload
-    @param expr Assigned matrix expression object. As opposite to the first form of the assignment
+     expr Assigned matrix expression object. As opposite to the first form of the assignment
     operation, the second form can reuse already allocated matrix if it has the right size and type to
     fit the matrix expression result. It is automatically handled by the real function that the matrix
     expressions is expanded to. For example, C=A+B is expanded to add(A, B, C), and add takes care of
@@ -1115,7 +1115,7 @@ public:
         // this is a bit longer, but the recommended method.
         A.row(j).copyTo(A.row(i));
     @endcode
-    @param y A 0-based row index.
+     y A 0-based row index.
      */
     Mat row(int y) const;
 
@@ -1124,7 +1124,7 @@ public:
     The method makes a new header for the specified matrix column and returns it. This is an O(1)
     operation, regardless of the matrix size. The underlying data of the new matrix is shared with the
     original matrix. See also the Mat::row description.
-    @param x A 0-based column index.
+     x A 0-based column index.
      */
     Mat col(int x) const;
 
@@ -1132,13 +1132,13 @@ public:
 
     The method makes a new header for the specified row span of the matrix. Similarly to Mat::row and
     Mat::col , this is an O(1) operation.
-    @param startrow An inclusive 0-based start index of the row span.
-    @param endrow An exclusive 0-based ending index of the row span.
+     startrow An inclusive 0-based start index of the row span.
+     endrow An exclusive 0-based ending index of the row span.
      */
     Mat rowRange(int startrow, int endrow) const;
 
     /** @overload
-    @param r Range structure containing both the start and the end indices.
+     r Range structure containing both the start and the end indices.
     */
     Mat rowRange(const Range& r) const;
 
@@ -1146,13 +1146,13 @@ public:
 
     The method makes a new header for the specified column span of the matrix. Similarly to Mat::row and
     Mat::col , this is an O(1) operation.
-    @param startcol An inclusive 0-based start index of the column span.
-    @param endcol An exclusive 0-based ending index of the column span.
+     startcol An inclusive 0-based start index of the column span.
+     endcol An exclusive 0-based ending index of the column span.
      */
     Mat colRange(int startcol, int endcol) const;
 
     /** @overload
-    @param r Range structure containing both the start and the end indices.
+     r Range structure containing both the start and the end indices.
     */
     Mat colRange(const Range& r) const;
 
@@ -1160,7 +1160,7 @@ public:
 
     The method makes a new header for the specified matrix diagonal. The new matrix is represented as a
     single-column matrix. Similarly to Mat::row and Mat::col, this is an O(1) operation.
-    @param d index of the diagonal, with the following values:
+     d index of the diagonal, with the following values:
     - `d=0` is the main diagonal.
     - `d<0` is a diagonal from the lower half. For example, d=-1 means the diagonal is set
       immediately below the main one.
@@ -1195,7 +1195,7 @@ public:
     /** @brief creates a diagonal matrix
 
     The method creates a square diagonal matrix from specified main diagonal.
-    @param d One-dimensional matrix that represents the main diagonal.
+     d One-dimensional matrix that represents the main diagonal.
      */
     CV_NODISCARD_STD static Mat diag(const Mat& d);
 
@@ -1218,15 +1218,15 @@ public:
 
     When the operation mask is specified, if the Mat::create call shown above reallocates the matrix,
     the newly allocated matrix is initialized with all zeros before copying the data.
-    @param m Destination matrix. If it does not have a proper size or type before the operation, it is
+     m Destination matrix. If it does not have a proper size or type before the operation, it is
     reallocated.
      */
     void copyTo( OutputArray m ) const;
 
     /** @overload
-    @param m Destination matrix. If it does not have a proper size or type before the operation, it is
+     m Destination matrix. If it does not have a proper size or type before the operation, it is
     reallocated.
-    @param mask Operation mask of the same size as \*this. Its non-zero elements indicate which matrix
+     mask Operation mask of the same size as \*this. Its non-zero elements indicate which matrix
     elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels.
     */
     void copyTo( OutputArray m, InputArray mask ) const;
@@ -1237,33 +1237,33 @@ public:
     the end to avoid possible overflows:
 
     \f[m(x,y) = saturate \_ cast<rType>( \alpha (*this)(x,y) +  \beta )\f]
-    @param m output matrix; if it does not have a proper size or type before the operation, it is
+     m output matrix; if it does not have a proper size or type before the operation, it is
     reallocated.
-    @param rtype desired output matrix type or, rather, the depth since the number of channels are the
+     rtype desired output matrix type or, rather, the depth since the number of channels are the
     same as the input has; if rtype is negative, the output matrix will have the same type as the input.
-    @param alpha optional scale factor.
-    @param beta optional delta added to the scaled values.
+     alpha optional scale factor.
+     beta optional delta added to the scaled values.
      */
     void convertTo( OutputArray m, int rtype, double alpha=1, double beta=0 ) const;
 
     /** @brief Provides a functional form of convertTo.
 
     This is an internally used method called by the @ref MatrixExpressions engine.
-    @param m Destination array.
-    @param type Desired destination array depth (or -1 if it should be the same as the source type).
+     m Destination array.
+     type Desired destination array depth (or -1 if it should be the same as the source type).
      */
     void assignTo( Mat& m, int type=-1 ) const;
 
     /** @brief Sets all or some of the array elements to the specified value.
-    @param s Assigned scalar converted to the actual array type.
+     s Assigned scalar converted to the actual array type.
     */
     Mat& operator = (const Scalar& s);
 
     /** @brief Sets all or some of the array elements to the specified value.
 
     This is an advanced variant of the Mat::operator=(const Scalar& s) operator.
-    @param value Assigned scalar converted to the actual array type.
-    @param mask Operation mask of the same size as \*this. Its non-zero elements indicate which matrix
+     value Assigned scalar converted to the actual array type.
+     mask Operation mask of the same size as \*this. Its non-zero elements indicate which matrix
     elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels
      */
     Mat& setTo(InputArray value, InputArray mask=noArray());
@@ -1301,22 +1301,22 @@ public:
     const int new_shape[] = {4, 3};
     m = m.reshape(1, 2, new_shape);
     @endcode
-    @param cn New number of channels. If the parameter is 0, the number of channels remains the same.
-    @param rows New number of rows. If the parameter is 0, the number of rows remains the same.
+     cn New number of channels. If the parameter is 0, the number of channels remains the same.
+     rows New number of rows. If the parameter is 0, the number of rows remains the same.
      */
     Mat reshape(int cn, int rows=0) const;
 
     /** @overload
-     * @param cn New number of channels. If the parameter is 0, the number of channels remains the same.
-     * @param newndims New number of dimentions.
-     * @param newsz Array with new matrix size by all dimentions. If some sizes are zero,
+     *  cn New number of channels. If the parameter is 0, the number of channels remains the same.
+     *  newndims New number of dimentions.
+     *  newsz Array with new matrix size by all dimentions. If some sizes are zero,
      * the original sizes in those dimensions are presumed.
      */
     Mat reshape(int cn, int newndims, const int* newsz) const;
 
     /** @overload
-     * @param cn New number of channels. If the parameter is 0, the number of channels remains the same.
-     * @param newshape Vector with new matrix size by all dimentions. If some sizes are zero,
+     *  cn New number of channels. If the parameter is 0, the number of channels remains the same.
+     *  newshape Vector with new matrix size by all dimentions. If some sizes are zero,
      * the original sizes in those dimensions are presumed.
      */
     Mat reshape(int cn, const std::vector<int>& newshape) const;
@@ -1338,7 +1338,7 @@ public:
     The method performs a matrix inversion by means of matrix expressions. This means that a temporary
     matrix inversion object is returned by the method and can be used further as a part of more complex
     matrix expressions or can be assigned to a matrix.
-    @param method Matrix inversion method. One of cv::DecompTypes
+     method Matrix inversion method. One of cv::DecompTypes
      */
     MatExpr inv(int method=DECOMP_LU) const;
 
@@ -1351,8 +1351,8 @@ public:
     @code
         Mat C = A.mul(5/B); // equivalent to divide(A, B, C, 5)
     @endcode
-    @param m Another array of the same type and the same size as \*this, or a matrix expression.
-    @param scale Optional scale factor.
+     m Another array of the same type and the same size as \*this, or a matrix expression.
+     scale Optional scale factor.
      */
     MatExpr mul(InputArray m, double scale=1) const;
 
@@ -1361,7 +1361,7 @@ public:
     The method computes a cross-product of two 3-element vectors. The vectors must be 3-element
     floating-point vectors of the same shape and size. The result is another 3-element vector of the
     same shape and type as operands.
-    @param m Another cross-product operand.
+     m Another cross-product operand.
      */
     Mat cross(InputArray m) const;
 
@@ -1371,7 +1371,7 @@ public:
     single-row vectors, the top-to-bottom left-to-right scan ordering is used to treat them as 1D
     vectors. The vectors must have the same size and type. If the matrices have more than one channel,
     the dot products from all the channels are summed together.
-    @param m another dot-product operand.
+     m another dot-product operand.
      */
     double dot(InputArray m) const;
 
@@ -1385,22 +1385,22 @@ public:
     @endcode
     In the example above, a new matrix is allocated only if A is not a 3x3 floating-point matrix.
     Otherwise, the existing matrix A is filled with zeros.
-    @param rows Number of rows.
-    @param cols Number of columns.
-    @param type Created matrix type.
+     rows Number of rows.
+     cols Number of columns.
+     type Created matrix type.
      */
     CV_NODISCARD_STD static MatExpr zeros(int rows, int cols, int type);
 
     /** @overload
-    @param size Alternative to the matrix size specification Size(cols, rows) .
-    @param type Created matrix type.
+     size Alternative to the matrix size specification Size(cols, rows) .
+     type Created matrix type.
     */
     CV_NODISCARD_STD static MatExpr zeros(Size size, int type);
 
     /** @overload
-    @param ndims Array dimensionality.
-    @param sz Array of integers specifying the array shape.
-    @param type Created matrix type.
+     ndims Array dimensionality.
+     sz Array of integers specifying the array shape.
+     type Created matrix type.
     */
     CV_NODISCARD_STD static MatExpr zeros(int ndims, const int* sz, int type);
 
@@ -1416,22 +1416,22 @@ public:
     initializer.
     @note In case of multi-channels type, only the first channel will be initialized with 1's, the
     others will be set to 0's.
-    @param rows Number of rows.
-    @param cols Number of columns.
-    @param type Created matrix type.
+     rows Number of rows.
+     cols Number of columns.
+     type Created matrix type.
      */
     CV_NODISCARD_STD static MatExpr ones(int rows, int cols, int type);
 
     /** @overload
-    @param size Alternative to the matrix size specification Size(cols, rows) .
-    @param type Created matrix type.
+     size Alternative to the matrix size specification Size(cols, rows) .
+     type Created matrix type.
     */
     CV_NODISCARD_STD static MatExpr ones(Size size, int type);
 
     /** @overload
-    @param ndims Array dimensionality.
-    @param sz Array of integers specifying the array shape.
-    @param type Created matrix type.
+     ndims Array dimensionality.
+     sz Array of integers specifying the array shape.
+     type Created matrix type.
     */
     CV_NODISCARD_STD static MatExpr ones(int ndims, const int* sz, int type);
 
@@ -1445,15 +1445,15 @@ public:
     @endcode
     @note In case of multi-channels type, identity matrix will be initialized only for the first channel,
     the others will be set to 0's
-    @param rows Number of rows.
-    @param cols Number of columns.
-    @param type Created matrix type.
+     rows Number of rows.
+     cols Number of columns.
+     type Created matrix type.
      */
     CV_NODISCARD_STD static MatExpr eye(int rows, int cols, int type);
 
     /** @overload
-    @param size Alternative matrix size specification as Size(cols, rows) .
-    @param type Created matrix type.
+     size Alternative matrix size specification as Size(cols, rows) .
+     type Created matrix type.
     */
     CV_NODISCARD_STD static MatExpr eye(Size size, int type);
 
@@ -1486,28 +1486,28 @@ public:
     @endcode
     because cvtColor, as well as the most of OpenCV functions, calls Mat::create() for the output array
     internally.
-    @param rows New number of rows.
-    @param cols New number of columns.
-    @param type New matrix type.
+     rows New number of rows.
+     cols New number of columns.
+     type New matrix type.
      */
     void create(int rows, int cols, int type);
 
     /** @overload
-    @param size Alternative new matrix size specification: Size(cols, rows)
-    @param type New matrix type.
+     size Alternative new matrix size specification: Size(cols, rows)
+     type New matrix type.
     */
     void create(Size size, int type);
 
     /** @overload
-    @param ndims New array dimensionality.
-    @param sizes Array of integers specifying a new array shape.
-    @param type New matrix type.
+     ndims New array dimensionality.
+     sizes Array of integers specifying a new array shape.
+     type New matrix type.
     */
     void create(int ndims, const int* sizes, int type);
 
     /** @overload
-    @param sizes Array of integers specifying a new array shape.
-    @param type New matrix type.
+     sizes Array of integers specifying a new array shape.
+     type New matrix type.
     */
     void create(const std::vector<int>& sizes, int type);
 
@@ -1547,7 +1547,7 @@ public:
     The method reserves space for sz rows. If the matrix already has enough space to store sz rows,
     nothing happens. If the matrix is reallocated, the first Mat::rows rows are preserved. The method
     emulates the corresponding method of the STL vector class.
-    @param sz Number of rows.
+     sz Number of rows.
      */
     void reserve(size_t sz);
 
@@ -1555,7 +1555,7 @@ public:
 
     The method reserves space for sz bytes. If the matrix already has enough space to store sz bytes,
     nothing happens. If matrix has to be reallocated its previous content could be lost.
-    @param sz Number of bytes.
+     sz Number of bytes.
     */
     void reserveBuffer(size_t sz);
 
@@ -1564,13 +1564,13 @@ public:
     The methods change the number of matrix rows. If the matrix is reallocated, the first
     min(Mat::rows, sz) rows are preserved. The methods emulate the corresponding methods of the STL
     vector class.
-    @param sz New number of rows.
+     sz New number of rows.
      */
     void resize(size_t sz);
 
     /** @overload
-    @param sz New number of rows.
-    @param s Value assigned to the newly added elements.
+     sz New number of rows.
+     s Value assigned to the newly added elements.
      */
     void resize(size_t sz, const Scalar& s);
 
@@ -1582,29 +1582,29 @@ public:
     The methods add one or more elements to the bottom of the matrix. They emulate the corresponding
     method of the STL vector class. When elem is Mat , its type and the number of columns must be the
     same as in the container matrix.
-    @param elem Added element(s).
+     elem Added element(s).
      */
     template<typename _Tp> void push_back(const _Tp& elem);
 
     /** @overload
-    @param elem Added element(s).
+     elem Added element(s).
     */
     template<typename _Tp> void push_back(const Mat_<_Tp>& elem);
 
     /** @overload
-    @param elem Added element(s).
+     elem Added element(s).
     */
     template<typename _Tp> void push_back(const std::vector<_Tp>& elem);
 
     /** @overload
-    @param m Added line(s).
+     m Added line(s).
     */
     void push_back(const Mat& m);
 
     /** @brief Removes elements from the bottom of the matrix.
 
     The method removes one or more rows from the bottom of the matrix.
-    @param nelems Number of removed rows. If it is greater than the total number of rows, an exception
+     nelems Number of removed rows. If it is greater than the total number of rows, an exception
     is thrown.
      */
     void pop_back(size_t nelems=1);
@@ -1616,9 +1616,9 @@ public:
     matrix. However, each submatrix contains information (represented by datastart and dataend
     fields) that helps reconstruct the original matrix size and the position of the extracted
     submatrix within the original matrix. The method locateROI does exactly that.
-    @param wholeSize Output parameter that contains the size of the whole matrix containing *this*
+     wholeSize Output parameter that contains the size of the whole matrix containing *this*
     as a part.
-    @param ofs Output parameter that contains an offset of *this* inside the whole matrix.
+     ofs Output parameter that contains an offset of *this* inside the whole matrix.
      */
     void locateROI( Size& wholeSize, Point& ofs ) const;
 
@@ -1643,10 +1643,10 @@ public:
 
     The function is used internally by the OpenCV filtering functions, like filter2D , morphological
     operations, and so on.
-    @param dtop Shift of the top submatrix boundary upwards.
-    @param dbottom Shift of the bottom submatrix boundary downwards.
-    @param dleft Shift of the left submatrix boundary to the left.
-    @param dright Shift of the right submatrix boundary to the right.
+     dtop Shift of the top submatrix boundary upwards.
+     dbottom Shift of the bottom submatrix boundary downwards.
+     dleft Shift of the left submatrix boundary to the left.
+     dright Shift of the right submatrix boundary to the right.
     @sa copyMakeBorder
      */
     Mat& adjustROI( int dtop, int dbottom, int dleft, int dright );
@@ -1657,25 +1657,25 @@ public:
     generalized forms of Mat::row, Mat::col, Mat::rowRange, and Mat::colRange . For example,
     `A(Range(0, 10), Range::all())` is equivalent to `A.rowRange(0, 10)`. Similarly to all of the above,
     the operators are O(1) operations, that is, no matrix data is copied.
-    @param rowRange Start and end row of the extracted submatrix. The upper boundary is not included. To
+     rowRange Start and end row of the extracted submatrix. The upper boundary is not included. To
     select all the rows, use Range::all().
-    @param colRange Start and end column of the extracted submatrix. The upper boundary is not included.
+     colRange Start and end column of the extracted submatrix. The upper boundary is not included.
     To select all the columns, use Range::all().
      */
     Mat operator()( Range rowRange, Range colRange ) const;
 
     /** @overload
-    @param roi Extracted submatrix specified as a rectangle.
+     roi Extracted submatrix specified as a rectangle.
     */
     Mat operator()( const Rect& roi ) const;
 
     /** @overload
-    @param ranges Array of selected ranges along each array dimension.
+     ranges Array of selected ranges along each array dimension.
     */
     Mat operator()( const Range* ranges ) const;
 
     /** @overload
-    @param ranges Array of selected ranges along each array dimension.
+     ranges Array of selected ranges along each array dimension.
     */
     Mat operator()(const std::vector<Range>& ranges) const;
 
@@ -1834,7 +1834,7 @@ public:
     size_t total(int startDim, int endDim=INT_MAX) const;
 
     /**
-     * @param elemChannels Number of channels or number of columns the matrix should have.
+     *  elemChannels Number of channels or number of columns the matrix should have.
      *                     For a 2-D matrix, when the matrix has only 1 column, then it should have
      *                     elemChannels channels; When the matrix has only 1 channel,
      *                     then it should have elemChannels columns.
@@ -1842,8 +1842,8 @@ public:
      *                     if the number of planes is not one, then the number of rows
      *                     within every plane has to be 1; if the number of rows within
      *                     every plane is not 1, then the number of planes has to be 1.
-     * @param depth The depth the matrix should have. Set it to -1 when any depth is fine.
-     * @param requireContinuous Set it to true to require the matrix to be continuous
+     *  depth The depth the matrix should have. Set it to -1 when any depth is fine.
+     *  requireContinuous Set it to true to require the matrix to be continuous
      * @return -1 if the requirement is not satisfied.
      *         Otherwise, it returns the number of elements in the matrix. Note
      *         that an element may have multiple channels.
@@ -1860,20 +1860,20 @@ public:
 
     The methods return `uchar*` or typed pointer to the specified matrix row. See the sample in
     Mat::isContinuous to know how to use these methods.
-    @param i0 A 0-based row index.
+     i0 A 0-based row index.
      */
     uchar* ptr(int i0=0);
     /** @overload */
     const uchar* ptr(int i0=0) const;
 
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     uchar* ptr(int row, int col);
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     const uchar* ptr(int row, int col) const;
 
@@ -1896,13 +1896,13 @@ public:
     /** @overload */
     template<typename _Tp> const _Tp* ptr(int i0=0) const;
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     template<typename _Tp> _Tp* ptr(int row, int col);
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     template<typename _Tp> const _Tp* ptr(int row, int col) const;
     /** @overload */
@@ -1946,43 +1946,43 @@ public:
      - If matrix is of type `CV_32F`  then use `Mat.at<float>(y,x)`.
      - If matrix is of type `CV_64F` then use `Mat.at<double>(y,x)`.
 
-    @param i0 Index along the dimension 0
+     i0 Index along the dimension 0
      */
     template<typename _Tp> _Tp& at(int i0=0);
     /** @overload
-    @param i0 Index along the dimension 0
+     i0 Index along the dimension 0
     */
     template<typename _Tp> const _Tp& at(int i0=0) const;
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     template<typename _Tp> _Tp& at(int row, int col);
     /** @overload
-    @param row Index along the dimension 0
-    @param col Index along the dimension 1
+     row Index along the dimension 0
+     col Index along the dimension 1
     */
     template<typename _Tp> const _Tp& at(int row, int col) const;
 
     /** @overload
-    @param i0 Index along the dimension 0
-    @param i1 Index along the dimension 1
-    @param i2 Index along the dimension 2
+     i0 Index along the dimension 0
+     i1 Index along the dimension 1
+     i2 Index along the dimension 2
     */
     template<typename _Tp> _Tp& at(int i0, int i1, int i2);
     /** @overload
-    @param i0 Index along the dimension 0
-    @param i1 Index along the dimension 1
-    @param i2 Index along the dimension 2
+     i0 Index along the dimension 0
+     i1 Index along the dimension 1
+     i2 Index along the dimension 2
     */
     template<typename _Tp> const _Tp& at(int i0, int i1, int i2) const;
 
     /** @overload
-    @param idx Array of Mat::dims indices.
+     idx Array of Mat::dims indices.
     */
     template<typename _Tp> _Tp& at(const int* idx);
     /** @overload
-    @param idx Array of Mat::dims indices.
+     idx Array of Mat::dims indices.
     */
     template<typename _Tp> const _Tp& at(const int* idx) const;
 
@@ -1993,12 +1993,12 @@ public:
 
     /** @overload
     special versions for 2D arrays (especially convenient for referencing image pixels)
-    @param pt Element position specified as Point(j,i) .
+     pt Element position specified as Point(j,i) .
     */
     template<typename _Tp> _Tp& at(Point pt);
     /** @overload
     special versions for 2D arrays (especially convenient for referencing image pixels)
-    @param pt Element position specified as Point(j,i) .
+     pt Element position specified as Point(j,i) .
     */
     template<typename _Tp> const _Tp& at(Point pt) const;
 
@@ -2770,20 +2770,20 @@ public:
     SparseMat();
 
     /** @overload
-    @param dims Array dimensionality.
-    @param _sizes Sparce matrix size on all dementions.
-    @param _type Sparse matrix data type.
+     dims Array dimensionality.
+     _sizes Sparce matrix size on all dementions.
+     _type Sparse matrix data type.
     */
     SparseMat(int dims, const int* _sizes, int _type);
 
     /** @overload
-    @param m Source matrix for copy constructor. If m is dense matrix (ocvMat) then it will be converted
+     m Source matrix for copy constructor. If m is dense matrix (ocvMat) then it will be converted
     to sparse representation.
     */
     SparseMat(const SparseMat& m);
 
     /** @overload
-    @param m Source matrix for copy constructor. If m is dense matrix (ocvMat) then it will be converted
+     m Source matrix for copy constructor. If m is dense matrix (ocvMat) then it will be converted
     to sparse representation.
     */
     explicit SparseMat(const Mat& m);
@@ -2807,13 +2807,13 @@ public:
     void convertTo( SparseMat& m, int rtype, double alpha=1 ) const;
     //! converts sparse matrix to dense n-dim matrix with optional type conversion and scaling.
     /*!
-        @param [out] m - output matrix; if it does not have a proper size or type before the operation,
+         [out] m - output matrix; if it does not have a proper size or type before the operation,
             it is reallocated
-        @param [in] rtype - desired output matrix type or, rather, the depth since the number of channels
+         [in] rtype - desired output matrix type or, rather, the depth since the number of channels
             are the same as the input has; if rtype is negative, the output matrix will have the
             same type as the input.
-        @param [in] alpha - optional scale factor
-        @param [in] beta - optional delta added to the scaled values
+         [in] alpha - optional scale factor
+         [in] beta - optional delta added to the scaled values
     */
     void convertTo( Mat& m, int rtype, double alpha=1, double beta=0 ) const;
 
@@ -3779,12 +3779,12 @@ beta)`
 
 The output matrix has the same size and the same type as the input one except for the last case,
 where C is depth=CV_8U .
-@param m matrix.
+ m matrix.
 @sa @ref MatrixExpressions, absdiff, convertScaleAbs
  */
 CV_EXPORTS MatExpr abs(const Mat& m);
 /** @overload
-@param e matrix expression.
+ e matrix expression.
 */
 CV_EXPORTS MatExpr abs(const MatExpr& e);
 //! @} relates cv::MatExpr

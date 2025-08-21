@@ -63,7 +63,7 @@ private:
 
 /**
  * Sets the log level used for all flann functions
- * @param level Verbosity level
+ *  level Verbosity level
  */
 inline void log_verbosity(int level)
 {
@@ -286,11 +286,11 @@ private:
 /**
  * Performs a hierarchical clustering of the points passed as argument and then takes a cut in the
  * the clustering tree to return a flat clustering.
- * @param[in] points Points to be clustered
- * @param centers The computed cluster centres. Matrix should be preallocated and centers.rows is the
+ * [in] points Points to be clustered
+ *  centers The computed cluster centres. Matrix should be preallocated and centers.rows is the
  *  number of clusters requested.
- * @param params Clustering parameters (The same as for cvflann::KMeansIndex)
- * @param d Distance to be used for clustering (eg: cvflann::L2)
+ *  params Clustering parameters (The same as for cvflann::KMeansIndex)
+ *  d Distance to be used for clustering (eg: cvflann::L2)
  * @return number of clusters computed (can be different than clusters.rows and is the highest number
  * of the form (branching-1)*K+1 smaller than clusters.rows).
  */

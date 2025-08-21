@@ -37,7 +37,7 @@ G_API_OP(GUV, <GMat(GFrame)>, "org.opencv.streaming.UV") {
 
 @note Function textual ID is "org.opencv.streaming.BGR"
 
-@param in Input frame
+ in Input frame
 @return Image in BGR format
 */
 GAPI_EXPORTS cv::GMat BGR(const cv::GFrame& in);
@@ -48,7 +48,7 @@ Output image is 8-bit 1-channel image of @ref CV_8UC1.
 
 @note Function textual ID is "org.opencv.streaming.Y"
 
-@param frame input media frame.
+ frame input media frame.
 */
 GAPI_EXPORTS GMat Y(const cv::GFrame& frame);
 
@@ -58,7 +58,7 @@ Output image is 8-bit 2-channel image of @ref CV_8UC2.
 
 @note Function textual ID is "org.opencv.streaming.UV"
 
-@param frame input media frame.
+ frame input media frame.
 */
 GAPI_EXPORTS GMat UV(const cv::GFrame& frame);
 } // namespace streaming
@@ -71,7 +71,7 @@ e.g when graph's input needs to be passed directly to output, like in Streaming 
 
 @note Function textual ID is "org.opencv.streaming.copy"
 
-@param in Input image
+ in Input image
 @return Copy of the input
 */
 GAPI_EXPORTS_W GMat copy(const GMat& in);
@@ -82,7 +82,7 @@ e.g when graph's input needs to be passed directly to output, like in Streaming 
 
 @note Function textual ID is "org.opencv.streaming.copy"
 
-@param in Input frame
+ in Input frame
 @return Copy of the input
 */
 GAPI_EXPORTS GFrame copy(const GFrame& in);

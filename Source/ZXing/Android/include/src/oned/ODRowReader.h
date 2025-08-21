@@ -71,9 +71,9 @@ public:
 	 * target pattern. This is reported as the ratio of the total variance from the expected pattern
 	 * proportions across all pattern elements, to the length of the pattern.
 	 *
-	 * @param counters observed counters
-	 * @param pattern expected pattern
-	 * @param maxIndividualVariance The most any counter can differ before we give up
+	 *  counters observed counters
+	 *  pattern expected pattern
+	 *  maxIndividualVariance The most any counter can differ before we give up
 	 * @return ratio of total variance between counters and pattern compared to total pattern size
 	 */
 	template <typename CP, typename PP>
@@ -111,9 +111,9 @@ public:
 	* Attempts to decode a sequence of black/white lines into single
 	* digit.
 	*
-	* @param counters the counts of runs of observed black/white/black/... values
-	* @param patterns the list of patterns to compare the contents of counters to
-	* @param requireUnambiguousMatch the 'best match' must be better than all other matches
+	*  counters the counts of runs of observed black/white/black/... values
+	*  patterns the list of patterns to compare the contents of counters to
+	*  requireUnambiguousMatch the 'best match' must be better than all other matches
 	* @return The decoded digit index, -1 if no pattern matched
 	*/
 	template <typename Counters, typename Patterns>
@@ -142,7 +142,7 @@ public:
 	 * This is useful for codes like Codabar, Code39 and ITF which distinguish between narrow and wide
 	 * bars/spaces. Where wide ones are between 2 and 3 times as wide as the narrow ones.
 	 *
-	 * @param view containing one character
+	 *  view containing one character
 	 * @return threshold value for bars and spaces
 	 */
 	static BarAndSpaceI NarrowWideThreshold(const PatternView& view)

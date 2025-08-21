@@ -22,7 +22,7 @@ Runtime configuration options:
 
 
 /** @brief Returns backend API name or "UnknownVideoAPI(xxx)"
-@param api backend ID (#VideoCaptureAPIs)
+ api backend ID (#VideoCaptureAPIs)
 */
 CV_EXPORTS_W cv::String getBackendName(VideoCaptureAPIs api);
 

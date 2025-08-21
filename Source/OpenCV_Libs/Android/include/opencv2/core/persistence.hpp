@@ -347,15 +347,15 @@ public:
 
      See description of parameters in FileStorage::FileStorage. The method calls FileStorage::release
      before opening the file.
-     @param filename Name of the file to open or the text string to read the data from.
+      filename Name of the file to open or the text string to read the data from.
      Extension of the file (.xml, .yml/.yaml or .json) determines its format (XML, YAML or JSON
      respectively). Also you can append .gz to work with compressed files, for example myHugeMatrix.xml.gz. If both
      FileStorage::WRITE and FileStorage::MEMORY flags are specified, source is used just to specify
      the output file format (e.g. mydata.xml, .yml etc.). A file name can also contain parameters.
      You can use this format, "*?base64" (e.g. "file.json?base64" (case sensitive)), as an alternative to
      FileStorage::BASE64 flag.
-     @param flags Mode of operation. One of FileStorage::Mode
-     @param encoding Encoding of the file. Note that UTF-16 XML encoding is not supported currently and
+      flags Mode of operation. One of FileStorage::Mode
+      encoding Encoding of the file. Note that UTF-16 XML encoding is not supported currently and
      you should use 8-bit encoding instead of it.
      */
     CV_WRAP virtual bool open(const String& filename, int flags, const String& encoding=String());
@@ -386,14 +386,14 @@ public:
     CV_WRAP FileNode getFirstTopLevelNode() const;
 
     /** @brief Returns the top-level mapping
-     @param streamidx Zero-based index of the stream. In most cases there is only one stream in the file.
+      streamidx Zero-based index of the stream. In most cases there is only one stream in the file.
      However, YAML supports multiple streams and so there can be several.
      @returns The top-level mapping.
      */
     CV_WRAP FileNode root(int streamidx=0) const;
 
     /** @brief Returns the specified element of the top-level mapping.
-     @param nodename Name of the file node.
+      nodename Name of the file node.
      @returns Node with the given name.
      */
     FileNode operator[](const String& nodename) const;
@@ -403,8 +403,8 @@ public:
 
     /**
      * @brief Simplified writing API to use with bindings.
-     * @param name Name of the written object. When writing to sequences (a.k.a. "arrays"), pass an empty string.
-     * @param val Value of the written object.
+     *  name Name of the written object. When writing to sequences (a.k.a. "arrays"), pass an empty string.
+     *  val Value of the written object.
      */
     CV_WRAP void write(const String& name, int val);
     /// @overload
@@ -420,26 +420,26 @@ public:
 
      Writes one or more numbers of the specified format to the currently written structure. Usually it is
      more convenient to use operator `<<` instead of this method.
-     @param fmt Specification of each array element, see @ref format_spec "format specification"
-     @param vec Pointer to the written array.
-     @param len Number of the uchar elements to write.
+      fmt Specification of each array element, see @ref format_spec "format specification"
+      vec Pointer to the written array.
+      len Number of the uchar elements to write.
      */
     void writeRaw( const String& fmt, const void* vec, size_t len );
 
     /** @brief Writes a comment.
 
      The function writes a comment into file storage. The comments are skipped when the storage is read.
-     @param comment The written comment, single-line or multi-line
-     @param append If true, the function tries to put the comment at the end of current line.
+      comment The written comment, single-line or multi-line
+      append If true, the function tries to put the comment at the end of current line.
      Else if the comment is multi-line, or if it does not fit at the end of the current
      line, the comment starts a new line.
      */
     CV_WRAP void writeComment(const String& comment, bool append = false);
 
     /** @brief Starts to write a nested structure (sequence or a mapping).
-    @param name name of the structure. When writing to sequences (a.k.a. "arrays"), pass an empty string.
-    @param flags type of the structure (FileNode::MAP or FileNode::SEQ (both with optional FileNode::FLOW)).
-    @param typeName optional name of the type you store. The effect of setting this depends on the storage format.
+     name name of the structure. When writing to sequences (a.k.a. "arrays"), pass an empty string.
+     flags type of the structure (FileNode::MAP or FileNode::SEQ (both with optional FileNode::FLOW)).
+     typeName optional name of the type you store. The effect of setting this depends on the storage format.
     I.e. if the format has a specification for storing type information, this parameter is used.
     */
     CV_WRAP void startWriteStruct(const String& name, int flags, const String& typeName=String());
@@ -449,7 +449,7 @@ public:
     CV_WRAP void endWriteStruct();
 
     /** @brief Returns the normalized object name for the specified name of a file.
-    @param filename Name of a file
+     filename Name of a file
     @returns The normalized object name.
      */
     static String getDefaultObjectName(const String& filename);
@@ -508,34 +508,34 @@ public:
     CV_WRAP FileNode();
 
     /** @overload
-     @param fs Pointer to the file storage structure.
-     @param blockIdx Index of the memory block where the file node is stored
-     @param ofs Offset in bytes from the beginning of the serialized storage
+      fs Pointer to the file storage structure.
+      blockIdx Index of the memory block where the file node is stored
+      ofs Offset in bytes from the beginning of the serialized storage
 
      @deprecated
      */
     FileNode(const FileStorage* fs, size_t blockIdx, size_t ofs);
 
     /** @overload
-     @param node File node to be used as initialization for the created file node.
+      node File node to be used as initialization for the created file node.
      */
     FileNode(const FileNode& node);
 
     FileNode& operator=(const FileNode& node);
 
     /** @brief Returns element of a mapping node or a sequence node.
-     @param nodename Name of an element in the mapping node.
+      nodename Name of an element in the mapping node.
      @returns Returns the element with the given identifier.
      */
     FileNode operator[](const String& nodename) const;
 
     /** @overload
-     @param nodename Name of an element in the mapping node.
+      nodename Name of an element in the mapping node.
      */
     CV_WRAP_AS(getNode) FileNode operator[](const char* nodename) const;
 
     /** @overload
-     @param i Index of an element in the sequence node.
+      i Index of an element in the sequence node.
      */
     CV_WRAP_AS(at) FileNode operator[](int i) const;
 
@@ -597,9 +597,9 @@ public:
     /** @brief Reads node elements to the buffer with the specified format.
 
     Usually it is more convenient to use operator `>>` instead of this method.
-    @param fmt Specification of each array element. See @ref format_spec "format specification"
-    @param vec Pointer to the destination array.
-    @param len Number of bytes to read (buffer size limit). If it is greater than number of
+     fmt Specification of each array element. See @ref format_spec "format specification"
+     vec Pointer to the destination array.
+     len Number of bytes to read (buffer size limit). If it is greater than number of
                remaining elements then all of them will be read.
      */
     void readRaw( const String& fmt, void* vec, size_t len ) const;
@@ -641,9 +641,9 @@ public:
     FileNodeIterator();
 
     /** @overload
-     @param node File node - the collection to iterate over;
+      node File node - the collection to iterate over;
         it can be a scalar (equivalent to 1-element collection) or "none" (equivalent to empty collection).
-     @param seekEnd - true if iterator needs to be set after the last element of the node;
+      seekEnd - true if iterator needs to be set after the last element of the node;
         that is:
             * node.begin() => FileNodeIterator(node, false)
             * node.end() => FileNodeIterator(node, true)
@@ -651,7 +651,7 @@ public:
     FileNodeIterator(const FileNode& node, bool seekEnd);
 
     /** @overload
-     @param it Iterator to be used as initialization for the created iterator.
+      it Iterator to be used as initialization for the created iterator.
      */
     FileNodeIterator(const FileNodeIterator& it);
 
@@ -670,9 +670,9 @@ public:
     /** @brief Reads node elements to the buffer with the specified format.
 
     Usually it is more convenient to use operator `>>` instead of this method.
-    @param fmt Specification of each array element. See @ref format_spec "format specification"
-    @param vec Pointer to the destination array.
-    @param len Number of bytes to read (buffer size limit). If it is greater than number of
+     fmt Specification of each array element. See @ref format_spec "format specification"
+     vec Pointer to the destination array.
+     len Number of bytes to read (buffer size limit). If it is greater than number of
                remaining elements then all of them will be read.
      */
     FileNodeIterator& readRaw( const String& fmt, void* vec,

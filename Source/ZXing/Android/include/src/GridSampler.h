@@ -29,10 +29,10 @@ namespace ZXing {
 *   |    |   ...   |
 * h #----#-- ... --#
 *
-* @param image image to sample
-* @param width width of {@link BitMatrix} to sample from image
-* @param height height of {@link BitMatrix} to sample from image
-* @param mod2Pix transforming a module (grid) coordinate into an image (pixel) coordinate
+*  image image to sample
+*  width width of {@link BitMatrix} to sample from image
+*  height height of {@link BitMatrix} to sample from image
+*  mod2Pix transforming a module (grid) coordinate into an image (pixel) coordinate
 * @return {@link DetectorResult} representing a grid of points sampled from the image within a region
 *   defined by the "src" parameters. Result is empty if transformation is invalid (out of bound access).
 */

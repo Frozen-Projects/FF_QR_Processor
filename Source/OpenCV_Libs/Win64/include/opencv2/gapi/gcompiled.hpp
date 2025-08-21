@@ -77,8 +77,8 @@ public:
     /**
      * @brief Run the compiled computation, a generic version.
      *
-     * @param ins vector of inputs to process.
-     * @param outs vector of outputs to produce.
+     *  ins vector of inputs to process.
+     *  outs vector of outputs to produce.
      *
      * Input/output vectors must have the same number of elements as
      * defined in the cv::GComputation protocol (at the moment of its
@@ -100,8 +100,8 @@ public:
      * @brief Execute an unary computation
      *
      * @overload
-     * @param in input cv::Mat for unary computation
-     * @param out output cv::Mat for unary computation
+     *  in input cv::Mat for unary computation
+     *  out output cv::Mat for unary computation
      * process.
      */
     void operator() (cv::Mat in, cv::Mat &out);                  // Unary overload
@@ -110,8 +110,8 @@ public:
      * @brief Execute an unary computation
      *
      * @overload
-     * @param in input cv::Mat for unary computation
-     * @param out output cv::Scalar for unary computation
+     *  in input cv::Mat for unary computation
+     *  out output cv::Scalar for unary computation
      * process.
      */
     void operator() (cv::Mat in, cv::Scalar &out);               // Unary overload (scalar)
@@ -120,9 +120,9 @@ public:
      * @brief Execute a binary computation
      *
      * @overload
-     * @param in1 first input cv::Mat for binary computation
-     * @param in2 second input cv::Mat for binary computation
-     * @param out output cv::Mat for binary computation
+     *  in1 first input cv::Mat for binary computation
+     *  in2 second input cv::Mat for binary computation
+     *  out output cv::Mat for binary computation
      * process.
      */
     void operator() (cv::Mat in1, cv::Mat in2, cv::Mat &out);    // Binary overload
@@ -131,9 +131,9 @@ public:
      * @brief Execute an binary computation
      *
      * @overload
-     * @param in1 first input cv::Mat for binary computation
-     * @param in2 second input cv::Mat for binary computation
-     * @param out output cv::Scalar for binary computation
+     *  in1 first input cv::Mat for binary computation
+     *  in2 second input cv::Mat for binary computation
+     *  out output cv::Scalar for binary computation
      * process.
      */
     void operator() (cv::Mat in1, cv::Mat in2, cv::Scalar &out); // Binary overload (scalar)
@@ -143,9 +143,9 @@ public:
      * inputs/outputs.
      *
      * @overload
-     * @param ins vector of input cv::Mat objects to process by the
+     *  ins vector of input cv::Mat objects to process by the
      * computation.
-     * @param outs vector of output cv::Mat objects to produce by the
+     *  outs vector of output cv::Mat objects to produce by the
      * computation.
      *
      * Numbers of elements in ins/outs vectors must match numbers of
@@ -201,9 +201,9 @@ public:
      *
      * Throws an exception if an error occurs.
      *
-     * @param inMetas new metadata to reshape on. Vector size and
+     *  inMetas new metadata to reshape on. Vector size and
      * metadata shapes must match the computation's protocol.
-     * @param args compilation arguments to use.
+     *  args compilation arguments to use.
      */
     // FIXME: Why it requires compile args?
     void reshape(const GMetaArgs& inMetas, const GCompileArgs& args);

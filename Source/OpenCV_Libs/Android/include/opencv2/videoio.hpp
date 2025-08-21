@@ -740,14 +740,14 @@ public:
     /** @overload
     @brief  Opens a video file or a capturing device or an IP video stream for video capturing with API Preference
 
-    @param filename it can be:
+     filename it can be:
     - name of video file (eg. `video.avi`)
     - or image sequence (eg. `img_%02d.jpg`, which will read samples like `img_00.jpg, img_01.jpg, img_02.jpg, ...`)
     - or URL of video stream (eg. `protocol://host:port/script_name?script_params|auth`)
     - or GStreamer pipeline string in gst-launch tool format in case if GStreamer is used as backend
       Note that each video stream or IP camera feed has its own URL scheme. Please refer to the
       documentation of source stream to know the right URL.
-    @param apiPreference preferred Capture API backends to use. Can be used to enforce a specific reader
+     apiPreference preferred Capture API backends to use. Can be used to enforce a specific reader
     implementation if multiple are available: e.g. cv::CAP_FFMPEG or cv::CAP_IMAGES or cv::CAP_DSHOW.
 
     @sa cv::VideoCaptureAPIs
@@ -765,9 +765,9 @@ public:
     /** @overload
     @brief  Opens a camera for video capturing
 
-    @param index id of the video capturing device to open. To open default camera using default backend just pass 0.
+     index id of the video capturing device to open. To open default camera using default backend just pass 0.
     (to backward compatibility usage of camera_id + domain_offset (CAP_*) is valid when apiPreference is CAP_ANY)
-    @param apiPreference preferred Capture API backends to use. Can be used to enforce a specific reader
+     apiPreference preferred Capture API backends to use. Can be used to enforce a specific reader
     implementation if multiple are available: e.g. cv::CAP_DSHOW or cv::CAP_MSMF or cv::CAP_V4L.
 
     @sa cv::VideoCaptureAPIs
@@ -875,8 +875,8 @@ public:
 
     /** @brief Decodes and returns the grabbed video frame.
 
-    @param [out] image the video frame is returned here. If no frames has been grabbed the image will be empty.
-    @param flag it could be a frame index or a driver specific flag
+     [out] image the video frame is returned here. If no frames has been grabbed the image will be empty.
+     flag it could be a frame index or a driver specific flag
     @return `false` if no frames has been grabbed
 
     The method decodes and returns the just grabbed frame. If no frames has been grabbed
@@ -903,7 +903,7 @@ public:
 
     /** @brief Grabs, decodes and returns the next video frame.
 
-    @param [out] image the video frame is returned here. If no frames has been grabbed the image will be empty.
+     [out] image the video frame is returned here. If no frames has been grabbed the image will be empty.
     @return `false` if no frames has been grabbed
 
     The method/function combines VideoCapture::grab() and VideoCapture::retrieve() in one call. This is the
@@ -919,9 +919,9 @@ public:
 
     /** @brief Sets a property in the VideoCapture.
 
-    @param propId Property identifier from cv::VideoCaptureProperties (eg. cv::CAP_PROP_POS_MSEC, cv::CAP_PROP_POS_FRAMES, ...)
+     propId Property identifier from cv::VideoCaptureProperties (eg. cv::CAP_PROP_POS_MSEC, cv::CAP_PROP_POS_FRAMES, ...)
     or one from @ref videoio_flags_others
-    @param value Value of the property.
+     value Value of the property.
     @return `true` if the property is supported by backend used by the VideoCapture instance.
     @note Even if it returns `true` this doesn't ensure that the property
     value has been accepted by the capture device. See note in VideoCapture::get()
@@ -930,7 +930,7 @@ public:
 
     /** @brief Returns the specified VideoCapture property
 
-    @param propId Property identifier from cv::VideoCaptureProperties (eg. cv::CAP_PROP_POS_MSEC, cv::CAP_PROP_POS_FRAMES, ...)
+     propId Property identifier from cv::VideoCaptureProperties (eg. cv::CAP_PROP_POS_MSEC, cv::CAP_PROP_POS_FRAMES, ...)
     or one from @ref videoio_flags_others
     @return Value for the specified property. Value 0 is returned when querying a property that is
     not supported by the backend used by the VideoCapture instance.
@@ -965,9 +965,9 @@ public:
 
     /** @brief Wait for ready frames from VideoCapture.
 
-    @param streams input video streams
-    @param readyIndex stream indexes with grabbed frames (ready to use .retrieve() to fetch actual frame)
-    @param timeoutNs number of nanoseconds (0 - infinite)
+     streams input video streams
+     readyIndex stream indexes with grabbed frames (ready to use .retrieve() to fetch actual frame)
+     timeoutNs number of nanoseconds (0 - infinite)
     @return `true` if streamReady is not empty
 
     @throws Exception %Exception on stream errors (check .isOpened() to filter out malformed streams) or VideoCapture type is not supported
@@ -1018,8 +1018,8 @@ public:
     CV_WRAP VideoWriter();
 
     /** @overload
-    @param filename Name of the output video file.
-    @param fourcc 4-character code of codec used to compress the frames. For example,
+     filename Name of the output video file.
+     fourcc 4-character code of codec used to compress the frames. For example,
     VideoWriter::fourcc('P','I','M','1') is a MPEG-1 codec, VideoWriter::fourcc('M','J','P','G')
     is a motion-jpeg codec etc. List of codes can be obtained at
     [MSDN](https://docs.microsoft.com/en-us/windows/win32/medfound/video-fourccs) page
@@ -1027,9 +1027,9 @@ public:
     of the fourcc site for a more complete list). FFMPEG backend with MP4 container natively uses
     other values as fourcc code: see [ObjectType](http://mp4ra.org/#/codecs),
     so you may receive a warning message from OpenCV about fourcc code conversion.
-    @param fps Framerate of the created video stream.
-    @param frameSize Size of the video frames.
-    @param isColor If it is not zero, the encoder will expect and encode color frames, otherwise it
+     fps Framerate of the created video stream.
+     frameSize Size of the video frames.
+     isColor If it is not zero, the encoder will expect and encode color frames, otherwise it
     will work with grayscale frames.
 
     @b Tips:
@@ -1120,7 +1120,7 @@ public:
 
     /** @brief Writes the next video frame
 
-    @param image The written frame. In general, color images are expected in BGR format.
+     image The written frame. In general, color images are expected in BGR format.
 
     The function/method writes the specified image to video file. It must have the same size as has
     been specified when opening the video writer.
@@ -1129,17 +1129,17 @@ public:
 
     /** @brief Sets a property in the VideoWriter.
 
-     @param propId Property identifier from cv::VideoWriterProperties (eg. cv::VIDEOWRITER_PROP_QUALITY)
+      propId Property identifier from cv::VideoWriterProperties (eg. cv::VIDEOWRITER_PROP_QUALITY)
      or one of @ref videoio_flags_others
 
-     @param value Value of the property.
+      value Value of the property.
      @return  `true` if the property is supported by the backend used by the VideoWriter instance.
      */
     CV_WRAP virtual bool set(int propId, double value);
 
     /** @brief Returns the specified VideoWriter property
 
-     @param propId Property identifier from cv::VideoWriterProperties (eg. cv::VIDEOWRITER_PROP_QUALITY)
+      propId Property identifier from cv::VideoWriterProperties (eg. cv::VIDEOWRITER_PROP_QUALITY)
      or one of @ref videoio_flags_others
 
      @return Value for the specified property. Value 0 is returned when querying a property that is

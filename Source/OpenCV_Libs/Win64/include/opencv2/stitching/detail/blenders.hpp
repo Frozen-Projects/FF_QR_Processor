@@ -70,23 +70,23 @@ public:
 
     /** @brief Prepares the blender for blending.
 
-    @param corners Source images top-left corners
-    @param sizes Source image sizes
+     corners Source images top-left corners
+     sizes Source image sizes
      */
     CV_WRAP virtual void prepare(const std::vector<Point> &corners, const std::vector<Size> &sizes);
     /** @overload */
     CV_WRAP virtual void prepare(Rect dst_roi);
     /** @brief Processes the image.
 
-    @param img Source image
-    @param mask Source image mask
-    @param tl Source image top-left corners
+     img Source image
+     mask Source image mask
+     tl Source image top-left corners
      */
     CV_WRAP virtual void feed(InputArray img, InputArray mask, Point tl);
     /** @brief Blends and returns the final pano.
 
-    @param dst Final pano
-    @param dst_mask Final pano mask
+     dst Final pano
+     dst_mask Final pano mask
      */
     CV_WRAP virtual void blend(CV_IN_OUT InputOutputArray dst,CV_IN_OUT  InputOutputArray dst_mask);
 

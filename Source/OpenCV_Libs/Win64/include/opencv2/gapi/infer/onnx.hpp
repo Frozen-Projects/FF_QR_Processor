@@ -106,7 +106,7 @@ struct GAPI_EXPORTS_W_SIMPLE CUDA {
 
     Constructs CUDA parameters based on device type information.
 
-    @param dev_id Target device id to use.
+     dev_id Target device id to use.
     */
     GAPI_WRAP
     explicit CUDA(const int dev_id)
@@ -131,7 +131,7 @@ struct GAPI_EXPORTS_W_SIMPLE TensorRT {
 
     Constructs TensorRT parameters based on device type information.
 
-    @param dev_id Target device id to use.
+     dev_id Target device id to use.
     */
     GAPI_WRAP
     explicit TensorRT(const int dev_id)
@@ -156,7 +156,7 @@ struct GAPI_EXPORTS_W_SIMPLE OpenVINO {
 
     Constructs OpenVINO parameters based on device type information.
 
-    @param dev_type Target device type to use. ("CPU_FP32", "GPU_FP16", etc)
+     dev_type Target device type to use. ("CPU_FP32", "GPU_FP16", etc)
     */
     GAPI_WRAP
     explicit OpenVINO(const std::string &dev_type)
@@ -168,7 +168,7 @@ struct GAPI_EXPORTS_W_SIMPLE OpenVINO {
     This function is used to explicitly specify the path to save and load
     the blobs enabling model caching feature.
 
-    @param dir Path to the directory what will be used as cache.
+     dir Path to the directory what will be used as cache.
     @return reference to this parameter structure.
     */
     GAPI_WRAP
@@ -182,7 +182,7 @@ struct GAPI_EXPORTS_W_SIMPLE OpenVINO {
     This function is used to override the accelerator default value
     of number of threads with this value at runtime.
 
-    @param nthreads Number of threads.
+     nthreads Number of threads.
     @return reference to this parameter structure.
     */
     GAPI_WRAP
@@ -243,7 +243,7 @@ public:
 
     Constructs DirectML parameters based on device id.
 
-    @param device_id Target device id to use. ("0", "1", etc)
+     device_id Target device id to use. ("0", "1", etc)
     */
     GAPI_WRAP
     explicit DirectML(const int device_id) : ddesc(device_id) { };
@@ -252,7 +252,7 @@ public:
 
     Constructs DirectML parameters based on adapter name.
 
-    @param adapter_name Target adapter_name to use.
+     adapter_name Target adapter_name to use.
     */
     GAPI_WRAP
     explicit DirectML(const std::string &adapter_name) : ddesc(adapter_name) { };
@@ -354,7 +354,7 @@ public:
     Constructs Params based on model information and sets default values for other
     inference description parameters.
 
-    @param model Path to model (.onnx file).
+     model Path to model (.onnx file).
     */
     Params(const std::string &model) {
         desc.model_path = model;
@@ -372,7 +372,7 @@ public:
     associated with input automatically but this doesn't prevent you from
     doing it yourself. Count of names has to match to number of network inputs.
 
-    @param layer_names std::array<std::string, N> where N is the number of inputs
+     layer_names std::array<std::string, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Contains names of input layers.
     @return the reference on modified object.
     */
@@ -390,7 +390,7 @@ public:
     outputs or you can set your own output but for this case you have to
     additionally use @ref cfgPostProc function.
 
-    @param layer_names std::array<std::string, N> where N is the number of outputs
+     layer_names std::array<std::string, N> where N is the number of outputs
     as defined in the @ref G_API_NET. Contains names of output layers.
     @return the reference on modified object.
     */
@@ -405,9 +405,9 @@ public:
     a prepared tensor since preprocessing is disabled for this case. You should
     provide name of network layer which will receive provided data.
 
-    @param layer_name Name of network layer.
-    @param data cv::Mat that contains data which will be associated with network layer.
-    @param hint Type of input (TENSOR).
+     layer_name Name of network layer.
+     data cv::Mat that contains data which will be associated with network layer.
+     hint Type of input (TENSOR).
     @return the reference on modified object.
     */
     Params<Net>& constInput(const std::string &layer_name,
@@ -422,9 +422,9 @@ public:
     The function is used to set mean value and standard deviation for preprocessing
     of input data.
 
-    @param m std::array<cv::Scalar, N> where N is the number of inputs
+     m std::array<cv::Scalar, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Contains mean values.
-    @param s std::array<cv::Scalar, N> where N is the number of inputs
+     s std::array<cv::Scalar, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Contains standard deviation values.
     @return the reference on modified object.
     */
@@ -443,8 +443,8 @@ public:
     So you have to provide @ref PostProc function that gets information from inference
     result and fill output which is constructed by dimensions from out_metas.
 
-    @param out_metas Out meta information about your output (type, dimension).
-    @param remap_function Post processing function, which has two parameters. First is onnx
+     out_metas Out meta information about your output (type, dimension).
+     remap_function Post processing function, which has two parameters. First is onnx
     result, second is graph output. Both parameters is std::map that contain pair of
     layer's name and cv::Mat.
     @return the reference on modified object.
@@ -459,8 +459,8 @@ public:
     /** @overload
     Function with a rvalue parameters.
 
-    @param out_metas rvalue out meta information about your output (type, dimension).
-    @param remap_function rvalue post processing function, which has two parameters. First is onnx
+     out_metas rvalue out meta information about your output (type, dimension).
+     remap_function rvalue post processing function, which has two parameters. First is onnx
     result, second is graph output. Both parameters is std::map that contain pair of
     layer's name and cv::Mat.
     @return the reference on modified object.
@@ -477,9 +477,9 @@ public:
     information about output layers which will be used for inference and post
     processing function.
 
-    @param out_metas Out meta information.
-    @param remap_function Post processing function.
-    @param names_to_remap Names of output layers. network's inference will
+     out_metas Out meta information.
+     remap_function Post processing function.
+     names_to_remap Names of output layers. network's inference will
     be done on these layers. Inference's result will be processed in post processing
     function using these names.
     @return the reference on modified object.
@@ -496,9 +496,9 @@ public:
     /** @overload
     Function with a rvalue parameters and additional parameter names_to_remap.
 
-    @param out_metas rvalue out meta information.
-    @param remap_function rvalue post processing function.
-    @param names_to_remap rvalue names of output layers. network's inference will
+     out_metas rvalue out meta information.
+     remap_function rvalue post processing function.
+     names_to_remap rvalue names of output layers. network's inference will
     be done on these layers. Inference's result will be processed in post processing
     function using these names.
     @return the reference on modified object.
@@ -516,7 +516,7 @@ public:
 
     The function is used to set normalize parameter for preprocessing of input data.
 
-    @param normalizations std::array<cv::Scalar, N> where N is the number of inputs
+     normalizations std::array<cv::Scalar, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Сontains bool values that enabled or disabled
     normalize of input data.
     @return the reference on modified object.
@@ -530,7 +530,7 @@ public:
 
     The function is used to add ONNX Runtime OpenVINO Execution Provider options.
 
-    @param ep OpenVINO Execution Provider options.
+     ep OpenVINO Execution Provider options.
     @see cv::gapi::onnx::ep::OpenVINO.
 
     @return the reference on modified object.
@@ -544,7 +544,7 @@ public:
 
     The function is used to add ONNX Runtime DirectML Execution Provider options.
 
-    @param ep DirectML Execution Provider options.
+     ep DirectML Execution Provider options.
     @see cv::gapi::onnx::ep::DirectML.
 
     @return the reference on modified object.
@@ -558,7 +558,7 @@ public:
 
     The function is used to add ONNX Runtime CoreML Execution Provider options.
 
-    @param ep CoreML Execution Provider options.
+     ep CoreML Execution Provider options.
     @see cv::gapi::onnx::ep::CoreML.
 
     @return the reference on modified object.
@@ -572,7 +572,7 @@ public:
 
     The function is used to add ONNX Runtime CUDA Execution Provider options.
 
-    @param ep CUDA Execution Provider options.
+     ep CUDA Execution Provider options.
     @see cv::gapi::onnx::ep::CUDA.
 
     @return the reference on modified object.
@@ -586,7 +586,7 @@ public:
 
     The function is used to add ONNX Runtime TensorRT Execution Provider options.
 
-    @param ep TensorRT Execution Provider options.
+     ep TensorRT Execution Provider options.
     @see cv::gapi::onnx::ep::TensorRT.
 
     @return the reference on modified object.
@@ -628,8 +628,8 @@ public:
     Constructs Params based on input information and sets default values for other
     inference description parameters.
 
-    @param tag string tag of the network for which these parameters are intended.
-    @param model_path path to model file (.onnx file).
+     tag string tag of the network for which these parameters are intended.
+     model_path path to model file (.onnx file).
     */
     Params(const std::string& tag, const std::string& model_path)
         : desc{model_path, 0u, 0u, {}, {}, {}, {}, {}, {}, {}, {}, {}, true, {}, {}, {}, false }, m_tag(tag) {}

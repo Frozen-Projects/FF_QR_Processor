@@ -46,14 +46,14 @@ struct GAPI_EXPORTS_W_SIMPLE Text
     /**
      * @brief Text constructor
      *
-     * @param text_               The text string to be drawn
-     * @param org_                The bottom-left corner of the text string in the image
-     * @param ff_                 The font type, see #HersheyFonts
-     * @param fs_                 The font scale factor that is multiplied by the font-specific base size
-     * @param color_              The text color
-     * @param thick_              The thickness of the lines used to draw a text
-     * @param lt_                 The line type. See #LineTypes
-     * @param bottom_left_origin_ When true, the image data origin is at the bottom-left corner. Otherwise, it is at the top-left corner
+     *  text_               The text string to be drawn
+     *  org_                The bottom-left corner of the text string in the image
+     *  ff_                 The font type, see #HersheyFonts
+     *  fs_                 The font scale factor that is multiplied by the font-specific base size
+     *  color_              The text color
+     *  thick_              The thickness of the lines used to draw a text
+     *  lt_                 The line type. See #LineTypes
+     *  bottom_left_origin_ When true, the image data origin is at the bottom-left corner. Otherwise, it is at the top-left corner
      */
     GAPI_WRAP
     Text(const std::string& text_,
@@ -96,10 +96,10 @@ struct FText
     /**
      * @brief FText constructor
      *
-     * @param text_ The text string to be drawn
-     * @param org_  The bottom-left corner of the text string in the image
-     * @param fh_   The height of text
-     * @param color_ The text color
+     *  text_ The text string to be drawn
+     *  org_  The bottom-left corner of the text string in the image
+     *  fh_   The height of text
+     *  color_ The text color
      */
     FText(const std::wstring& text_,
           const cv::Point& org_,
@@ -129,11 +129,11 @@ struct GAPI_EXPORTS_W_SIMPLE Rect
     /**
      * @brief Rect constructor
      *
-     * @param rect_   Coordinates of the rectangle
-     * @param color_  The bottom-left corner of the text string in the image
-     * @param thick_  The thickness of lines that make up the rectangle. Negative values, like #FILLED, mean that the function has to draw a filled rectangle
-     * @param lt_     The type of the line. See #LineTypes
-     * @param shift_  The number of fractional bits in the point coordinates
+     *  rect_   Coordinates of the rectangle
+     *  color_  The bottom-left corner of the text string in the image
+     *  thick_  The thickness of lines that make up the rectangle. Negative values, like #FILLED, mean that the function has to draw a filled rectangle
+     *  lt_     The type of the line. See #LineTypes
+     *  shift_  The number of fractional bits in the point coordinates
      */
     Rect(const cv::Rect& rect_,
          const cv::Scalar& color_,
@@ -166,12 +166,12 @@ struct GAPI_EXPORTS_W_SIMPLE Circle
     /**
      * @brief Circle constructor
      *
-     * @param  center_ The center of the circle
-     * @param  radius_ The radius of the circle
-     * @param  color_  The color of the  circle
-     * @param  thick_  The thickness of the circle outline, if positive. Negative values, like #FILLED, mean that a filled circle is to be drawn
-     * @param  lt_     The Type of the circle boundary. See #LineTypes
-     * @param  shift_  The Number of fractional bits in the coordinates of the center and in the radius value
+     *   center_ The center of the circle
+     *   radius_ The radius of the circle
+     *   color_  The color of the  circle
+     *   thick_  The thickness of the circle outline, if positive. Negative values, like #FILLED, mean that a filled circle is to be drawn
+     *   lt_     The Type of the circle boundary. See #LineTypes
+     *   shift_  The Number of fractional bits in the coordinates of the center and in the radius value
      */
     GAPI_WRAP
     Circle(const cv::Point& center_,
@@ -207,12 +207,12 @@ struct GAPI_EXPORTS_W_SIMPLE Line
     /**
      * @brief Line constructor
      *
-     * @param  pt1_    The first point of the line segment
-     * @param  pt2_    The second point of the line segment
-     * @param  color_  The line color
-     * @param  thick_  The thickness of line
-     * @param  lt_     The Type of the line. See #LineTypes
-     * @param  shift_  The number of fractional bits in the point coordinates
+     *   pt1_    The first point of the line segment
+     *   pt2_    The second point of the line segment
+     *   color_  The line color
+     *   thick_  The thickness of line
+     *   lt_     The Type of the line. See #LineTypes
+     *   shift_  The number of fractional bits in the point coordinates
     */
     GAPI_WRAP
     Line(const cv::Point& pt1_,
@@ -248,9 +248,9 @@ struct GAPI_EXPORTS_W_SIMPLE Mosaic
     /**
      * @brief Mosaic constructor
      *
-     * @param mos_    Coordinates of the mosaic
-     * @param cellSz_ Cell size (same for X, Y)
-     * @param decim_  Decimation (0 stands for no decimation)
+     *  mos_    Coordinates of the mosaic
+     *  cellSz_ Cell size (same for X, Y)
+     *  decim_  Decimation (0 stands for no decimation)
     */
     Mosaic(const cv::Rect& mos_,
            int cellSz_,
@@ -279,9 +279,9 @@ struct GAPI_EXPORTS_W_SIMPLE Image
     /**
      * @brief Mosaic constructor
      *
-     * @param  org_   The bottom-left corner of the image
-     * @param  img_   Image to draw
-     * @param  alpha_ Alpha channel for image to draw (same size and number of channels)
+     *   org_   The bottom-left corner of the image
+     *   img_   Image to draw
+     *   alpha_ Alpha channel for image to draw (same size and number of channels)
     */
     GAPI_WRAP
     Image(const cv::Point& org_,
@@ -309,11 +309,11 @@ struct GAPI_EXPORTS_W_SIMPLE Poly
     /**
      * @brief Mosaic constructor
      *
-     * @param points_ Points to connect
-     * @param color_  The line color
-     * @param thick_  The thickness of line
-     * @param lt_     The Type of the line. See #LineTypes
-     * @param shift_  The number of fractional bits in the point coordinate
+     *  points_ Points to connect
+     *  color_  The line color
+     *  thick_  The thickness of line
+     *  lt_     The Type of the line. See #LineTypes
+     *  shift_  The number of fractional bits in the point coordinate
     */
     GAPI_WRAP
     Poly(const std::vector<cv::Point>& points_,

@@ -127,13 +127,13 @@ public:
     Constructs Params based on model information and specifies default values for other
     inference description parameters. Model is loaded and compiled using "OpenVINO Toolkit".
 
-    @param model_path Path to a model.
-    @param bin_path Path to a data file.
+     model_path Path to a model.
+     bin_path Path to a data file.
     For IR format (*.bin):
     If path is empty, will try to read a bin file with the same name as xml.
     If the bin file with the same name is not found, will load IR without weights.
     For PDPD (*.pdmodel) and ONNX (*.onnx) formats bin_path isn't used.
-    @param device target device to use.
+     device target device to use.
     */
     Params(const std::string &model_path,
            const std::string &bin_path,
@@ -149,8 +149,8 @@ public:
     Use this constructor to work with pre-compiled network.
     Model is imported from a pre-compiled blob.
 
-    @param blob_path path to the compiled model (*.blob).
-    @param device target device to use.
+     blob_path path to the compiled model (*.blob).
+     device target device to use.
     */
     Params(const std::string &blob_path,
            const std::string &device)
@@ -167,7 +167,7 @@ public:
     Number of names has to match the number of network inputs as defined in G_API_NET().
     In case a network has only single input layer, there is no need to specify name manually.
 
-    @param layer_names std::array<std::string, N> where N is the number of inputs
+     layer_names std::array<std::string, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Contains names of input layers.
     @return reference to this parameter structure.
     */
@@ -182,7 +182,7 @@ public:
     Number of names has to match the number of network outputs as defined in G_API_NET().
     In case a network has only single output layer, there is no need to specify name manually.
 
-    @param layer_names std::array<std::string, N> where N is the number of outputs
+     layer_names std::array<std::string, N> where N is the number of outputs
     as defined in the @ref G_API_NET. Contains names of output layers.
     @return reference to this parameter structure.
     */
@@ -197,7 +197,7 @@ public:
     can be different for each plugin. Please follow https://docs.openvinotoolkit.org/latest/index.html
     to check information about specific plugin.
 
-    @param config Map of pairs: (config parameter name, config parameter value).
+     config Map of pairs: (config parameter name, config parameter value).
     @return reference to this parameter structure.
     */
     Params<Net>& cfgPluginConfig(const detail::ParamDesc::PluginConfigT &config) {
@@ -209,7 +209,7 @@ public:
 
     The function is used to set tensor layout for an input layer.
 
-    @param layout Tensor layout ("NCHW", "NWHC", etc)
+     layout Tensor layout ("NCHW", "NWHC", etc)
     will be applied to all input layers.
     @return reference to this parameter structure.
     */
@@ -220,7 +220,7 @@ public:
     }
 
     /** @overload
-    @param layout_map Map of pairs: name of corresponding input layer
+     layout_map Map of pairs: name of corresponding input layer
     and its tensor layout represented in std::string ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -235,7 +235,7 @@ public:
 
     The function is used to set model layout for an input layer.
 
-    @param layout Model layout ("NCHW", "NHWC", etc)
+     layout Model layout ("NCHW", "NHWC", etc)
     will be applied to all input layers.
     @return reference to this parameter structure.
     */
@@ -246,7 +246,7 @@ public:
     }
 
     /** @overload
-    @param layout_map Map of pairs: name of corresponding input layer
+     layout_map Map of pairs: name of corresponding input layer
     and its model layout ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -261,7 +261,7 @@ public:
 
     The function is used to set tensor layout for an output layer.
 
-    @param layout Tensor layout ("NCHW", "NWHC", etc)
+     layout Tensor layout ("NCHW", "NWHC", etc)
     will be applied to all output layers.
     @return reference to this parameter structure.
     */
@@ -272,7 +272,7 @@ public:
     }
 
     /** @overload
-    @param layout_map Map of pairs: name of corresponding output layer
+     layout_map Map of pairs: name of corresponding output layer
     and its tensor layout represented in std::string ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -287,7 +287,7 @@ public:
 
     The function is used to set model layout for an output layer.
 
-    @param layout Model layout ("NCHW", "NHWC", etc)
+     layout Model layout ("NCHW", "NHWC", etc)
     will be applied to all output layers.
     @return reference to this parameter structure.
     */
@@ -298,7 +298,7 @@ public:
     }
 
     /** @overload
-    @param layout_map Map of pairs: name of corresponding output layer
+     layout_map Map of pairs: name of corresponding output layer
     and its model layout ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -313,7 +313,7 @@ public:
 
     The function is used to set tensor precision for an output layer..
 
-    @param precision Precision in OpenCV format (CV_8U, CV_32F, ...)
+     precision Precision in OpenCV format (CV_8U, CV_32F, ...)
     will be applied to all output layers.
     @return reference to this parameter structure.
     */
@@ -325,7 +325,7 @@ public:
 
     /** @overload
 
-    @param precision_map Map of pairs: name of corresponding output layer
+     precision_map Map of pairs: name of corresponding output layer
     and its precision in OpenCV format (CV_8U, CV_32F, ...)
     @return reference to this parameter structure.
     */
@@ -340,7 +340,7 @@ public:
 
     The function is used to set new shape for input layers.
 
-    @param new_shape New shape will be applied to all input layers.
+     new_shape New shape will be applied to all input layers.
     @return reference to this parameter structure.
     */
     Params<Net>&
@@ -352,7 +352,7 @@ public:
 
     /** @overload
 
-    @param new_shape_map Map of pairs: name of corresponding output layer
+     new_shape_map Map of pairs: name of corresponding output layer
     and its new shape.
     @return reference to this parameter structure.
     */
@@ -365,7 +365,7 @@ public:
 
     /** @brief Specifies number of asynchronous inference requests.
 
-    @param nireq Number of inference asynchronous requests.
+     nireq Number of inference asynchronous requests.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgNumRequests(const size_t nireq) {
@@ -382,7 +382,7 @@ public:
      *
     The function is used to set mean values for input layer preprocessing.
 
-    @param mean_values Float vector contains mean values
+     mean_values Float vector contains mean values
     @return reference to this parameter structure.
     */
     Params<Net>& cfgMean(std::vector<float> mean_values) {
@@ -393,7 +393,7 @@ public:
 
     /** @overload
 
-    @param mean_map Map of pairs: name of corresponding input layer
+     mean_map Map of pairs: name of corresponding input layer
     and its mean values.
     @return reference to this parameter structure.
     */
@@ -407,7 +407,7 @@ public:
      *
     The function is used to set scale values for input layer preprocessing.
 
-    @param scale_values Float vector contains scale values
+     scale_values Float vector contains scale values
     @return reference to this parameter structure.
     */
     Params<Net>& cfgScale(std::vector<float> scale_values) {
@@ -418,7 +418,7 @@ public:
 
     /** @overload
 
-    @param scale_map Map of pairs: name of corresponding input layer
+     scale_map Map of pairs: name of corresponding input layer
     and its mean values.
     @return reference to this parameter structure.
     */
@@ -432,7 +432,7 @@ public:
      *
     The function is used to configure resize preprocessing for input layer.
 
-    @param interpolation Resize interpolation algorithm.
+     interpolation Resize interpolation algorithm.
     Supported algorithms: #INTER_NEAREST, #INTER_LINEAR, #INTER_CUBIC.
     @return reference to this parameter structure.
     */
@@ -444,7 +444,7 @@ public:
 
     /** @overload
 
-    @param interpolation Map of pairs: name of corresponding input layer
+     interpolation Map of pairs: name of corresponding input layer
     and its resize algorithm.
     @return reference to this parameter structure.
     */
@@ -477,14 +477,14 @@ public:
     Constructs Params based on model information and specifies default values for other
     inference description parameters. Model is loaded and compiled using "OpenVINO Toolkit".
 
-    @param tag string tag of the network for which these parameters are intended.
-    @param model_path Path to a model.
-    @param bin_path Path to a data file.
+     tag string tag of the network for which these parameters are intended.
+     model_path Path to a model.
+     bin_path Path to a data file.
     For IR format (*.bin):
     If path is empty, will try to read a bin file with the same name as xml.
     If the bin file with the same name is not found, will load IR without weights.
     For PDPD (*.pdmodel) and ONNX (*.onnx) formats bin_path isn't used.
-    @param device target device to use.
+     device target device to use.
     */
     Params(const std::string &tag,
            const std::string &model_path,
@@ -503,9 +503,9 @@ public:
     This constructor for pre-compiled networks. Model is imported from pre-compiled
     blob.
 
-    @param tag string tag of the network for which these parameters are intended.
-    @param blob_path path to the compiled model (*.blob).
-    @param device target device to use.
+     tag string tag of the network for which these parameters are intended.
+     blob_path path to the compiled model (*.blob).
+     device target device to use.
     */
     Params(const std::string &tag,
            const std::string &blob_path,

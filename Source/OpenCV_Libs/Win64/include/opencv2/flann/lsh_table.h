@@ -102,8 +102,8 @@ struct LshStats
 };
 
 /** Overload the << operator for LshStats
- * @param out the streams
- * @param stats the stats to display
+ *  out the streams
+ *  stats the stats to display
  * @return the streams
  */
 inline std::ostream& operator <<(std::ostream& out, const LshStats& stats)
@@ -161,8 +161,8 @@ public:
 
     /** Default constructor
      * Create the mask and allocate the memory
-     * @param feature_size is the size of the feature (considered as a ElementType[])
-     * @param key_size is the number of bits that are turned on in the feature
+     *  feature_size is the size of the feature (considered as a ElementType[])
+     *  key_size is the number of bits that are turned on in the feature
      */
     LshTable(unsigned int feature_size, unsigned int key_size)
     {
@@ -172,8 +172,8 @@ public:
     }
 
     /** Add a feature to the table
-     * @param value the value to store for that feature
-     * @param feature the feature itself
+     *  value the value to store for that feature
+     *  feature the feature itself
      */
     void add(unsigned int value, const ElementType* feature)
     {
@@ -200,7 +200,7 @@ public:
     }
 
     /** Add a set of features to the table
-     * @param dataset the values to store
+     *  dataset the values to store
      */
     void add(Matrix<ElementType> dataset)
     {
@@ -392,7 +392,7 @@ inline LshTable<unsigned char>::LshTable(unsigned int feature_size, unsigned int
 }
 
 /** Return the Subsignature of a feature
- * @param feature the feature to analyze
+ *  feature the feature to analyze
  */
 template<>
 inline size_t LshTable<unsigned char>::getKey(const unsigned char* feature) const

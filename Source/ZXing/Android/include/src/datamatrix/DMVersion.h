@@ -59,8 +59,8 @@ public:
 /**
  * @brief Looks up Version information based on symbol dimensions.
  *
- * @param height Number of rows in modules
- * @param width Number of columns in modules
+ *  height Number of rows in modules
+ *  width Number of columns in modules
  * @return Version for a Data Matrix Code of those dimensions, nullputr for invalid dimensions
  */
 const Version* VersionForDimensions(int height, int width);

@@ -277,9 +277,9 @@ class CV_EXPORTS_W ArucoDetector : public Algorithm
 public:
     /** @brief Basic ArucoDetector constructor
      *
-     * @param dictionary indicates the type of markers that will be searched
-     * @param detectorParams marker detection parameters
-     * @param refineParams marker refine detection parameters
+     *  dictionary indicates the type of markers that will be searched
+     *  detectorParams marker detection parameters
+     *  refineParams marker refine detection parameters
      */
     CV_WRAP ArucoDetector(const Dictionary &dictionary = getPredefinedDictionary(cv::aruco::DICT_4X4_50),
                           const DetectorParameters &detectorParams = DetectorParameters(),
@@ -287,14 +287,14 @@ public:
 
     /** @brief Basic marker detection
      *
-     * @param image input image
-     * @param corners vector of detected marker corners. For each marker, its four corners
+     *  image input image
+     *  corners vector of detected marker corners. For each marker, its four corners
      * are provided, (e.g std::vector<std::vector<cv::Point2f> > ). For N detected markers,
      * the dimensions of this array is Nx4. The order of the corners is clockwise.
-     * @param ids vector of identifiers of the detected markers. The identifier is of type int
+     *  ids vector of identifiers of the detected markers. The identifier is of type int
      * (e.g. std::vector<int>). For N detected markers, the size of ids is also N.
      * The identifiers have the same order than the markers in the imgPoints array.
-     * @param rejectedImgPoints contains the imgPoints of those squares whose inner code has not a
+     *  rejectedImgPoints contains the imgPoints of those squares whose inner code has not a
      * correct codification. Useful for debugging purposes.
      *
      * Performs marker detection in the input image. Only markers included in the specific dictionary
@@ -310,16 +310,16 @@ public:
 
     /** @brief Refine not detected markers based on the already detected and the board layout
      *
-     * @param image input image
-     * @param board layout of markers in the board.
-     * @param detectedCorners vector of already detected marker corners.
-     * @param detectedIds vector of already detected marker identifiers.
-     * @param rejectedCorners vector of rejected candidates during the marker detection process.
-     * @param cameraMatrix optional input 3x3 floating-point camera matrix
+     *  image input image
+     *  board layout of markers in the board.
+     *  detectedCorners vector of already detected marker corners.
+     *  detectedIds vector of already detected marker identifiers.
+     *  rejectedCorners vector of rejected candidates during the marker detection process.
+     *  cameraMatrix optional input 3x3 floating-point camera matrix
      * \f$A = \vecthreethree{f_x}{0}{c_x}{0}{f_y}{c_y}{0}{0}{1}\f$
-     * @param distCoeffs optional vector of distortion coefficients
+     *  distCoeffs optional vector of distortion coefficients
      * \f$(k_1, k_2, p_1, p_2[, k_3[, k_4, k_5, k_6],[s_1, s_2, s_3, s_4]])\f$ of 4, 5, 8 or 12 elements
-     * @param recoveredIdxs Optional array to returns the indexes of the recovered candidates in the
+     *  recoveredIdxs Optional array to returns the indexes of the recovered candidates in the
      * original rejectedCorners array.
      *
      * This function tries to find markers that were not detected in the basic detecMarkers function.
@@ -363,13 +363,13 @@ protected:
 
 /** @brief Draw detected markers in image
  *
- * @param image input/output image. It must have 1 or 3 channels. The number of channels is not altered.
- * @param corners positions of marker corners on input image.
+ *  image input/output image. It must have 1 or 3 channels. The number of channels is not altered.
+ *  corners positions of marker corners on input image.
  * (e.g std::vector<std::vector<cv::Point2f> > ). For N detected markers, the dimensions of
  * this array should be Nx4. The order of the corners should be clockwise.
- * @param ids vector of identifiers for markers in markersCorners .
+ *  ids vector of identifiers for markers in markersCorners .
  * Optional, if not provided, ids are not painted.
- * @param borderColor color of marker borders. Rest of colors (text color and first corner color)
+ *  borderColor color of marker borders. Rest of colors (text color and first corner color)
  * are calculated based on this one to improve visualization.
  *
  * Given an array of detected marker corners and its corresponding ids, this functions draws
@@ -381,11 +381,11 @@ CV_EXPORTS_W void drawDetectedMarkers(InputOutputArray image, InputArrayOfArrays
 
 /** @brief Generate a canonical marker image
  *
- * @param dictionary dictionary of markers indicating the type of markers
- * @param id identifier of the marker that will be returned. It has to be a valid id in the specified dictionary.
- * @param sidePixels size of the image in pixels
- * @param img output image with the marker
- * @param borderBits width of the marker border.
+ *  dictionary dictionary of markers indicating the type of markers
+ *  id identifier of the marker that will be returned. It has to be a valid id in the specified dictionary.
+ *  sidePixels size of the image in pixels
+ *  img output image with the marker
+ *  borderBits width of the marker border.
  *
  * This function returns a marker image in its canonical form (i.e. ready to be printed)
  */

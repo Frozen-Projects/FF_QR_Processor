@@ -22,50 +22,50 @@ public:
     GraphicalCodeDetector& operator=(GraphicalCodeDetector&&) = default;
 
     /** @brief Detects graphical code in image and returns the quadrangle containing the code.
-     @param img grayscale or color (BGR) image containing (or not) graphical code.
-     @param points Output vector of vertices of the minimum-area quadrangle containing the code.
+      img grayscale or color (BGR) image containing (or not) graphical code.
+      points Output vector of vertices of the minimum-area quadrangle containing the code.
      */
     CV_WRAP bool detect(InputArray img, OutputArray points) const;
 
     /** @brief Decodes graphical code in image once it's found by the detect() method.
 
      Returns UTF8-encoded output string or empty string if the code cannot be decoded.
-     @param img grayscale or color (BGR) image containing graphical code.
-     @param points Quadrangle vertices found by detect() method (or some other algorithm).
-     @param straight_code The optional output image containing binarized code, will be empty if not found.
+      img grayscale or color (BGR) image containing graphical code.
+      points Quadrangle vertices found by detect() method (or some other algorithm).
+      straight_code The optional output image containing binarized code, will be empty if not found.
      */
     CV_WRAP std::string decode(InputArray img, InputArray points, OutputArray straight_code = noArray()) const;
 
     /** @brief Both detects and decodes graphical code
 
-     @param img grayscale or color (BGR) image containing graphical code.
-     @param points optional output array of vertices of the found graphical code quadrangle, will be empty if not found.
-     @param straight_code The optional output image containing binarized code
+      img grayscale or color (BGR) image containing graphical code.
+      points optional output array of vertices of the found graphical code quadrangle, will be empty if not found.
+      straight_code The optional output image containing binarized code
      */
     CV_WRAP std::string detectAndDecode(InputArray img, OutputArray points = noArray(),
                                         OutputArray straight_code = noArray()) const;
 
 
     /** @brief Detects graphical codes in image and returns the vector of the quadrangles containing the codes.
-     @param img grayscale or color (BGR) image containing (or not) graphical codes.
-     @param points Output vector of vector of vertices of the minimum-area quadrangle containing the codes.
+      img grayscale or color (BGR) image containing (or not) graphical codes.
+      points Output vector of vector of vertices of the minimum-area quadrangle containing the codes.
      */
     CV_WRAP bool detectMulti(InputArray img, OutputArray points) const;
 
     /** @brief Decodes graphical codes in image once it's found by the detect() method.
-     @param img grayscale or color (BGR) image containing graphical codes.
-     @param decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
-     @param points vector of Quadrangle vertices found by detect() method (or some other algorithm).
-     @param straight_code The optional output vector of images containing binarized codes
+      img grayscale or color (BGR) image containing graphical codes.
+      decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
+      points vector of Quadrangle vertices found by detect() method (or some other algorithm).
+      straight_code The optional output vector of images containing binarized codes
      */
     CV_WRAP bool decodeMulti(InputArray img, InputArray points, CV_OUT std::vector<std::string>& decoded_info,
                              OutputArrayOfArrays straight_code = noArray()) const;
 
     /** @brief Both detects and decodes graphical codes
-    @param img grayscale or color (BGR) image containing graphical codes.
-    @param decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
-    @param points optional output vector of vertices of the found graphical code quadrangles. Will be empty if not found.
-    @param straight_code The optional vector of images containing binarized codes
+     img grayscale or color (BGR) image containing graphical codes.
+     decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
+     points optional output vector of vertices of the found graphical code quadrangles. Will be empty if not found.
+     straight_code The optional vector of images containing binarized codes
     */
     CV_WRAP bool detectAndDecodeMulti(InputArray img, CV_OUT std::vector<std::string>& decoded_info, OutputArray points = noArray(),
                                       OutputArrayOfArrays straight_code = noArray()) const;

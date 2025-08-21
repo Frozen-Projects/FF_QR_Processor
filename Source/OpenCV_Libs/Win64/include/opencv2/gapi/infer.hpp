@@ -462,8 +462,8 @@ namespace gapi {
  *     Currently expects a single-input network only.
  *
  * @tparam A network type defined with G_API_NET() macro.
- * @param in input image where to take ROI from.
- * @param roi an object describing the region of interest
+ *  in input image where to take ROI from.
+ *  roi an object describing the region of interest
  *   in the source image. May be calculated in the same graph dynamically.
  * @return an object of return type as defined in G_API_NET().
  *   If a network has multiple return values (defined with a tuple), a tuple of
@@ -479,9 +479,9 @@ typename Net::Result infer(cv::GOpaque<cv::Rect> roi, T in) {
  *     parameter) for every region in the source image.
  *
  * @tparam A network type defined with G_API_NET() macro.
- * @param roi a list of rectangles describing regions of interest
+ *  roi a list of rectangles describing regions of interest
  *   in the source image. Usually an output of object detector or tracker.
- * @param args network's input parameters as specified in G_API_NET() macro.
+ *  args network's input parameters as specified in G_API_NET() macro.
  *   NOTE: verified to work reliably with 1-input topologies only.
  * @return a list of objects of return type as defined in G_API_NET().
  *   If a network has multiple return values (defined with a tuple), a tuple of
@@ -497,8 +497,8 @@ typename Net::ResultL infer(cv::GArray<cv::Rect> roi, Args&&... args) {
  *     parameter) for every region in the source image, extended version.
  *
  * @tparam A network type defined with G_API_NET() macro.
- * @param image A source image containing regions of interest
- * @param args GArray<> objects of cv::Rect or cv::GMat, one per every
+ *  image A source image containing regions of interest
+ *  args GArray<> objects of cv::Rect or cv::GMat, one per every
  * network input:
  * - If a cv::GArray<cv::Rect> is passed, the appropriate
  *   regions are taken from `image` and preprocessed to this particular
@@ -523,7 +523,7 @@ typename Net::ResultL infer2(T image, cv::GArray<Args>... args) {
  *     parameter) given the input data.
  *
  * @tparam A network type defined with G_API_NET() macro.
- * @param args network's input parameters as specified in G_API_NET() macro.
+ *  args network's input parameters as specified in G_API_NET() macro.
  * @return an object of return type as defined in G_API_NET().
  *   If a network has multiple return values (defined with a tuple), a tuple of
  *   objects of appropriate type is returned.
@@ -546,8 +546,8 @@ struct Generic { };
 /**
  * @brief Calculates response for generic network
  *
- * @param tag a network tag
- * @param inputs networks's inputs
+ *  tag a network tag
+ *  inputs networks's inputs
  * @return a GInferOutputs
  */
 template<typename T = Generic> cv::GInferOutputs
@@ -571,10 +571,10 @@ infer(const std::string& tag, const cv::GInferInputs& inputs)
  *     for the specified region in the source image.
  *     Currently expects a single-input network only.
  *
- * @param tag a network tag
- * @param roi a an object describing the region of interest
+ *  tag a network tag
+ *  roi a an object describing the region of interest
  *   in the source image. May be calculated in the same graph dynamically.
- * @param inputs networks's inputs
+ *  inputs networks's inputs
  * @return a cv::GInferOutputs
  */
 template<typename T = Generic> cv::GInferOutputs
@@ -586,10 +586,10 @@ infer(const std::string& tag, const cv::GOpaque<cv::Rect>& roi, const cv::GInfer
 /** @brief Calculates responses for the specified network
  *     for every region in the source image.
  *
- * @param tag a network tag
- * @param rois a list of rectangles describing regions of interest
+ *  tag a network tag
+ *  rois a list of rectangles describing regions of interest
  *   in the source image. Usually an output of object detector or tracker.
- * @param inputs networks's inputs
+ *  inputs networks's inputs
  * @return a cv::GInferListOutputs
  */
 template<typename T = Generic> cv::GInferListOutputs
@@ -601,9 +601,9 @@ infer(const std::string& tag, const cv::GArray<cv::Rect>& rois, const cv::GInfer
 /** @brief Calculates responses for the specified network
  *     for every region in the source image, extended version.
  *
- * @param tag a network tag
- * @param in a source image containing regions of interest.
- * @param inputs networks's inputs
+ *  tag a network tag
+ *  in a source image containing regions of interest.
+ *  inputs networks's inputs
  * @return a cv::GInferListOutputs
  */
 template<typename T = Generic, typename Input>

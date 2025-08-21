@@ -87,20 +87,20 @@ class Logger
 public:
     /**
      * Sets the logging level. All messages with lower priority will be ignored.
-     * @param level Logging level
+     *  level Logging level
      */
     static void setLevel(int level) { instance().logLevel = level; }
 
     /**
      * Sets the logging destination
-     * @param name Filename or NULL for console
+     *  name Filename or NULL for console
      */
     static void setDestination(const char* name) { instance()._setDestination(name); }
 
     /**
      * Print log message
-     * @param level Log level
-     * @param fmt Message format
+     *  level Log level
+     *  fmt Message format
      */
     static int log(int level, const char* fmt, ...)
     {

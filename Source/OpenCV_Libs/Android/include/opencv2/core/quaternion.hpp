@@ -272,8 +272,8 @@ public:
      * \f[ {q} = q_{X, \theta_1}  q_{Y, \theta_2} q_{Z, \theta_3}\f]
      * where \f$ q_{X, \theta_1} \f$ is created from @ref createFromXRot,  \f$ q_{Y, \theta_2} \f$ is created from @ref createFromYRot,
      *  \f$ q_{Z, \theta_3} \f$ is created from @ref createFromZRot.
-     * @param angles the Euler angles in a vector of length 3
-     * @param eulerAnglesType the convertion Euler angles type
+     *  angles the Euler angles in a vector of length 3
+     *  eulerAnglesType the convertion Euler angles type
      */
     static Quat<_Tp> createFromEulerAngles(const Vec<_Tp, 3> &angles, QuatEnum::EulerAnglesType eulerAnglesType);
 
@@ -297,7 +297,7 @@ public:
 
     /**
      * @brief a way to get element.
-     * @param index over a range [0, 3].
+     *  index over a range [0, 3].
      *
      * A quaternion q
      *
@@ -322,7 +322,7 @@ public:
      * @brief return the value of exponential value.
      * \f[\exp(q) = e^w (\cos||\boldsymbol{v}||+ \frac{v}{||\boldsymbol{v}||})\sin||\boldsymbol{v}||\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example:
      * ```
@@ -350,8 +350,8 @@ public:
      * @brief return the value of logarithm function.
      * \f[\ln(q) = \ln||q|| + \frac{\boldsymbol{v}}{||\boldsymbol{v}||}\arccos\frac{w}{||q||}.\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, q assume to be a unit quaternion and this function will save some computations.
+     *  q a quaternion.
+     *  assumeUnit if QUAT_ASSUME_UNIT, q assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -366,7 +366,7 @@ public:
      * @brief return the value of logarithm function.
      *  \f[\ln(q) = \ln||q|| + \frac{\boldsymbol{v}}{||\boldsymbol{v}||}\arccos\frac{w}{||q||}\f].
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -383,9 +383,9 @@ public:
     /**
      * @brief return the value of power function with index \f$x\f$.
      * \f[q^x = ||q||(cos(x\theta) + \boldsymbol{u}sin(x\theta))).\f]
-     * @param q a quaternion.
-     * @param x index of exponentiation.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
+     *  q a quaternion.
+     *  x index of exponentiation.
+     *  assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -406,8 +406,8 @@ public:
     /**
      * @brief return the value of power function with index \f$x\f$.
      * \f[q^x = ||q||(\cos(x\theta) + \boldsymbol{u}\sin(x\theta))).\f]
-     * @param x index of exponentiation.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
+     *  x index of exponentiation.
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -425,8 +425,8 @@ public:
 
     /**
      * @brief return \f$\sqrt{q}\f$.
-     * @param q a quaternion.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
+     *  q a quaternion.
+     *  assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -443,7 +443,7 @@ public:
 
     /**
      * @brief return \f$\sqrt{q}\f$.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -460,9 +460,9 @@ public:
     /**
      * @brief return the value of power function with quaternion \f$q\f$.
      * \f[p^q = e^{q\ln(p)}.\f]
-     * @param p base quaternion of power function.
-     * @param q index quaternion of power function.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, quaternion \f$p\f$ assume to be a unit quaternion and this function will save some computations.
+     *  p base quaternion of power function.
+     *  q index quaternion of power function.
+     *  assumeUnit if QUAT_ASSUME_UNIT, quaternion \f$p\f$ assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -481,8 +481,8 @@ public:
     /**
      * @brief return the value of power function with quaternion \f$q\f$.
      * \f[p^q = e^{q\ln(p)}.\f]
-     * @param q index quaternion of power function.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
+     *  q index quaternion of power function.
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -544,8 +544,8 @@ public:
     /**
      * @brief return \f$q^{-1}\f$ which is an inverse of \f$q\f$
      * which satisfies \f$q * q^{-1} = 1\f$.
-     * @param q a quaternion.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
+     *  q a quaternion.
+     *  assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -563,7 +563,7 @@ public:
     /**
      * @brief return \f$q^{-1}\f$ which is an inverse of \f$q\f$
      * satisfying \f$q * q^{-1} = 1\f$.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
+     *  assumeUnit if QUAT_ASSUME_UNIT, quaternion q assume to be a unit quaternion and this function will save some computations.
      *
      * For example
      * ```
@@ -581,7 +581,7 @@ public:
      * @brief return sinh value of quaternion q, sinh could be calculated as:
      * \f[\sinh(p) = \sin(w)\cos(||\boldsymbol{v}||) + \cosh(w)\frac{v}{||\boldsymbol{v}||}\sin||\boldsymbol{v}||\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -609,7 +609,7 @@ public:
      * @brief return cosh value of quaternion q, cosh could be calculated as:
      * \f[\cosh(p) = \cosh(w) * \cos(||\boldsymbol{v}||) + \sinh(w)\frac{\boldsymbol{v}}{||\boldsymbol{v}||}\sin(||\boldsymbol{v}||)\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -636,7 +636,7 @@ public:
     /**
      * @brief return tanh value of quaternion q, tanh could be calculated as:
      * \f[ \tanh(q) = \frac{\sinh(q)}{\cosh(q)}.\f]
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -665,7 +665,7 @@ public:
      * @brief return tanh value of quaternion q, sin could be calculated as:
      * \f[\sin(p) = \sin(w) * \cosh(||\boldsymbol{v}||) + \cos(w)\frac{\boldsymbol{v}}{||\boldsymbol{v}||}\sinh(||\boldsymbol{v}||)\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -693,7 +693,7 @@ public:
      * @brief return sin value of quaternion q, cos could be calculated as:
      * \f[\cos(p) = \cos(w) * \cosh(||\boldsymbol{v}||) - \sin(w)\frac{\boldsymbol{v}}{||\boldsymbol{v}||}\sinh(||\boldsymbol{v}||)\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -720,7 +720,7 @@ public:
     /**
      * @brief return tan value of quaternion q, tan could be calculated as:
      * \f[\tan(q) = \frac{\sin(q)}{\cos(q)}.\f]
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -747,7 +747,7 @@ public:
      * @brief return arcsin value of quaternion q, arcsin could be calculated as:
      * \f[\arcsin(q) = -\frac{\boldsymbol{v}}{||\boldsymbol{v}||}arcsinh(q\frac{\boldsymbol{v}}{||\boldsymbol{v}||})\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -775,7 +775,7 @@ public:
      * @brief return arccos value of quaternion q, arccos could be calculated as:
      * \f[\arccos(q) = -\frac{\boldsymbol{v}}{||\boldsymbol{v}||}arccosh(q)\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -803,7 +803,7 @@ public:
      * @brief return arctan value of quaternion q, arctan could be calculated as:
      * \f[\arctan(q) = -\frac{\boldsymbol{v}}{||\boldsymbol{v}||}arctanh(q\frac{\boldsymbol{v}}{||\boldsymbol{v}||})\f]
      * where \f$\boldsymbol{v} = [x, y, z].\f$
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -830,7 +830,7 @@ public:
     /**
      * @brief return arcsinh value of quaternion q, arcsinh could be calculated as:
      * \f[arcsinh(q) = \ln(q + \sqrt{q^2 + 1})\f].
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -856,7 +856,7 @@ public:
     /**
      * @brief return arccosh value of quaternion q, arccosh could be calculated as:
      * \f[arccosh(q) = \ln(q + \sqrt{q^2 - 1})\f].
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -882,7 +882,7 @@ public:
     /**
      * @brief return arctanh value of quaternion q, arctanh could be calculated as:
      * \f[arctanh(q) = \frac{\ln(q + 1) - \ln(1 - q)}{2}\f].
-     * @param q a quaternion.
+     *  q a quaternion.
      *
      * For example
      * ```
@@ -907,7 +907,7 @@ public:
 
     /**
      * @brief return true if this quaternion is a unit quaternion.
-     * @param eps tolerance scope of normalization. The eps could be defined as
+     *  eps tolerance scope of normalization. The eps could be defined as
      *
      * \f[eps = |1 - dotValue|\f] where \f[dotValue = (this.w^2 + this.x^2 + this,y^2 + this.z^2).\f]
      * And this function will consider it is normalized when the dotValue over a range \f$[1-eps, 1+eps]\f$.
@@ -916,14 +916,14 @@ public:
 
     /**
      * @brief to throw an error if this quaternion is not a unit quaternion.
-     * @param eps tolerance scope of normalization.
+     *  eps tolerance scope of normalization.
      * @sa isNormal
      */
     void assertNormal(_Tp eps=CV_QUAT_EPS) const;
 
     /**
      * @brief transform a quaternion to a 3x3 rotation matrix.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
      * this function will save some computations. Otherwise, this function will normalize this
      * quaternion at first then do the transformation.
      *
@@ -957,7 +957,7 @@ public:
 
     /**
      * @brief transform a quaternion to a 4x4 rotation matrix.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
      * this function will save some computations. Otherwise, this function will normalize this
      * quaternion at first then do the transformation.
      *
@@ -988,7 +988,7 @@ public:
 
     /**
      * @brief transform this quaternion to a Rotation vector.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
      * this function will save some computations.
      * Rotation vector rVec is defined as:
      * \f[ rVec = [\theta v_x, \theta v_y, \theta v_z]\f]
@@ -1007,7 +1007,7 @@ public:
 
     /**
      * @brief get the angle of quaternion, it returns the rotation angle.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
      * this function will save some computations.
      * \f[\psi = 2 *arccos(\frac{w}{||q||})\f]
      *
@@ -1025,7 +1025,7 @@ public:
 
     /**
      * @brief get the axis of quaternion, it returns a vector of length 3.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
+     *  assumeUnit if QUAT_ASSUME_UNIT, this quaternion assume to be a unit quaternion and
      * this function will save some computations.
      *
      * the unit axis \f$\boldsymbol{u}\f$ is defined by
@@ -1060,7 +1060,7 @@ public:
      * Therefore, the closer dot(p, q) to 1,
      * the smaller rotation between them.
      * \f[p \cdot q = p.w \cdot q.w + p.x \cdot q.x + p.y \cdot q.y + p.z \cdot q.z\f]
-     * @param q the other quaternion.
+     *  q the other quaternion.
      *
      * For example
      * ```
@@ -1078,9 +1078,9 @@ public:
      * Obviously, the lerp will interpolate along a straight line if we think of \f$q_0\f$ and \f$q_1\f$ as a vector
      * in a two-dimensional space. When \f$t = 0\f$, it returns \f$q_0\f$ and when \f$t= 1\f$, it returns \f$q_1\f$.
      * \f$t\f$ should to be ranged in \f$[0, 1]\f$ normally.
-     * @param q0 a quaternion used in linear interpolation.
-     * @param q1 a quaternion used in linear interpolation.
-     * @param t percent of vector \f$\overrightarrow{q_0q_1}\f$ over a range [0, 1].
+     *  q0 a quaternion used in linear interpolation.
+     *  q1 a quaternion used in linear interpolation.
+     *  t percent of vector \f$\overrightarrow{q_0q_1}\f$ over a range [0, 1].
      * @note it returns a non-unit quaternion.
      */
     static Quat<_Tp> lerp(const Quat<_Tp> &q0, const Quat &q1, const _Tp t);
@@ -1090,10 +1090,10 @@ public:
      * it returns a normalized quaternion of Linear Interpolation(Lerp).
      * \f[ Nlerp(q_0, q_1, t) = \frac{(1 - t)q_0 + tq_1}{||(1 - t)q_0 + tq_1||}.\f]
      * The interpolation will always choose the shortest path but the constant speed is not guaranteed.
-     * @param q0 a quaternion used in normalized linear interpolation.
-     * @param q1 a quaternion used in normalized linear interpolation.
-     * @param t percent of vector \f$\overrightarrow{q_0q_1}\f$ over a range [0, 1].
-     * @param assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all inputs
+     *  q0 a quaternion used in normalized linear interpolation.
+     *  q1 a quaternion used in normalized linear interpolation.
+     *  t percent of vector \f$\overrightarrow{q_0q_1}\f$ over a range [0, 1].
+     *  assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all inputs
      quaternion will be normalized inside the function.
      * @sa lerp
      */
@@ -1106,12 +1106,12 @@ public:
     where \f$\theta\f$ can be calculated as:
     \f[\theta=cos^{-1}(q_0\cdot q_1)\f]
     resulting from the both of their norm is unit.
-    @param q0 a quaternion used in Slerp.
-    @param q1 a quaternion used in Slerp.
-    @param t percent of angle between \f$q_0\f$ and \f$q_1\f$ over a range [0, 1].
-    @param assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternions. Otherwise, all input
+     q0 a quaternion used in Slerp.
+     q1 a quaternion used in Slerp.
+     t percent of angle between \f$q_0\f$ and \f$q_1\f$ over a range [0, 1].
+     assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternions. Otherwise, all input
     quaternions will be normalized inside the function.
-    @param directChange if QUAT_ASSUME_UNIT, the interpolation will choose the nearest path.
+     directChange if QUAT_ASSUME_UNIT, the interpolation will choose the nearest path.
     @note If the interpolation angle is small, the error between Nlerp and Slerp is not so large. To improve efficiency and
     avoid zero division error, we use Nlerp instead of Slerp.
     */
@@ -1127,14 +1127,14 @@ public:
      * interpolation instead of simple linear interpolation. Each \f$s_i\f$ needs to be calculated by three
      * quaternions.
      *
-     * @param q0 the first quaternion.
-     * @param s0 the second quaternion.
-     * @param s1 the third quaternion.
-     * @param q1 thr fourth quaternion.
-     * @param t interpolation parameter of quadratic and linear interpolation over a range \f$[0, 1]\f$.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all input
+     *  q0 the first quaternion.
+     *  s0 the second quaternion.
+     *  s1 the third quaternion.
+     *  q1 thr fourth quaternion.
+     *  t interpolation parameter of quadratic and linear interpolation over a range \f$[0, 1]\f$.
+     *  assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all input
      * quaternions will be normalized inside the function.
-     * @param directChange if QUAT_ASSUME_UNIT, squad will find the nearest path to interpolate.
+     *  directChange if QUAT_ASSUME_UNIT, squad will find the nearest path to interpolate.
      * @sa interPoint, spline
      */
     static Quat<_Tp> squad(const Quat<_Tp> &q0, const Quat<_Tp> &s0,
@@ -1146,10 +1146,10 @@ public:
      * @brief This is the part calculation of squad.
      * To calculate the intermedia quaternion \f$s_i\f$ between each three quaternion
      * \f[s_i = q_i\exp(-\frac{\log(q^*_iq_{i+1}) + \log(q^*_iq_{i-1})}{4}).\f]
-     * @param q0 the first quaternion.
-     * @param q1 the second quaternion.
-     * @param q2 the third quaternion.
-     * @param assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all input
+     *  q0 the first quaternion.
+     *  q1 the second quaternion.
+     *  q2 the third quaternion.
+     *  assumeUnit if QUAT_ASSUME_UNIT, all input quaternions assume to be unit quaternion. Otherwise, all input
      * quaternions will be normalized inside the function.
      * @sa squad
      */
@@ -1161,12 +1161,12 @@ public:
      * spline curve constructed by squad at the ratio t. Here, the interpolation values are
      * between \f$q_1\f$ and \f$q_2\f$. \f$q_0\f$ and \f$q_2\f$ are used to ensure the \f$C^1\f$
      * continuity. if t = 0, it returns \f$q_1\f$, if t = 1, it returns \f$q_2\f$.
-     * @param q0 the first input quaternion to ensure \f$C^1\f$ continuity.
-     * @param q1 the second input quaternion.
-     * @param q2 the third input quaternion.
-     * @param q3 the fourth input quaternion the same use of \f$q1\f$.
-     * @param t ratio over a range [0, 1].
-     * @param assumeUnit if QUAT_ASSUME_UNIT, \f$q_0, q_1, q_2, q_3\f$ assume to be unit quaternion. Otherwise, all input
+     *  q0 the first input quaternion to ensure \f$C^1\f$ continuity.
+     *  q1 the second input quaternion.
+     *  q2 the third input quaternion.
+     *  q3 the fourth input quaternion the same use of \f$q1\f$.
+     *  t ratio over a range [0, 1].
+     *  assumeUnit if QUAT_ASSUME_UNIT, \f$q_0, q_1, q_2, q_3\f$ assume to be unit quaternion. Otherwise, all input
      * quaternions will be normalized inside the function.
      *
      * For example:
@@ -1610,7 +1610,7 @@ public:
      * EXT_ZXZ| \f$ \theta_1 = \arctan2(m_{31},m_{32}) \\\theta_2 = \arccos(m_{33}) \\\theta_3 = \arctan2(-m_{13},m_{23})\f$| \f$ \theta_1=0\\ \theta_2=0\\ \theta_3=\arctan2(m_{21},m_{22}) \f$| \f$ \theta_1= 0\\ \theta_2=\pi\\ \theta_3=\arctan2(m_{21},m_{11}) \f$
      * EXT_ZYZ| \f$ \theta_1 = \arctan2(m_{32},-m_{31})\\\theta_2 = \arccos(m_{33}) \\\theta_3 = \arctan2(m_{23},m_{13}) \f$| \f$ \theta_1=0\\ \theta_2=0\\ \theta_3=\arctan2(m_{21},m_{11}) \f$| \f$ \theta_1= 0\\ \theta_2=\pi\\ \theta_3=\arctan2(m_{21},m_{11}) \f$
      *
-     * @param eulerAnglesType the convertion Euler angles type
+     *  eulerAnglesType the convertion Euler angles type
      */
 
     Vec<_Tp, 3> toEulerAngles(QuatEnum::EulerAnglesType eulerAnglesType);

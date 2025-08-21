@@ -66,7 +66,7 @@ public:
     }
 
     /** only constructor we use in our code
-     * @param sz the size of the bitset (in bits)
+     *  sz the size of the bitset (in bits)
      */
     DynamicBitset(size_t sz)
     {
@@ -122,7 +122,7 @@ public:
     }
 
     /** set a bit to true
-     * @param index the index of the bit to set to 1
+     *  index the index of the bit to set to 1
      */
     void set(size_t index)
     {
@@ -137,7 +137,7 @@ public:
     }
 
     /** check if a bit is set
-     * @param index the index of the bit to check
+     *  index the index of the bit to check
      * @return true if the bit is set
      */
     bool test(size_t index) const

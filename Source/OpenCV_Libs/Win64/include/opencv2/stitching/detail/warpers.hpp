@@ -63,18 +63,18 @@ public:
 
     /** @brief Projects the image point.
 
-    @param pt Source point
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
+     pt Source point
+     K Camera intrinsic parameters
+     R Camera rotation matrix
     @return Projected point
      */
     virtual Point2f warpPoint(const Point2f &pt, InputArray K, InputArray R) = 0;
 
     /** @brief Projects the image point backward.
 
-    @param pt Projected point
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
+     pt Projected point
+     K Camera intrinsic parameters
+     R Camera rotation matrix
     @return Backward-projected point
     */
 #if CV_VERSION_MAJOR == 4
@@ -89,23 +89,23 @@ public:
 
     /** @brief Builds the projection maps according to the given camera data.
 
-    @param src_size Source image size
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
-    @param xmap Projection map for the x axis
-    @param ymap Projection map for the y axis
+     src_size Source image size
+     K Camera intrinsic parameters
+     R Camera rotation matrix
+     xmap Projection map for the x axis
+     ymap Projection map for the y axis
     @return Projected image minimum bounding box
      */
     virtual Rect buildMaps(Size src_size, InputArray K, InputArray R, OutputArray xmap, OutputArray ymap) = 0;
 
     /** @brief Projects the image.
 
-    @param src Source image
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
-    @param interp_mode Interpolation mode
-    @param border_mode Border extrapolation mode
-    @param dst Projected image
+     src Source image
+     K Camera intrinsic parameters
+     R Camera rotation matrix
+     interp_mode Interpolation mode
+     border_mode Border extrapolation mode
+     dst Projected image
     @return Project image top-left corner
      */
     virtual Point warp(InputArray src, InputArray K, InputArray R, int interp_mode, int border_mode,
@@ -113,21 +113,21 @@ public:
 
     /** @brief Projects the image backward.
 
-    @param src Projected image
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
-    @param interp_mode Interpolation mode
-    @param border_mode Border extrapolation mode
-    @param dst_size Backward-projected image size
-    @param dst Backward-projected image
+     src Projected image
+     K Camera intrinsic parameters
+     R Camera rotation matrix
+     interp_mode Interpolation mode
+     border_mode Border extrapolation mode
+     dst_size Backward-projected image size
+     dst Backward-projected image
      */
     virtual void warpBackward(InputArray src, InputArray K, InputArray R, int interp_mode, int border_mode,
                               Size dst_size, CV_OUT OutputArray dst) = 0;
 
     /**
-    @param src_size Source image bounding box
-    @param K Camera intrinsic parameters
-    @param R Camera rotation matrix
+     src_size Source image bounding box
+     K Camera intrinsic parameters
+     R Camera rotation matrix
     @return Projected image minimum bounding box
      */
     virtual Rect warpRoi(Size src_size, InputArray K, InputArray R) = 0;
@@ -201,7 +201,7 @@ class CV_EXPORTS PlaneWarper : public RotationWarperBase<PlaneProjector>
 public:
     /** @brief Construct an instance of the plane warper class.
 
-    @param scale Projected image scale multiplier
+     scale Projected image scale multiplier
      */
     PlaneWarper(float scale = 1.f) { projector_.scale = scale; }
 
@@ -237,56 +237,56 @@ class CV_EXPORTS AffineWarper : public PlaneWarper
 public:
     /** @brief Construct an instance of the affine warper class.
 
-    @param scale Projected image scale multiplier
+     scale Projected image scale multiplier
      */
     AffineWarper(float scale = 1.f) : PlaneWarper(scale) {}
 
     /** @brief Projects the image point.
 
-    @param pt Source point
-    @param K Camera intrinsic parameters
-    @param H Camera extrinsic parameters
+     pt Source point
+     K Camera intrinsic parameters
+     H Camera extrinsic parameters
     @return Projected point
      */
     Point2f warpPoint(const Point2f &pt, InputArray K, InputArray H) CV_OVERRIDE;
 
     /** @brief Projects the image point backward.
 
-    @param pt Projected point
-    @param K Camera intrinsic parameters
-    @param H Camera extrinsic parameters
+     pt Projected point
+     K Camera intrinsic parameters
+     H Camera extrinsic parameters
     @return Backward-projected point
     */
     Point2f warpPointBackward(const Point2f &pt, InputArray K, InputArray H) CV_OVERRIDE;
 
     /** @brief Builds the projection maps according to the given camera data.
 
-    @param src_size Source image size
-    @param K Camera intrinsic parameters
-    @param H Camera extrinsic parameters
-    @param xmap Projection map for the x axis
-    @param ymap Projection map for the y axis
+     src_size Source image size
+     K Camera intrinsic parameters
+     H Camera extrinsic parameters
+     xmap Projection map for the x axis
+     ymap Projection map for the y axis
     @return Projected image minimum bounding box
      */
     Rect buildMaps(Size src_size, InputArray K, InputArray H, OutputArray xmap, OutputArray ymap) CV_OVERRIDE;
 
     /** @brief Projects the image.
 
-    @param src Source image
-    @param K Camera intrinsic parameters
-    @param H Camera extrinsic parameters
-    @param interp_mode Interpolation mode
-    @param border_mode Border extrapolation mode
-    @param dst Projected image
+     src Source image
+     K Camera intrinsic parameters
+     H Camera extrinsic parameters
+     interp_mode Interpolation mode
+     border_mode Border extrapolation mode
+     dst Projected image
     @return Project image top-left corner
      */
     Point warp(InputArray src, InputArray K, InputArray H,
                int interp_mode, int border_mode, OutputArray dst) CV_OVERRIDE;
 
     /**
-    @param src_size Source image bounding box
-    @param K Camera intrinsic parameters
-    @param H Camera extrinsic parameters
+     src_size Source image bounding box
+     K Camera intrinsic parameters
+     H Camera extrinsic parameters
     @return Projected image minimum bounding box
      */
     Rect warpRoi(Size src_size, InputArray K, InputArray H) CV_OVERRIDE;
@@ -317,7 +317,7 @@ class CV_EXPORTS SphericalWarper : public RotationWarperBase<SphericalProjector>
 public:
     /** @brief Construct an instance of the spherical warper class.
 
-    @param scale Radius of the projected sphere, in pixels. An image spanning the
+     scale Radius of the projected sphere, in pixels. An image spanning the
                  whole sphere will have a width of 2 * scale * PI pixels.
      */
     SphericalWarper(float scale) { projector_.scale = scale; }
@@ -343,7 +343,7 @@ class CV_EXPORTS CylindricalWarper : public RotationWarperBase<CylindricalProjec
 public:
     /** @brief Construct an instance of the cylindrical warper class.
 
-    @param scale Projected image scale multiplier
+     scale Projected image scale multiplier
      */
     CylindricalWarper(float scale) { projector_.scale = scale; }
 

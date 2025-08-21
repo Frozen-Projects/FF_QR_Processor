@@ -103,7 +103,7 @@ public:
      *
      * Lifetime of vector data is valid until next detachData()/cleanup()/release() calls
      *
-     * @param[out] data result buffer (should be empty)
+     * [out] data result buffer (should be empty)
      */
     void gather(std::vector<T*> &data) const
     {

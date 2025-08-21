@@ -75,7 +75,7 @@ namespace cv
  the floating-point value is first rounded to the nearest integer and then clipped if needed (when
  the target type is 8- or 16-bit).
 
- @param v Function parameter.
+  v Function parameter.
  @sa add, subtract, multiply, divide, Mat::convertTo
  */
 template<typename _Tp> static inline _Tp saturate_cast(uchar v)    { return _Tp(v); }

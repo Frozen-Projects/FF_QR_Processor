@@ -37,9 +37,9 @@ class CV_EXPORTS_W_SIMPLE Dictionary {
 
     /** @brief Basic ArUco dictionary constructor
      *
-     * @param bytesList bits for all ArUco markers in dictionary see memory layout in the class description
-     * @param _markerSize ArUco marker size in units
-     * @param maxcorr maximum number of bits that can be corrected
+     *  bytesList bits for all ArUco markers in dictionary see memory layout in the class description
+     *  _markerSize ArUco marker size in units
+     *  maxcorr maximum number of bits that can be corrected
      */
     CV_WRAP Dictionary(const Mat &bytesList, int _markerSize, int maxcorr = 0);
 
@@ -133,10 +133,10 @@ CV_EXPORTS_W Dictionary getPredefinedDictionary(int dict);
 
 /** @brief Extend base dictionary by new nMarkers
   *
-  * @param nMarkers number of markers in the dictionary
-  * @param markerSize number of bits per dimension of each markers
-  * @param baseDictionary Include the markers in this dictionary at the beginning (optional)
-  * @param randomSeed a user supplied seed for theRNG()
+  *  nMarkers number of markers in the dictionary
+  *  markerSize number of bits per dimension of each markers
+  *  baseDictionary Include the markers in this dictionary at the beginning (optional)
+  *  randomSeed a user supplied seed for theRNG()
   *
   * This function creates a new dictionary composed by nMarkers markers and each markers composed
   * by markerSize x markerSize bits. If baseDictionary is provided, its markers are directly

@@ -77,9 +77,9 @@ public:
 
     /**
      * Index constructor
-     * @param inputData dataset containing the points to index
-     * @param params Index parameters
-     * @param d Distance functor
+     *  inputData dataset containing the points to index
+     *  params Index parameters
+     *  d Distance functor
      */
     CompositeIndex(const Matrix<ElementType>& inputData, const IndexParams& params = CompositeIndexParams(),
                    Distance d = Distance()) : index_params_(params)

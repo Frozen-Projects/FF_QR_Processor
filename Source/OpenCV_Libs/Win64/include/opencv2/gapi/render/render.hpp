@@ -77,9 +77,9 @@ using GMatDesc2 = std::tuple<cv::GMatDesc,cv::GMatDesc>;
 //! @{
 /** @brief The function renders on the input image passed drawing primitivies
 
-@param bgr input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
-@param prims vector of drawing primitivies
-@param args graph compile time parameters
+ bgr input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ prims vector of drawing primitivies
+ args graph compile time parameters
 */
 void GAPI_EXPORTS_W render(cv::Mat& bgr,
                            const Prims& prims,
@@ -87,10 +87,10 @@ void GAPI_EXPORTS_W render(cv::Mat& bgr,
 
 /** @brief The function renders on two NV12 planes passed drawing primitivies
 
-@param y_plane input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param uv_plane input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
-@param prims vector of drawing primitivies
-@param args graph compile time parameters
+ y_plane input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ uv_plane input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ prims vector of drawing primitivies
+ args graph compile time parameters
 */
 void GAPI_EXPORTS_W render(cv::Mat& y_plane,
                            cv::Mat& uv_plane,
@@ -99,9 +99,9 @@ void GAPI_EXPORTS_W render(cv::Mat& y_plane,
 
 /** @brief The function renders on the input media frame passed drawing primitivies
 
-@param frame input Media Frame :  @ref cv::MediaFrame.
-@param prims vector of drawing primitivies
-@param args graph compile time parameters
+ frame input Media Frame :  @ref cv::MediaFrame.
+ prims vector of drawing primitivies
+ args graph compile time parameters
 */
 void GAPI_EXPORTS render(cv::MediaFrame& frame,
                          const Prims& prims,
@@ -136,8 +136,8 @@ G_TYPED_KERNEL(GRenderFrame, <cv::GFrame(cv::GFrame, cv::GArray<wip::draw::Prim>
 
 Output image must be 8-bit unsigned planar 3-channel image
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3
-@param prims draw primitives
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3
+ prims draw primitives
 */
 GAPI_EXPORTS_W GMat render3ch(const GMat& src, const GArray<Prim>& prims);
 
@@ -146,9 +146,9 @@ GAPI_EXPORTS_W GMat render3ch(const GMat& src, const GArray<Prim>& prims);
 Output y image must be 8-bit unsigned planar 1-channel image @ref CV_8UC1
 uv image must be 8-bit unsigned planar 2-channel image @ref CV_8UC2
 
-@param y  input image: 8-bit unsigned 1-channel image @ref CV_8UC1
-@param uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2
-@param prims draw primitives
+ y  input image: 8-bit unsigned 1-channel image @ref CV_8UC1
+ uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2
+ prims draw primitives
 */
 GAPI_EXPORTS_W GMat2 renderNV12(const GMat& y,
                                 const GMat& uv,
@@ -158,8 +158,8 @@ GAPI_EXPORTS_W GMat2 renderNV12(const GMat& y,
 
 Output media frame frame cv::MediaFrame
 
-@param m_frame input image: cv::MediaFrame @ref cv::MediaFrame
-@param prims draw primitives
+ m_frame input image: cv::MediaFrame @ref cv::MediaFrame
+ prims draw primitives
 */
 GAPI_EXPORTS GFrame renderFrame(const GFrame& m_frame,
                                 const GArray<Prim>& prims);

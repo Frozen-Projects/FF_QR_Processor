@@ -105,9 +105,9 @@ public:
 
 	/**
 	 * @brief stepToEdge advances cursor to one step behind the next (or n-th) edge.
-	 * @param nth number of edges to pass
-	 * @param range max number of steps to take
-	 * @param backup whether or not to backup one step so we land in front of the edge
+	 *  nth number of edges to pass
+	 *  range max number of steps to take
+	 *  backup whether or not to backup one step so we land in front of the edge
 	 * @return number of steps taken or 0 if moved outside of range/image
 	 */
 	int stepToEdge(int nth = 1, int range = 0, bool backup = false)

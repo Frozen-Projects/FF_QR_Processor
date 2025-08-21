@@ -93,21 +93,21 @@ CVAPI(void)   cvFree_( void* ptr );
 
 /** @brief Creates an image header but does not allocate the image data.
 
-@param size Image width and height
-@param depth Image depth (see cvCreateImage )
-@param channels Number of channels (see cvCreateImage )
+ size Image width and height
+ depth Image depth (see cvCreateImage )
+ channels Number of channels (see cvCreateImage )
  */
 CVAPI(IplImage*)  cvCreateImageHeader( CvSize size, int depth, int channels );
 
 /** @brief Initializes an image header that was previously allocated.
 
 The returned IplImage\* points to the initialized header.
-@param image Image header to initialize
-@param size Image width and height
-@param depth Image depth (see cvCreateImage )
-@param channels Number of channels (see cvCreateImage )
-@param origin Top-left IPL_ORIGIN_TL or bottom-left IPL_ORIGIN_BL
-@param align Alignment for image rows, typically 4 or 8 bytes
+ image Image header to initialize
+ size Image width and height
+ depth Image depth (see cvCreateImage )
+ channels Number of channels (see cvCreateImage )
+ origin Top-left IPL_ORIGIN_TL or bottom-left IPL_ORIGIN_BL
+ align Alignment for image rows, typically 4 or 8 bytes
  */
 CVAPI(IplImage*) cvInitImageHeader( IplImage* image, CvSize size, int depth,
                                    int channels, int origin CV_DEFAULT(0),
@@ -120,9 +120,9 @@ This function call is equivalent to the following code:
     header = cvCreateImageHeader(size, depth, channels);
     cvCreateData(header);
 @endcode
-@param size Image width and height
-@param depth Bit depth of image elements. See IplImage for valid depths.
-@param channels Number of channels per pixel. See IplImage for details. This function only creates
+ size Image width and height
+ depth Bit depth of image elements. See IplImage for valid depths.
+ channels Number of channels per pixel. See IplImage for details. This function only creates
 images with interleaved channels.
  */
 CVAPI(IplImage*)  cvCreateImage( CvSize size, int depth, int channels );
@@ -138,7 +138,7 @@ This call is an analogue of :
     }
 @endcode
 but it does not use IPL functions by default (see the CV_TURN_ON_IPL_COMPATIBILITY macro).
-@param image Double pointer to the image header
+ image Double pointer to the image header
  */
 CVAPI(void)  cvReleaseImageHeader( IplImage** image );
 
@@ -152,7 +152,7 @@ This call is a shortened form of :
         cvReleaseImageHeader(image);
     }
 @endcode
-@param image Double pointer to the image header
+ image Double pointer to the image header
 */
 CVAPI(void)  cvReleaseImage( IplImage** image );
 
@@ -165,8 +165,8 @@ If the ROI is set to NULL and the coi is *not* 0, the ROI is allocated. Most Ope
 *not* support the COI setting, so to process an individual image/matrix channel one may copy (via
 cvCopy or cvSplit) the channel to a separate image/matrix, process it and then copy the result
 back (via cvCopy or cvMerge) if needed.
-@param image A pointer to the image header
-@param coi The channel of interest. 0 - all channels are selected, 1 - first channel is selected,
+ image A pointer to the image header
+ coi The channel of interest. 0 - all channels are selected, 1 - first channel is selected,
 etc. Note that the channel indices become 1-based.
  */
 CVAPI(void)  cvSetImageCOI( IplImage* image, int coi );
@@ -175,7 +175,7 @@ CVAPI(void)  cvSetImageCOI( IplImage* image, int coi );
 
 Returns the channel of interest of in an IplImage. Returned values correspond to the coi in
 cvSetImageCOI.
-@param image A pointer to the image header
+ image A pointer to the image header
  */
 CVAPI(int)  cvGetImageCOI( const IplImage* image );
 
@@ -187,8 +187,8 @@ allocated.
 Most OpenCV functions support the use of ROI and treat the image rectangle as a separate image. For
 example, all of the pixel coordinates are counted from the top-left (or bottom-left) corner of the
 ROI, not the original image.
-@param image A pointer to the image header
-@param rect The ROI rectangle
+ image A pointer to the image header
+ rect The ROI rectangle
  */
 CVAPI(void)  cvSetImageROI( IplImage* image, CvRect rect );
 
@@ -199,14 +199,14 @@ This produces a similar result to the following, but in addition it releases the
     cvSetImageROI(image, cvRect(0, 0, image->width, image->height ));
     cvSetImageCOI(image, 0);
 @endcode
-@param image A pointer to the image header
+ image A pointer to the image header
  */
 CVAPI(void)  cvResetImageROI( IplImage* image );
 
 /** @brief Returns the image ROI.
 
 If there is no ROI set, cvRect(0,0,image-\>width,image-\>height) is returned.
-@param image A pointer to the image header
+ image A pointer to the image header
  */
 CVAPI(CvRect) cvGetImageROI( const IplImage* image );
 
@@ -214,9 +214,9 @@ CVAPI(CvRect) cvGetImageROI( const IplImage* image );
 
 The function allocates a new matrix header and returns a pointer to it. The matrix data can then be
 allocated using cvCreateData or set explicitly to user-allocated data via cvSetData.
-@param rows Number of rows in the matrix
-@param cols Number of columns in the matrix
-@param type Type of the matrix elements, see cvCreateMat
+ rows Number of rows in the matrix
+ cols Number of columns in the matrix
+ type Type of the matrix elements, see cvCreateMat
  */
 CVAPI(CvMat*)  cvCreateMatHeader( int rows, int cols, int type );
 
@@ -246,12 +246,12 @@ following code computes the matrix product of two matrices, stored as ordinary a
     cvMatMulAdd(&Ma, &Mb, 0, &Mc);
     // the c array now contains the product of a (3x4) and b (4x3)
 @endcode
-@param mat A pointer to the matrix header to be initialized
-@param rows Number of rows in the matrix
-@param cols Number of columns in the matrix
-@param type Type of the matrix elements, see cvCreateMat .
-@param data Optional: data pointer assigned to the matrix header
-@param step Optional: full row width in bytes of the assigned data. By default, the minimal
+ mat A pointer to the matrix header to be initialized
+ rows Number of rows in the matrix
+ cols Number of columns in the matrix
+ type Type of the matrix elements, see cvCreateMat .
+ data Optional: data pointer assigned to the matrix header
+ step Optional: full row width in bytes of the assigned data. By default, the minimal
 possible step is used which assumes there are no gaps between subsequent rows of the matrix.
  */
 CVAPI(CvMat*) cvInitMatHeader( CvMat* mat, int rows, int cols,
@@ -265,9 +265,9 @@ The function call is equivalent to the following code:
     CvMat* mat = cvCreateMatHeader(rows, cols, type);
     cvCreateData(mat);
 @endcode
-@param rows Number of rows in the matrix
-@param cols Number of columns in the matrix
-@param type The type of the matrix elements in the form
+ rows Number of rows in the matrix
+ cols Number of columns in the matrix
+ type The type of the matrix elements in the form
 CV_\<bit depth\>\<S|U|F\>C\<number of channels\> , where S=signed, U=unsigned, F=float. For
 example, CV _ 8UC1 means the elements are 8-bit unsigned and the there is 1 channel, and CV _
 32SC2 means the elements are 32-bit signed and there are 2 channels.
@@ -283,7 +283,7 @@ reference counter is 0, it also deallocates the data. :
         cvDecRefData(*mat);
     cvFree((void**)mat);
 @endcode
-@param mat Double pointer to the matrix
+ mat Double pointer to the matrix
  */
 CVAPI(void)  cvReleaseMat( CvMat** mat );
 
@@ -296,7 +296,7 @@ implementation the reference counter is not NULL only if the data was allocated 
 cvCreateData function. The counter will be NULL in other cases such as: external data was assigned
 to the header using cvSetData, header is part of a larger matrix or image, or the header was
 converted from an image or n-dimensional matrix header.
-@param arr Pointer to an array header
+ arr Pointer to an array header
  */
 CV_INLINE  void  cvDecRefData( CvArr* arr )
 {
@@ -322,7 +322,7 @@ CV_INLINE  void  cvDecRefData( CvArr* arr )
 
 The function increments CvMat or CvMatND data reference counter and returns the new counter value if
 the reference counter pointer is not NULL, otherwise it returns zero.
-@param arr Array header
+ arr Array header
  */
 CV_INLINE  int  cvIncRefData( CvArr* arr )
 {
@@ -353,9 +353,9 @@ The function returns header, corresponding to a specified rectangle of the input
 
 words, it allows the user to treat a rectangular part of input array as a stand-alone array. ROI is
 taken into account by the function so the sub-array of ROI is actually extracted.
-@param arr Input array
-@param submat Pointer to the resultant sub-array header
-@param rect Zero-based coordinates of the rectangle of interest
+ arr Input array
+ submat Pointer to the resultant sub-array header
+ rect Zero-based coordinates of the rectangle of interest
  */
 CVAPI(CvMat*) cvGetSubRect( const CvArr* arr, CvMat* submat, CvRect rect );
 #define cvGetSubArr cvGetSubRect
@@ -364,11 +364,11 @@ CVAPI(CvMat*) cvGetSubRect( const CvArr* arr, CvMat* submat, CvRect rect );
 
 The function returns the header, corresponding to a specified row/row span of the input array.
 cvGetRow(arr, submat, row) is a shortcut for cvGetRows(arr, submat, row, row+1).
-@param arr Input array
-@param submat Pointer to the resulting sub-array header
-@param start_row Zero-based index of the starting row (inclusive) of the span
-@param end_row Zero-based index of the ending row (exclusive) of the span
-@param delta_row Index step in the row span. That is, the function extracts every delta_row -th
+ arr Input array
+ submat Pointer to the resulting sub-array header
+ start_row Zero-based index of the starting row (inclusive) of the span
+ end_row Zero-based index of the ending row (exclusive) of the span
+ delta_row Index step in the row span. That is, the function extracts every delta_row -th
 row from start_row and up to (but not including) end_row .
  */
 CVAPI(CvMat*) cvGetRows( const CvArr* arr, CvMat* submat,
@@ -376,9 +376,9 @@ CVAPI(CvMat*) cvGetRows( const CvArr* arr, CvMat* submat,
                         int delta_row CV_DEFAULT(1));
 
 /** @overload
-@param arr Input array
-@param submat Pointer to the resulting sub-array header
-@param row Zero-based index of the selected row
+ arr Input array
+ submat Pointer to the resulting sub-array header
+ row Zero-based index of the selected row
 */
 CV_INLINE  CvMat*  cvGetRow( const CvArr* arr, CvMat* submat, int row )
 {
@@ -393,18 +393,18 @@ The function returns the header, corresponding to a specified column span of the
 is, no data is copied. Therefore, any modifications of the submatrix will affect the original array.
 If you need to copy the columns, use cvCloneMat. cvGetCol(arr, submat, col) is a shortcut for
 cvGetCols(arr, submat, col, col+1).
-@param arr Input array
-@param submat Pointer to the resulting sub-array header
-@param start_col Zero-based index of the starting column (inclusive) of the span
-@param end_col Zero-based index of the ending column (exclusive) of the span
+ arr Input array
+ submat Pointer to the resulting sub-array header
+ start_col Zero-based index of the starting column (inclusive) of the span
+ end_col Zero-based index of the ending column (exclusive) of the span
  */
 CVAPI(CvMat*) cvGetCols( const CvArr* arr, CvMat* submat,
                         int start_col, int end_col );
 
 /** @overload
-@param arr Input array
-@param submat Pointer to the resulting sub-array header
-@param col Zero-based index of the selected column
+ arr Input array
+ submat Pointer to the resulting sub-array header
+ col Zero-based index of the selected column
 */
 CV_INLINE  CvMat*  cvGetCol( const CvArr* arr, CvMat* submat, int col )
 {
@@ -414,9 +414,9 @@ CV_INLINE  CvMat*  cvGetCol( const CvArr* arr, CvMat* submat, int col )
 /** @brief Returns one of array diagonals.
 
 The function returns the header, corresponding to a specified diagonal of the input array.
-@param arr Input array
-@param submat Pointer to the resulting sub-array header
-@param diag Index of the array diagonal. Zero value corresponds to the main diagonal, -1
+ arr Input array
+ submat Pointer to the resulting sub-array header
+ diag Index of the array diagonal. Zero value corresponds to the main diagonal, -1
 corresponds to the diagonal above the main, 1 corresponds to the diagonal below the main, and so
 forth.
  */
@@ -433,9 +433,9 @@ CVAPI(void) cvRawDataToScalar( const void* data, int type, CvScalar* scalar );
 
 The function allocates a header for a multi-dimensional dense array. The array data can further be
 allocated using cvCreateData or set explicitly to user-allocated data via cvSetData.
-@param dims Number of array dimensions
-@param sizes Array of dimension sizes
-@param type Type of array elements, see cvCreateMat
+ dims Number of array dimensions
+ sizes Array of dimension sizes
+ type Type of array elements, see cvCreateMat
  */
 CVAPI(CvMatND*)  cvCreateMatNDHeader( int dims, const int* sizes, int type );
 
@@ -446,20 +446,20 @@ This function call is equivalent to the following code:
     CvMatND* mat = cvCreateMatNDHeader(dims, sizes, type);
     cvCreateData(mat);
 @endcode
-@param dims Number of array dimensions. This must not exceed CV_MAX_DIM (32 by default, but can be
+ dims Number of array dimensions. This must not exceed CV_MAX_DIM (32 by default, but can be
 changed at build time).
-@param sizes Array of dimension sizes.
-@param type Type of array elements, see cvCreateMat .
+ sizes Array of dimension sizes.
+ type Type of array elements, see cvCreateMat .
  */
 CVAPI(CvMatND*)  cvCreateMatND( int dims, const int* sizes, int type );
 
 /** @brief Initializes a pre-allocated multi-dimensional array header.
 
-@param mat A pointer to the array header to be initialized
-@param dims The number of array dimensions
-@param sizes An array of dimension sizes
-@param type Type of array elements, see cvCreateMat
-@param data Optional data pointer assigned to the matrix header
+ mat A pointer to the array header to be initialized
+ dims The number of array dimensions
+ sizes An array of dimension sizes
+ type Type of array elements, see cvCreateMat
+ data Optional data pointer assigned to the matrix header
  */
 CVAPI(CvMatND*)  cvInitMatNDHeader( CvMatND* mat, int dims, const int* sizes,
                                     int type, void* data CV_DEFAULT(NULL) );
@@ -473,7 +473,7 @@ reference counter reaches 0, it also deallocates the data. :
         cvDecRefData(*mat);
     cvFree((void**)mat);
 @endcode
-@param mat Double pointer to the array
+ mat Double pointer to the array
  */
 CV_INLINE  void  cvReleaseMatND( CvMatND** mat )
 {
@@ -487,17 +487,17 @@ CVAPI(CvMatND*) cvCloneMatND( const CvMatND* mat );
 
 The function allocates a multi-dimensional sparse array. Initially the array contain no elements,
 that is PtrND and other related functions will return 0 for every index.
-@param dims Number of array dimensions. In contrast to the dense matrix, the number of dimensions is
+ dims Number of array dimensions. In contrast to the dense matrix, the number of dimensions is
 practically unlimited (up to \f$2^{16}\f$ ).
-@param sizes Array of dimension sizes
-@param type Type of array elements. The same as for CvMat
+ sizes Array of dimension sizes
+ type Type of array elements. The same as for CvMat
  */
 CVAPI(CvSparseMat*)  cvCreateSparseMat( int dims, const int* sizes, int type );
 
 /** @brief Deallocates sparse array.
 
 The function releases the sparse array and clears the array pointer upon exit.
-@param mat Double pointer to the array
+ mat Double pointer to the array
  */
 CVAPI(void)  cvReleaseSparseMat( CvSparseMat** mat );
 
@@ -508,8 +508,8 @@ CVAPI(CvSparseMat*) cvCloneSparseMat( const CvSparseMat* mat );
 
 The function initializes iterator of sparse array elements and returns pointer to the first element,
 or NULL if the array is empty.
-@param mat Input array
-@param mat_iterator Initialized iterator
+ mat Input array
+ mat_iterator Initialized iterator
  */
 CVAPI(CvSparseNode*) cvInitSparseMatIterator( const CvSparseMat* mat,
                                               CvSparseMatIterator* mat_iterator );
@@ -540,7 +540,7 @@ hash table. The sample below demonstrates how to iterate through the sparse matr
 
     printf("nTotal sum = %g\n", sum);
 @endcode
-@param mat_iterator Sparse array iterator
+ mat_iterator Sparse array iterator
  */
 CV_INLINE CvSparseNode* cvGetNextSparseNode( CvSparseMatIterator* mat_iterator )
 {
@@ -602,7 +602,7 @@ CvMat-like representation. For example, if the image has been created as:
     IplImage* img = cvCreateImage(cvSize(640, 480), IPL_DEPTH_8U, 3);
 @endcode
 The code cvGetElemType(img) will return CV_8UC3.
-@param arr Input array
+ arr Input array
  */
 CVAPI(int) cvGetElemType( const CvArr* arr );
 
@@ -618,8 +618,8 @@ following code calculates total number of array elements:
     for(i = 0; i < dims; i++ )
         total *= sizes[i];
 @endcode
-@param arr Input array
-@param sizes Optional output vector of the array dimension sizes. For 2d arrays the number of rows
+ arr Input array
+ sizes Optional output vector of the array dimension sizes. For 2d arrays the number of rows
 (height) goes first, number of columns (width) next.
  */
 CVAPI(int) cvGetDims( const CvArr* arr, int* sizes CV_DEFAULT(NULL) );
@@ -627,8 +627,8 @@ CVAPI(int) cvGetDims( const CvArr* arr, int* sizes CV_DEFAULT(NULL) );
 
 /** @brief Returns array size along the specified dimension.
 
-@param arr Input array
-@param index Zero-based dimension index (for matrices 0 means number of rows, 1 means number of
+ arr Input array
+ index Zero-based dimension index (for matrices 0 means number of rows, 1 means number of
 columns; for images 0 means height, 1 means width)
  */
 CVAPI(int) cvGetDimSize( const CvArr* arr, int index );
@@ -645,9 +645,9 @@ create it and set it to zero.
 
 All these as well as other functions accessing array elements ( cvGetND , cvGetRealND , cvSet
 , cvSetND , cvSetRealND ) raise an error in case if the element index is out of range.
-@param arr Input array
-@param idx0 The first zero-based component of the element index
-@param type Optional output parameter: type of matrix elements
+ arr Input array
+ idx0 The first zero-based component of the element index
+ type Optional output parameter: type of matrix elements
  */
 CVAPI(uchar*) cvPtr1D( const CvArr* arr, int idx0, int* type CV_DEFAULT(NULL));
 /** @overload */
@@ -656,12 +656,12 @@ CVAPI(uchar*) cvPtr2D( const CvArr* arr, int idx0, int idx1, int* type CV_DEFAUL
 CVAPI(uchar*) cvPtr3D( const CvArr* arr, int idx0, int idx1, int idx2,
                       int* type CV_DEFAULT(NULL));
 /** @overload
-@param arr Input array
-@param idx Array of the element indices
-@param type Optional output parameter: type of matrix elements
-@param create_node Optional input parameter for sparse matrices. Non-zero value of the parameter
+ arr Input array
+ idx Array of the element indices
+ type Optional output parameter: type of matrix elements
+ create_node Optional input parameter for sparse matrices. Non-zero value of the parameter
 means that the requested element is created if it does not exist already.
-@param precalc_hashval Optional input parameter for sparse matrices. If the pointer is not NULL,
+ precalc_hashval Optional input parameter for sparse matrices. If the pointer is not NULL,
 the function does not recalculate the node hash value, but takes it from the specified location.
 It is useful for speeding up pair-wise operations (TODO: provide an example)
 */
@@ -673,8 +673,8 @@ CVAPI(uchar*) cvPtrND( const CvArr* arr, const int* idx, int* type CV_DEFAULT(NU
 
 The functions return a specific array element. In the case of a sparse array the functions return 0
 if the requested node does not exist (no new node is created by the functions).
-@param arr Input array
-@param idx0 The first zero-based component of the element index
+ arr Input array
+ idx0 The first zero-based component of the element index
  */
 CVAPI(CvScalar) cvGet1D( const CvArr* arr, int idx0 );
 /** @overload */
@@ -682,8 +682,8 @@ CVAPI(CvScalar) cvGet2D( const CvArr* arr, int idx0, int idx1 );
 /** @overload */
 CVAPI(CvScalar) cvGet3D( const CvArr* arr, int idx0, int idx1, int idx2 );
 /** @overload
-@param arr Input array
-@param idx Array of the element indices
+ arr Input array
+ idx Array of the element indices
 */
 CVAPI(CvScalar) cvGetND( const CvArr* arr, const int* idx );
 
@@ -695,8 +695,8 @@ multiple-channel arrays though they are a bit slower.
 
 In the case of a sparse array the functions return 0 if the requested node does not exist (no new
 node is created by the functions).
-@param arr Input array. Must have a single channel.
-@param idx0 The first zero-based component of the element index
+ arr Input array. Must have a single channel.
+ idx0 The first zero-based component of the element index
  */
 CVAPI(double) cvGetReal1D( const CvArr* arr, int idx0 );
 /** @overload */
@@ -704,8 +704,8 @@ CVAPI(double) cvGetReal2D( const CvArr* arr, int idx0, int idx1 );
 /** @overload */
 CVAPI(double) cvGetReal3D( const CvArr* arr, int idx0, int idx1, int idx2 );
 /** @overload
-@param arr Input array. Must have a single channel.
-@param idx Array of the element indices
+ arr Input array. Must have a single channel.
+ idx Array of the element indices
 */
 CVAPI(double) cvGetRealND( const CvArr* arr, const int* idx );
 
@@ -713,9 +713,9 @@ CVAPI(double) cvGetRealND( const CvArr* arr, const int* idx );
 
 The functions assign the new value to a particular array element. In the case of a sparse array the
 functions create the node if it does not exist yet.
-@param arr Input array
-@param idx0 The first zero-based component of the element index
-@param value The assigned value
+ arr Input array
+ idx0 The first zero-based component of the element index
+ value The assigned value
  */
 CVAPI(void) cvSet1D( CvArr* arr, int idx0, CvScalar value );
 /** @overload */
@@ -723,9 +723,9 @@ CVAPI(void) cvSet2D( CvArr* arr, int idx0, int idx1, CvScalar value );
 /** @overload */
 CVAPI(void) cvSet3D( CvArr* arr, int idx0, int idx1, int idx2, CvScalar value );
 /** @overload
-@param arr Input array
-@param idx Array of the element indices
-@param value The assigned value
+ arr Input array
+ idx Array of the element indices
+ value The assigned value
 */
 CVAPI(void) cvSetND( CvArr* arr, const int* idx, CvScalar value );
 
@@ -736,9 +736,9 @@ multiple channels, a runtime error is raised. Note that the Set\*D function can 
 both single-channel and multiple-channel arrays, though they are a bit slower.
 
 In the case of a sparse array the functions create the node if it does not yet exist.
-@param arr Input array
-@param idx0 The first zero-based component of the element index
-@param value The assigned value
+ arr Input array
+ idx0 The first zero-based component of the element index
+ value The assigned value
  */
 CVAPI(void) cvSetReal1D( CvArr* arr, int idx0, double value );
 /** @overload */
@@ -747,9 +747,9 @@ CVAPI(void) cvSetReal2D( CvArr* arr, int idx0, int idx1, double value );
 CVAPI(void) cvSetReal3D( CvArr* arr, int idx0,
                         int idx1, int idx2, double value );
 /** @overload
-@param arr Input array
-@param idx Array of the element indices
-@param value The assigned value
+ arr Input array
+ idx Array of the element indices
+ value The assigned value
 */
 CVAPI(void) cvSetRealND( CvArr* arr, const int* idx, double value );
 
@@ -771,10 +771,10 @@ code. Input array must have non-zero data pointer, otherwise the function will r
 @note If the input array is IplImage with planar data layout and COI set, the function returns the
 pointer to the selected plane and COI == 0. This feature allows user to process IplImage structures
 with planar data layout, even though OpenCV does not support such images.
-@param arr Input array
-@param header Pointer to CvMat structure used as a temporary buffer
-@param coi Optional output parameter for storing COI
-@param allowND If non-zero, the function accepts multi-dimensional dense arrays (CvMatND\*) and
+ arr Input array
+ header Pointer to CvMat structure used as a temporary buffer
+ coi Optional output parameter for storing COI
+ allowND If non-zero, the function accepts multi-dimensional dense arrays (CvMatND\*) and
 returns 2D matrix (if CvMatND has two dimensions) or 1D matrix (when CvMatND has 1 dimension or
 more than 2 dimensions). The CvMatND array must be continuous.
 @sa cvGetImage, cvarrToMat.
@@ -790,8 +790,8 @@ The function returns the image header for the input array that can be a matrix (
 CvMat it initializes an image_header structure with the parameters of the input matrix. Note that
 if we transform IplImage to CvMat using cvGetMat and then transform CvMat back to IplImage using
 this function, we will get different headers if the ROI is set in the original image.
-@param arr Input array
-@param image_header Pointer to IplImage structure used as a temporary buffer
+ arr Input array
+ image_header Pointer to IplImage structure used as a temporary buffer
  */
 CVAPI(IplImage*) cvGetImage( const CvArr* arr, IplImage* image_header );
 
@@ -820,15 +820,15 @@ may be replaced as follow:
     ...
     row = (CvMat*)cvReshapeND(mat, &row_header, 0, 1, 0);
 @endcode
-@param arr Input array
-@param sizeof_header Size of output header to distinguish between IplImage, CvMat and CvMatND
+ arr Input array
+ sizeof_header Size of output header to distinguish between IplImage, CvMat and CvMatND
 output headers
-@param header Output header to be filled
-@param new_cn New number of channels. new_cn = 0 means that the number of channels remains
+ header Output header to be filled
+ new_cn New number of channels. new_cn = 0 means that the number of channels remains
 unchanged.
-@param new_dims New number of dimensions. new_dims = 0 means that the number of dimensions
+ new_dims New number of dimensions. new_dims = 0 means that the number of dimensions
 remains the same.
-@param new_sizes Array of new dimension sizes. Only new_dims-1 values are used, because the
+ new_sizes Array of new dimension sizes. Only new_dims-1 values are used, because the
 total number of elements must remain the same. Thus, if new_dims = 1, new_sizes array is not
 used.
  */
@@ -860,11 +860,11 @@ And the next example converts a 3x3 matrix to a single 1x9 vector:
     CvMat row_header, *row;
     row = cvReshape(mat, &row_header, 0, 1);
 @endcode
-@param arr Input array
-@param header Output header to be filled
-@param new_cn New number of channels. 'new_cn = 0' means that the number of channels remains
+ arr Input array
+ header Output header to be filled
+ new_cn New number of channels. 'new_cn = 0' means that the number of channels remains
 unchanged.
-@param new_rows New number of rows. 'new_rows = 0' means that the number of rows remains
+ new_rows New number of rows. 'new_rows = 0' means that the number of rows remains
 unchanged unless it needs to be changed according to new_cn value.
 */
 CVAPI(CvMat*) cvReshape( const CvArr* arr, CvMat* header,
@@ -880,7 +880,7 @@ The function allocates image, matrix or multi-dimensional dense array data. Note
 matrix types OpenCV allocation functions are used. In the case of IplImage they are used unless
 CV_TURN_ON_IPL_COMPATIBILITY() has been called before. In the latter case IPL functions are used
 to allocate the data.
-@param arr Array header
+ arr Array header
  */
 CVAPI(void)  cvCreateData( CvArr* arr );
 
@@ -889,7 +889,7 @@ CVAPI(void)  cvCreateData( CvArr* arr );
 The function releases the array data. In the case of CvMat or CvMatND it simply calls
 cvDecRefData(), that is the function can not deallocate external data. See also the note to
 cvCreateData .
-@param arr Array header
+ arr Array header
  */
 CVAPI(void)  cvReleaseData( CvArr* arr );
 
@@ -898,9 +898,9 @@ CVAPI(void)  cvReleaseData( CvArr* arr );
 The function assigns user data to the array header. Header should be initialized before using
 cvCreateMatHeader, cvCreateImageHeader, cvCreateMatNDHeader, cvInitMatHeader,
 cvInitImageHeader or cvInitMatNDHeader.
-@param arr Array header
-@param data User data
-@param step Full row length in bytes
+ arr Array header
+ data User data
+ step Full row length in bytes
  */
 CVAPI(void)  cvSetData( CvArr* arr, void* data, int step );
 
@@ -925,10 +925,10 @@ array elements :
         for(int x = 0; x < size.width; x++ )
             data[x] = (float)fabs(data[x]);
 @endcode
-@param arr Array header
-@param data Output pointer to the whole image origin or ROI origin if ROI is set
-@param step Output full row length in bytes
-@param roi_size Output ROI size
+ arr Array header
+ data Output pointer to the whole image origin or ROI origin if ROI is set
+ step Output full row length in bytes
+ roi_size Output ROI size
  */
 CVAPI(void) cvGetRawData( const CvArr* arr, uchar** data,
                          int* step CV_DEFAULT(NULL),
@@ -938,7 +938,7 @@ CVAPI(void) cvGetRawData( const CvArr* arr, uchar** data,
 
 The function returns number of rows (CvSize::height) and number of columns (CvSize::width) of the
 input matrix or image. In the case of image the size of ROI is returned.
-@param arr array header
+ arr array header
  */
 CVAPI(CvSize) cvGetSize( const CvArr* arr );
 
@@ -951,9 +951,9 @@ The function copies selected elements from an input array to an output array:
 If any of the passed arrays is of IplImage type, then its ROI and COI fields are used. Both arrays
 must have the same type, the same number of dimensions, and the same size. The function can also
 copy sparse arrays (mask is not supported in this case).
-@param src The source array
-@param dst The destination array
-@param mask Operation mask, 8-bit single channel array; specifies elements of the destination array
+ src The source array
+ dst The destination array
+ mask Operation mask, 8-bit single channel array; specifies elements of the destination array
 to be changed
  */
 CVAPI(void)  cvCopy( const CvArr* src, CvArr* dst,
@@ -964,9 +964,9 @@ CVAPI(void)  cvCopy( const CvArr* src, CvArr* dst,
 The function copies the scalar value to every selected element of the destination array:
 \f[\texttt{arr} (I)= \texttt{value} \quad \text{if} \quad \texttt{mask} (I)  \ne 0\f]
 If array arr is of IplImage type, then is ROI used, but COI must not be set.
-@param arr The destination array
-@param value Fill value
-@param mask Operation mask, 8-bit single channel array; specifies elements of the destination
+ arr The destination array
+ value Fill value
+ mask Operation mask, 8-bit single channel array; specifies elements of the destination
 array to be changed
  */
 CVAPI(void)  cvSet( CvArr* arr, CvScalar value,
@@ -977,7 +977,7 @@ CVAPI(void)  cvSet( CvArr* arr, CvScalar value,
 The function clears the array. In the case of dense arrays (CvMat, CvMatND or IplImage),
 cvZero(array) is equivalent to cvSet(array,cvScalarAll(0),0). In the case of sparse arrays all the
 elements are removed.
-@param arr Array to be cleared
+ arr Array to be cleared
  */
 CVAPI(void)  cvSetZero( CvArr* arr );
 #define cvZero  cvSetZero
@@ -1013,10 +1013,10 @@ All the channels of multi-channel arrays are processed independently.
 The type of conversion is done with rounding and saturation, that is if the result of scaling +
 conversion can not be represented exactly by a value of the destination array element type, it is
 set to the nearest representable value on the real axis.
-@param src Source array
-@param dst Destination array
-@param scale Scale factor
-@param shift Value added to the scaled source array elements
+ src Source array
+ dst Destination array
+ scale Scale factor
+ shift Value added to the scaled source array elements
  */
 CVAPI(void)  cvConvertScale( const CvArr* src, CvArr* dst,
                              double scale CV_DEFAULT(1),
@@ -1103,8 +1103,8 @@ The function calculates and returns the Euclidean dot product of two arrays.
 In the case of multiple channel arrays, the results for all channels are accumulated. In particular,
 cvDotProduct(a,a) where a is a complex vector, will return \f$||\texttt{a}||^2\f$. The function can
 process multi-dimensional arrays, row by row, layer by layer, and so on.
-@param src1 The first source array
-@param src2 The second source array
+ src1 The first source array
+ src2 The second source array
  */
 CVAPI(double)  cvDotProduct( const CvArr* src1, const CvArr* src2 );
 
@@ -1231,15 +1231,15 @@ CVAPI(int)  cvCheckArr( const CvArr* arr, int flags CV_DEFAULT(0),
 /** @brief Fills an array with random numbers and updates the RNG state.
 
 The function fills the destination array with uniformly or normally distributed random numbers.
-@param rng CvRNG state initialized by cvRNG
-@param arr The destination array
-@param dist_type Distribution type
+ rng CvRNG state initialized by cvRNG
+ arr The destination array
+ dist_type Distribution type
 > -   **CV_RAND_UNI** uniform distribution
 > -   **CV_RAND_NORMAL** normal or Gaussian distribution
-@param param1 The first parameter of the distribution. In the case of a uniform distribution it is
+ param1 The first parameter of the distribution. In the case of a uniform distribution it is
 the inclusive lower boundary of the random numbers range. In the case of a normal distribution it
 is the mean value of the random numbers.
-@param param2 The second parameter of the distribution. In the case of a uniform distribution it
+ param2 The second parameter of the distribution. In the case of a uniform distribution it
 is the exclusive upper boundary of the random numbers range. In the case of a normal distribution
 it is the standard deviation of the random numbers.
 @sa randu, randn, RNG::fill.
@@ -1276,9 +1276,9 @@ The function calculates the cross product of two 3D vectors:
 \f[\texttt{dst} =  \texttt{src1} \times \texttt{src2}\f]
 or:
 \f[\begin{array}{l} \texttt{dst} _1 =  \texttt{src1} _2  \texttt{src2} _3 -  \texttt{src1} _3  \texttt{src2} _2 \\ \texttt{dst} _2 =  \texttt{src1} _3  \texttt{src2} _1 -  \texttt{src1} _1  \texttt{src2} _3 \\ \texttt{dst} _3 =  \texttt{src1} _1  \texttt{src2} _2 -  \texttt{src1} _2  \texttt{src2} _1 \end{array}\f]
-@param src1 The first source vector
-@param src2 The second source vector
-@param dst The destination vector
+ src1 The first source vector
+ src2 The second source vector
+ dst The destination vector
  */
 CVAPI(void)  cvCrossProduct( const CvArr* src1, const CvArr* src2, CvArr* dst );
 
@@ -1953,11 +1953,11 @@ to IPL allocation functions. :
     CV_TURN_ON_IPL_COMPATIBILITY()
     ...
 @endcode
-@param create_header pointer to a function, creating IPL image header.
-@param allocate_data pointer to a function, allocating IPL image data.
-@param deallocate pointer to a function, deallocating IPL image.
-@param create_roi pointer to a function, creating IPL image ROI (i.e. Region of Interest).
-@param clone_image pointer to a function, cloning an IPL image.
+ create_header pointer to a function, creating IPL image header.
+ allocate_data pointer to a function, allocating IPL image data.
+ deallocate pointer to a function, deallocating IPL image.
+ create_roi pointer to a function, creating IPL image ROI (i.e. Region of Interest).
+ clone_image pointer to a function, cloning an IPL image.
  */
 CVAPI(void) cvSetIPLAllocators( Cv_iplCreateImageHeader create_header,
                                Cv_iplAllocateImageData allocate_data,
@@ -1986,15 +1986,15 @@ At the same time, it also supports adding parameters like "example.xml?base64".
 
 The function returns a pointer to the CvFileStorage structure.
 If the file cannot be opened then the function returns NULL.
-@param filename Name of the file associated with the storage
-@param memstorage Memory storage used for temporary data and for
+ filename Name of the file associated with the storage
+ memstorage Memory storage used for temporary data and for
 :   storing dynamic structures, such as CvSeq or CvGraph . If it is NULL, a temporary memory
     storage is created and used.
-@param flags Can be one of the following:
+ flags Can be one of the following:
 > -   **CV_STORAGE_READ** the storage is open for reading
 > -   **CV_STORAGE_WRITE** the storage is open for writing
       (use **CV_STORAGE_WRITE | CV_STORAGE_WRITE_BASE64** to write rawdata in Base64)
-@param encoding
+ encoding
  */
 CVAPI(CvFileStorage*)  cvOpenFileStorage( const char* filename, CvMemStorage* memstorage,
                                           int flags, const char* encoding CV_DEFAULT(NULL) );
@@ -2003,7 +2003,7 @@ CVAPI(CvFileStorage*)  cvOpenFileStorage( const char* filename, CvMemStorage* me
 
 The function closes the file associated with the storage and releases all the temporary structures.
 It must be called after all I/O operations with the storage are finished.
-@param fs Double pointer to the released file storage
+ fs Double pointer to the released file storage
  */
 CVAPI(void) cvReleaseFileStorage( CvFileStorage** fs );
 
@@ -2016,10 +2016,10 @@ The function starts writing a compound structure (collection) that can be a sequ
 all the structure fields, which can be scalars or structures, are written, cvEndWriteStruct should
 be called. The function can be used to group some objects or to implement the write function for a
 some user object (see CvTypeInfo).
-@param fs File storage
-@param name Name of the written structure. The structure can be accessed by this name when the
+ fs File storage
+ name Name of the written structure. The structure can be accessed by this name when the
 storage is read.
-@param struct_flags A combination one of the following values:
+ struct_flags A combination one of the following values:
 -   **CV_NODE_SEQ** the written structure is a sequence (see discussion of CvFileStorage ),
     that is, its elements do not have a name.
 -   **CV_NODE_MAP** the written structure is a map (see discussion of CvFileStorage ), that
@@ -2028,20 +2028,20 @@ One and only one of the two above flags must be specified
 -   **CV_NODE_FLOW** the optional flag that makes sense only for YAML streams. It means that
      the structure is written as a flow (not as a block), which is more compact. It is
      recommended to use this flag for structures or arrays whose elements are all scalars.
-@param type_name Optional parameter - the object type name. In
+ type_name Optional parameter - the object type name. In
     case of XML it is written as a type_id attribute of the structure opening tag. In the case of
     YAML it is written after a colon following the structure name (see the example in
     CvFileStorage description). In case of JSON it is written as a name/value pair.
     Mainly it is used with user objects. When the storage is read, the
     encoded type name is used to determine the object type (see CvTypeInfo and cvFindType ).
-@param attributes This parameter is not used in the current implementation
+ attributes This parameter is not used in the current implementation
  */
 CVAPI(void) cvStartWriteStruct( CvFileStorage* fs, const char* name,
                                 int struct_flags, const char* type_name CV_DEFAULT(NULL),
                                 CvAttrList attributes CV_DEFAULT(cvAttrList()));
 
 /** @brief Finishes writing to a file node collection.
-@param fs File storage
+ fs File storage
 @sa cvStartWriteStruct.
  */
 CVAPI(void) cvEndWriteStruct( CvFileStorage* fs );
@@ -2049,10 +2049,10 @@ CVAPI(void) cvEndWriteStruct( CvFileStorage* fs );
 /** @brief Writes an integer value.
 
 The function writes a single integer value (with or without a name) to the file storage.
-@param fs File storage
-@param name Name of the written value. Should be NULL if and only if the parent structure is a
+ fs File storage
+ name Name of the written value. Should be NULL if and only if the parent structure is a
 sequence.
-@param value The written value
+ value The written value
  */
 CVAPI(void) cvWriteInt( CvFileStorage* fs, const char* name, int value );
 
@@ -2076,21 +2076,21 @@ such as termination criteria, without registering a new type. :
         cvEndWriteStruct( fs );
     }
 @endcode
-@param fs File storage
-@param name Name of the written value. Should be NULL if and only if the parent structure is a
+ fs File storage
+ name Name of the written value. Should be NULL if and only if the parent structure is a
 sequence.
-@param value The written value
+ value The written value
 */
 CVAPI(void) cvWriteReal( CvFileStorage* fs, const char* name, double value );
 
 /** @brief Writes a text string.
 
 The function writes a text string to file storage.
-@param fs File storage
-@param name Name of the written string . Should be NULL if and only if the parent structure is a
+ fs File storage
+ name Name of the written string . Should be NULL if and only if the parent structure is a
 sequence.
-@param str The written text string
-@param quote If non-zero, the written string is put in quotes, regardless of whether they are
+ str The written text string
+ quote If non-zero, the written string is put in quotes, regardless of whether they are
 required. Otherwise, if the flag is zero, quotes are used only when they are required (e.g. when
 the string starts with a digit or contains spaces).
  */
@@ -2100,9 +2100,9 @@ CVAPI(void) cvWriteString( CvFileStorage* fs, const char* name,
 /** @brief Writes a comment.
 
 The function writes a comment into file storage. The comments are skipped when the storage is read.
-@param fs File storage
-@param comment The written comment, single-line or multi-line
-@param eol_comment If non-zero, the function tries to put the comment at the end of current line.
+ fs File storage
+ comment The written comment, single-line or multi-line
+ eol_comment If non-zero, the function tries to put the comment at the end of current line.
 If the flag is zero, if the comment is multi-line, or if it does not fit at the end of the current
 line, the comment starts a new line.
  */
@@ -2147,11 +2147,11 @@ Below is the code that creates the YAML file shown in the CvFileStorage descript
         return 0;
     }
 @endcode
-@param fs File storage
-@param name Name of the written object. Should be NULL if and only if the parent structure is a
+ fs File storage
+ name Name of the written object. Should be NULL if and only if the parent structure is a
 sequence.
-@param ptr Pointer to the object
-@param attributes The attributes of the object. They are specific for each particular type (see
+ ptr Pointer to the object
+ attributes The attributes of the object. They are specific for each particular type (see
 the discussion below).
  */
 CVAPI(void) cvWrite( CvFileStorage* fs, const char* name, const void* ptr,
@@ -2179,7 +2179,7 @@ The YAML file will look like this:
     # stream #2 data
 @endcode
 This is useful for concatenating files or for resuming the writing process.
-@param fs File storage
+ fs File storage
  */
 CVAPI(void) cvStartNextStream( CvFileStorage* fs );
 
@@ -2189,10 +2189,10 @@ The function writes an array, whose elements consist of single or multiple numbe
 call can be replaced with a loop containing a few cvWriteInt and cvWriteReal calls, but a single
 call is more efficient. Note that because none of the elements have a name, they should be written
 to a sequence rather than a map.
-@param fs File storage
-@param src Pointer to the written array
-@param len Number of the array elements to write
-@param dt Specification of each array element, see @ref format_spec "format specification"
+ fs File storage
+ src Pointer to the written array
+ len Number of the array elements to write
+ dt Specification of each array element, see @ref format_spec "format specification"
  */
 CVAPI(void) cvWriteRawData( CvFileStorage* fs, const void* src,
                                 int len, const char* dt );
@@ -2206,10 +2206,10 @@ in plain text.
 
 This function can only be used to write a sequence with a type "binary".
 
-@param fs File storage
-@param src Pointer to the written array
-@param len Number of the array elements to write
-@param dt Specification of each array element, see @ref format_spec "format specification"
+ fs File storage
+ src Pointer to the written array
+ len Number of the array elements to write
+ dt Specification of each array element, see @ref format_spec "format specification"
 */
 CVAPI(void) cvWriteRawDataBase64( CvFileStorage* fs, const void* src,
                                  int len, const char* dt );
@@ -2277,10 +2277,10 @@ Then, it is possible to get hashed "x" and "y" pointers to speed up decoding of 
 Please note that whatever method of accessing a map you are using, it is still much slower than
 using plain sequences; for example, in the above example, it is more efficient to encode the points
 as pairs of integers in a single numeric sequence.
-@param fs File storage
-@param name Literal node name
-@param len Length of the name (if it is known apriori), or -1 if it needs to be calculated
-@param create_missing Flag that specifies, whether an absent key should be added into the hash table
+ fs File storage
+ name Literal node name
+ len Length of the name (if it is known apriori), or -1 if it needs to be calculated
+ create_missing Flag that specifies, whether an absent key should be added into the hash table
 */
 CVAPI(CvStringHashNode*) cvGetHashedKey( CvFileStorage* fs, const char* name,
                                         int len CV_DEFAULT(-1),
@@ -2293,8 +2293,8 @@ correspond to the streams that are stored one after another in the file storage.
 of range, the function returns a NULL pointer, so all the top-level nodes can be iterated by
 subsequent calls to the function with stream_index=0,1,..., until the NULL pointer is returned.
 This function can be used as a base for recursive traversal of the file storage.
-@param fs File storage
-@param stream_index Zero-based index of the stream. See cvStartNextStream . In most cases,
+ fs File storage
+ stream_index Zero-based index of the stream. See cvStartNextStream . In most cases,
 there is only one stream in the file; however, there can be several.
  */
 CVAPI(CvFileNode*) cvGetRootFileNode( const CvFileStorage* fs,
@@ -2304,11 +2304,11 @@ CVAPI(CvFileNode*) cvGetRootFileNode( const CvFileStorage* fs,
 
 The function finds a file node. It is a faster version of cvGetFileNodeByName (see
 cvGetHashedKey discussion). Also, the function can insert a new node, if it is not in the map yet.
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches a top-level node. If both map and
+ fs File storage
+ map The parent map. If it is NULL, the function searches a top-level node. If both map and
 key are NULLs, the function returns the root file node - a map that contains top-level nodes.
-@param key Unique pointer to the node name, retrieved with cvGetHashedKey
-@param create_missing Flag that specifies whether an absent node should be added to the map
+ key Unique pointer to the node name, retrieved with cvGetHashedKey
+ create_missing Flag that specifies whether an absent node should be added to the map
  */
 CVAPI(CvFileNode*) cvGetFileNode( CvFileStorage* fs, CvFileNode* map,
                                  const CvStringHashNode* key,
@@ -2321,10 +2321,10 @@ NULL, among the top-level file storage nodes. Using this function for maps and c
 sequence reader) for sequences, it is possible to navigate through the file storage. To speed up
 multiple queries for a certain key (e.g., in the case of an array of structures) one may use a
 combination of cvGetHashedKey and cvGetFileNode.
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches in all the top-level nodes
+ fs File storage
+ map The parent map. If it is NULL, the function searches in all the top-level nodes
 (streams), starting with the first one.
-@param name The file node name
+ name The file node name
  */
 CVAPI(CvFileNode*) cvGetFileNodeByName( const CvFileStorage* fs,
                                        const CvFileNode* map,
@@ -2337,8 +2337,8 @@ default_value is returned (thus, it is convenient to call the function right aft
 without checking for a NULL pointer). If the file node has type CV_NODE_INT, then node-\>data.i is
 returned. If the file node has type CV_NODE_REAL, then node-\>data.f is converted to an integer
 and returned. Otherwise the error is reported.
-@param node File node
-@param default_value The value that is returned if node is NULL
+ node File node
+ default_value The value that is returned if node is NULL
  */
 CV_INLINE int cvReadInt( const CvFileNode* node, int default_value CV_DEFAULT(0) )
 {
@@ -2350,10 +2350,10 @@ CV_INLINE int cvReadInt( const CvFileNode* node, int default_value CV_DEFAULT(0)
 /** @brief Finds a file node and returns its value.
 
 The function is a simple superposition of cvGetFileNodeByName and cvReadInt.
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches a top-level node.
-@param name The node name
-@param default_value The value that is returned if the file node is not found
+ fs File storage
+ map The parent map. If it is NULL, the function searches a top-level node.
+ name The node name
+ default_value The value that is returned if the file node is not found
  */
 CV_INLINE int cvReadIntByName( const CvFileStorage* fs, const CvFileNode* map,
                          const char* name, int default_value CV_DEFAULT(0) )
@@ -2368,8 +2368,8 @@ is NULL, the default_value is returned (thus, it is convenient to call the funct
 cvGetFileNode without checking for a NULL pointer). If the file node has type CV_NODE_REAL ,
 then node-\>data.f is returned. If the file node has type CV_NODE_INT , then node-:math:\>data.f
 is converted to floating-point and returned. Otherwise the result is not determined.
-@param node File node
-@param default_value The value that is returned if node is NULL
+ node File node
+ default_value The value that is returned if node is NULL
  */
 CV_INLINE double cvReadReal( const CvFileNode* node, double default_value CV_DEFAULT(0.) )
 {
@@ -2381,10 +2381,10 @@ CV_INLINE double cvReadReal( const CvFileNode* node, double default_value CV_DEF
 /** @brief Finds a file node and returns its value.
 
 The function is a simple superposition of cvGetFileNodeByName and cvReadReal .
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches a top-level node.
-@param name The node name
-@param default_value The value that is returned if the file node is not found
+ fs File storage
+ map The parent map. If it is NULL, the function searches a top-level node.
+ name The node name
+ default_value The value that is returned if the file node is not found
  */
 CV_INLINE double cvReadRealByName( const CvFileStorage* fs, const CvFileNode* map,
                         const char* name, double default_value CV_DEFAULT(0.) )
@@ -2398,8 +2398,8 @@ The function returns a text string that is represented by the file node. If the 
 the default_value is returned (thus, it is convenient to call the function right after
 cvGetFileNode without checking for a NULL pointer). If the file node has type CV_NODE_STR , then
 node-:math:\>data.str.ptr is returned. Otherwise the result is not determined.
-@param node File node
-@param default_value The value that is returned if node is NULL
+ node File node
+ default_value The value that is returned if node is NULL
  */
 CV_INLINE const char* cvReadString( const CvFileNode* node,
                         const char* default_value CV_DEFAULT(NULL) )
@@ -2410,10 +2410,10 @@ CV_INLINE const char* cvReadString( const CvFileNode* node,
 /** @brief Finds a file node by its name and returns its value.
 
 The function is a simple superposition of cvGetFileNodeByName and cvReadString .
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches a top-level node.
-@param name The node name
-@param default_value The value that is returned if the file node is not found
+ fs File storage
+ map The parent map. If it is NULL, the function searches a top-level node.
+ name The node name
+ default_value The value that is returned if the file node is not found
  */
 CV_INLINE const char* cvReadStringByName( const CvFileStorage* fs, const CvFileNode* map,
                         const char* name, const char* default_value CV_DEFAULT(NULL) )
@@ -2432,9 +2432,9 @@ memory storage and passed to cvOpenFileStorage or, if a NULL pointer was passed,
 memory storage, which is released when cvReleaseFileStorage is called. Otherwise, if the object is
 not a dynamic structure, it is created in a heap and should be released with a specialized function
 or by using the generic cvRelease.
-@param fs File storage
-@param node The root object node
-@param attributes Unused parameter
+ fs File storage
+ node The root object node
+ attributes Unused parameter
  */
 CVAPI(void*) cvRead( CvFileStorage* fs, CvFileNode* node,
                         CvAttrList* attributes CV_DEFAULT(NULL));
@@ -2442,10 +2442,10 @@ CVAPI(void*) cvRead( CvFileStorage* fs, CvFileNode* node,
 /** @brief Finds an object by name and decodes it.
 
 The function is a simple superposition of cvGetFileNodeByName and cvRead.
-@param fs File storage
-@param map The parent map. If it is NULL, the function searches a top-level node.
-@param name The node name
-@param attributes Unused parameter
+ fs File storage
+ map The parent map. If it is NULL, the function searches a top-level node.
+ name The node name
+ attributes Unused parameter
  */
 CV_INLINE void* cvReadByName( CvFileStorage* fs, const CvFileNode* map,
                               const char* name, CvAttrList* attributes CV_DEFAULT(NULL) )
@@ -2458,9 +2458,9 @@ CV_INLINE void* cvReadByName( CvFileStorage* fs, const CvFileNode* map,
 
 The function initializes the sequence reader to read data from a file node. The initialized reader
 can be then passed to cvReadRawDataSlice.
-@param fs File storage
-@param src The file node (a sequence) to read numbers from
-@param reader Pointer to the sequence reader
+ fs File storage
+ src The file node (a sequence) to read numbers from
+ reader Pointer to the sequence reader
  */
 CVAPI(void) cvStartReadRawData( const CvFileStorage* fs, const CvFileNode* src,
                                CvSeqReader* reader );
@@ -2472,11 +2472,11 @@ user-specified array. The total number of read sequence elements is a product of
 number of components in each array element. For example, if dt=2if, the function will read total\*3
 sequence elements. As with any sequence, some parts of the file node sequence can be skipped or read
 repeatedly by repositioning the reader using cvSetSeqReaderPos.
-@param fs File storage
-@param reader The sequence reader. Initialize it with cvStartReadRawData .
-@param count The number of elements to read
-@param dst Pointer to the destination array
-@param dt Specification of each array element. It has the same format as in cvWriteRawData .
+ fs File storage
+ reader The sequence reader. Initialize it with cvStartReadRawData .
+ count The number of elements to read
+ dst Pointer to the destination array
+ dt Specification of each array element. It has the same format as in cvWriteRawData .
  */
 CVAPI(void) cvReadRawDataSlice( const CvFileStorage* fs, CvSeqReader* reader,
                                int count, void* dst, const char* dt );
@@ -2484,10 +2484,10 @@ CVAPI(void) cvReadRawDataSlice( const CvFileStorage* fs, CvSeqReader* reader,
 /** @brief Reads multiple numbers.
 
 The function reads elements from a file node that represents a sequence of scalars.
-@param fs File storage
-@param src The file node (a sequence) to read numbers from
-@param dst Pointer to the destination array
-@param dt Specification of each array element. It has the same format as in cvWriteRawData .
+ fs File storage
+ src The file node (a sequence) to read numbers from
+ dst Pointer to the destination array
+ dt Specification of each array element. It has the same format as in cvWriteRawData .
  */
 CVAPI(void) cvReadRawData( const CvFileStorage* fs, const CvFileNode* src,
                           void* dst, const char* dt );
@@ -2496,11 +2496,11 @@ CVAPI(void) cvReadRawData( const CvFileStorage* fs, const CvFileNode* src,
 
 The function writes a copy of a file node to file storage. Possible applications of the function are
 merging several file storages into one and conversion between XML, YAML and JSON formats.
-@param fs Destination file storage
-@param new_node_name New name of the file node in the destination file storage. To keep the
+ fs Destination file storage
+ new_node_name New name of the file node in the destination file storage. To keep the
 existing name, use cvcvGetFileNodeName
-@param node The written node
-@param embed If the written node is a collection and this parameter is not zero, no extra level of
+ node The written node
+ embed If the written node is a collection and this parameter is not zero, no extra level of
 hierarchy is created. Instead, all the elements of node are written into the currently written
 structure. Of course, map elements can only be embedded into another map, and sequence elements
 can only be embedded into another sequence.
@@ -2512,7 +2512,7 @@ CVAPI(void) cvWriteFileNode( CvFileStorage* fs, const char* new_node_name,
 
 The function returns the name of a file node or NULL, if the file node does not have a name or if
 node is NULL.
-@param node File node
+ node File node
  */
 CVAPI(const char*) cvGetFileNodeName( const CvFileNode* node );
 
@@ -2522,7 +2522,7 @@ CVAPI(const char*) cvGetFileNodeName( const CvFileNode* node );
 
 The function registers a new type, which is described by info . The function creates a copy of the
 structure, so the user should delete it after calling the function.
-@param info Type info structure
+ info Type info structure
  */
 CVAPI(void) cvRegisterType( const CvTypeInfo* info );
 
@@ -2531,7 +2531,7 @@ CVAPI(void) cvRegisterType( const CvTypeInfo* info );
 The function unregisters a type with a specified name. If the name is unknown, it is possible to
 locate the type info by an instance of the type using cvTypeOf or by iterating the type list,
 starting from cvFirstType, and then calling cvUnregisterType(info-\>typeName).
-@param type_name Name of an unregistered type
+ type_name Name of an unregistered type
  */
 CVAPI(void) cvUnregisterType( const char* type_name );
 
@@ -2546,7 +2546,7 @@ CVAPI(CvTypeInfo*) cvFirstType(void);
 
 The function finds a registered type by its name. It returns NULL if there is no type with the
 specified name.
-@param type_name Type name
+ type_name Type name
  */
 CVAPI(CvTypeInfo*) cvFindType( const char* type_name );
 
@@ -2556,7 +2556,7 @@ The function finds the type of a given object. It iterates through the list of r
 calls the is_instance function/method for every type info structure with that object until one of
 them returns non-zero or until the whole list has been traversed. In the latter case, the function
 returns NULL.
-@param struct_ptr The object pointer
+ struct_ptr The object pointer
  */
 CVAPI(CvTypeInfo*) cvTypeOf( const void* struct_ptr );
 
@@ -2565,7 +2565,7 @@ CVAPI(CvTypeInfo*) cvTypeOf( const void* struct_ptr );
 /** @brief Releases an object.
 
  The function finds the type of a given object and calls release with the double pointer.
- @param struct_ptr Double pointer to the object
+  struct_ptr Double pointer to the object
  */
 CVAPI(void) cvRelease( void** struct_ptr );
 
@@ -2574,7 +2574,7 @@ CVAPI(void) cvRelease( void** struct_ptr );
 The function finds the type of a given object and calls clone with the passed object. Of course, if
 you know the object type, for example, struct_ptr is CvMat\*, it is faster to call the specific
 function, like cvCloneMat.
-@param struct_ptr The object to clone
+ struct_ptr The object to clone
  */
 CVAPI(void*) cvClone( const void* struct_ptr );
 

@@ -38,8 +38,8 @@ class GenericGF;
 /**
  * @brief ReedSolomonDecode fixes errors in a message containing both data and parity codewords.
  *
- * @param message data and error-correction/parity codewords
- * @param numECCodeWords number of error-correction code words
+ *  message data and error-correction/parity codewords
+ *  numECCodeWords number of error-correction code words
  * @return true iff message errors could successfully be fixed (or there have not been any)
  */
 bool ReedSolomonDecode(const GenericGF& field, std::vector<int>& message, int numECCodeWords);

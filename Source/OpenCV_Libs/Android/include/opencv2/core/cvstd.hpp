@@ -91,7 +91,7 @@ namespace cv {
 
 The function allocates the buffer of the specified size and returns it. When the buffer size is 16
 bytes or more, the returned buffer is aligned to 16 bytes.
-@param bufSize Allocated buffer size.
+ bufSize Allocated buffer size.
  */
 CV_EXPORTS void* fastMalloc(size_t bufSize);
 
@@ -100,7 +100,7 @@ CV_EXPORTS void* fastMalloc(size_t bufSize);
 The function deallocates the buffer allocated with fastMalloc . If NULL pointer is passed, the
 function does nothing. C version of the function clears the pointer *pptr* to avoid problems with
 double memory deallocation.
-@param ptr Pointer to the allocated buffer.
+ ptr Pointer to the allocated buffer.
  */
 CV_EXPORTS void fastFree(void* ptr);
 

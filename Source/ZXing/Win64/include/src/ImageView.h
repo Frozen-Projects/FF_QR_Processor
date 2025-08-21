@@ -61,12 +61,12 @@ public:
 	/**
 	 * ImageView constructor
 	 *
-	 * @param data  pointer to image buffer
-	 * @param width  image width in pixels
-	 * @param height  image height in pixels
-	 * @param format  image/pixel format
-	 * @param rowStride  optional row stride in bytes, default is width * pixStride
-	 * @param pixStride  optional pixel stride in bytes, default is calculated from format
+	 *  data  pointer to image buffer
+	 *  width  image width in pixels
+	 *  height  image height in pixels
+	 *  format  image/pixel format
+	 *  rowStride  optional row stride in bytes, default is width * pixStride
+	 *  pixStride  optional pixel stride in bytes, default is calculated from format
 	 */
 	ImageView(const uint8_t* data, int width, int height, ImageFormat format, int rowStride = 0, int pixStride = 0)
 		: _data(data),

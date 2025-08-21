@@ -193,7 +193,7 @@
 
 /** @brief Rounds floating-point number to the nearest integer
 
- @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+  value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
  result is not defined.
  */
 CV_INLINE int
@@ -225,7 +225,7 @@ cvRound( double value )
 
  The function computes an integer i such that:
  \f[i \le \texttt{value} < i+1\f]
- @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+  value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
  result is not defined.
  */
 CV_INLINE int cvFloor( double value )
@@ -252,7 +252,7 @@ CV_INLINE int cvFloor( double value )
 
  The function computes an integer i such that:
  \f[i \le \texttt{value} < i+1\f]
- @param value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
+  value floating-point number. If the value is outside of INT_MIN ... INT_MAX range, the
  result is not defined.
  */
 CV_INLINE int cvCeil( double value )
@@ -277,7 +277,7 @@ CV_INLINE int cvCeil( double value )
 
 /** @brief Determines if the argument is Not A Number.
 
- @param value The input floating-point value
+  value The input floating-point value
 
  The function returns 1 if the argument is Not A Number (as defined by IEEE754 standard), 0
  otherwise. */
@@ -295,7 +295,7 @@ CV_INLINE int cvIsNaN( double value )
 
 /** @brief Determines if the argument is Infinity.
 
- @param value The input floating-point value
+  value The input floating-point value
 
  The function returns 1 if the argument is a plus or minus infinity (as defined by IEEE754 standard)
  and 0 otherwise. */

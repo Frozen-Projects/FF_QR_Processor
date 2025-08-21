@@ -38,25 +38,25 @@ public:
 	/**
 	* Sets max/min row/col values
 	*
-	* @param maxCols maximum allowed columns
-	* @param minCols minimum allowed columns
-	* @param maxRows maximum allowed rows
-	* @param minRows minimum allowed rows
+	*  maxCols maximum allowed columns
+	*  minCols minimum allowed columns
+	*  maxRows maximum allowed rows
+	*  minRows minimum allowed rows
 	*/
 	Writer& setDimensions(int minCols, int maxCols, int minRows, int maxRows);
 
 	/**
-	* @param compaction compaction mode to use
+	*  compaction compaction mode to use
 	*/
 	Writer& setCompaction(Compaction compaction);
 
 	/**
-	* @param compact if true, enables compaction
+	*  compact if true, enables compaction
 	*/
 	Writer& setCompact(bool compact);
 
 	/**
-	* @param encoding sets character encoding to use
+	*  encoding sets character encoding to use
 	*/
 	Writer& setEncoding(CharacterSet encoding);
 

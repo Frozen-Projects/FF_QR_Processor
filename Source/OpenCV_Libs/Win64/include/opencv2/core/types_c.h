@@ -234,7 +234,7 @@ typedef uint64 CvRNG;
 The function initializes a random number generator and returns the state. The pointer to the state
 can be then passed to the cvRandInt, cvRandReal and cvRandArr functions. In the current
 implementation a multiply-with-carry generator is used.
-@param seed 64-bit value used to initiate a random sequence
+ seed 64-bit value used to initiate a random sequence
 @sa the C++ class RNG replaced CvRNG.
  */
 CV_INLINE CvRNG cvRNG( int64 seed CV_DEFAULT(-1))
@@ -248,7 +248,7 @@ CV_INLINE CvRNG cvRNG( int64 seed CV_DEFAULT(-1))
 The function returns a uniformly-distributed random 32-bit unsigned integer and updates the RNG
 state. It is similar to the rand() function from the C runtime library, except that OpenCV functions
 always generates a 32-bit random number, regardless of the platform.
-@param rng CvRNG state initialized by cvRNG.
+ rng CvRNG state initialized by cvRNG.
  */
 CV_INLINE unsigned cvRandInt( CvRNG* rng )
 {
@@ -262,7 +262,7 @@ CV_INLINE unsigned cvRandInt( CvRNG* rng )
 
 The function returns a uniformly-distributed random floating-point number between 0 and 1 (1 is not
 included).
-@param rng RNG state initialized by cvRNG
+ rng RNG state initialized by cvRNG
  */
 CV_INLINE double cvRandReal( CvRNG* rng )
 {
@@ -612,9 +612,9 @@ CV_INLINE CvMat cvMat(const CvMat& m)
 The function is a fast replacement for cvGetReal2D in the case of single-channel floating-point
 matrices. It is faster because it is inline, it does fewer checks for array type and array element
 type, and it checks for the row and column ranges only in debug mode.
-@param mat Input matrix
-@param row The zero-based index of row
-@param col The zero-based index of column
+ mat Input matrix
+ row The zero-based index of row
+ col The zero-based index of column
  */
 CV_INLINE  double  cvmGet( const CvMat* mat, int row, int col )
 {
@@ -638,10 +638,10 @@ CV_INLINE  double  cvmGet( const CvMat* mat, int row, int col )
 The function is a fast replacement for cvSetReal2D in the case of single-channel floating-point
 matrices. It is faster because it is inline, it does fewer checks for array type and array element
 type, and it checks for the row and column ranges only in debug mode.
-@param mat The matrix
-@param row The zero-based index of row
-@param col The zero-based index of column
-@param value The new value of the matrix element
+ mat The matrix
+ row The zero-based index of row
+ col The zero-based index of column
+ value The new value of the matrix element
  */
 CV_INLINE  void  cvmSet( CvMat* mat, int row, int col, double value )
 {

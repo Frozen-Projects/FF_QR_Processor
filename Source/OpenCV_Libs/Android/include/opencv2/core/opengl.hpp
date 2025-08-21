@@ -104,61 +104,61 @@ public:
     Buffer();
 
     /** @overload
-    @param arows Number of rows in a 2D array.
-    @param acols Number of columns in a 2D array.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param abufId Buffer object name.
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arows Number of rows in a 2D array.
+     acols Number of columns in a 2D array.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     abufId Buffer object name.
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Buffer(int arows, int acols, int atype, unsigned int abufId, bool autoRelease = false);
 
     /** @overload
-    @param asize 2D array size.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param abufId Buffer object name.
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     asize 2D array size.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     abufId Buffer object name.
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Buffer(Size asize, int atype, unsigned int abufId, bool autoRelease = false);
 
     /** @overload
-    @param arows Number of rows in a 2D array.
-    @param acols Number of columns in a 2D array.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arows Number of rows in a 2D array.
+     acols Number of columns in a 2D array.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Buffer(int arows, int acols, int atype, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
     /** @overload
-    @param asize 2D array size.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     asize 2D array size.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Buffer(Size asize, int atype, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
     /** @overload
-    @param arr Input array (host or device memory, it can be Mat , cuda::GpuMat or std::vector ).
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arr Input array (host or device memory, it can be Mat , cuda::GpuMat or std::vector ).
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     explicit Buffer(InputArray arr, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
     /** @brief Allocates memory for ogl::Buffer object.
 
-    @param arows Number of rows in a 2D array.
-    @param acols Number of columns in a 2D array.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arows Number of rows in a 2D array.
+     acols Number of columns in a 2D array.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
      */
     void create(int arows, int acols, int atype, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
     /** @overload
-    @param asize 2D array size.
-    @param atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     asize 2D array size.
+     atype Array type ( CV_8UC1, ..., CV_64FC4 ). See Mat for details.
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     void create(Size asize, int atype, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
@@ -175,14 +175,14 @@ public:
     is called after destruction of the context it will cause an error. Thus ogl::Buffer doesn't destroy
     OpenGL object in destructor by default (all OpenGL resources will be released with OpenGL context).
     This function can force ogl::Buffer destructor to destroy OpenGL object.
-    @param flag Auto release mode (if true, release will be called in object's destructor).
+     flag Auto release mode (if true, release will be called in object's destructor).
      */
     void setAutoRelease(bool flag);
 
     /** @brief Copies from host/device memory to OpenGL buffer.
-    @param arr Input array (host or device memory, it can be Mat , cuda::GpuMat or std::vector ).
-    @param target Buffer usage. See cv::ogl::Buffer::Target .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arr Input array (host or device memory, it can be Mat , cuda::GpuMat or std::vector ).
+     target Buffer usage. See cv::ogl::Buffer::Target .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
      */
     void copyFrom(InputArray arr, Target target = ARRAY_BUFFER, bool autoRelease = false);
 
@@ -191,7 +191,7 @@ public:
 
     /** @brief Copies from OpenGL buffer to host/device memory or another OpenGL buffer object.
 
-    @param arr Destination array (host or device memory, can be Mat , cuda::GpuMat , std::vector or
+     arr Destination array (host or device memory, can be Mat , cuda::GpuMat , std::vector or
     ogl::Buffer ).
      */
     void copyTo(OutputArray arr) const;
@@ -201,20 +201,20 @@ public:
 
     /** @brief Creates a full copy of the buffer object and the underlying data.
 
-    @param target Buffer usage for destination buffer.
-    @param autoRelease Auto release mode for destination buffer.
+     target Buffer usage for destination buffer.
+     autoRelease Auto release mode for destination buffer.
      */
     Buffer clone(Target target = ARRAY_BUFFER, bool autoRelease = false) const;
 
     /** @brief Binds OpenGL buffer to the specified buffer binding point.
 
-    @param target Binding point. See cv::ogl::Buffer::Target .
+     target Binding point. See cv::ogl::Buffer::Target .
      */
     void bind(Target target) const;
 
     /** @brief Unbind any buffers from the specified binding point.
 
-    @param target Binding point. See cv::ogl::Buffer::Target .
+     target Binding point. See cv::ogl::Buffer::Target .
      */
     static void unbind(Target target);
 
@@ -229,7 +229,7 @@ public:
     This operation can lead to memory transfers between host and device.
 
     Only one buffer object can be mapped at a time.
-    @param access Access policy, indicating whether it will be possible to read from, write to, or both
+     access Access policy, indicating whether it will be possible to read from, write to, or both
     read from and write to the buffer object's mapped data store. The symbolic constant must be
     ogl::Buffer::READ_ONLY , ogl::Buffer::WRITE_ONLY or ogl::Buffer::READ_WRITE .
      */
@@ -307,38 +307,38 @@ public:
     Texture2D(Size asize, Format aformat, unsigned int atexId, bool autoRelease = false);
 
     /** @overload
-    @param arows Number of rows.
-    @param acols Number of columns.
-    @param aformat Image format. See cv::ogl::Texture2D::Format .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arows Number of rows.
+     acols Number of columns.
+     aformat Image format. See cv::ogl::Texture2D::Format .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Texture2D(int arows, int acols, Format aformat, bool autoRelease = false);
 
     /** @overload
-    @param asize 2D array size.
-    @param aformat Image format. See cv::ogl::Texture2D::Format .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     asize 2D array size.
+     aformat Image format. See cv::ogl::Texture2D::Format .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     Texture2D(Size asize, Format aformat, bool autoRelease = false);
 
     /** @overload
-    @param arr Input array (host or device memory, it can be Mat , cuda::GpuMat or ogl::Buffer ).
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arr Input array (host or device memory, it can be Mat , cuda::GpuMat or ogl::Buffer ).
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     explicit Texture2D(InputArray arr, bool autoRelease = false);
 
     /** @brief Allocates memory for ogl::Texture2D object.
 
-    @param arows Number of rows.
-    @param acols Number of columns.
-    @param aformat Image format. See cv::ogl::Texture2D::Format .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arows Number of rows.
+     acols Number of columns.
+     aformat Image format. See cv::ogl::Texture2D::Format .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
      */
     void create(int arows, int acols, Format aformat, bool autoRelease = false);
     /** @overload
-    @param asize 2D array size.
-    @param aformat Image format. See cv::ogl::Texture2D::Format .
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     asize 2D array size.
+     aformat Image format. See cv::ogl::Texture2D::Format .
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
     */
     void create(Size asize, Format aformat, bool autoRelease = false);
 
@@ -350,7 +350,7 @@ public:
 
     /** @brief Sets auto release mode.
 
-    @param flag Auto release mode (if true, release will be called in object's destructor).
+     flag Auto release mode (if true, release will be called in object's destructor).
 
     The lifetime of the OpenGL object is tied to the lifetime of the context. If OpenGL context was
     bound to a window it could be released at any time (user can close a window). If object's destructor
@@ -362,17 +362,17 @@ public:
 
     /** @brief Copies from host/device memory to OpenGL texture.
 
-    @param arr Input array (host or device memory, it can be Mat , cuda::GpuMat or ogl::Buffer ).
-    @param autoRelease Auto release mode (if true, release will be called in object's destructor).
+     arr Input array (host or device memory, it can be Mat , cuda::GpuMat or ogl::Buffer ).
+     autoRelease Auto release mode (if true, release will be called in object's destructor).
      */
     void copyFrom(InputArray arr, bool autoRelease = false);
 
     /** @brief Copies from OpenGL texture to host/device memory or another OpenGL texture object.
 
-    @param arr Destination array (host or device memory, can be Mat , cuda::GpuMat , ogl::Buffer or
+     arr Destination array (host or device memory, can be Mat , cuda::GpuMat , ogl::Buffer or
     ogl::Texture2D ).
-    @param ddepth Destination depth.
-    @param autoRelease Auto release mode for destination buffer (if arr is OpenGL buffer or texture).
+     ddepth Destination depth.
+     autoRelease Auto release mode for destination buffer (if arr is OpenGL buffer or texture).
      */
     void copyTo(OutputArray arr, int ddepth = CV_32F, bool autoRelease = false) const;
 
@@ -411,7 +411,7 @@ public:
     Arrays();
 
     /** @brief Sets an array of vertex coordinates.
-    @param vertex array with vertex coordinates, can be both host and device memory.
+     vertex array with vertex coordinates, can be both host and device memory.
     */
     void setVertexArray(InputArray vertex);
 
@@ -420,7 +420,7 @@ public:
     void resetVertexArray();
 
     /** @brief Sets an array of vertex colors.
-    @param color array with vertex colors, can be both host and device memory.
+     color array with vertex colors, can be both host and device memory.
      */
     void setColorArray(InputArray color);
 
@@ -429,7 +429,7 @@ public:
     void resetColorArray();
 
     /** @brief Sets an array of vertex normals.
-    @param normal array with vertex normals, can be both host and device memory.
+     normal array with vertex normals, can be both host and device memory.
      */
     void setNormalArray(InputArray normal);
 
@@ -438,7 +438,7 @@ public:
     void resetNormalArray();
 
     /** @brief Sets an array of vertex texture coordinates.
-    @param texCoord array with vertex texture coordinates, can be both host and device memory.
+     texCoord array with vertex texture coordinates, can be both host and device memory.
      */
     void setTexCoordArray(InputArray texCoord);
 
@@ -451,7 +451,7 @@ public:
     void release();
 
     /** @brief Sets auto release mode all inner buffers.
-    @param flag Auto release mode.
+     flag Auto release mode.
      */
     void setAutoRelease(bool flag);
 
@@ -489,26 +489,26 @@ enum RenderModes {
 };
 
 /** @brief Render OpenGL texture or primitives.
-@param tex Texture to draw.
-@param wndRect Region of window, where to draw a texture (normalized coordinates).
-@param texRect Region of texture to draw (normalized coordinates).
+ tex Texture to draw.
+ wndRect Region of window, where to draw a texture (normalized coordinates).
+ texRect Region of texture to draw (normalized coordinates).
  */
 CV_EXPORTS void render(const Texture2D& tex,
     Rect_<double> wndRect = Rect_<double>(0.0, 0.0, 1.0, 1.0),
     Rect_<double> texRect = Rect_<double>(0.0, 0.0, 1.0, 1.0));
 
 /** @overload
-@param arr Array of privitives vertices.
-@param mode Render mode. One of cv::ogl::RenderModes
-@param color Color for all vertices. Will be used if arr doesn't contain color array.
+ arr Array of privitives vertices.
+ mode Render mode. One of cv::ogl::RenderModes
+ color Color for all vertices. Will be used if arr doesn't contain color array.
 */
 CV_EXPORTS void render(const Arrays& arr, int mode = POINTS, Scalar color = Scalar::all(255));
 
 /** @overload
-@param arr Array of privitives vertices.
-@param indices Array of vertices indices (host or device memory).
-@param mode Render mode. One of cv::ogl::RenderModes
-@param color Color for all vertices. Will be used if arr doesn't contain color array.
+ arr Array of privitives vertices.
+ indices Array of vertices indices (host or device memory).
+ mode Render mode. One of cv::ogl::RenderModes
+ color Color for all vertices. Will be used if arr doesn't contain color array.
 */
 CV_EXPORTS void render(const Arrays& arr, InputArray indices, int mode = POINTS, Scalar color = Scalar::all(255));
 
@@ -526,14 +526,14 @@ CV_EXPORTS Context& initializeContextFromGL();
 } // namespace cv::ogl::ocl
 
 /** @brief Converts InputArray to Texture2D object.
-@param src     - source InputArray.
-@param texture - destination Texture2D object.
+ src     - source InputArray.
+ texture - destination Texture2D object.
  */
 CV_EXPORTS void convertToGLTexture2D(InputArray src, Texture2D& texture);
 
 /** @brief Converts Texture2D object to OutputArray.
-@param texture - source Texture2D object.
-@param dst     - destination OutputArray.
+ texture - source Texture2D object.
+ dst     - destination OutputArray.
  */
 CV_EXPORTS void convertFromGLTexture2D(const Texture2D& texture, OutputArray dst);
 
@@ -544,8 +544,8 @@ to process buffer data with OpenCV functions. Note that in current implementatio
 UMat constructed this way doesn't own corresponding GL buffer object, so it is
 the user responsibility to close down CL/GL buffers relationships by explicitly
 calling unmapGLBuffer() function.
-@param buffer      - source Buffer object.
-@param accessFlags - data access flags (ACCESS_READ|ACCESS_WRITE).
+ buffer      - source Buffer object.
+ accessFlags - data access flags (ACCESS_READ|ACCESS_WRITE).
 @return Returns UMat object
  */
 CV_EXPORTS UMat mapGLBuffer(const Buffer& buffer, AccessFlag accessFlags = ACCESS_READ | ACCESS_WRITE);
@@ -554,7 +554,7 @@ CV_EXPORTS UMat mapGLBuffer(const Buffer& buffer, AccessFlag accessFlags = ACCES
 
 Function must be called explicitly by the user for each UMat previously constructed
 by the call to mapGLBuffer() function.
-@param u           - source UMat, created by mapGLBuffer().
+ u           - source UMat, created by mapGLBuffer().
  */
 CV_EXPORTS void unmapGLBuffer(UMat& u);
 
@@ -566,7 +566,7 @@ namespace cv { namespace cuda {
 /** @brief Sets a CUDA device and initializes it for the current thread with OpenGL interoperability.
 
 This function should be explicitly called after OpenGL context creation and before any CUDA calls.
-@param device System index of a CUDA device starting with 0.
+ device System index of a CUDA device starting with 0.
 @ingroup core_opengl
  */
 CV_EXPORTS void setGlDevice(int device = 0);

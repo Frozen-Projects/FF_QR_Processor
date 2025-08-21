@@ -69,9 +69,9 @@ public:
 
     /** @brief Estimates camera parameters.
 
-    @param features Features of images
-    @param pairwise_matches Pairwise matches of images
-    @param cameras Estimated camera parameters
+     features Features of images
+     pairwise_matches Pairwise matches of images
+     cameras Estimated camera parameters
     @return True in case of success, false otherwise
      */
     CV_WRAP_AS(apply) bool operator ()(const std::vector<ImageFeatures> &features,
@@ -85,9 +85,9 @@ protected:
     /** @brief This method must implement camera parameters estimation logic in order to make the wrapper
     detail::Estimator::operator()_ work.
 
-    @param features Features of images
-    @param pairwise_matches Pairwise matches of images
-    @param cameras Estimated camera parameters
+     features Features of images
+     pairwise_matches Pairwise matches of images
+     cameras Estimated camera parameters
     @return True in case of success, false otherwise
      */
     virtual bool estimate(const std::vector<ImageFeatures> &features,
@@ -149,8 +149,8 @@ public:
 protected:
     /** @brief Construct a bundle adjuster base instance.
 
-    @param num_params_per_cam Number of parameters per camera
-    @param num_errs_per_measurement Number of error terms (components) per match
+     num_params_per_cam Number of parameters per camera
+     num_errs_per_measurement Number of error terms (components) per match
      */
     BundleAdjusterBase(int num_params_per_cam, int num_errs_per_measurement)
         : num_images_(0), total_num_matches_(0),
@@ -170,22 +170,22 @@ protected:
 
     /** @brief Sets initial camera parameter to refine.
 
-    @param cameras Camera parameters
+     cameras Camera parameters
      */
     virtual void setUpInitialCameraParams(const std::vector<CameraParams> &cameras) = 0;
     /** @brief Gets the refined camera parameters.
 
-    @param cameras Refined camera parameters
+     cameras Refined camera parameters
      */
     virtual void obtainRefinedCameraParams(std::vector<CameraParams> &cameras) const = 0;
     /** @brief Calculates error vector.
 
-    @param err Error column-vector of length total_num_matches \* num_errs_per_measurement
+     err Error column-vector of length total_num_matches \* num_errs_per_measurement
      */
     virtual void calcError(Mat &err) = 0;
     /** @brief Calculates the cost function jacobian.
 
-    @param jac Jacobian matrix of dimensions
+     jac Jacobian matrix of dimensions
     (total_num_matches \* num_errs_per_measurement) x (num_images \* num_params_per_cam)
      */
     virtual void calcJacobian(Mat &jac) = 0;
@@ -335,7 +335,7 @@ enum WaveCorrectKind
 /** @brief Tries to detect the wave correction kind depending
 on whether a panorama spans horizontally or vertically
 
-@param rmats Camera rotation matrices.
+ rmats Camera rotation matrices.
 @return The correction kind to use for this panorama
  */
 CV_EXPORTS
@@ -343,8 +343,8 @@ WaveCorrectKind autoDetectWaveCorrectKind(const std::vector<Mat> &rmats);
 
 /** @brief Tries to make panorama more horizontal (or vertical).
 
-@param rmats Camera rotation matrices.
-@param kind Correction kind, see detail::WaveCorrectKind.
+ rmats Camera rotation matrices.
+ kind Correction kind, see detail::WaveCorrectKind.
  */
 void CV_EXPORTS_W waveCorrect(CV_IN_OUT std::vector<Mat> &rmats, WaveCorrectKind kind);
 

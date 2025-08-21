@@ -326,9 +326,9 @@ public:
     virtual void clear() = 0;
 
     /** Copy the set to two C arrays
-     * @param indices pointer to a C array of indices
-     * @param dist pointer to a C array of distances
-     * @param n_neighbors the number of neighbors to copy
+     *  indices pointer to a C array of indices
+     *  dist pointer to a C array of distances
+     *  n_neighbors the number of neighbors to copy
      */
     virtual void copy(int* indices, DistanceType* dist, int n_neighbors = -1) const
     {
@@ -350,9 +350,9 @@ public:
     }
 
     /** Copy the set to two C arrays but sort it according to the distance first
-     * @param indices pointer to a C array of indices
-     * @param dist pointer to a C array of distances
-     * @param n_neighbors the number of neighbors to copy
+     *  indices pointer to a C array of indices
+     *  dist pointer to a C array of distances
+     *  n_neighbors the number of neighbors to copy
      */
     virtual void sortAndCopy(int* indices, DistanceType* dist, int n_neighbors = -1) const
     {
@@ -394,7 +394,7 @@ class KNNUniqueResultSet : public UniqueResultSet<DistanceType>
 {
 public:
     /** Constructor
-     * @param capacity the number of neighbors to store at max
+     *  capacity the number of neighbors to store at max
      */
     KNNUniqueResultSet(unsigned int capacity) : capacity_(capacity)
     {
@@ -403,8 +403,8 @@ public:
     }
 
     /** Add a possible candidate to the best neighbors
-     * @param dist distance for that neighbor
-     * @param index index of that neighbor
+     *  dist distance for that neighbor
+     *  index index of that neighbor
      */
     inline void addPoint(DistanceType dist, int index) CV_OVERRIDE
     {
@@ -453,7 +453,7 @@ class RadiusUniqueResultSet : public UniqueResultSet<DistanceType>
 {
 public:
     /** Constructor
-     * @param radius the maximum distance of a neighbor
+     *  radius the maximum distance of a neighbor
      */
     RadiusUniqueResultSet(DistanceType radius) :
         radius_(radius)
@@ -462,8 +462,8 @@ public:
     }
 
     /** Add a possible candidate to the best neighbors
-     * @param dist distance for that neighbor
-     * @param index index of that neighbor
+     *  dist distance for that neighbor
+     *  index index of that neighbor
      */
     void addPoint(DistanceType dist, int index) CV_OVERRIDE
     {
@@ -511,8 +511,8 @@ class KNNRadiusUniqueResultSet : public KNNUniqueResultSet<DistanceType>
 {
 public:
     /** Constructor
-     * @param capacity the number of neighbors to store at max
-     * @param radius the maximum distance of a neighbor
+     *  capacity the number of neighbors to store at max
+     *  radius the maximum distance of a neighbor
      */
     KNNRadiusUniqueResultSet(unsigned int capacity, DistanceType radius)
     {

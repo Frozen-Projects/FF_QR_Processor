@@ -27,7 +27,7 @@ public:
 	static constexpr const int BARS_IN_MODULE = 8;
 
 	/**
-	* @param symbol encoded symbol to translate to a codeword
+	*  symbol encoded symbol to translate to a codeword
 	* @return the codeword corresponding to the symbol.
 	*/
 	static int GetCodeword(int symbol);

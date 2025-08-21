@@ -38,7 +38,7 @@ public:
     CV_WRAP void release() CV_NOEXCEPT;
 
     /** Fetch the result.
-    @param[out] dst destination array
+    [out] dst destination array
 
     Waits for result until container has valid result.
     Throws exception if exception was stored as a result.
@@ -50,8 +50,8 @@ public:
     CV_WRAP void get(OutputArray dst) const;
 
     /** Retrieving the result with timeout
-    @param[out] dst destination array
-    @param[in] timeoutNs timeout in nanoseconds, -1 for infinite wait
+    [out] dst destination array
+    [in] timeoutNs timeout in nanoseconds, -1 for infinite wait
 
     @returns true if result is ready, false if the timeout has expired
 

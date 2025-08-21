@@ -142,10 +142,10 @@ public:
 
     /** @brief Detects keypoints in an image (first variant) or image set (second variant).
 
-    @param image Image.
-    @param keypoints The detected keypoints. In the second variant of the method keypoints[i] is a set
+     image Image.
+     keypoints The detected keypoints. In the second variant of the method keypoints[i] is a set
     of keypoints detected in images[i] .
-    @param mask Mask specifying where to look for keypoints (optional). It must be a 8-bit integer
+     mask Mask specifying where to look for keypoints (optional). It must be a 8-bit integer
     matrix with non-zero values in the region of interest.
      */
     CV_WRAP virtual void detect( InputArray image,
@@ -153,10 +153,10 @@ public:
                                  InputArray mask=noArray() );
 
     /** @overload
-    @param images Image set.
-    @param keypoints The detected keypoints. In the second variant of the method keypoints[i] is a set
+     images Image set.
+     keypoints The detected keypoints. In the second variant of the method keypoints[i] is a set
     of keypoints detected in images[i] .
-    @param masks Masks for each input image specifying where to look for keypoints (optional).
+     masks Masks for each input image specifying where to look for keypoints (optional).
     masks[i] is a mask for images[i].
     */
     CV_WRAP virtual void detect( InputArrayOfArrays images,
@@ -166,11 +166,11 @@ public:
     /** @brief Computes the descriptors for a set of keypoints detected in an image (first variant) or image set
     (second variant).
 
-    @param image Image.
-    @param keypoints Input collection of keypoints. Keypoints for which a descriptor cannot be
+     image Image.
+     keypoints Input collection of keypoints. Keypoints for which a descriptor cannot be
     computed are removed. Sometimes new keypoints can be added, for example: SIFT duplicates keypoint
     with several dominant orientations (for each orientation).
-    @param descriptors Computed descriptors. In the second variant of the method descriptors[i] are
+     descriptors Computed descriptors. In the second variant of the method descriptors[i] are
     descriptors computed for a keypoints[i]. Row j is the keypoints (or keypoints[i]) is the
     descriptor for keypoint j-th keypoint.
      */
@@ -180,11 +180,11 @@ public:
 
     /** @overload
 
-    @param images Image set.
-    @param keypoints Input collection of keypoints. Keypoints for which a descriptor cannot be
+     images Image set.
+     keypoints Input collection of keypoints. Keypoints for which a descriptor cannot be
     computed are removed. Sometimes new keypoints can be added, for example: SIFT duplicates keypoint
     with several dominant orientations (for each orientation).
-    @param descriptors Computed descriptors. In the second variant of the method descriptors[i] are
+     descriptors Computed descriptors. In the second variant of the method descriptors[i] are
     descriptors computed for a keypoints[i]. Row j is the keypoints (or keypoints[i]) is the
     descriptor for keypoint j-th keypoint.
     */
@@ -242,11 +242,11 @@ class CV_EXPORTS_W AffineFeature : public Feature2D
 {
 public:
     /**
-    @param backend The detector/extractor you want to use as backend.
-    @param maxTilt The highest power index of tilt factor. 5 is used in the paper as tilt sampling range n.
-    @param minTilt The lowest power index of tilt factor. 0 is used in the paper.
-    @param tiltStep Tilt sampling step \f$\delta_t\f$ in Algorithm 1 in the paper.
-    @param rotateStepBase Rotation sampling step factor b in Algorithm 1 in the paper.
+     backend The detector/extractor you want to use as backend.
+     maxTilt The highest power index of tilt factor. 5 is used in the paper as tilt sampling range n.
+     minTilt The lowest power index of tilt factor. 0 is used in the paper.
+     tiltStep Tilt sampling step \f$\delta_t\f$ in Algorithm 1 in the paper.
+     rotateStepBase Rotation sampling step factor b in Algorithm 1 in the paper.
     */
     CV_WRAP static Ptr<AffineFeature> create(const Ptr<Feature2D>& backend,
         int maxTilt = 5, int minTilt = 0, float tiltStep = 1.4142135623730951f, float rotateStepBase = 72);
@@ -267,27 +267,27 @@ class CV_EXPORTS_W SIFT : public Feature2D
 {
 public:
     /**
-    @param nfeatures The number of best features to retain. The features are ranked by their scores
+     nfeatures The number of best features to retain. The features are ranked by their scores
     (measured in SIFT algorithm as the local contrast)
 
-    @param nOctaveLayers The number of layers in each octave. 3 is the value used in D. Lowe paper. The
+     nOctaveLayers The number of layers in each octave. 3 is the value used in D. Lowe paper. The
     number of octaves is computed automatically from the image resolution.
 
-    @param contrastThreshold The contrast threshold used to filter out weak features in semi-uniform
+     contrastThreshold The contrast threshold used to filter out weak features in semi-uniform
     (low-contrast) regions. The larger the threshold, the less features are produced by the detector.
 
     @note The contrast threshold will be divided by nOctaveLayers when the filtering is applied. When
     nOctaveLayers is set to default and if you want to use the value used in D. Lowe paper, 0.03, set
     this argument to 0.09.
 
-    @param edgeThreshold The threshold used to filter out edge-like features. Note that the its meaning
+     edgeThreshold The threshold used to filter out edge-like features. Note that the its meaning
     is different from the contrastThreshold, i.e. the larger the edgeThreshold, the less features are
     filtered out (more features are retained).
 
-    @param sigma The sigma of the Gaussian applied to the input image at the octave \#0. If your image
+     sigma The sigma of the Gaussian applied to the input image at the octave \#0. If your image
     is captured with a weak camera with soft lenses, you might want to reduce the number.
 
-    @param enable_precise_upscale Whether to enable precise upscaling in the scale pyramid, which maps
+     enable_precise_upscale Whether to enable precise upscaling in the scale pyramid, which maps
     index \f$\texttt{x}\f$ to \f$\texttt{2x}\f$. This prevents localization bias. The option
     is disabled by default.
     */
@@ -296,29 +296,29 @@ public:
         double sigma = 1.6, bool enable_precise_upscale = false);
 
     /** @brief Create SIFT with specified descriptorType.
-    @param nfeatures The number of best features to retain. The features are ranked by their scores
+     nfeatures The number of best features to retain. The features are ranked by their scores
     (measured in SIFT algorithm as the local contrast)
 
-    @param nOctaveLayers The number of layers in each octave. 3 is the value used in D. Lowe paper. The
+     nOctaveLayers The number of layers in each octave. 3 is the value used in D. Lowe paper. The
     number of octaves is computed automatically from the image resolution.
 
-    @param contrastThreshold The contrast threshold used to filter out weak features in semi-uniform
+     contrastThreshold The contrast threshold used to filter out weak features in semi-uniform
     (low-contrast) regions. The larger the threshold, the less features are produced by the detector.
 
     @note The contrast threshold will be divided by nOctaveLayers when the filtering is applied. When
     nOctaveLayers is set to default and if you want to use the value used in D. Lowe paper, 0.03, set
     this argument to 0.09.
 
-    @param edgeThreshold The threshold used to filter out edge-like features. Note that the its meaning
+     edgeThreshold The threshold used to filter out edge-like features. Note that the its meaning
     is different from the contrastThreshold, i.e. the larger the edgeThreshold, the less features are
     filtered out (more features are retained).
 
-    @param sigma The sigma of the Gaussian applied to the input image at the octave \#0. If your image
+     sigma The sigma of the Gaussian applied to the input image at the octave \#0. If your image
     is captured with a weak camera with soft lenses, you might want to reduce the number.
 
-    @param descriptorType The type of descriptors. Only CV_32F and CV_8U are supported.
+     descriptorType The type of descriptors. Only CV_32F and CV_8U are supported.
 
-    @param enable_precise_upscale Whether to enable precise upscaling in the scale pyramid, which maps
+     enable_precise_upscale Whether to enable precise upscaling in the scale pyramid, which maps
     index \f$\texttt{x}\f$ to \f$\texttt{2x}\f$. This prevents localization bias. The option
     is disabled by default.
     */
@@ -355,58 +355,58 @@ class CV_EXPORTS_W BRISK : public Feature2D
 public:
     /** @brief The BRISK constructor
 
-    @param thresh AGAST detection threshold score.
-    @param octaves detection octaves. Use 0 to do single scale.
-    @param patternScale apply this scale to the pattern used for sampling the neighbourhood of a
+     thresh AGAST detection threshold score.
+     octaves detection octaves. Use 0 to do single scale.
+     patternScale apply this scale to the pattern used for sampling the neighbourhood of a
     keypoint.
      */
     CV_WRAP static Ptr<BRISK> create(int thresh=30, int octaves=3, float patternScale=1.0f);
 
     /** @brief The BRISK constructor for a custom pattern
 
-    @param radiusList defines the radii (in pixels) where the samples around a keypoint are taken (for
+     radiusList defines the radii (in pixels) where the samples around a keypoint are taken (for
     keypoint scale 1).
-    @param numberList defines the number of sampling points on the sampling circle. Must be the same
+     numberList defines the number of sampling points on the sampling circle. Must be the same
     size as radiusList..
-    @param dMax threshold for the short pairings used for descriptor formation (in pixels for keypoint
+     dMax threshold for the short pairings used for descriptor formation (in pixels for keypoint
     scale 1).
-    @param dMin threshold for the long pairings used for orientation determination (in pixels for
+     dMin threshold for the long pairings used for orientation determination (in pixels for
     keypoint scale 1).
-    @param indexChange index remapping of the bits. */
+     indexChange index remapping of the bits. */
     CV_WRAP static Ptr<BRISK> create(const std::vector<float> &radiusList, const std::vector<int> &numberList,
         float dMax=5.85f, float dMin=8.2f, const std::vector<int>& indexChange=std::vector<int>());
 
     /** @brief The BRISK constructor for a custom pattern, detection threshold and octaves
 
-    @param thresh AGAST detection threshold score.
-    @param octaves detection octaves. Use 0 to do single scale.
-    @param radiusList defines the radii (in pixels) where the samples around a keypoint are taken (for
+     thresh AGAST detection threshold score.
+     octaves detection octaves. Use 0 to do single scale.
+     radiusList defines the radii (in pixels) where the samples around a keypoint are taken (for
     keypoint scale 1).
-    @param numberList defines the number of sampling points on the sampling circle. Must be the same
+     numberList defines the number of sampling points on the sampling circle. Must be the same
     size as radiusList..
-    @param dMax threshold for the short pairings used for descriptor formation (in pixels for keypoint
+     dMax threshold for the short pairings used for descriptor formation (in pixels for keypoint
     scale 1).
-    @param dMin threshold for the long pairings used for orientation determination (in pixels for
+     dMin threshold for the long pairings used for orientation determination (in pixels for
     keypoint scale 1).
-    @param indexChange index remapping of the bits. */
+     indexChange index remapping of the bits. */
     CV_WRAP static Ptr<BRISK> create(int thresh, int octaves, const std::vector<float> &radiusList,
         const std::vector<int> &numberList, float dMax=5.85f, float dMin=8.2f,
         const std::vector<int>& indexChange=std::vector<int>());
     CV_WRAP virtual String getDefaultName() const CV_OVERRIDE;
 
     /** @brief Set detection threshold.
-    @param threshold AGAST detection threshold score.
+     threshold AGAST detection threshold score.
     */
     CV_WRAP virtual void setThreshold(int threshold) = 0;
     CV_WRAP virtual int getThreshold() const = 0;
 
     /** @brief Set detection octaves.
-    @param octaves detection octaves. Use 0 to do single scale.
+     octaves detection octaves. Use 0 to do single scale.
     */
     CV_WRAP virtual void setOctaves(int octaves) = 0;
     CV_WRAP virtual int getOctaves() const = 0;
     /** @brief Set detection patternScale.
-    @param patternScale apply this scale to the pattern used for sampling the neighbourhood of a
+     patternScale apply this scale to the pattern used for sampling the neighbourhood of a
     keypoint.
     */
     CV_WRAP virtual void setPatternScale(float patternScale) = 0;
@@ -428,19 +428,19 @@ public:
 
     /** @brief The ORB constructor
 
-    @param nfeatures The maximum number of features to retain.
-    @param scaleFactor Pyramid decimation ratio, greater than 1. scaleFactor==2 means the classical
+     nfeatures The maximum number of features to retain.
+     scaleFactor Pyramid decimation ratio, greater than 1. scaleFactor==2 means the classical
     pyramid, where each next level has 4x less pixels than the previous, but such a big scale factor
     will degrade feature matching scores dramatically. On the other hand, too close to 1 scale factor
     will mean that to cover certain scale range you will need more pyramid levels and so the speed
     will suffer.
-    @param nlevels The number of pyramid levels. The smallest level will have linear size equal to
+     nlevels The number of pyramid levels. The smallest level will have linear size equal to
     input_image_linear_size/pow(scaleFactor, nlevels - firstLevel).
-    @param edgeThreshold This is size of the border where the features are not detected. It should
+     edgeThreshold This is size of the border where the features are not detected. It should
     roughly match the patchSize parameter.
-    @param firstLevel The level of pyramid to put source image to. Previous layers are filled
+     firstLevel The level of pyramid to put source image to. Previous layers are filled
     with upscaled source image.
-    @param WTA_K The number of points that produce each element of the oriented BRIEF descriptor. The
+     WTA_K The number of points that produce each element of the oriented BRIEF descriptor. The
     default value 2 means the BRIEF where we take a random point pair and compare their brightnesses,
     so we get 0/1 response. Other possible values are 3 and 4. For example, 3 means that we take 3
     random points (of course, those point coordinates are random, but they are generated from the
@@ -449,13 +449,13 @@ public:
     output will occupy 2 bits, and therefore it will need a special variant of Hamming distance,
     denoted as NORM_HAMMING2 (2 bits per bin). When WTA_K=4, we take 4 random points to compute each
     bin (that will also occupy 2 bits with possible values 0, 1, 2 or 3).
-    @param scoreType The default HARRIS_SCORE means that Harris algorithm is used to rank features
+     scoreType The default HARRIS_SCORE means that Harris algorithm is used to rank features
     (the score is written to KeyPoint::score and is used to retain best nfeatures features);
     FAST_SCORE is alternative value of the parameter that produces slightly less stable keypoints,
     but it is a little faster to compute.
-    @param patchSize size of the patch used by the oriented BRIEF descriptor. Of course, on smaller
+     patchSize size of the patch used by the oriented BRIEF descriptor. Of course, on smaller
     pyramid layers the perceived image area covered by a feature will be larger.
-    @param fastThreshold the fast threshold
+     fastThreshold the fast threshold
      */
     CV_WRAP static Ptr<ORB> create(int nfeatures=500, float scaleFactor=1.2f, int nlevels=8, int edgeThreshold=31,
         int firstLevel=0, int WTA_K=2, ORB::ScoreType scoreType=ORB::HARRIS_SCORE, int patchSize=31, int fastThreshold=20);
@@ -509,15 +509,15 @@ class CV_EXPORTS_W MSER : public Feature2D
 public:
     /** @brief Full constructor for %MSER detector
 
-    @param delta it compares \f$(size_{i}-size_{i-delta})/size_{i-delta}\f$
-    @param min_area prune the area which smaller than minArea
-    @param max_area prune the area which bigger than maxArea
-    @param max_variation prune the area have similar size to its children
-    @param min_diversity for color image, trace back to cut off mser with diversity less than min_diversity
-    @param max_evolution  for color image, the evolution steps
-    @param area_threshold for color image, the area threshold to cause re-initialize
-    @param min_margin for color image, ignore too small margin
-    @param edge_blur_size for color image, the aperture size for edge blur
+     delta it compares \f$(size_{i}-size_{i-delta})/size_{i-delta}\f$
+     min_area prune the area which smaller than minArea
+     max_area prune the area which bigger than maxArea
+     max_variation prune the area have similar size to its children
+     min_diversity for color image, trace back to cut off mser with diversity less than min_diversity
+     max_evolution  for color image, the evolution steps
+     area_threshold for color image, the area threshold to cause re-initialize
+     min_margin for color image, ignore too small margin
+     edge_blur_size for color image, the aperture size for edge blur
      */
     CV_WRAP static Ptr<MSER> create( int delta=5, int min_area=60, int max_area=14400,
           double max_variation=0.25, double min_diversity=.2,
@@ -526,9 +526,9 @@ public:
 
     /** @brief Detect %MSER regions
 
-    @param image input image (8UC1, 8UC3 or 8UC4, must be greater or equal than 3x3)
-    @param msers resulting list of point sets
-    @param bboxes resulting bounding boxes
+     image input image (8UC1, 8UC3 or 8UC4, must be greater or equal than 3x3)
+     msers resulting list of point sets
+     bboxes resulting bounding boxes
     */
     CV_WRAP virtual void detectRegions( InputArray image,
                                         CV_OUT std::vector<std::vector<Point> >& msers,
@@ -608,13 +608,13 @@ CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
 
 /** @brief Detects corners using the FAST algorithm
 
-@param image grayscale image where keypoints (corners) are detected.
-@param keypoints keypoints detected on the image.
-@param threshold threshold on difference between intensity of the central pixel and pixels of a
+ image grayscale image where keypoints (corners) are detected.
+ keypoints keypoints detected on the image.
+ threshold threshold on difference between intensity of the central pixel and pixels of a
 circle around this pixel.
-@param nonmaxSuppression if true, non-maximum suppression is applied to detected corners
+ nonmaxSuppression if true, non-maximum suppression is applied to detected corners
 (keypoints).
-@param type one of the three neighborhoods as defined in the paper:
+ type one of the three neighborhoods as defined in the paper:
 FastFeatureDetector::TYPE_9_16, FastFeatureDetector::TYPE_7_12,
 FastFeatureDetector::TYPE_5_8
 
@@ -668,13 +668,13 @@ CV_EXPORTS void AGAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints
 
 /** @brief Detects corners using the AGAST algorithm
 
-@param image grayscale image where keypoints (corners) are detected.
-@param keypoints keypoints detected on the image.
-@param threshold threshold on difference between intensity of the central pixel and pixels of a
+ image grayscale image where keypoints (corners) are detected.
+ keypoints keypoints detected on the image.
+ threshold threshold on difference between intensity of the central pixel and pixels of a
 circle around this pixel.
-@param nonmaxSuppression if true, non-maximum suppression is applied to detected corners
+ nonmaxSuppression if true, non-maximum suppression is applied to detected corners
 (keypoints).
-@param type one of the four neighborhoods as defined in the paper:
+ type one of the four neighborhoods as defined in the paper:
 AgastFeatureDetector::AGAST_5_8, AgastFeatureDetector::AGAST_7_12d,
 AgastFeatureDetector::AGAST_7_12s, AgastFeatureDetector::OAST_9_16
 
@@ -817,12 +817,12 @@ public:
 
     /** @brief The KAZE constructor
 
-    @param extended Set to enable extraction of extended (128-byte) descriptor.
-    @param upright Set to enable use of upright descriptors (non rotation-invariant).
-    @param threshold Detector response threshold to accept point
-    @param nOctaves Maximum octave evolution of the image
-    @param nOctaveLayers Default number of sublevels per scale level
-    @param diffusivity Diffusivity type. DIFF_PM_G1, DIFF_PM_G2, DIFF_WEICKERT or
+     extended Set to enable extraction of extended (128-byte) descriptor.
+     upright Set to enable use of upright descriptors (non rotation-invariant).
+     threshold Detector response threshold to accept point
+     nOctaves Maximum octave evolution of the image
+     nOctaveLayers Default number of sublevels per scale level
+     diffusivity Diffusivity type. DIFF_PM_G1, DIFF_PM_G2, DIFF_WEICKERT or
     DIFF_CHARBONNIER
      */
     CV_WRAP static Ptr<KAZE> create(bool extended=false, bool upright=false,
@@ -880,16 +880,16 @@ public:
 
     /** @brief The AKAZE constructor
 
-    @param descriptor_type Type of the extracted descriptor: DESCRIPTOR_KAZE,
+     descriptor_type Type of the extracted descriptor: DESCRIPTOR_KAZE,
     DESCRIPTOR_KAZE_UPRIGHT, DESCRIPTOR_MLDB or DESCRIPTOR_MLDB_UPRIGHT.
-    @param descriptor_size Size of the descriptor in bits. 0 -\> Full size
-    @param descriptor_channels Number of channels in the descriptor (1, 2, 3)
-    @param threshold Detector response threshold to accept point
-    @param nOctaves Maximum octave evolution of the image
-    @param nOctaveLayers Default number of sublevels per scale level
-    @param diffusivity Diffusivity type. DIFF_PM_G1, DIFF_PM_G2, DIFF_WEICKERT or
+     descriptor_size Size of the descriptor in bits. 0 -\> Full size
+     descriptor_channels Number of channels in the descriptor (1, 2, 3)
+     threshold Detector response threshold to accept point
+     nOctaves Maximum octave evolution of the image
+     nOctaveLayers Default number of sublevels per scale level
+     diffusivity Diffusivity type. DIFF_PM_G1, DIFF_PM_G2, DIFF_WEICKERT or
     DIFF_CHARBONNIER
-    @param max_points Maximum amount of returned points. In case if image contains
+     max_points Maximum amount of returned points. In case if image contains
     more features, then the features with highest response are returned.
     Negative value means no limitation.
      */
@@ -1022,7 +1022,7 @@ public:
 
     If the collection is not empty, the new descriptors are added to existing train descriptors.
 
-    @param descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
+     descriptors Descriptors to add. Each descriptors[i] is a set of descriptors from the same
     train image.
      */
     CV_WRAP virtual void add( InputArrayOfArrays descriptors );
@@ -1054,12 +1054,12 @@ public:
 
     /** @brief Finds the best match for each descriptor from a query set.
 
-    @param queryDescriptors Query set of descriptors.
-    @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+     queryDescriptors Query set of descriptors.
+     trainDescriptors Train set of descriptors. This set is not added to the train descriptors
     collection stored in the class object.
-    @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
+     matches Matches. If a query descriptor is masked out in mask , no match is added for this
     descriptor. So, matches size may be smaller than the query descriptors count.
-    @param mask Mask specifying permissible matches between an input query and train matrices of
+     mask Mask specifying permissible matches between an input query and train matrices of
     descriptors.
 
     In the first variant of this method, the train descriptors are passed as an input argument. In the
@@ -1073,15 +1073,15 @@ public:
 
     /** @brief Finds the k best matches for each descriptor from a query set.
 
-    @param queryDescriptors Query set of descriptors.
-    @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+     queryDescriptors Query set of descriptors.
+     trainDescriptors Train set of descriptors. This set is not added to the train descriptors
     collection stored in the class object.
-    @param mask Mask specifying permissible matches between an input query and train matrices of
+     mask Mask specifying permissible matches between an input query and train matrices of
     descriptors.
-    @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
-    @param k Count of best matches found per each query descriptor or less if a query descriptor has
+     matches Matches. Each matches[i] is k or less matches for the same query descriptor.
+     k Count of best matches found per each query descriptor or less if a query descriptor has
     less than k possible matches in total.
-    @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+     compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
     false, the matches vector has the same size as queryDescriptors rows. If compactResult is true,
     the matches vector does not contain matches for fully masked-out query descriptors.
 
@@ -1095,17 +1095,17 @@ public:
 
     /** @brief For each query descriptor, finds the training descriptors not farther than the specified distance.
 
-    @param queryDescriptors Query set of descriptors.
-    @param trainDescriptors Train set of descriptors. This set is not added to the train descriptors
+     queryDescriptors Query set of descriptors.
+     trainDescriptors Train set of descriptors. This set is not added to the train descriptors
     collection stored in the class object.
-    @param matches Found matches.
-    @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+     matches Found matches.
+     compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
     false, the matches vector has the same size as queryDescriptors rows. If compactResult is true,
     the matches vector does not contain matches for fully masked-out query descriptors.
-    @param maxDistance Threshold for the distance between matched descriptors. Distance means here
+     maxDistance Threshold for the distance between matched descriptors. Distance means here
     metric distance (e.g. Hamming distance), not the distance between coordinates (which is measured
     in Pixels)!
-    @param mask Mask specifying permissible matches between an input query and train matrices of
+     mask Mask specifying permissible matches between an input query and train matrices of
     descriptors.
 
     For each query descriptor, the methods find such training descriptors that the distance between the
@@ -1117,36 +1117,36 @@ public:
                       InputArray mask=noArray(), bool compactResult=false ) const;
 
     /** @overload
-    @param queryDescriptors Query set of descriptors.
-    @param matches Matches. If a query descriptor is masked out in mask , no match is added for this
+     queryDescriptors Query set of descriptors.
+     matches Matches. If a query descriptor is masked out in mask , no match is added for this
     descriptor. So, matches size may be smaller than the query descriptors count.
-    @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+     masks Set of masks. Each masks[i] specifies permissible matches between the input query
     descriptors and stored train descriptors from the i-th image trainDescCollection[i].
     */
     CV_WRAP void match( InputArray queryDescriptors, CV_OUT std::vector<DMatch>& matches,
                         InputArrayOfArrays masks=noArray() );
     /** @overload
-    @param queryDescriptors Query set of descriptors.
-    @param matches Matches. Each matches[i] is k or less matches for the same query descriptor.
-    @param k Count of best matches found per each query descriptor or less if a query descriptor has
+     queryDescriptors Query set of descriptors.
+     matches Matches. Each matches[i] is k or less matches for the same query descriptor.
+     k Count of best matches found per each query descriptor or less if a query descriptor has
     less than k possible matches in total.
-    @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+     masks Set of masks. Each masks[i] specifies permissible matches between the input query
     descriptors and stored train descriptors from the i-th image trainDescCollection[i].
-    @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+     compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
     false, the matches vector has the same size as queryDescriptors rows. If compactResult is true,
     the matches vector does not contain matches for fully masked-out query descriptors.
     */
     CV_WRAP void knnMatch( InputArray queryDescriptors, CV_OUT std::vector<std::vector<DMatch> >& matches, int k,
                            InputArrayOfArrays masks=noArray(), bool compactResult=false );
     /** @overload
-    @param queryDescriptors Query set of descriptors.
-    @param matches Found matches.
-    @param maxDistance Threshold for the distance between matched descriptors. Distance means here
+     queryDescriptors Query set of descriptors.
+     matches Found matches.
+     maxDistance Threshold for the distance between matched descriptors. Distance means here
     metric distance (e.g. Hamming distance), not the distance between coordinates (which is measured
     in Pixels)!
-    @param masks Set of masks. Each masks[i] specifies permissible matches between the input query
+     masks Set of masks. Each masks[i] specifies permissible matches between the input query
     descriptors and stored train descriptors from the i-th image trainDescCollection[i].
-    @param compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
+     compactResult Parameter used when the mask (or masks) is not empty. If compactResult is
     false, the matches vector has the same size as queryDescriptors rows. If compactResult is true,
     the matches vector does not contain matches for fully masked-out query descriptors.
     */
@@ -1173,7 +1173,7 @@ public:
 
     /** @brief Clones the matcher.
 
-    @param emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
+     emptyTrainData If emptyTrainData is false, the method creates a deep copy of the object,
     that is, copies both parameters and train data. If emptyTrainData is true, the method creates an
     object copy with the current parameters but with empty train data.
      */
@@ -1182,7 +1182,7 @@ public:
     /** @brief Creates a descriptor matcher of a given type with the default parameters (using default
     constructor).
 
-    @param descriptorMatcherType Descriptor matcher type. Now the following matcher types are
+     descriptorMatcherType Descriptor matcher type. Now the following matcher types are
     supported:
     -   `BruteForce` (it uses L2 )
     -   `BruteForce-L1`
@@ -1268,11 +1268,11 @@ public:
     virtual bool isMaskSupported() const CV_OVERRIDE { return true; }
 
     /** @brief Brute-force matcher create method.
-    @param normType One of NORM_L1, NORM_L2, NORM_HAMMING, NORM_HAMMING2. L1 and L2 norms are
+     normType One of NORM_L1, NORM_L2, NORM_HAMMING, NORM_HAMMING2. L1 and L2 norms are
     preferable choices for SIFT and SURF descriptors, NORM_HAMMING should be used with ORB, BRISK and
     BRIEF, NORM_HAMMING2 should be used with ORB when WTA_K==3 or 4 (see ORB::ORB constructor
     description).
-    @param crossCheck If it is false, this is will be default BFMatcher behaviour when it finds the k
+     crossCheck If it is false, this is will be default BFMatcher behaviour when it finds the k
     nearest neighbors for each query descriptor. If crossCheck==true, then the knnMatch() method with
     k=1 will only return pairs (i,j) such that for i-th query descriptor the j-th descriptor in the
     matcher's collection is the nearest and vice versa, i.e. the BFMatcher will only return consistent
@@ -1367,12 +1367,12 @@ CV_ENUM_FLAGS(DrawMatchesFlags)
 
 /** @brief Draws keypoints.
 
-@param image Source image.
-@param keypoints Keypoints from the source image.
-@param outImage Output image. Its content depends on the flags value defining what is drawn in the
+ image Source image.
+ keypoints Keypoints from the source image.
+ outImage Output image. Its content depends on the flags value defining what is drawn in the
 output image. See possible flags bit values below.
-@param color Color of keypoints.
-@param flags Flags setting drawing features. Possible flags bit values are defined by
+ color Color of keypoints.
+ flags Flags setting drawing features. Possible flags bit values are defined by
 DrawMatchesFlags. See details above in drawMatches .
 
 @note
@@ -1385,21 +1385,21 @@ CV_EXPORTS_W void drawKeypoints( InputArray image, const std::vector<KeyPoint>& 
 
 /** @brief Draws the found matches of keypoints from two images.
 
-@param img1 First source image.
-@param keypoints1 Keypoints from the first source image.
-@param img2 Second source image.
-@param keypoints2 Keypoints from the second source image.
-@param matches1to2 Matches from the first image to the second one, which means that keypoints1[i]
+ img1 First source image.
+ keypoints1 Keypoints from the first source image.
+ img2 Second source image.
+ keypoints2 Keypoints from the second source image.
+ matches1to2 Matches from the first image to the second one, which means that keypoints1[i]
 has a corresponding point in keypoints2[matches[i]] .
-@param outImg Output image. Its content depends on the flags value defining what is drawn in the
+ outImg Output image. Its content depends on the flags value defining what is drawn in the
 output image. See possible flags bit values below.
-@param matchColor Color of matches (lines and connected keypoints). If matchColor==Scalar::all(-1)
+ matchColor Color of matches (lines and connected keypoints). If matchColor==Scalar::all(-1)
 , the color is generated randomly.
-@param singlePointColor Color of single keypoints (circles), which means that keypoints do not
+ singlePointColor Color of single keypoints (circles), which means that keypoints do not
 have the matches. If singlePointColor==Scalar::all(-1) , the color is generated randomly.
-@param matchesMask Mask determining which matches are drawn. If the mask is empty, all matches are
+ matchesMask Mask determining which matches are drawn. If the mask is empty, all matches are
 drawn.
-@param flags Flags setting drawing features. Possible flags bit values are defined by
+ flags Flags setting drawing features. Possible flags bit values are defined by
 DrawMatchesFlags.
 
 This function draws matches of keypoints from two images in the output image. Match is a line
@@ -1463,7 +1463,7 @@ public:
 
     /** @brief Adds descriptors to a training set.
 
-    @param descriptors Descriptors to add to a training set. Each row of the descriptors matrix is a
+     descriptors Descriptors to add to a training set. Each row of the descriptors matrix is a
     descriptor.
 
     The training set is clustered using clustermethod to construct the vocabulary.
@@ -1485,7 +1485,7 @@ public:
 
     /** @brief Clusters train descriptors.
 
-    @param descriptors Descriptors to cluster. Each row of the descriptors matrix is a descriptor.
+     descriptors Descriptors to cluster. Each row of the descriptors matrix is a descriptor.
     Descriptors are not added to the inner train descriptor set.
 
     The vocabulary consists of cluster centers. So, this method returns the vocabulary. In the first
@@ -1539,9 +1539,9 @@ class CV_EXPORTS_W BOWImgDescriptorExtractor
 public:
     /** @brief The constructor.
 
-    @param dextractor Descriptor extractor that is used to compute descriptors for an input image and
+     dextractor Descriptor extractor that is used to compute descriptors for an input image and
     its keypoints.
-    @param dmatcher Descriptor matcher that is used to find the nearest word of the trained vocabulary
+     dmatcher Descriptor matcher that is used to find the nearest word of the trained vocabulary
     for each keypoint descriptor of the image.
      */
     CV_WRAP BOWImgDescriptorExtractor( const Ptr<Feature2D>& dextractor,
@@ -1552,7 +1552,7 @@ public:
 
     /** @brief Sets a visual vocabulary.
 
-    @param vocabulary Vocabulary (can be trained using the inheritor of BOWTrainer ). Each row of the
+     vocabulary Vocabulary (can be trained using the inheritor of BOWTrainer ). Each row of the
     vocabulary is a visual word (cluster center).
      */
     CV_WRAP void setVocabulary( const Mat& vocabulary );
@@ -1563,20 +1563,20 @@ public:
 
     /** @brief Computes an image descriptor using the set visual vocabulary.
 
-    @param image Image, for which the descriptor is computed.
-    @param keypoints Keypoints detected in the input image.
-    @param imgDescriptor Computed output image descriptor.
-    @param pointIdxsOfClusters Indices of keypoints that belong to the cluster. This means that
+     image Image, for which the descriptor is computed.
+     keypoints Keypoints detected in the input image.
+     imgDescriptor Computed output image descriptor.
+     pointIdxsOfClusters Indices of keypoints that belong to the cluster. This means that
     pointIdxsOfClusters[i] are keypoint indices that belong to the i -th cluster (word of vocabulary)
     returned if it is non-zero.
-    @param descriptors Descriptors of the image keypoints that are returned if they are non-zero.
+     descriptors Descriptors of the image keypoints that are returned if they are non-zero.
      */
     void compute( InputArray image, std::vector<KeyPoint>& keypoints, OutputArray imgDescriptor,
                   std::vector<std::vector<int> >* pointIdxsOfClusters=0, Mat* descriptors=0 );
     /** @overload
-    @param keypointDescriptors Computed descriptors to match with vocabulary.
-    @param imgDescriptor Computed output image descriptor.
-    @param pointIdxsOfClusters Indices of keypoints that belong to the cluster. This means that
+     keypointDescriptors Computed descriptors to match with vocabulary.
+     imgDescriptor Computed output image descriptor.
+     pointIdxsOfClusters Indices of keypoints that belong to the cluster. This means that
     pointIdxsOfClusters[i] are keypoint indices that belong to the i -th cluster (word of vocabulary)
     returned if it is non-zero.
     */

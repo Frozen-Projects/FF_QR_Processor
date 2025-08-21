@@ -86,8 +86,8 @@ public:
 	/**
 	* <p>Flips the given bit.</p>
 	*
-	* @param x The horizontal component (i.e. which column)
-	* @param y The vertical component (i.e. which row)
+	*  x The horizontal component (i.e. which column)
+	*  y The vertical component (i.e. which row)
 	*/
 	void flip(int x, int y)
 	{
@@ -104,10 +104,10 @@ public:
 	/**
 	* <p>Sets a square region of the bit matrix to true.</p>
 	*
-	* @param left The horizontal position to begin at (inclusive)
-	* @param top The vertical position to begin at (inclusive)
-	* @param width The width of the region
-	* @param height The height of the region
+	*  left The horizontal position to begin at (inclusive)
+	*  top The vertical position to begin at (inclusive)
+	*  width The width of the region
+	*  height The height of the region
 	*/
 	void setRegion(int left, int top, int width, int height);
 
@@ -151,22 +151,22 @@ void GetPatternRow(const BitMatrix& matrix, int r, std::vector<uint16_t>& pr, bo
 
 /**
  * @brief Inflate scales a BitMatrix up and adds a quiet Zone plus padding
- * @param input matrix to be expanded
- * @param width new width in bits (pixel)
- * @param height new height in bits (pixel)
- * @param quietZone size of quiet zone to add in modules
+ *  input matrix to be expanded
+ *  width new width in bits (pixel)
+ *  height new height in bits (pixel)
+ *  quietZone size of quiet zone to add in modules
  * @return expanded BitMatrix, maybe move(input) if size did not change
  */
 BitMatrix Inflate(BitMatrix&& input, int width, int height, int quietZone);
 
 /**
  * @brief Deflate (crop + subsample) a bit matrix
- * @param input matrix to be shrinked
- * @param width new width
- * @param height new height
- * @param top cropping starts at top row
- * @param left cropping starts at left col
- * @param subSampling typically the module size
+ *  input matrix to be shrinked
+ *  width new width
+ *  height new height
+ *  top cropping starts at top row
+ *  left cropping starts at left col
+ *  subSampling typically the module size
  * @return deflated input
  */
 BitMatrix Deflate(const BitMatrix& input, int width, int height, float top, float left, float subSampling);

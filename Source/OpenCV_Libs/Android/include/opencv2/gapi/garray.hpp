@@ -383,7 +383,7 @@ public:
      * other `cv::GArray<T>` to the object using `operator=` -- on the
      * assignment, the old association or value is discarded.
      *
-     * @param v a std::vector<T> to associate with this
+     *  v a std::vector<T> to associate with this
      * `cv::GArray<T>` object. Vector data is copied into the
      * `cv::GArray<T>` (no reference to the passed data is held).
      */
@@ -394,7 +394,7 @@ public:
      * @overload
      * @brief Constructs a value-initialized `cv::GArray<T>`
      *
-     * @param v a std::vector<T> to associate with this
+     *  v a std::vector<T> to associate with this
      * `cv::GArray<T>` object. Vector data is moved into the `cv::GArray<T>`.
      */
     explicit GArray(std::vector<HT>&& v)      // Move-constructor

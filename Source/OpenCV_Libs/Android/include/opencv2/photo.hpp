@@ -99,13 +99,13 @@ enum
 
 /** @brief Restores the selected region in an image using the region neighborhood.
 
-@param src Input 8-bit, 16-bit unsigned or 32-bit float 1-channel or 8-bit 3-channel image.
-@param inpaintMask Inpainting mask, 8-bit 1-channel image. Non-zero pixels indicate the area that
+ src Input 8-bit, 16-bit unsigned or 32-bit float 1-channel or 8-bit 3-channel image.
+ inpaintMask Inpainting mask, 8-bit 1-channel image. Non-zero pixels indicate the area that
 needs to be inpainted.
-@param dst Output image with the same size and type as src .
-@param inpaintRadius Radius of a circular neighborhood of each point inpainted that is considered
+ dst Output image with the same size and type as src .
+ inpaintRadius Radius of a circular neighborhood of each point inpainted that is considered
 by the algorithm.
-@param flags Inpainting method that could be cv::INPAINT_NS or cv::INPAINT_TELEA
+ flags Inpainting method that could be cv::INPAINT_NS or cv::INPAINT_TELEA
 
 The function reconstructs the selected image area from the pixel near the area boundary. The
 function may be used to remove dust and scratches from a scanned photo, or to remove undesirable
@@ -129,14 +129,14 @@ CV_EXPORTS_W void inpaint( InputArray src, InputArray inpaintMask,
 <http://www.ipol.im/pub/algo/bcm_non_local_means_denoising/> with several computational
 optimizations. Noise expected to be a gaussian white noise
 
-@param src Input 8-bit 1-channel, 2-channel, 3-channel or 4-channel image.
-@param dst Output image with the same size and type as src .
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ src Input 8-bit 1-channel, 2-channel, 3-channel or 4-channel image.
+ dst Output image with the same size and type as src .
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Parameter regulating filter strength. Big h value perfectly removes noise but also
+ h Parameter regulating filter strength. Big h value perfectly removes noise but also
 removes image details, smaller h value preserves details but also preserves some noise
 
 This function expected to be applied to grayscale images. For colored images look at
@@ -152,19 +152,19 @@ CV_EXPORTS_W void fastNlMeansDenoising( InputArray src, OutputArray dst, float h
 <http://www.ipol.im/pub/algo/bcm_non_local_means_denoising/> with several computational
 optimizations. Noise expected to be a gaussian white noise
 
-@param src Input 8-bit or 16-bit (only with NORM_L1) 1-channel,
+ src Input 8-bit or 16-bit (only with NORM_L1) 1-channel,
 2-channel, 3-channel or 4-channel image.
-@param dst Output image with the same size and type as src .
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ dst Output image with the same size and type as src .
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Array of parameters regulating filter strength, either one
+ h Array of parameters regulating filter strength, either one
 parameter applied to all channels or one per channel in dst. Big h value
 perfectly removes noise but also removes image details, smaller h
 value preserves details but also preserves some noise
-@param normType Type of norm used for weight calculation. Can be either NORM_L2 or NORM_L1
+ normType Type of norm used for weight calculation. Can be either NORM_L2 or NORM_L1
 
 This function expected to be applied to grayscale images. For colored images look at
 fastNlMeansDenoisingColored. Advanced usage of this functions can be manual denoising of colored
@@ -179,17 +179,17 @@ CV_EXPORTS_W void fastNlMeansDenoising( InputArray src, OutputArray dst,
 
 /** @brief Modification of fastNlMeansDenoising function for colored images
 
-@param src Input 8-bit 3-channel image.
-@param dst Output image with the same size and type as src .
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ src Input 8-bit 3-channel image.
+ dst Output image with the same size and type as src .
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Parameter regulating filter strength for luminance component. Bigger h value perfectly
+ h Parameter regulating filter strength for luminance component. Bigger h value perfectly
 removes noise but also removes image details, smaller h value preserves details but also preserves
 some noise
-@param hColor The same as h but for color components. For most images value equals 10
+ hColor The same as h but for color components. For most images value equals 10
 will be enough to remove colored noise and do not distort colors
 
 The function converts image to CIELAB colorspace and then separately denoise L and AB components
@@ -204,21 +204,21 @@ captured in small period of time. For example video. This version of the functio
 images or for manual manipulation with colorspaces. See @cite Buades2005DenoisingIS for more details
 (open access [here](https://static.aminer.org/pdf/PDF/000/317/196/spatio_temporal_wiener_filtering_of_image_sequences_using_a_parametric.pdf)).
 
-@param srcImgs Input 8-bit 1-channel, 2-channel, 3-channel or
+ srcImgs Input 8-bit 1-channel, 2-channel, 3-channel or
 4-channel images sequence. All images should have the same type and
 size.
-@param imgToDenoiseIndex Target image to denoise index in srcImgs sequence
-@param temporalWindowSize Number of surrounding images to use for target image denoising. Should
+ imgToDenoiseIndex Target image to denoise index in srcImgs sequence
+ temporalWindowSize Number of surrounding images to use for target image denoising. Should
 be odd. Images from imgToDenoiseIndex - temporalWindowSize / 2 to
 imgToDenoiseIndex - temporalWindowSize / 2 from srcImgs will be used to denoise
 srcImgs[imgToDenoiseIndex] image.
-@param dst Output image with the same size and type as srcImgs images.
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ dst Output image with the same size and type as srcImgs images.
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Parameter regulating filter strength. Bigger h value
+ h Parameter regulating filter strength. Bigger h value
 perfectly removes noise but also removes image details, smaller h
 value preserves details but also preserves some noise
  */
@@ -231,25 +231,25 @@ captured in small period of time. For example video. This version of the functio
 images or for manual manipulation with colorspaces. See @cite Buades2005DenoisingIS for more details
 (open access [here](https://static.aminer.org/pdf/PDF/000/317/196/spatio_temporal_wiener_filtering_of_image_sequences_using_a_parametric.pdf)).
 
-@param srcImgs Input 8-bit or 16-bit (only with NORM_L1) 1-channel,
+ srcImgs Input 8-bit or 16-bit (only with NORM_L1) 1-channel,
 2-channel, 3-channel or 4-channel images sequence. All images should
 have the same type and size.
-@param imgToDenoiseIndex Target image to denoise index in srcImgs sequence
-@param temporalWindowSize Number of surrounding images to use for target image denoising. Should
+ imgToDenoiseIndex Target image to denoise index in srcImgs sequence
+ temporalWindowSize Number of surrounding images to use for target image denoising. Should
 be odd. Images from imgToDenoiseIndex - temporalWindowSize / 2 to
 imgToDenoiseIndex - temporalWindowSize / 2 from srcImgs will be used to denoise
 srcImgs[imgToDenoiseIndex] image.
-@param dst Output image with the same size and type as srcImgs images.
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ dst Output image with the same size and type as srcImgs images.
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Array of parameters regulating filter strength, either one
+ h Array of parameters regulating filter strength, either one
 parameter applied to all channels or one per channel in dst. Big h value
 perfectly removes noise but also removes image details, smaller h
 value preserves details but also preserves some noise
-@param normType Type of norm used for weight calculation. Can be either NORM_L2 or NORM_L1
+ normType Type of norm used for weight calculation. Can be either NORM_L2 or NORM_L1
  */
 CV_EXPORTS_W void fastNlMeansDenoisingMulti( InputArrayOfArrays srcImgs, OutputArray dst,
                                              int imgToDenoiseIndex, int temporalWindowSize,
@@ -259,23 +259,23 @@ CV_EXPORTS_W void fastNlMeansDenoisingMulti( InputArrayOfArrays srcImgs, OutputA
 
 /** @brief Modification of fastNlMeansDenoisingMulti function for colored images sequences
 
-@param srcImgs Input 8-bit 3-channel images sequence. All images should have the same type and
+ srcImgs Input 8-bit 3-channel images sequence. All images should have the same type and
 size.
-@param imgToDenoiseIndex Target image to denoise index in srcImgs sequence
-@param temporalWindowSize Number of surrounding images to use for target image denoising. Should
+ imgToDenoiseIndex Target image to denoise index in srcImgs sequence
+ temporalWindowSize Number of surrounding images to use for target image denoising. Should
 be odd. Images from imgToDenoiseIndex - temporalWindowSize / 2 to
 imgToDenoiseIndex - temporalWindowSize / 2 from srcImgs will be used to denoise
 srcImgs[imgToDenoiseIndex] image.
-@param dst Output image with the same size and type as srcImgs images.
-@param templateWindowSize Size in pixels of the template patch that is used to compute weights.
+ dst Output image with the same size and type as srcImgs images.
+ templateWindowSize Size in pixels of the template patch that is used to compute weights.
 Should be odd. Recommended value 7 pixels
-@param searchWindowSize Size in pixels of the window that is used to compute weighted average for
+ searchWindowSize Size in pixels of the window that is used to compute weighted average for
 given pixel. Should be odd. Affect performance linearly: greater searchWindowsSize - greater
 denoising time. Recommended value 21 pixels
-@param h Parameter regulating filter strength for luminance component. Bigger h value perfectly
+ h Parameter regulating filter strength for luminance component. Bigger h value perfectly
 removes noise but also removes image details, smaller h value preserves details but also preserves
 some noise.
-@param hColor The same as h but for color components.
+ hColor The same as h but for color components.
 
 The function converts images to CIELAB colorspace and then separately denoise L and AB components
 with given h parameters using fastNlMeansDenoisingMulti function.
@@ -310,15 +310,15 @@ image to be smooth (ideally, having zero gradient, thus being constant) and the 
 we want our result to be close to the observations we've got. If we treat \f$x\f$ as a function, this is
 exactly the functional what we seek to minimize and here the Primal-Dual algorithm comes into play.
 
-@param observations This array should contain one or more noised versions of the image that is to
+ observations This array should contain one or more noised versions of the image that is to
 be restored.
-@param result Here the denoised image will be stored. There is no need to do pre-allocation of
+ result Here the denoised image will be stored. There is no need to do pre-allocation of
 storage space, as it will be automatically allocated, if necessary.
-@param lambda Corresponds to \f$\lambda\f$ in the formulas above. As it is enlarged, the smooth
+ lambda Corresponds to \f$\lambda\f$ in the formulas above. As it is enlarged, the smooth
 (blurred) images are treated more favorably than detailed (but maybe more noised) ones. Roughly
 speaking, as it becomes smaller, the result will be more blur but more sever outliers will be
 removed.
-@param niters Number of iterations that the algorithm will run. Of course, as more iterations as
+ niters Number of iterations that the algorithm will run. Of course, as more iterations as
 better, but it is hard to quantitatively refine this statement, so just use the default and
 increase it if the results are poor.
  */
@@ -338,8 +338,8 @@ class CV_EXPORTS_W Tonemap : public Algorithm
 public:
     /** @brief Tonemaps image
 
-    @param src source image - CV_32FC3 Mat (float 32 bits 3 channels)
-    @param dst destination image - CV_32FC3 Mat with values in [0, 1] range
+     src source image - CV_32FC3 Mat (float 32 bits 3 channels)
+     dst destination image - CV_32FC3 Mat with values in [0, 1] range
      */
     CV_WRAP virtual void process(InputArray src, OutputArray dst) = 0;
 
@@ -349,7 +349,7 @@ public:
 
 /** @brief Creates simple linear mapper with gamma correction
 
-@param gamma positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+ gamma positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
 equal to 2.2f is suitable for most displays.
 Generally gamma \> 1 brightens the image and gamma \< 1 darkens it.
  */
@@ -378,10 +378,10 @@ public:
 
 /** @brief Creates TonemapDrago object
 
-@param gamma gamma value for gamma correction. See createTonemap
-@param saturation positive saturation enhancement value. 1.0 preserves saturation, values greater
+ gamma gamma value for gamma correction. See createTonemap
+ saturation positive saturation enhancement value. 1.0 preserves saturation, values greater
 than 1 increase saturation and values less than 1 decrease it.
-@param bias value for bias function in [0, 1] range. Values from 0.7 to 0.9 usually give best
+ bias value for bias function in [0, 1] range. Values from 0.7 to 0.9 usually give best
 results, default value is 0.85.
  */
 CV_EXPORTS_W Ptr<TonemapDrago> createTonemapDrago(float gamma = 1.0f, float saturation = 1.0f, float bias = 0.85f);
@@ -409,11 +409,11 @@ public:
 
 /** @brief Creates TonemapReinhard object
 
-@param gamma gamma value for gamma correction. See createTonemap
-@param intensity result intensity in [-8, 8] range. Greater intensity produces brighter results.
-@param light_adapt light adaptation in [0, 1] range. If 1 adaptation is based only on pixel
+ gamma gamma value for gamma correction. See createTonemap
+ intensity result intensity in [-8, 8] range. Greater intensity produces brighter results.
+ light_adapt light adaptation in [0, 1] range. If 1 adaptation is based only on pixel
 value, if 0 it's global, otherwise it's a weighted mean of this two cases.
-@param color_adapt chromatic adaptation in [0, 1] range. If 1 channels are treated independently,
+ color_adapt chromatic adaptation in [0, 1] range. If 1 channels are treated independently,
 if 0 adaptation level is the same for each channel.
  */
 CV_EXPORTS_W Ptr<TonemapReinhard>
@@ -437,10 +437,10 @@ public:
 
 /** @brief Creates TonemapMantiuk object
 
-@param gamma gamma value for gamma correction. See createTonemap
-@param scale contrast scale factor. HVS response is multiplied by this parameter, thus compressing
+ gamma gamma value for gamma correction. See createTonemap
+ scale contrast scale factor. HVS response is multiplied by this parameter, thus compressing
 dynamic range. Values from 0.6 to 0.9 produce best results.
-@param saturation saturation enhancement value. See createTonemapDrago
+ saturation saturation enhancement value. See createTonemapDrago
  */
 CV_EXPORTS_W Ptr<TonemapMantiuk>
 createTonemapMantiuk(float gamma = 1.0f, float scale = 0.7f, float saturation = 1.0f);
@@ -452,10 +452,10 @@ class CV_EXPORTS_W AlignExposures : public Algorithm
 public:
     /** @brief Aligns images
 
-    @param src vector of input images
-    @param dst vector of aligned images
-    @param times vector of exposure time values for each image
-    @param response 256x1 matrix with inverse camera response function for each pixel value, it should
+     src vector of input images
+     dst vector of aligned images
+     times vector of exposure time values for each image
+     response 256x1 matrix with inverse camera response function for each pixel value, it should
     have the same number of channels as images.
      */
     CV_WRAP virtual void process(InputArrayOfArrays src, std::vector<Mat>& dst,
@@ -479,30 +479,30 @@ public:
 
     /** @brief Short version of process, that doesn't take extra arguments.
 
-    @param src vector of input images
-    @param dst vector of aligned images
+     src vector of input images
+     dst vector of aligned images
      */
     CV_WRAP virtual void process(InputArrayOfArrays src, std::vector<Mat>& dst) = 0;
 
     /** @brief Calculates shift between two images, i. e. how to shift the second image to correspond it with the
     first.
 
-    @param img0 first image
-    @param img1 second image
+     img0 first image
+     img1 second image
      */
     CV_WRAP virtual Point calculateShift(InputArray img0, InputArray img1) = 0;
     /** @brief Helper function, that shift Mat filling new regions with zeros.
 
-    @param src input image
-    @param dst result image
-    @param shift shift value
+     src input image
+     dst result image
+     shift shift value
      */
     CV_WRAP virtual void shiftMat(InputArray src, OutputArray dst, const Point shift) = 0;
     /** @brief Computes median threshold and exclude bitmaps of given image.
 
-    @param img input image
-    @param tb median threshold bitmap
-    @param eb exclude bitmap
+     img input image
+     tb median threshold bitmap
+     eb exclude bitmap
      */
     CV_WRAP virtual void computeBitmaps(InputArray img, OutputArray tb, OutputArray eb) = 0;
 
@@ -518,11 +518,11 @@ public:
 
 /** @brief Creates AlignMTB object
 
-@param max_bits logarithm to the base 2 of maximal shift in each dimension. Values of 5 and 6 are
+ max_bits logarithm to the base 2 of maximal shift in each dimension. Values of 5 and 6 are
 usually good enough (31 and 63 pixels shift respectively).
-@param exclude_range range for exclusion bitmap that is constructed to suppress noise around the
+ exclude_range range for exclusion bitmap that is constructed to suppress noise around the
 median value.
-@param cut if true cuts images, otherwise fills the new regions with zeros.
+ cut if true cuts images, otherwise fills the new regions with zeros.
  */
 CV_EXPORTS_W Ptr<AlignMTB> createAlignMTB(int max_bits = 6, int exclude_range = 4, bool cut = true);
 
@@ -533,9 +533,9 @@ class CV_EXPORTS_W CalibrateCRF : public Algorithm
 public:
     /** @brief Recovers inverse camera response.
 
-    @param src vector of input images
-    @param dst 256x1 matrix with inverse camera response function
-    @param times vector of exposure time values for each image
+     src vector of input images
+     dst 256x1 matrix with inverse camera response function
+     times vector of exposure time values for each image
      */
     CV_WRAP virtual void process(InputArrayOfArrays src, OutputArray dst, InputArray times) = 0;
 };
@@ -561,10 +561,10 @@ public:
 
 /** @brief Creates CalibrateDebevec object
 
-@param samples number of pixel locations to use
-@param lambda smoothness term weight. Greater values produce smoother results, but can alter the
+ samples number of pixel locations to use
+ lambda smoothness term weight. Greater values produce smoother results, but can alter the
 response.
-@param random if true sample pixel locations are chosen at random, otherwise they form a
+ random if true sample pixel locations are chosen at random, otherwise they form a
 rectangular grid.
  */
 CV_EXPORTS_W Ptr<CalibrateDebevec> createCalibrateDebevec(int samples = 70, float lambda = 10.0f, bool random = false);
@@ -588,8 +588,8 @@ public:
 
 /** @brief Creates CalibrateRobertson object
 
-@param max_iter maximal number of Gauss-Seidel solver iterations.
-@param threshold target difference between results of two successive steps of the minimization.
+ max_iter maximal number of Gauss-Seidel solver iterations.
+ threshold target difference between results of two successive steps of the minimization.
  */
 CV_EXPORTS_W Ptr<CalibrateRobertson> createCalibrateRobertson(int max_iter = 30, float threshold = 0.01f);
 
@@ -600,10 +600,10 @@ class CV_EXPORTS_W MergeExposures : public Algorithm
 public:
     /** @brief Merges images.
 
-    @param src vector of input images
-    @param dst result image
-    @param times vector of exposure time values for each image
-    @param response 256x1 matrix with inverse camera response function for each pixel value, it should
+     src vector of input images
+     dst result image
+     times vector of exposure time values for each image
+     response 256x1 matrix with inverse camera response function for each pixel value, it should
     have the same number of channels as images.
      */
     CV_WRAP virtual void process(InputArrayOfArrays src, OutputArray dst,
@@ -645,8 +645,8 @@ public:
                                  InputArray times, InputArray response) CV_OVERRIDE = 0;
     /** @brief Short version of process, that doesn't take extra arguments.
 
-    @param src vector of input images
-    @param dst result image
+     src vector of input images
+     dst result image
      */
     CV_WRAP virtual void process(InputArrayOfArrays src, OutputArray dst) = 0;
 
@@ -662,9 +662,9 @@ public:
 
 /** @brief Creates MergeMertens object
 
-@param contrast_weight contrast measure weight. See MergeMertens.
-@param saturation_weight saturation measure weight
-@param exposure_weight well-exposedness measure weight
+ contrast_weight contrast measure weight. See MergeMertens.
+ saturation_weight saturation measure weight
+ exposure_weight well-exposedness measure weight
  */
 CV_EXPORTS_W Ptr<MergeMertens>
 createMergeMertens(float contrast_weight = 1.0f, float saturation_weight = 1.0f, float exposure_weight = 0.0f);
@@ -695,9 +695,9 @@ CV_EXPORTS_W Ptr<MergeRobertson> createMergeRobertson();
 black-and-white photograph rendering, and in many single channel image processing applications
 @cite CL12 .
 
-@param src Input 8-bit 3-channel image.
-@param grayscale Output 8-bit 1-channel image.
-@param color_boost Output 8-bit 3-channel image.
+ src Input 8-bit 3-channel image.
+ grayscale Output 8-bit 1-channel image.
+ color_boost Output 8-bit 3-channel image.
 
 This function is to be applied on color images.
  */
@@ -730,12 +730,12 @@ changes, ones that are restricted to a region manually selected (ROI), in a seam
 manner. The extent of the changes ranges from slight distortions to complete replacement by novel
 content @cite PM03 .
 
-@param src Input 8-bit 3-channel image.
-@param dst Input 8-bit 3-channel image.
-@param mask Input 8-bit 1 or 3-channel image.
-@param p Point in dst image where object is placed.
-@param blend Output image with the same size and type as dst.
-@param flags Cloning method that could be cv::NORMAL_CLONE, cv::MIXED_CLONE or cv::MONOCHROME_TRANSFER
+ src Input 8-bit 3-channel image.
+ dst Input 8-bit 3-channel image.
+ mask Input 8-bit 1 or 3-channel image.
+ p Point in dst image where object is placed.
+ blend Output image with the same size and type as dst.
+ flags Cloning method that could be cv::NORMAL_CLONE, cv::MIXED_CLONE or cv::MONOCHROME_TRANSFER
  */
 CV_EXPORTS_W void seamlessClone( InputArray src, InputArray dst, InputArray mask, Point p,
         OutputArray blend, int flags);
@@ -743,12 +743,12 @@ CV_EXPORTS_W void seamlessClone( InputArray src, InputArray dst, InputArray mask
 /** @brief Given an original color image, two differently colored versions of this image can be mixed
 seamlessly.
 
-@param src Input 8-bit 3-channel image.
-@param mask Input 8-bit 1 or 3-channel image.
-@param dst Output image with the same size and type as src .
-@param red_mul R-channel multiply factor.
-@param green_mul G-channel multiply factor.
-@param blue_mul B-channel multiply factor.
+ src Input 8-bit 3-channel image.
+ mask Input 8-bit 1 or 3-channel image.
+ dst Output image with the same size and type as src .
+ red_mul R-channel multiply factor.
+ green_mul G-channel multiply factor.
+ blue_mul B-channel multiply factor.
 
 Multiplication factor is between .5 to 2.5.
  */
@@ -758,11 +758,11 @@ CV_EXPORTS_W void colorChange(InputArray src, InputArray mask, OutputArray dst, 
 /** @brief Applying an appropriate non-linear transformation to the gradient field inside the selection and
 then integrating back with a Poisson solver, modifies locally the apparent illumination of an image.
 
-@param src Input 8-bit 3-channel image.
-@param mask Input 8-bit 1 or 3-channel image.
-@param dst Output image with the same size and type as src.
-@param alpha Value ranges between 0-2.
-@param beta Value ranges between 0-2.
+ src Input 8-bit 3-channel image.
+ mask Input 8-bit 1 or 3-channel image.
+ dst Output image with the same size and type as src.
+ alpha Value ranges between 0-2.
+ beta Value ranges between 0-2.
 
 This is useful to highlight under-exposed foreground objects or to reduce specular reflections.
  */
@@ -772,12 +772,12 @@ CV_EXPORTS_W void illuminationChange(InputArray src, InputArray mask, OutputArra
 /** @brief By retaining only the gradients at edge locations, before integrating with the Poisson solver, one
 washes out the texture of the selected region, giving its contents a flat aspect. Here Canny Edge %Detector is used.
 
-@param src Input 8-bit 3-channel image.
-@param mask Input 8-bit 1 or 3-channel image.
-@param dst Output image with the same size and type as src.
-@param low_threshold %Range from 0 to 100.
-@param high_threshold Value \> 100.
-@param kernel_size The size of the Sobel kernel to be used.
+ src Input 8-bit 3-channel image.
+ mask Input 8-bit 1 or 3-channel image.
+ dst Output image with the same size and type as src.
+ low_threshold %Range from 0 to 100.
+ high_threshold Value \> 100.
+ kernel_size The size of the Sobel kernel to be used.
 
 @note
 The algorithm assumes that the color of the source image is close to that of the destination. This
@@ -803,21 +803,21 @@ enum
 /** @brief Filtering is the fundamental operation in image and video processing. Edge-preserving smoothing
 filters are used in many different applications @cite EM11 .
 
-@param src Input 8-bit 3-channel image.
-@param dst Output 8-bit 3-channel image.
-@param flags Edge preserving filters: cv::RECURS_FILTER or cv::NORMCONV_FILTER
-@param sigma_s %Range between 0 to 200.
-@param sigma_r %Range between 0 to 1.
+ src Input 8-bit 3-channel image.
+ dst Output 8-bit 3-channel image.
+ flags Edge preserving filters: cv::RECURS_FILTER or cv::NORMCONV_FILTER
+ sigma_s %Range between 0 to 200.
+ sigma_r %Range between 0 to 1.
  */
 CV_EXPORTS_W void edgePreservingFilter(InputArray src, OutputArray dst, int flags = 1,
         float sigma_s = 60, float sigma_r = 0.4f);
 
 /** @brief This filter enhances the details of a particular image.
 
-@param src Input 8-bit 3-channel image.
-@param dst Output image with the same size and type as src.
-@param sigma_s %Range between 0 to 200.
-@param sigma_r %Range between 0 to 1.
+ src Input 8-bit 3-channel image.
+ dst Output image with the same size and type as src.
+ sigma_s %Range between 0 to 200.
+ sigma_r %Range between 0 to 1.
  */
 CV_EXPORTS_W void detailEnhance(InputArray src, OutputArray dst, float sigma_s = 10,
         float sigma_r = 0.15f);
@@ -827,12 +827,12 @@ An example using non-photorealistic line drawing functions
 */
 /** @brief Pencil-like non-photorealistic line drawing
 
-@param src Input 8-bit 3-channel image.
-@param dst1 Output 8-bit 1-channel image.
-@param dst2 Output image with the same size and type as src.
-@param sigma_s %Range between 0 to 200.
-@param sigma_r %Range between 0 to 1.
-@param shade_factor %Range between 0 to 0.1.
+ src Input 8-bit 3-channel image.
+ dst1 Output 8-bit 1-channel image.
+ dst2 Output image with the same size and type as src.
+ sigma_s %Range between 0 to 200.
+ sigma_r %Range between 0 to 1.
+ shade_factor %Range between 0 to 0.1.
  */
 CV_EXPORTS_W void pencilSketch(InputArray src, OutputArray dst1, OutputArray dst2,
         float sigma_s = 60, float sigma_r = 0.07f, float shade_factor = 0.02f);
@@ -841,10 +841,10 @@ CV_EXPORTS_W void pencilSketch(InputArray src, OutputArray dst1, OutputArray dst
 photorealism. Edge-aware filters are ideal for stylization, as they can abstract regions of low
 contrast while preserving, or enhancing, high-contrast features.
 
-@param src Input 8-bit 3-channel image.
-@param dst Output image with the same size and type as src.
-@param sigma_s %Range between 0 to 200.
-@param sigma_r %Range between 0 to 1.
+ src Input 8-bit 3-channel image.
+ dst Output image with the same size and type as src.
+ sigma_s %Range between 0 to 200.
+ sigma_r %Range between 0 to 1.
  */
 CV_EXPORTS_W void stylization(InputArray src, OutputArray dst, float sigma_s = 60,
         float sigma_r = 0.45f);

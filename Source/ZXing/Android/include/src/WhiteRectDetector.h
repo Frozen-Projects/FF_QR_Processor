@@ -18,10 +18,10 @@ class ResultPoint;
  * region until it finds a white rectangular region.
  * </p>
  *
- * @param image barcode image to find a rectangle in
- * @param initSize initial size of search area around center
- * @param x x position of search center
- * @param y y position of search center
+ *  image barcode image to find a rectangle in
+ *  initSize initial size of search area around center
+ *  x x position of search center
+ *  y y position of search center
  * @return {@link ResultPoint}[] describing the corners of the rectangular
  *         region. The first and last points are opposed on the diagonal, as
  *         are the second and third. The first point will be the topmost

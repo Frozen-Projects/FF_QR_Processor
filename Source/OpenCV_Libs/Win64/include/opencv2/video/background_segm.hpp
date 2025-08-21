@@ -62,9 +62,9 @@ class CV_EXPORTS_W BackgroundSubtractor : public Algorithm
 public:
     /** @brief Computes a foreground mask.
 
-    @param image Next video frame.
-    @param fgmask The output foreground mask as an 8-bit binary image.
-    @param learningRate The value between 0 and 1 that indicates how fast the background model is
+     image Next video frame.
+     fgmask The output foreground mask as an 8-bit binary image.
+     learningRate The value between 0 and 1 that indicates how fast the background model is
     learnt. Negative parameter value makes the algorithm to use some automatically chosen learning
     rate. 0 means that the background model is not updated at all, 1 means that the background model
     is completely reinitialized from the last frame.
@@ -73,7 +73,7 @@ public:
 
     /** @brief Computes a background image.
 
-    @param backgroundImage The output background image.
+     backgroundImage The output background image.
 
     @note Sometimes the background image can be very blurry, as it contain the average background
     statistics.
@@ -198,9 +198,9 @@ public:
 
     /** @brief Computes a foreground mask.
 
-    @param image Next video frame. Floating point frame will be used without scaling and should be in range \f$[0,255]\f$.
-    @param fgmask The output foreground mask as an 8-bit binary image.
-    @param learningRate The value between 0 and 1 that indicates how fast the background model is
+     image Next video frame. Floating point frame will be used without scaling and should be in range \f$[0,255]\f$.
+     fgmask The output foreground mask as an 8-bit binary image.
+     learningRate The value between 0 and 1 that indicates how fast the background model is
     learnt. Negative parameter value makes the algorithm to use some automatically chosen learning
     rate. 0 means that the background model is not updated at all, 1 means that the background model
     is completely reinitialized from the last frame.
@@ -210,11 +210,11 @@ public:
 
 /** @brief Creates MOG2 Background Subtractor
 
-@param history Length of the history.
-@param varThreshold Threshold on the squared Mahalanobis distance between the pixel and the model
+ history Length of the history.
+ varThreshold Threshold on the squared Mahalanobis distance between the pixel and the model
 to decide whether a pixel is well described by the background model. This parameter does not
 affect the background update.
-@param detectShadows If true, the algorithm will detect shadows and mark them. It decreases the
+ detectShadows If true, the algorithm will detect shadows and mark them. It decreases the
 speed a bit, so if you do not need this feature, set the parameter to false.
  */
 CV_EXPORTS_W Ptr<BackgroundSubtractorMOG2>
@@ -300,10 +300,10 @@ public:
 
 /** @brief Creates KNN Background Subtractor
 
-@param history Length of the history.
-@param dist2Threshold Threshold on the squared distance between the pixel and the sample to decide
+ history Length of the history.
+ dist2Threshold Threshold on the squared distance between the pixel and the sample to decide
 whether a pixel is close to that sample. This parameter does not affect the background update.
-@param detectShadows If true, the algorithm will detect shadows and mark them. It decreases the
+ detectShadows If true, the algorithm will detect shadows and mark them. It decreases the
 speed a bit, so if you do not need this feature, set the parameter to false.
  */
 CV_EXPORTS_W Ptr<BackgroundSubtractorKNN>

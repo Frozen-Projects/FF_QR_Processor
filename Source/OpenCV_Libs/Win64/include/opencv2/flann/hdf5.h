@@ -163,9 +163,9 @@ namespace mpi
 {
 /**
  * Loads a the hyperslice corresponding to this processor from a hdf5 file.
- * @param flann_dataset Dataset where the data is loaded
- * @param filename HDF5 file name
- * @param name Name of dataset inside file
+ *  flann_dataset Dataset where the data is loaded
+ *  filename HDF5 file name
+ *  name Name of dataset inside file
  */
 template<typename T>
 void load_from_file(cvflann::Matrix<T>& dataset, const String& filename, const String& name)

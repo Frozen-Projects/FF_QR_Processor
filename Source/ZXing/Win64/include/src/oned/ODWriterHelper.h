@@ -28,10 +28,10 @@ public:
 	static BitMatrix RenderResult(const std::vector<bool>& code, int width, int height, int sidesMargin);
 
 	/**
-	* @param target encode black/white pattern into this array
-	* @param pos position to start encoding at in {@code target}
-	* @param pattern lengths of black/white runs to encode
-	* @param startColor starting color - false for white, true for black
+	*  target encode black/white pattern into this array
+	*  pos position to start encoding at in {@code target}
+	*  pattern lengths of black/white runs to encode
+	*  startColor starting color - false for white, true for black
 	* @return the number of elements added to target.
 	*/
 	template <typename Container>

@@ -49,28 +49,28 @@ namespace detail {
 /** @brief Serialize a graph represented by GComputation into an array of bytes.
  *
  * Check different overloads for more examples.
- * @param c GComputation to serialize.
+ *  c GComputation to serialize.
  * @return serialized vector of bytes.
  */
 GAPI_EXPORTS std::vector<char> serialize(const cv::GComputation &c);
 
 /** @overload
- * @param ca GCompileArgs to serialize.
+ *  ca GCompileArgs to serialize.
  */
 GAPI_EXPORTS std::vector<char> serialize(const cv::GCompileArgs& ca);
 
 /** @overload
- * @param ma GMetaArgs to serialize.
+ *  ma GMetaArgs to serialize.
  */
 GAPI_EXPORTS std::vector<char> serialize(const cv::GMetaArgs& ma);
 
 /** @overload
- * @param ra GRunArgs to serialize.
+ *  ra GRunArgs to serialize.
  */
 GAPI_EXPORTS std::vector<char> serialize(const cv::GRunArgs& ra);
 
 /** @overload
- * @param vs std::vector<std::string> to serialize.
+ *  vs std::vector<std::string> to serialize.
  */
 GAPI_EXPORTS std::vector<char> serialize(const std::vector<std::string>& vs);
 
@@ -83,7 +83,7 @@ T deserialize(const std::vector<char> &bytes);
 /** @brief Deserialize GComputation from a byte array.
  *
  * Check different overloads for more examples.
- * @param bytes serialized vector of bytes.
+ *  bytes serialized vector of bytes.
  * @return deserialized GComputation object.
  */
 template<> inline
@@ -94,7 +94,7 @@ cv::GComputation deserialize(const std::vector<char> &bytes) {
 /** @brief Deserialize GMetaArgs from a byte array.
  *
  * Check different overloads for more examples.
- * @param bytes serialized vector of bytes.
+ *  bytes serialized vector of bytes.
  * @return deserialized GMetaArgs object.
  */
 template<> inline
@@ -105,7 +105,7 @@ cv::GMetaArgs deserialize(const std::vector<char> &bytes) {
 /** @brief Deserialize GRunArgs from a byte array.
  *
  * Check different overloads for more examples.
- * @param bytes serialized vector of bytes.
+ *  bytes serialized vector of bytes.
  * @return deserialized GRunArgs object.
  */
 template<> inline
@@ -116,7 +116,7 @@ cv::GRunArgs deserialize(const std::vector<char> &bytes) {
 /** @brief Deserialize std::vector<std::string> from a byte array.
  *
  * Check different overloads for more examples.
- * @param bytes serialized vector of bytes.
+ *  bytes serialized vector of bytes.
  * @return deserialized std::vector<std::string> object.
  */
 template<> inline
@@ -130,7 +130,7 @@ std::vector<std::string> deserialize(const std::vector<char> &bytes) {
  * @note cv::gapi::s11n::detail::S11N template specialization must be provided to make a custom type
  * in GCompileArgs deserializable.
  *
- * @param bytes vector of bytes to deserialize GCompileArgs object from.
+ *  bytes vector of bytes to deserialize GCompileArgs object from.
  * @return GCompileArgs object.
  * @see GCompileArgs cv::gapi::s11n::detail::S11N
  */
@@ -145,7 +145,7 @@ type deserialize(const std::vector<char> &bytes) {
  *
  * Adapter types are specified in the template.
  * @note To be used properly specified adapter types must overload their deserialize() method.
- * @param bytes vector of bytes to deserialize GRunArgs object from.
+ *  bytes vector of bytes to deserialize GRunArgs object from.
  * @return GRunArgs including RMat and MediaFrame objects if any.
  * @see RMat MediaFrame
  */

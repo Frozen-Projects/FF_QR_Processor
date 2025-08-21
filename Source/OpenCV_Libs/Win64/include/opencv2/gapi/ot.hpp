@@ -101,10 +101,10 @@ G_API_OP(GTrackFromFrame, <GTrackedInfo(cv::GFrame, cv::GArray<cv::Rect>, cv::GA
  *          In zero term tracking type, ObjectTracker clears tracked objects in case that empty
  *          list of detected objects is passed in.
  *
- * @param mat                       Input frame.
- * @param detected_rects            Detected objects rectangles in the input frame.
- * @param detected_class_labels     Detected objects class labels in the input frame.
- * @param delta                     Frame_delta_t Delta time between two consecutive tracking in seconds.
+ *  mat                       Input frame.
+ *  detected_rects            Detected objects rectangles in the input frame.
+ *  detected_class_labels     Detected objects class labels in the input frame.
+ *  delta                     Frame_delta_t Delta time between two consecutive tracking in seconds.
  *                                  The valid range is [0.005 ~ 0.5].
  * @return                          Tracking results of target objects.
  *                                  cv::GArray<cv::Rect>  Array of rectangles for tracked objects.
@@ -129,10 +129,10 @@ GAPI_EXPORTS_W std::tuple<cv::GArray<cv::Rect>,
    @overload
  * @brief   Tracks objects with video frames. Overload of track(...) for frame as GFrame.
  *
- * @param frame                     Input frame.
- * @param detected_rects            Detected objects rectangles in the input frame.
- * @param detected_class_labels     Detected objects class labels in the input frame.
- * @param delta                     Frame_delta_t Delta time between two consecutive tracking in seconds.
+ *  frame                     Input frame.
+ *  detected_rects            Detected objects rectangles in the input frame.
+ *  detected_class_labels     Detected objects class labels in the input frame.
+ *  delta                     Frame_delta_t Delta time between two consecutive tracking in seconds.
  *                                  The valid range is [0.005 ~ 0.5].
  * @return                          Tracking results of target objects.
  * @return                          Tracking results of target objects.

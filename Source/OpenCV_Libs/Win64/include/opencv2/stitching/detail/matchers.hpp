@@ -65,10 +65,10 @@ struct CV_EXPORTS_W_SIMPLE ImageFeatures
 };
 /** @brief
 
-@param featuresFinder
-@param images
-@param features
-@param masks
+ featuresFinder
+ images
+ features
+ masks
 */
 CV_EXPORTS_W void computeImageFeatures(
     const Ptr<Feature2D> &featuresFinder,
@@ -78,10 +78,10 @@ CV_EXPORTS_W void computeImageFeatures(
 
 /** @brief
 
-@param featuresFinder
-@param image
-@param features
-@param mask
+ featuresFinder
+ image
+ features
+ mask
 */
 CV_EXPORTS_AS(computeImageFeatures2) void computeImageFeatures(
     const Ptr<Feature2D> &featuresFinder,
@@ -120,18 +120,18 @@ public:
     CV_WRAP virtual ~FeaturesMatcher() {}
 
     /** @overload
-    @param features1 First image features
-    @param features2 Second image features
-    @param matches_info Found matches
+     features1 First image features
+     features2 Second image features
+     matches_info Found matches
     */
     CV_WRAP_AS(apply) void operator ()(const ImageFeatures &features1, const ImageFeatures &features2,
                      CV_OUT MatchesInfo& matches_info) { match(features1, features2, matches_info); }
 
     /** @brief Performs images matching.
 
-    @param features Features of the source images
-    @param pairwise_matches Found pairwise matches
-    @param mask Mask indicating which image pairs must be matched
+     features Features of the source images
+     pairwise_matches Found pairwise matches
+     mask Mask indicating which image pairs must be matched
 
     The function is parallelized with the TBB library.
 
@@ -154,9 +154,9 @@ protected:
     /** @brief This method must implement matching logic in order to make the wrappers
     detail::FeaturesMatcher::operator()_ work.
 
-    @param features1 first image features
-    @param features2 second image features
-    @param matches_info found matches
+     features1 first image features
+     features2 second image features
+     matches_info found matches
      */
     virtual void match(const ImageFeatures &features1, const ImageFeatures &features2,
                        MatchesInfo& matches_info) = 0;
@@ -164,9 +164,9 @@ protected:
     /** @brief This method implements logic to match features between arbitrary number of features.
     By default this checks every pair of inputs in the input, but the behaviour can be changed by subclasses.
 
-    @param features vector of image features
-    @param pairwise_matches found matches
-    @param mask (optional) mask indicating which image pairs should be matched
+     features vector of image features
+     pairwise_matches found matches
+     mask (optional) mask indicating which image pairs should be matched
      */
     virtual void match(const std::vector<ImageFeatures> &features, std::vector<MatchesInfo> &pairwise_matches,
                        const cv::UMat &mask = cv::UMat());
@@ -184,13 +184,13 @@ class CV_EXPORTS_W BestOf2NearestMatcher : public FeaturesMatcher
 public:
     /** @brief Constructs a "best of 2 nearest" matcher.
 
-    @param try_use_gpu Should try to use GPU or not
-    @param match_conf Match distances ration threshold
-    @param num_matches_thresh1 Minimum number of matches required for the 2D projective transform
+     try_use_gpu Should try to use GPU or not
+     match_conf Match distances ration threshold
+     num_matches_thresh1 Minimum number of matches required for the 2D projective transform
     estimation used in the inliers classification step
-    @param num_matches_thresh2 Minimum number of matches required for the 2D projective transform
+     num_matches_thresh2 Minimum number of matches required for the 2D projective transform
     re-estimation on inliers
-    @param matches_confindece_thresh Matching confidence threshold to take the match into account.
+     matches_confindece_thresh Matching confidence threshold to take the match into account.
     The threshold was determined experimentally and set to 3 by default.
      */
     CV_WRAP BestOf2NearestMatcher(bool try_use_gpu = false, float match_conf = 0.3f, int num_matches_thresh1 = 6,
@@ -239,11 +239,11 @@ public:
     /** @brief Constructs a "best of 2 nearest" matcher that expects affine transformation
     between images
 
-    @param full_affine whether to use full affine transformation with 6 degress of freedom or reduced
+     full_affine whether to use full affine transformation with 6 degress of freedom or reduced
     transformation with 4 degrees of freedom using only rotation, translation and uniform scaling
-    @param try_use_gpu Should try to use GPU or not
-    @param match_conf Match distances ration threshold
-    @param num_matches_thresh1 Minimum number of matches required for the 2D affine transform
+     try_use_gpu Should try to use GPU or not
+     match_conf Match distances ration threshold
+     num_matches_thresh1 Minimum number of matches required for the 2D affine transform
     estimation used in the inliers classification step
 
     @sa cv::estimateAffine2D cv::estimateAffinePartial2D

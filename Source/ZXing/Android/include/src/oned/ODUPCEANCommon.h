@@ -78,7 +78,7 @@ std::array<int, N> DigitString2IntArray(const std::basic_string<T>& in, int chec
 /**
  * Expands a UPC-E value back into its full, equivalent UPC-A code value.
  *
- * @param upce UPC-E code as string of digits
+ *  upce UPC-E code as string of digits
  * @return equivalent UPC-A code as string of digits
  */
 template <typename StringT>

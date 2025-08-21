@@ -194,7 +194,7 @@ framework:
     functions sequentially.
 -   `GCD` - Supports only values \<= 0.
 -   `C=` - No special defined behaviour.
-@param nthreads Number of threads used by OpenCV.
+ nthreads Number of threads used by OpenCV.
 @sa getNumThreads, getThreadNum
  */
 CV_EXPORTS_W void setNumThreads(int nthreads);
@@ -420,7 +420,7 @@ The function returns true if the host hardware supports the specified feature. W
 setUseOptimized(false), the subsequent calls to checkHardwareSupport() will return false until
 setUseOptimized(true) is called. This way user can dynamically switch on and off the optimized code
 in OpenCV.
-@param feature The feature of interest, one of cv::CpuFeatures
+ feature The feature of interest, one of cv::CpuFeatures
  */
 CV_EXPORTS_W bool checkHardwareSupport(int feature);
 
@@ -451,8 +451,8 @@ CV_EXPORTS_W int getNumberOfCPUs();
 
 The function returns the aligned pointer of the same type as the input pointer:
 \f[\texttt{(_Tp*)(((size_t)ptr + n-1) & -n)}\f]
-@param ptr Aligned pointer.
-@param n Alignment size that must be a power of two.
+ ptr Aligned pointer.
+ n Alignment size that must be a power of two.
  */
 template<typename _Tp> static inline _Tp* alignPtr(_Tp* ptr, int n=(int)sizeof(_Tp))
 {
@@ -464,8 +464,8 @@ template<typename _Tp> static inline _Tp* alignPtr(_Tp* ptr, int n=(int)sizeof(_
 
 The function returns the minimum number that is greater than or equal to sz and is divisible by n :
 \f[\texttt{(sz + n-1) & -n}\f]
-@param sz Buffer size to align.
-@param n Alignment size that must be a power of two.
+ sz Buffer size to align.
+ n Alignment size that must be a power of two.
  */
 static inline size_t alignSize(size_t sz, int n)
 {
@@ -554,7 +554,7 @@ other OpenCV function is currently executed.
 
 By default, the optimized code is enabled unless you disable it in CMake. The current status can be
 retrieved using useOptimized.
-@param onoff The boolean flag specifying whether the optimized code should be used (onoff=true)
+ onoff The boolean flag specifying whether the optimized code should be used (onoff=true)
 or not (onoff=false).
  */
 CV_EXPORTS_W void setUseOptimized(bool onoff);
@@ -822,9 +822,9 @@ public:
 
     Initializes command line parser object
 
-    @param argc number of command line arguments (from main())
-    @param argv array of command line arguments (from main())
-    @param keys string describing acceptable command line parameters (see class description for syntax)
+     argc number of command line arguments (from main())
+     argv array of command line arguments (from main())
+     keys string describing acceptable command line parameters (see class description for syntax)
     */
     CommandLineParser(int argc, const char* const argv[], const String& keys);
 
@@ -871,8 +871,8 @@ public:
     int N = parser.get<int>("N");
     @endcode
 
-    @param name name of the argument
-    @param space_delete remove spaces from the left and right of the string
+     name name of the argument
+     space_delete remove spaces from the left and right of the string
     @tparam T the argument will be converted to this type if possible
 
     @note You can access positional arguments by their `@`-prefixed name:
@@ -908,8 +908,8 @@ public:
     String val_2 = parser.get<String>(1); // returns "qwe", arg2
     @endcode
 
-    @param index index of the argument
-    @param space_delete remove spaces from the left and right of the string
+     index index of the argument
+     space_delete remove spaces from the left and right of the string
     @tparam T the argument will be converted to this type if possible
      */
     template <typename T>
@@ -922,7 +922,7 @@ public:
 
     /** @brief Check if field was provided in the command line
 
-    @param name argument name to check
+     name argument name to check
     */
     bool has(const String& name) const;
 
@@ -1171,11 +1171,11 @@ Search directories:
 
 @see cv::utils::findDataFile
 
-@param relative_path Relative path to data file
-@param required Specify "file not found" handling.
+ relative_path Relative path to data file
+ required Specify "file not found" handling.
        If true, function prints information message and raises cv::Exception.
        If false, function returns empty result
-@param silentMode Disables messages
+ silentMode Disables messages
 @return Returns path (absolute or relative to the current directory) or empty string if file is not found
 */
 CV_EXPORTS_W cv::String findFile(const cv::String& relative_path, bool required = true, bool silentMode = false);
@@ -1195,7 +1195,7 @@ inline cv::String findFileOrKeep(const cv::String& relative_path, bool silentMod
 Use this only to override default behavior
 Passed paths are used in LIFO order.
 
-@param path Path to used samples data
+ path Path to used samples data
 */
 CV_EXPORTS_W void addSamplesDataSearchPath(const cv::String& path);
 
@@ -1204,7 +1204,7 @@ CV_EXPORTS_W void addSamplesDataSearchPath(const cv::String& path);
 General usage is to add OpenCV modules name (`<opencv_contrib>/modules/<name>/samples/data` -> `<name>/samples/data` + `modules/<name>/samples/data`).
 Passed subdirectories are used in LIFO order.
 
-@param subdir samples data sub directory
+ subdir samples data sub directory
 */
 CV_EXPORTS_W void addSamplesDataSearchSubDirectory(const cv::String& subdir);
 

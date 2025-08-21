@@ -397,22 +397,22 @@ public:
     GpuMatND();
 
     /** @overload
-    @param size Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_16FC4 to create 1-4 channel matrices, or
+     size Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_16FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
     */
     GpuMatND(SizeArray size, int type);
 
     /** @overload
-    @param size Array of integers specifying an n-dimensional array shape.
-    @param type Array type. Use CV_8UC1, ..., CV_16FC4 to create 1-4 channel matrices, or
+     size Array of integers specifying an n-dimensional array shape.
+     type Array type. Use CV_8UC1, ..., CV_16FC4 to create 1-4 channel matrices, or
     CV_8UC(n), ..., CV_64FC(n) to create multi-channel (up to CV_CN_MAX channels) matrices.
-    @param data Pointer to the user data. Matrix constructors that take data and step parameters do not
+     data Pointer to the user data. Matrix constructors that take data and step parameters do not
     allocate matrix data. Instead, they just initialize the matrix header that points to the specified
     data, which means that no data is copied. This operation is very efficient and can be used to
     process external data using OpenCV functions. The external data is not automatically deallocated, so
     you should take care of it.
-    @param step Array of _size.size()-1 steps in case of a multi-dimensional array (the last step is always
+     step Array of _size.size()-1 steps in case of a multi-dimensional array (the last step is always
     set to the element size). If not specified, the matrix is assumed to be continuous.
     */
     GpuMatND(SizeArray size, int type, void* data, StepArray step = StepArray());
@@ -445,7 +445,7 @@ public:
     /** @brief Extracts a sub-matrix.
     The operator makes a new header for the specified sub-array of \*this.
     The operator is an O(1) operation, that is, no matrix data is copied.
-    @param ranges Array of selected ranges along each dimension.
+     ranges Array of selected ranges along each dimension.
     */
     GpuMatND operator()(const std::vector<Range>& ranges) const;
 
@@ -573,10 +573,10 @@ private:
 
 /** @brief Creates a continuous matrix.
 
-@param rows Row count.
-@param cols Column count.
-@param type Type of the matrix.
-@param arr Destination matrix. This parameter changes only if it has a proper type and area (
+ rows Row count.
+ cols Column count.
+ type Type of the matrix.
+ arr Destination matrix. This parameter changes only if it has a proper type and area (
 \f$\texttt{rows} \times \texttt{cols}\f$ ).
 
 Matrix is called continuous if its elements are stored continuously, that is, without gaps at the
@@ -586,21 +586,21 @@ CV_EXPORTS_W void createContinuous(int rows, int cols, int type, OutputArray arr
 
 /** @brief Ensures that the size of a matrix is big enough and the matrix has a proper type.
 
-@param rows Minimum desired number of rows.
-@param cols Minimum desired number of columns.
-@param type Desired matrix type.
-@param arr Destination matrix.
+ rows Minimum desired number of rows.
+ cols Minimum desired number of columns.
+ type Desired matrix type.
+ arr Destination matrix.
 
 The function does not reallocate memory if the matrix has proper attributes already.
  */
 CV_EXPORTS_W void ensureSizeIsEnough(int rows, int cols, int type, OutputArray arr);
 
 /** @brief Bindings overload to create a GpuMat from existing GPU memory.
-@param rows Row count.
-@param cols Column count.
-@param type Type of the matrix.
-@param cudaMemoryAddress Address of the allocated GPU memory on the device. This does not allocate matrix data. Instead, it just initializes the matrix header that points to the specified \a cudaMemoryAddress, which means that no data is copied. This operation is very efficient and can be used to process external data using OpenCV functions. The external data is not automatically deallocated, so you should take care of it.
-@param step Number of bytes each matrix row occupies. The value should include the padding bytes at the end of each row, if any. If the parameter is missing (set to Mat::AUTO_STEP ), no padding is assumed and the actual step is calculated as cols*elemSize(). See GpuMat::elemSize.
+ rows Row count.
+ cols Column count.
+ type Type of the matrix.
+ cudaMemoryAddress Address of the allocated GPU memory on the device. This does not allocate matrix data. Instead, it just initializes the matrix header that points to the specified \a cudaMemoryAddress, which means that no data is copied. This operation is very efficient and can be used to process external data using OpenCV functions. The external data is not automatically deallocated, so you should take care of it.
+ step Number of bytes each matrix row occupies. The value should include the padding bytes at the end of each row, if any. If the parameter is missing (set to Mat::AUTO_STEP ), no padding is assumed and the actual step is calculated as cols*elemSize(). See GpuMat::elemSize.
 @note Overload for generation of bindings only, not exported or intended for use internally from C++.
  */
 CV_EXPORTS_W GpuMat inline createGpuMatFromCudaMemory(int rows, int cols, int type, size_t cudaMemoryAddress, size_t step = Mat::AUTO_STEP) {
@@ -608,10 +608,10 @@ CV_EXPORTS_W GpuMat inline createGpuMatFromCudaMemory(int rows, int cols, int ty
 }
 
  /** @overload
-@param size 2D array size: Size(cols, rows). In the Size() constructor, the number of rows and the number of columns go in the reverse order.
-@param type Type of the matrix.
-@param cudaMemoryAddress Address of the allocated GPU memory on the device. This does not allocate matrix data. Instead, it just initializes the matrix header that points to the specified \a cudaMemoryAddress, which means that no data is copied. This operation is very efficient and can be used to process external data using OpenCV functions. The external data is not automatically deallocated, so you should take care of it.
-@param step Number of bytes each matrix row occupies. The value should include the padding bytes at the end of each row, if any. If the parameter is missing (set to Mat::AUTO_STEP ), no padding is assumed and the actual step is calculated as cols*elemSize(). See GpuMat::elemSize.
+ size 2D array size: Size(cols, rows). In the Size() constructor, the number of rows and the number of columns go in the reverse order.
+ type Type of the matrix.
+ cudaMemoryAddress Address of the allocated GPU memory on the device. This does not allocate matrix data. Instead, it just initializes the matrix header that points to the specified \a cudaMemoryAddress, which means that no data is copied. This operation is very efficient and can be used to process external data using OpenCV functions. The external data is not automatically deallocated, so you should take care of it.
+ step Number of bytes each matrix row occupies. The value should include the padding bytes at the end of each row, if any. If the parameter is missing (set to Mat::AUTO_STEP ), no padding is assumed and the actual step is calculated as cols*elemSize(). See GpuMat::elemSize.
 @note Overload for generation of bindings only, not exported or intended for use internally from C++.
  */
 CV_EXPORTS_W inline GpuMat createGpuMatFromCudaMemory(Size size, int type, size_t cudaMemoryAddress, size_t step = Mat::AUTO_STEP) {
@@ -863,13 +863,13 @@ public:
 
 /** @brief Page-locks the memory of matrix and maps it for the device(s).
 
-@param m Input matrix.
+ m Input matrix.
  */
 CV_EXPORTS_W void registerPageLocked(Mat& m);
 
 /** @brief Unmaps the memory of matrix and makes it pageable again.
 
-@param m Input matrix.
+ m Input matrix.
  */
 CV_EXPORTS_W void unregisterPageLocked(Mat& m);
 
@@ -974,7 +974,7 @@ private:
 
 
 /** @brief Bindings overload to create a Stream object from the address stored in an existing CUDA Runtime API stream pointer (cudaStream_t).
-@param cudaStreamMemoryAddress Memory address stored in a CUDA Runtime API stream pointer (cudaStream_t). The created Stream object does not perform any allocation or deallocation and simply wraps existing raw CUDA Runtime API stream pointer.
+ cudaStreamMemoryAddress Memory address stored in a CUDA Runtime API stream pointer (cudaStream_t). The created Stream object does not perform any allocation or deallocation and simply wraps existing raw CUDA Runtime API stream pointer.
 @note Overload for generation of bindings only, not exported or intended for use internally from C++.
  */
 CV_EXPORTS_W Stream wrapStream(size_t cudaStreamMemoryAddress);
@@ -1033,7 +1033,7 @@ CV_EXPORTS_W int getCudaEnabledDeviceCount();
 
 /** @brief Sets a device and initializes it for the current thread.
 
-@param device System index of a CUDA device starting with 0.
+ device System index of a CUDA device starting with 0.
 
 If the call of this function is omitted, a default device is initialized at the fist CUDA usage.
  */
@@ -1086,15 +1086,15 @@ class CV_EXPORTS_W TargetArchs
 public:
     /** @brief The following method checks whether the module was built with the support of the given feature:
 
-    @param feature_set Features to be checked. See :ocvcuda::FeatureSet.
+     feature_set Features to be checked. See :ocvcuda::FeatureSet.
      */
     static bool builtWith(FeatureSet feature_set);
 
     /** @brief There is a set of methods to check whether the module contains intermediate (PTX) or binary CUDA
     code for the given architecture(s):
 
-    @param major Major compute capability version.
-    @param minor Minor compute capability version.
+     major Major compute capability version.
+     minor Minor compute capability version.
      */
     CV_WRAP static bool has(int major, int minor);
     CV_WRAP static bool hasPtx(int major, int minor);
@@ -1116,7 +1116,7 @@ public:
 
     /** @brief The constructors.
 
-    @param device_id System index of the CUDA device starting with 0.
+     device_id System index of the CUDA device starting with 0.
 
     Constructs the DeviceInfo object for the specified device. If device_id parameter is missed, it
     constructs an object for the current device.
@@ -1298,7 +1298,7 @@ public:
 
     /** @brief Provides information on CUDA feature support.
 
-    @param feature_set Features to be checked. See cuda::FeatureSet.
+     feature_set Features to be checked. See cuda::FeatureSet.
 
     This function returns true if the device has the specified CUDA feature. Otherwise, it returns false
      */
@@ -1320,9 +1320,9 @@ CV_EXPORTS_W void printShortCudaDeviceInfo(int device);
 
 /** @brief Converts an array to half precision floating number.
 
-@param _src input array.
-@param _dst output array.
-@param stream Stream for the asynchronous version.
+ _src input array.
+ _dst output array.
+ stream Stream for the asynchronous version.
 @sa convertFp16
 */
 CV_EXPORTS void convertFp16(InputArray _src, OutputArray _dst, Stream& stream = Stream::Null());

@@ -90,21 +90,21 @@ CVAPI(void) cvCopyMakeBorder( const CvArr* src, CvArr* dst, CvPoint offset,
 
 /** @brief Smooths the image in one of several ways.
 
-@param src The source image
-@param dst The destination image
-@param smoothtype Type of the smoothing, see SmoothMethod_c
-@param size1 The first parameter of the smoothing operation, the aperture width. Must be a
+ src The source image
+ dst The destination image
+ smoothtype Type of the smoothing, see SmoothMethod_c
+ size1 The first parameter of the smoothing operation, the aperture width. Must be a
 positive odd number (1, 3, 5, ...)
-@param size2 The second parameter of the smoothing operation, the aperture height. Ignored by
+ size2 The second parameter of the smoothing operation, the aperture height. Ignored by
 CV_MEDIAN and CV_BILATERAL methods. In the case of simple scaled/non-scaled and Gaussian blur if
 size2 is zero, it is set to size1. Otherwise it must be a positive odd number.
-@param sigma1 In the case of a Gaussian parameter this parameter may specify Gaussian \f$\sigma\f$
+ sigma1 In the case of a Gaussian parameter this parameter may specify Gaussian \f$\sigma\f$
 (standard deviation). If it is zero, it is calculated from the kernel size:
 \f[\sigma  = 0.3 (n/2 - 1) + 0.8  \quad   \text{where}   \quad  n= \begin{array}{l l} \mbox{\texttt{size1} for horizontal kernel} \\ \mbox{\texttt{size2} for vertical kernel} \end{array}\f]
 Using standard sigma for small kernels ( \f$3\times 3\f$ to \f$7\times 7\f$ ) gives better speed. If
 sigma1 is not zero, while size1 and size2 are zeros, the kernel size is calculated from the
 sigma (to provide accurate enough operation).
-@param sigma2 additional parameter for bilateral filtering
+ sigma2 additional parameter for bilateral filtering
 
 @see cv::GaussianBlur, cv::blur, cv::medianBlur, cv::bilateralFilter.
  */
@@ -117,12 +117,12 @@ CVAPI(void) cvSmooth( const CvArr* src, CvArr* dst,
 
 /** @brief Convolves an image with the kernel.
 
-@param src input image.
-@param dst output image of the same size and the same number of channels as src.
-@param kernel convolution kernel (or rather a correlation kernel), a single-channel floating point
+ src input image.
+ dst output image of the same size and the same number of channels as src.
+ kernel convolution kernel (or rather a correlation kernel), a single-channel floating point
 matrix; if you want to apply different kernels to different channels, split the image into
 separate color planes using split and process them individually.
-@param anchor anchor of the kernel that indicates the relative position of a filtered point within
+ anchor anchor of the kernel that indicates the relative position of a filtered point within
 the kernel; the anchor should lie within the kernel; default value (-1,-1) means that the anchor
 is at the kernel center.
 
@@ -286,12 +286,12 @@ CVAPI(void)  cvLinearPolar( const CvArr* src, CvArr* dst,
 @note the created structuring element IplConvKernel\* element must be released in the end using
 `cvReleaseStructuringElement(&element)`.
 
-@param cols Width of the structuring element
-@param rows Height of the structuring element
-@param anchor_x x-coordinate of the anchor
-@param anchor_y y-coordinate of the anchor
-@param shape element shape that could be one of the cv::MorphShapes_c
-@param values integer array of cols*rows elements that specifies the custom shape of the
+ cols Width of the structuring element
+ rows Height of the structuring element
+ anchor_x x-coordinate of the anchor
+ anchor_y y-coordinate of the anchor
+ shape element shape that could be one of the cv::MorphShapes_c
+ values integer array of cols*rows elements that specifies the custom shape of the
 structuring element, when shape=CV_SHAPE_CUSTOM.
 
 @see cv::getStructuringElement
@@ -449,13 +449,13 @@ This is a standalone contour approximation routine, not represented in the new i
 cvFindContours retrieves contours as Freeman chains, it calls the function to get approximated
 contours, represented as polygons.
 
-@param src_seq Pointer to the approximated Freeman chain that can refer to other chains.
-@param storage Storage location for the resulting polylines.
-@param method Approximation method (see the description of the function :ocvFindContours ).
-@param parameter Method parameter (not used now).
-@param minimal_perimeter Approximates only those contours whose perimeters are not less than
+ src_seq Pointer to the approximated Freeman chain that can refer to other chains.
+ storage Storage location for the resulting polylines.
+ method Approximation method (see the description of the function :ocvFindContours ).
+ parameter Method parameter (not used now).
+ minimal_perimeter Approximates only those contours whose perimeters are not less than
 minimal_perimeter . Other chains are removed from the resulting structure.
-@param recursive Recursion flag. If it is non-zero, the function approximates all chains that can
+ recursive Recursion flag. If it is non-zero, the function approximates all chains that can
 be obtained from chain by using the h_next or v_next links. Otherwise, the single input chain is
 approximated.
 @see cvStartReadChainPoints, cvReadChainPoint
@@ -598,15 +598,15 @@ histogram. If the array ranges is 0, the histogram bin ranges must be specified 
 function cvSetHistBinRanges. Though cvCalcHist and cvCalcBackProject may process 8-bit images
 without setting bin ranges, they assume they are equally spaced in 0 to 255 bins.
 
-@param dims Number of histogram dimensions.
-@param sizes Array of the histogram dimension sizes.
-@param type Histogram representation format. CV_HIST_ARRAY means that the histogram data is
+ dims Number of histogram dimensions.
+ sizes Array of the histogram dimension sizes.
+ type Histogram representation format. CV_HIST_ARRAY means that the histogram data is
 represented as a multi-dimensional dense array CvMatND. CV_HIST_SPARSE means that histogram data
 is represented as a multi-dimensional sparse array CvSparseMat.
-@param ranges Array of ranges for the histogram bins. Its meaning depends on the uniform parameter
+ ranges Array of ranges for the histogram bins. Its meaning depends on the uniform parameter
 value. The ranges are used when the histogram is calculated or backprojected to determine which
 histogram bin corresponds to which value/tuple of values from the input image(s).
-@param uniform Uniformity flag. If not zero, the histogram has evenly spaced bins and for every
+ uniform Uniformity flag. If not zero, the histogram has evenly spaced bins and for every
 \f$0<=i<cDims\f$ ranges[i] is an array of two numbers: lower and upper boundaries for the i-th
 histogram dimension. The whole range [lower,upper] is then split into dims[i] equal parts to
 determine the i-th input tuple value ranges for every histogram bin. And if uniform=0 , then the
@@ -629,9 +629,9 @@ description of the parameters ranges and uniform, see the :ocvCalcHist function 
 the ranges as well. Ranges for the histogram bins must be set before the histogram is calculated or
 the backproject of the histogram is calculated.
 
-@param hist Histogram.
-@param ranges Array of bin ranges arrays. See :ocvCreateHist for details.
-@param uniform Uniformity flag. See :ocvCreateHist for details.
+ hist Histogram.
+ ranges Array of bin ranges arrays. See :ocvCreateHist for details.
+ uniform Uniformity flag. See :ocvCreateHist for details.
  */
 CVAPI(void)  cvSetHistBinRanges( CvHistogram* hist, float** ranges,
                                 int uniform CV_DEFAULT(1));
@@ -642,12 +642,12 @@ The function initializes the histogram, whose header and bins are allocated by t
 cvReleaseHist does not need to be called afterwards. Only dense histograms can be initialized this
 way. The function returns hist.
 
-@param dims Number of the histogram dimensions.
-@param sizes Array of the histogram dimension sizes.
-@param hist Histogram header initialized by the function.
-@param data Array used to store histogram bins.
-@param ranges Histogram bin ranges. See cvCreateHist for details.
-@param uniform Uniformity flag. See cvCreateHist for details.
+ dims Number of the histogram dimensions.
+ sizes Array of the histogram dimension sizes.
+ hist Histogram header initialized by the function.
+ data Array used to store histogram bins.
+ ranges Histogram bin ranges. See cvCreateHist for details.
+ uniform Uniformity flag. See cvCreateHist for details.
  */
 CVAPI(CvHistogram*)  cvMakeHistHeaderForArray(
                             int  dims, int* sizes, CvHistogram* hist,
@@ -659,7 +659,7 @@ CVAPI(CvHistogram*)  cvMakeHistHeaderForArray(
 The function releases the histogram (header and the data). The pointer to the histogram is cleared
 by the function. If \*hist pointer is already NULL, the function does nothing.
 
-@param hist Double pointer to the released histogram.
+ hist Double pointer to the released histogram.
  */
 CVAPI(void)  cvReleaseHist( CvHistogram** hist );
 
@@ -668,7 +668,7 @@ CVAPI(void)  cvReleaseHist( CvHistogram** hist );
 The function sets all of the histogram bins to 0 in case of a dense histogram and removes all
 histogram bins in case of a sparse array.
 
-@param hist Histogram.
+ hist Histogram.
  */
 CVAPI(void)  cvClearHist( CvHistogram* hist );
 
@@ -679,11 +679,11 @@ arguments are optional. Among several extremas with the same value the ones with
 (in the lexicographical order) are returned. In case of several maximums or minimums, the earliest
 in the lexicographical order (extrema locations) is returned.
 
-@param hist Histogram.
-@param min_value Pointer to the minimum value of the histogram.
-@param max_value Pointer to the maximum value of the histogram.
-@param min_idx Pointer to the array of coordinates for the minimum.
-@param max_idx Pointer to the array of coordinates for the maximum.
+ hist Histogram.
+ min_value Pointer to the minimum value of the histogram.
+ max_value Pointer to the maximum value of the histogram.
+ min_idx Pointer to the array of coordinates for the minimum.
+ max_idx Pointer to the array of coordinates for the maximum.
  */
 CVAPI(void)  cvGetMinMaxHistValue( const CvHistogram* hist,
                                    float* min_value, float* max_value,
@@ -696,8 +696,8 @@ CVAPI(void)  cvGetMinMaxHistValue( const CvHistogram* hist,
 The function normalizes the histogram bins by scaling them so that the sum of the bins becomes equal
 to factor.
 
-@param hist Pointer to the histogram.
-@param factor Normalization factor.
+ hist Pointer to the histogram.
+ factor Normalization factor.
  */
 CVAPI(void)  cvNormalizeHist( CvHistogram* hist, double factor );
 
@@ -706,8 +706,8 @@ CVAPI(void)  cvNormalizeHist( CvHistogram* hist, double factor );
 
 The function clears histogram bins that are below the specified threshold.
 
-@param hist Pointer to the histogram.
-@param threshold Threshold level.
+ hist Pointer to the histogram.
+ threshold Threshold level.
  */
 CVAPI(void)  cvThreshHist( CvHistogram* hist, double threshold );
 
@@ -724,8 +724,8 @@ histogram of the same size as src is created. Otherwise, both histograms must ha
 sizes. Then the function copies the bin values of the source histogram to the destination histogram
 and sets the same bin value ranges as in src.
 
-@param src Source histogram.
-@param dst Pointer to the destination histogram.
+ src Source histogram.
+ dst Pointer to the destination histogram.
  */
 CVAPI(void)  cvCopyHist( const CvHistogram* src, CvHistogram** dst );
 
@@ -768,12 +768,12 @@ compares histograms. See the algorithm diagram below:
 
 ![image](pics/backprojectpatch.png)
 
-@param image Source images (though, you may pass CvMat\*\* as well).
-@param dst Destination image.
-@param range
-@param hist Histogram.
-@param method Comparison method passed to cvCompareHist (see the function description).
-@param factor Normalization factor for histograms that affects the normalization scale of the
+ image Source images (though, you may pass CvMat\*\* as well).
+ dst Destination image.
+ range
+ hist Histogram.
+ method Comparison method passed to cvCompareHist (see the function description).
+ factor Normalization factor for histograms that affects the normalization scale of the
 destination image. Pass 1 if not sure.
 
 @see cvCalcBackProjectPatch
@@ -792,10 +792,10 @@ The function calculates the object probability density from two histograms as:
 
 \f[\texttt{disthist} (I)= \forkthree{0}{if \(\texttt{hist1}(I)=0\)}{\texttt{scale}}{if \(\texttt{hist1}(I) \ne 0\) and \(\texttt{hist2}(I) > \texttt{hist1}(I)\)}{\frac{\texttt{hist2}(I) \cdot \texttt{scale}}{\texttt{hist1}(I)}}{if \(\texttt{hist1}(I) \ne 0\) and \(\texttt{hist2}(I) \le \texttt{hist1}(I)\)}\f]
 
-@param hist1 First histogram (the divisor).
-@param hist2 Second histogram.
-@param dst_hist Destination histogram.
-@param scale Scale factor for the destination histogram.
+ hist1 First histogram (the divisor).
+ hist2 Second histogram.
+ dst_hist Destination histogram.
+ scale Scale factor for the destination histogram.
  */
 CVAPI(void)  cvCalcProbDensity( const CvHistogram* hist1, const CvHistogram* hist2,
                                 CvHistogram* dst_hist, double scale CV_DEFAULT(255) );
@@ -1110,16 +1110,16 @@ CvFont;
 
 The function initializes the font structure that can be passed to text rendering functions.
 
-@param font Pointer to the font structure initialized by the function
-@param font_face Font name identifier. See cv::HersheyFonts and corresponding old CV_* identifiers.
-@param hscale Horizontal scale. If equal to 1.0f , the characters have the original width
+ font Pointer to the font structure initialized by the function
+ font_face Font name identifier. See cv::HersheyFonts and corresponding old CV_* identifiers.
+ hscale Horizontal scale. If equal to 1.0f , the characters have the original width
 depending on the font type. If equal to 0.5f , the characters are of half the original width.
-@param vscale Vertical scale. If equal to 1.0f , the characters have the original height depending
+ vscale Vertical scale. If equal to 1.0f , the characters have the original height depending
 on the font type. If equal to 0.5f , the characters are of half the original height.
-@param shear Approximate tangent of the character slope relative to the vertical line. A zero
+ shear Approximate tangent of the character slope relative to the vertical line. A zero
 value means a non-italic font, 1.0f means about a 45 degree slope, etc.
-@param thickness Thickness of the text strokes
-@param line_type Type of the strokes, see line description
+ thickness Thickness of the text strokes
+ line_type Type of the strokes, see line description
 
 @sa cvPutText
  */

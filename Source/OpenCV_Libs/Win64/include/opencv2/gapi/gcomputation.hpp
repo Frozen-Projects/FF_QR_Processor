@@ -138,7 +138,7 @@ public:
      * contaminating the parent scope with probably unnecessary objects
      * and information.
      *
-     * @param gen generator function which returns a cv::GComputation,
+     *  gen generator function which returns a cv::GComputation,
      * see Generator.
      */
     GComputation(const Generator& gen);                // Generator
@@ -152,8 +152,8 @@ public:
      * the passed boundaries are invalid, e.g. if there's no
      * functional dependency (path) between given outputs and inputs.
      *
-     * @param ins Input data vector.
-     * @param outs Output data vector.
+     *  ins Input data vector.
+     *  outs Output data vector.
      *
      * @note Don't construct GProtoInputArgs/GProtoOutputArgs objects
      * directly, use cv::GIn()/cv::GOut() wrapper functions instead.
@@ -168,8 +168,8 @@ public:
      * @brief Defines an unary (one input -- one output) computation
      *
      * @overload
-     * @param in input GMat of the defined unary computation
-     * @param out output GMat of the defined unary computation
+     *  in input GMat of the defined unary computation
+     *  out output GMat of the defined unary computation
      */
     GAPI_WRAP GComputation(GMat in, GMat out);  // Unary overload
 
@@ -177,8 +177,8 @@ public:
      * @brief Defines an unary (one input -- one output) computation
      *
      * @overload
-     * @param in input GMat of the defined unary computation
-     * @param out output GScalar of the defined unary computation
+     *  in input GMat of the defined unary computation
+     *  out output GScalar of the defined unary computation
      */
     GAPI_WRAP GComputation(GMat in, GScalar out);      // Unary overload (scalar)
 
@@ -186,9 +186,9 @@ public:
      * @brief Defines a binary (two inputs -- one output) computation
      *
      * @overload
-     * @param in1 first input GMat of the defined binary computation
-     * @param in2 second input GMat of the defined binary computation
-     * @param out output GMat of the defined binary computation
+     *  in1 first input GMat of the defined binary computation
+     *  in2 second input GMat of the defined binary computation
+     *  out output GMat of the defined binary computation
      */
     GAPI_WRAP GComputation(GMat in1, GMat in2, GMat out);        // Binary overload
 
@@ -196,9 +196,9 @@ public:
      * @brief Defines a binary (two inputs -- one output) computation
      *
      * @overload
-     * @param in1 first input GMat of the defined binary computation
-     * @param in2 second input GMat of the defined binary computation
-     * @param out output GScalar of the defined binary computation
+     *  in1 first input GMat of the defined binary computation
+     *  in2 second input GMat of the defined binary computation
+     *  out output GScalar of the defined binary computation
      */
     GComputation(GMat in1, GMat in2, GScalar out);     // Binary
                                                        // overload
@@ -208,8 +208,8 @@ public:
      * @brief Defines a computation with arbitrary input/output number.
      *
      * @overload
-     * @param ins vector of inputs GMats for this computation
-     * @param outs vector of outputs GMats for this computation
+     *  ins vector of inputs GMats for this computation
+     *  outs vector of outputs GMats for this computation
      *
      * Use this overload for cases when number of computation
      * inputs/outputs is not known in compile-time -- e.g. when graph
@@ -244,13 +244,13 @@ public:
      * produces a new GCompiled object regardless if a similar one has
      * been cached via apply() or not.
      *
-     * @param ins vector of input data to process. Don't create
+     *  ins vector of input data to process. Don't create
      * GRunArgs object manually, use cv::gin() wrapper instead.
-     * @param outs vector of output data to fill results in. cv::Mat
+     *  outs vector of output data to fill results in. cv::Mat
      * objects may be empty in this vector, G-API will automatically
      * initialize it with the required format & dimensions. Don't
      * create GRunArgsP object manually, use cv::gout() wrapper instead.
-     * @param args a list of compilation arguments to pass to the
+     *  args a list of compilation arguments to pass to the
      * underlying compilation process. Don't create GCompileArgs
      * object manually, use cv::compile_args() wrapper instead.
      *
@@ -273,9 +273,9 @@ public:
      * @brief Execute an unary computation (with compilation on the fly)
      *
      * @overload
-     * @param in input cv::Mat for unary computation
-     * @param out output cv::Mat for unary computation
-     * @param args compilation arguments for underlying compilation
+     *  in input cv::Mat for unary computation
+     *  out output cv::Mat for unary computation
+     *  args compilation arguments for underlying compilation
      * process.
      */
     void apply(cv::Mat in, cv::Mat &out, GCompileArgs &&args = {}); // Unary overload
@@ -284,9 +284,9 @@ public:
      * @brief Execute an unary computation (with compilation on the fly)
      *
      * @overload
-     * @param in input cv::Mat for unary computation
-     * @param out output cv::Scalar for unary computation
-     * @param args compilation arguments for underlying compilation
+     *  in input cv::Mat for unary computation
+     *  out output cv::Scalar for unary computation
+     *  args compilation arguments for underlying compilation
      * process.
      */
     void apply(cv::Mat in, cv::Scalar &out, GCompileArgs &&args = {}); // Unary overload (scalar)
@@ -295,10 +295,10 @@ public:
      * @brief Execute a binary computation (with compilation on the fly)
      *
      * @overload
-     * @param in1 first input cv::Mat for binary computation
-     * @param in2 second input cv::Mat for binary computation
-     * @param out output cv::Mat for binary computation
-     * @param args compilation arguments for underlying compilation
+     *  in1 first input cv::Mat for binary computation
+     *  in2 second input cv::Mat for binary computation
+     *  out output cv::Mat for binary computation
+     *  args compilation arguments for underlying compilation
      * process.
      */
     void apply(cv::Mat in1, cv::Mat in2, cv::Mat &out, GCompileArgs &&args = {}); // Binary overload
@@ -307,10 +307,10 @@ public:
      * @brief Execute an binary computation (with compilation on the fly)
      *
      * @overload
-     * @param in1 first input cv::Mat for binary computation
-     * @param in2 second input cv::Mat for binary computation
-     * @param out output cv::Scalar for binary computation
-     * @param args compilation arguments for underlying compilation
+     *  in1 first input cv::Mat for binary computation
+     *  in2 second input cv::Mat for binary computation
+     *  out output cv::Scalar for binary computation
+     *  args compilation arguments for underlying compilation
      * process.
      */
     void apply(cv::Mat in1, cv::Mat in2, cv::Scalar &out, GCompileArgs &&args = {}); // Binary overload (scalar)
@@ -320,11 +320,11 @@ public:
      * inputs/outputs (with compilation on-the-fly).
      *
      * @overload
-     * @param ins vector of input cv::Mat objects to process by the
+     *  ins vector of input cv::Mat objects to process by the
      * computation.
-     * @param outs vector of output cv::Mat objects to produce by the
+     *  outs vector of output cv::Mat objects to produce by the
      * computation.
-     * @param args compilation arguments for underlying compilation
+     *  args compilation arguments for underlying compilation
      * process.
      *
      * Numbers of elements in ins/outs vectors must match numbers of
@@ -344,10 +344,10 @@ public:
      * format. Passing data with different format to the compiled
      * computation will generate a run-time exception.
      *
-     * @param in_metas vector of input metadata configuration. Grab
+     *  in_metas vector of input metadata configuration. Grab
      * metadata from real data objects (like cv::Mat or cv::Scalar)
      * using cv::descr_of(), or create it on your own.
-     * @param args compilation arguments for this compilation
+     *  args compilation arguments for this compilation
      * process. Compilation arguments directly affect what kind of
      * executable object would be produced, e.g. which kernels (and
      * thus, devices) would be used to execute computation.
@@ -423,11 +423,11 @@ public:
      * format to the compiled computation will generate a run-time
      * exception.
      *
-     * @param in_metas vector of input metadata configuration. Grab
+     *  in_metas vector of input metadata configuration. Grab
      * metadata from real data objects (like cv::Mat or cv::Scalar)
      * using cv::descr_of(), or create it on your own.
      *
-     * @param args compilation arguments for this compilation
+     *  args compilation arguments for this compilation
      * process. Compilation arguments directly affect what kind of
      * executable object would be produced, e.g. which kernels (and
      * thus, devices) would be used to execute computation.
@@ -449,7 +449,7 @@ public:
      * every new input video stream automatically, but please note that
      * _not all_ existing backends support this (see reshape()).
      *
-     * @param args compilation arguments for this compilation
+     *  args compilation arguments for this compilation
      * process. Compilation arguments directly affect what kind of
      * executable object would be produced, e.g. which kernels (and
      * thus, devices) would be used to execute computation.
@@ -557,10 +557,10 @@ namespace gapi
      * Islands allow to partition graph into subgraphs, fine-tuning
      * the way it is scheduled by the underlying executor.
      *
-     * @param name name of the Island to create
-     * @param ins vector of input data objects where the subgraph
+     *  name name of the Island to create
+     *  ins vector of input data objects where the subgraph
      * begins
-     * @param outs vector of output data objects where the subgraph
+     *  outs vector of output data objects where the subgraph
      * ends.
      *
      * The way how an island is defined is similar to how

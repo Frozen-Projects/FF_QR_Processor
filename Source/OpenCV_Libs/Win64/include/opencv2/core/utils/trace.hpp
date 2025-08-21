@@ -125,8 +125,8 @@ public:
 };
 /** @brief Add meta information to current region (function)
  * See CV_TRACE_ARG macro
- * @param arg argument information structure (global static cache)
- * @param value argument value (can by dynamic string literal in case of string, static allocation is not required)
+ *  arg argument information structure (global static cache)
+ *  value argument value (can by dynamic string literal in case of string, static allocation is not required)
  */
 CV_EXPORTS void traceArg(const TraceArg& arg, const char* value);
 //! @overload

@@ -148,9 +148,9 @@ public:
     Constructs Params based on model information and specifies default values for other
     inference description parameters. Model is loaded and compiled using "OpenVINO Toolkit".
 
-    @param model Path to topology IR (.xml file).
-    @param weights Path to weights (.bin file).
-    @param device target device to use.
+     model Path to topology IR (.xml file).
+     weights Path to weights (.bin file).
+     device target device to use.
     */
     Params(const std::string &model,
            const std::string &weights,
@@ -179,8 +179,8 @@ public:
     Use this constructor to work with pre-compiled network.
     Model is imported from a pre-compiled blob.
 
-    @param model Path to model.
-    @param device target device to use.
+     model Path to model.
+     device target device to use.
     */
     Params(const std::string &model,
            const std::string &device)
@@ -210,7 +210,7 @@ public:
     Number of names has to match the number of network inputs as defined in G_API_NET().
     In case a network has only single input layer, there is no need to specify name manually.
 
-    @param layer_names std::array<std::string, N> where N is the number of inputs
+     layer_names std::array<std::string, N> where N is the number of inputs
     as defined in the @ref G_API_NET. Contains names of input layers.
     @return reference to this parameter structure.
     */
@@ -228,7 +228,7 @@ public:
     Number of names has to match the number of network outputs as defined in G_API_NET().
     In case a network has only single output layer, there is no need to specify name manually.
 
-    @param layer_names std::array<std::string, N> where N is the number of outputs
+     layer_names std::array<std::string, N> where N is the number of outputs
     as defined in the @ref G_API_NET. Contains names of output layers.
     @return reference to this parameter structure.
     */
@@ -246,9 +246,9 @@ public:
     a preprocessed tensor if its type is TENSOR. Need to provide name of the
     network layer which will receive provided data.
 
-    @param layer_name Name of network layer.
-    @param data cv::Mat that contains data which will be associated with network layer.
-    @param hint Input type @sa cv::gapi::ie::TraitAs.
+     layer_name Name of network layer.
+     data cv::Mat that contains data which will be associated with network layer.
+     hint Input type @sa cv::gapi::ie::TraitAs.
     @return reference to this parameter structure.
     */
     Params<Net>& constInput(const std::string &layer_name,
@@ -264,7 +264,7 @@ public:
     can be different for each plugin. Please follow https://docs.openvinotoolkit.org/latest/index.html
     to check information about specific plugin.
 
-    @param cfg Map of pairs: (config parameter name, config parameter value).
+     cfg Map of pairs: (config parameter name, config parameter value).
     @return reference to this parameter structure.
     */
     Params& pluginConfig(const IEConfig& cfg) {
@@ -275,7 +275,7 @@ public:
     /** @overload
     Function with a rvalue parameter.
 
-    @param cfg rvalue map of pairs: (config parameter name, config parameter value).
+     cfg rvalue map of pairs: (config parameter name, config parameter value).
     @return reference to this parameter structure.
     */
     Params& pluginConfig(IEConfig&& cfg) {
@@ -288,7 +288,7 @@ public:
     When RemoteContext is configured the backend imports the networks using the context.
     It also expects cv::MediaFrames to be actually remote, to operate with blobs via the context.
 
-    @param ctx_cfg cv::util::any value which holds InferenceEngine::ParamMap.
+     ctx_cfg cv::util::any value which holds InferenceEngine::ParamMap.
     @return reference to this parameter structure.
     */
     Params& cfgContextParams(const cv::util::any& ctx_cfg) {
@@ -299,7 +299,7 @@ public:
     /** @overload
     Function with an rvalue parameter.
 
-    @param ctx_cfg cv::util::any value which holds InferenceEngine::ParamMap.
+     ctx_cfg cv::util::any value which holds InferenceEngine::ParamMap.
     @return reference to this parameter structure.
     */
     Params& cfgContextParams(cv::util::any&& ctx_cfg) {
@@ -309,7 +309,7 @@ public:
 
     /** @brief Specifies number of asynchronous inference requests.
 
-    @param nireq Number of inference asynchronous requests.
+     nireq Number of inference asynchronous requests.
     @return reference to this parameter structure.
     */
     Params& cfgNumRequests(size_t nireq) {
@@ -324,7 +324,7 @@ public:
     Follow https://docs.openvinotoolkit.org/latest/classInferenceEngine_1_1networkNetwork.html
     for additional information.
 
-    @param reshape_table Map of pairs: name of corresponding data and its dimension.
+     reshape_table Map of pairs: name of corresponding data and its dimension.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgInputReshape(const std::map<std::string, std::vector<std::size_t>>& reshape_table) {
@@ -340,8 +340,8 @@ public:
 
     /** @overload
 
-    @param layer_name Name of layer.
-    @param layer_dims New dimensions for this layer.
+     layer_name Name of layer.
+     layer_dims New dimensions for this layer.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgInputReshape(const std::string& layer_name, const std::vector<size_t>& layer_dims) {
@@ -357,7 +357,7 @@ public:
 
     /** @overload
 
-    @param layer_names set of names of network layers that will be used for network reshape.
+     layer_names set of names of network layers that will be used for network reshape.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgInputReshape(const std::unordered_set<std::string>& layer_names) {
@@ -367,7 +367,7 @@ public:
 
     /** @overload
 
-    @param layer_names rvalue set of the selected layers will be reshaped automatically
+     layer_names rvalue set of the selected layers will be reshaped automatically
     its input image size.
     @return reference to this parameter structure.
     */
@@ -381,7 +381,7 @@ public:
     The function is used to specify inference batch size.
     Follow https://docs.openvinotoolkit.org/latest/classInferenceEngine_1_1CNNNetwork.html#a8e9d19270a48aab50cb5b1c43eecb8e9 for additional information
 
-    @param size batch size which will be used.
+     size batch size which will be used.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgBatchSize(const size_t size) {
@@ -404,7 +404,7 @@ public:
     2. Synchronous (using Infer: https://docs.openvino.ai/latest/classInferenceEngine_1_1InferRequest.html#doxid-class-inference-engine-1-1-infer-request-1a3391ce30894abde730523e9ca9371ce8)
     By default asynchronous mode is used.
 
-    @param mode Inference mode which will be used.
+     mode Inference mode which will be used.
     @return reference to this parameter structure.
     */
     Params<Net>& cfgInferMode(InferMode mode) {
@@ -416,7 +416,7 @@ public:
 
     The function is used to set an output precision for model.
 
-    @param precision Precision in OpenCV format (CV_8U, CV_32F, ...)
+     precision Precision in OpenCV format (CV_8U, CV_32F, ...)
     will be applied to all output layers.
     @return reference to this parameter structure.
     */
@@ -427,7 +427,7 @@ public:
 
     /** @overload
 
-    @param precision_map Map of pairs: name of corresponding output layer
+     precision_map Map of pairs: name of corresponding output layer
     and its precision in OpenCV format (CV_8U, CV_32F, ...)
     @return reference to this parameter structure.
     */
@@ -441,7 +441,7 @@ public:
 
     The function is used to set an input layout for model.
 
-    @param layout Layout in string representation ("NCHW", "NHWC", etc)
+     layout Layout in string representation ("NCHW", "NHWC", etc)
     will be applied to all input layers.
     @return reference to this parameter structure.
     */
@@ -452,7 +452,7 @@ public:
 
     /** @overload
 
-    @param layout_map Map of pairs: name of corresponding input layer
+     layout_map Map of pairs: name of corresponding input layer
     and its layout in string representation ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -466,7 +466,7 @@ public:
 
     The function is used to set an output layout for model.
 
-    @param layout Layout in string representation ("NCHW", "NHWC", etc)
+     layout Layout in string representation ("NCHW", "NHWC", etc)
     will be applied to all output layers.
     @return reference to this parameter structure.
     */
@@ -477,7 +477,7 @@ public:
 
     /** @overload
 
-    @param layout_map Map of pairs: name of corresponding output layer
+     layout_map Map of pairs: name of corresponding output layer
     and its layout in string representation ("NCHW", "NHWC", etc)
     @return reference to this parameter structure.
     */
@@ -491,7 +491,7 @@ public:
      *
     The function is used to configure resize preprocessing for input layer.
 
-    @param interpolation Resize interpolation algorithm.
+     interpolation Resize interpolation algorithm.
     Supported algorithms: #INTER_LINEAR, #INTER_AREA.
     @return reference to this parameter structure.
     */
@@ -502,7 +502,7 @@ public:
 
     /** @overload
 
-    @param interpolation Map of pairs: name of corresponding input layer
+     interpolation Map of pairs: name of corresponding input layer
     and its resize algorithm.
     @return reference to this parameter structure.
     */
@@ -534,10 +534,10 @@ public:
     Constructs Params based on model information and sets default values for other
     inference description parameters. Model is loaded and compiled using OpenVINO Toolkit.
 
-    @param tag string tag of the network for which these parameters are intended.
-    @param model path to topology IR (.xml file).
-    @param weights path to weights (.bin file).
-    @param device target device to use.
+     tag string tag of the network for which these parameters are intended.
+     model path to topology IR (.xml file).
+     weights path to weights (.bin file).
+     device target device to use.
     */
     Params(const std::string &tag,
            const std::string &model,
@@ -554,9 +554,9 @@ public:
     This constructor for pre-compiled networks. Model is imported from pre-compiled
     blob.
 
-    @param tag string tag of the network for which these parameters are intended.
-    @param model path to model.
-    @param device target device to use.
+     tag string tag of the network for which these parameters are intended.
+     model path to model.
+     device target device to use.
     */
     Params(const std::string &tag,
            const std::string &model,

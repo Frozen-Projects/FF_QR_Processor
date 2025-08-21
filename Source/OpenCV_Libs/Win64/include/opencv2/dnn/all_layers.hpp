@@ -121,9 +121,9 @@ CV__DNN_INLINE_NS_BEGIN
         The same for @f$ W_h = [W_{hi}; W_{hf}; W_{ho}, W_{hg}], W_h \in R^{4N_h \times N_h} @f$
         and for @f$ b = [b_i; b_f, b_o, b_g]@f$, @f$b \in R^{4N_h} @f$.
 
-        @param Wh is matrix defining how previous output is transformed to internal gates (i.e. according to above mentioned notation is @f$ W_h @f$)
-        @param Wx is matrix defining how current input is transformed to internal gates (i.e. according to above mentioned notation is @f$ W_x @f$)
-        @param b  is bias vector (i.e. according to above mentioned notation is @f$ b @f$)
+         Wh is matrix defining how previous output is transformed to internal gates (i.e. according to above mentioned notation is @f$ W_h @f$)
+         Wx is matrix defining how current input is transformed to internal gates (i.e. according to above mentioned notation is @f$ W_x @f$)
+         b  is bias vector (i.e. according to above mentioned notation is @f$ b @f$)
         */
         CV_DEPRECATED virtual void setWeights(const Mat &Wh, const Mat &Wx, const Mat &b) = 0;
 
@@ -151,8 +151,8 @@ CV__DNN_INLINE_NS_BEGIN
         CV_DEPRECATED virtual void setProduceCellOutput(bool produce = false) = 0;
 
         /* In common case it use single input with @f$x_t@f$ values to compute output(s) @f$h_t@f$ (and @f$c_t@f$).
-         * @param input should contain packed values @f$x_t@f$
-         * @param output contains computed outputs: @f$h_t@f$ (and @f$c_t@f$ if setProduceCellOutput() flag was set to true).
+         *  input should contain packed values @f$x_t@f$
+         *  output contains computed outputs: @f$h_t@f$ (and @f$c_t@f$ if setProduceCellOutput() flag was set to true).
          *
          * If setUseTimstampsDim() is set to true then @p input[0] should has at least two dimensions with the following shape: [`T`, `N`, `[data dims]`],
          * where `T` specifies number of timestamps, `N` is number of independent streams (i.e. @f$ x_{t_0 + t}^{stream} @f$ is stored inside @p input[0][t, stream, ...]).
@@ -226,11 +226,11 @@ CV__DNN_INLINE_NS_BEGIN
         o_t &= tanh&(W_{ho} h_t + b_o),
         @f}
 
-        @param Wxh is @f$ W_{xh} @f$ matrix
-        @param bh  is @f$ b_{h}  @f$ vector
-        @param Whh is @f$ W_{hh} @f$ matrix
-        @param Who is @f$ W_{xo} @f$ matrix
-        @param bo  is @f$ b_{o}  @f$ vector
+         Wxh is @f$ W_{xh} @f$ matrix
+         bh  is @f$ b_{h}  @f$ vector
+         Whh is @f$ W_{hh} @f$ matrix
+         Who is @f$ W_{xo} @f$ matrix
+         bo  is @f$ b_{o}  @f$ vector
         */
         virtual void setWeights(const Mat &Wxh, const Mat &bh, const Mat &Whh, const Mat &Who, const Mat &bo) = 0;
 
@@ -512,8 +512,8 @@ CV__DNN_INLINE_NS_BEGIN
     /**
      * Slice layer has several modes:
      * 1. Caffe mode
-     * @param[in] axis Axis of split operation
-     * @param[in] slice_point Array of split points
+     * [in] axis Axis of split operation
+     * [in] slice_point Array of split points
      *
      * Number of output blobs equals to number of split points plus one. The
      * first blob is a slice on input from 0 to @p slice_point[0] - 1 by @p axis,
@@ -522,14 +522,14 @@ CV__DNN_INLINE_NS_BEGIN
      * input from @p slice_point[-1] up to the end of @p axis size.
      *
      * 2. TensorFlow mode
-     * @param begin Vector of start indices
-     * @param size Vector of sizes
+     *  begin Vector of start indices
+     *  size Vector of sizes
      *
      * More convenient numpy-like slice. One and only output blob
      * is a slice `input[begin[0]:begin[0]+size[0], begin[1]:begin[1]+size[1], ...]`
      *
      * 3. Torch mode
-     * @param axis Axis of split operation
+     *  axis Axis of split operation
      *
      * Split input blob on the equal parts by @p axis.
      */
@@ -558,7 +558,7 @@ CV__DNN_INLINE_NS_BEGIN
 
     /**
      * Permute channels of 4-dimensional input blob.
-     * @param group Number of groups to split input channels and pick in turns
+     *  group Number of groups to split input channels and pick in turns
      *              into output blob.
      *
      * \f[ groupSize = \frac{number\ of\ channels}{group} \f]
@@ -575,7 +575,7 @@ CV__DNN_INLINE_NS_BEGIN
 
     /**
      * @brief Adds extra values for specific axes.
-     * @param paddings Vector of paddings in format
+     *  paddings Vector of paddings in format
      *                 @code
      *                 [ pad_before, pad_after,  // [0]th dimension
      *                   pad_before, pad_after,  // [1]st dimension
@@ -585,9 +585,9 @@ CV__DNN_INLINE_NS_BEGIN
      *                 that represents number of padded values at every dimension
      *                 starting from the first one. The rest of dimensions won't
      *                 be padded.
-     * @param value Value to be padded. Defaults to zero.
-     * @param type Padding type: 'constant', 'reflect'
-     * @param input_dims Torch's parameter. If @p input_dims is not equal to the
+     *  value Value to be padded. Defaults to zero.
+     *  type Padding type: 'constant', 'reflect'
+     *  input_dims Torch's parameter. If @p input_dims is not equal to the
      *                   actual input dimensionality then the `[0]th` dimension
      *                   is considered as a batch dimension and @p paddings are shifted
      *                   to a one dimension. Defaults to `-1` that means padding
@@ -1047,10 +1047,10 @@ CV__DNN_INLINE_NS_BEGIN
 
     /**
      * @brief \f$ L_p \f$ - normalization layer.
-     * @param p Normalization factor. The most common `p = 1` for \f$ L_1 \f$ -
+     *  p Normalization factor. The most common `p = 1` for \f$ L_1 \f$ -
      *          normalization or `p = 2` for \f$ L_2 \f$ - normalization or a custom one.
-     * @param eps Parameter \f$ \epsilon \f$ to prevent a division by zero.
-     * @param across_spatial If true, normalize an input across all non-batch dimensions.
+     *  eps Parameter \f$ \epsilon \f$ to prevent a division by zero.
+     *  across_spatial If true, normalize an input across all non-batch dimensions.
      *                       Otherwise normalize an every channel separately.
      *
      * Across spatial:

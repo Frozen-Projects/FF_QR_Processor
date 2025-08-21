@@ -37,8 +37,8 @@ public:
 	}
 
 	/**
-	* @param black A boolean which is true if the bar black false if it is white
-	* @param width How many spots wide the bar is.
+	*  black A boolean which is true if the bar black false if it is white
+	*  width How many spots wide the bar is.
 	*/
 	void addBar(bool black, int width) {
 		for (int ii = 0; ii < width; ii++) {
@@ -49,8 +49,8 @@ public:
 	/**
 	* This function scales the row
 	*
-	* @param scale How much you want the image to be scaled, must be greater than or equal to 1.
-	* @param output the scaled row
+	*  scale How much you want the image to be scaled, must be greater than or equal to 1.
+	*  output the scaled row
 	*/
 	void getScaledRow(int scale, std::vector<bool>& output) const {
 		output.resize(_row.size() * scale);
@@ -75,8 +75,8 @@ public:
 	BarcodeMatrix() {}
 
 	/**
-	* @param height the height of the matrix (Rows)
-	* @param width  the width of the matrix (Cols)
+	*  height the height of the matrix (Rows)
+	*  width  the width of the matrix (Cols)
 	*/
 	BarcodeMatrix(int height, int width) {
 		init(height, width);
@@ -133,10 +133,10 @@ public:
 	/**
 	* Sets max/min row/col values
 	*
-	* @param maxCols maximum allowed columns
-	* @param minCols minimum allowed columns
-	* @param maxRows maximum allowed rows
-	* @param minRows minimum allowed rows
+	*  maxCols maximum allowed columns
+	*  minCols minimum allowed columns
+	*  maxRows maximum allowed rows
+	*  minRows minimum allowed rows
 	*/
 	void setDimensions(int minCols, int maxCols, int minRows, int maxRows) {
 		_minCols = minCols;
@@ -146,21 +146,21 @@ public:
 	}
 
 	/**
-	* @param compaction compaction mode to use
+	*  compaction compaction mode to use
 	*/
 	void setCompaction(Compaction compaction) {
 		_compaction = compaction;
 	}
 
 	/**
-	* @param compact if true, enables compaction
+	*  compact if true, enables compaction
 	*/
 	void setCompact(bool compact) {
 		_compact = compact;
 	}
 
 	/**
-	* @param encoding sets character encoding to use
+	*  encoding sets character encoding to use
 	*/
 	void setEncoding(CharacterSet encoding) {
 		_encoding = encoding;

@@ -60,9 +60,9 @@ enum { OPTFLOW_USE_INITIAL_FLOW     = 4,
 
 /** @brief Finds an object center, size, and orientation.
 
-@param probImage Back projection of the object histogram. See calcBackProject.
-@param window Initial search window.
-@param criteria Stop criteria for the underlying meanShift.
+ probImage Back projection of the object histogram. See calcBackProject.
+ window Initial search window.
+ criteria Stop criteria for the underlying meanShift.
 returns
 (in old interfaces) Number of iterations CAMSHIFT took to converge
 The function implements the CAMSHIFT object tracking algorithm @cite Bradski98 . First, it finds an
@@ -84,9 +84,9 @@ An example using the mean-shift tracking algorithm
 
 /** @brief Finds an object on a back projection image.
 
-@param probImage Back projection of the object histogram. See calcBackProject for details.
-@param window Initial search window.
-@param criteria Stop criteria for the iterative search algorithm.
+ probImage Back projection of the object histogram. See calcBackProject for details.
+ window Initial search window.
+ criteria Stop criteria for the iterative search algorithm.
 returns
 :   Number of iterations CAMSHIFT took to converge.
 The function implements the iterative object search algorithm. It takes the input back projection of
@@ -105,16 +105,16 @@ CV_EXPORTS_W int meanShift( InputArray probImage, CV_IN_OUT Rect& window, TermCr
 
 /** @brief Constructs the image pyramid which can be passed to calcOpticalFlowPyrLK.
 
-@param img 8-bit input image.
-@param pyramid output pyramid.
-@param winSize window size of optical flow algorithm. Must be not less than winSize argument of
+ img 8-bit input image.
+ pyramid output pyramid.
+ winSize window size of optical flow algorithm. Must be not less than winSize argument of
 calcOpticalFlowPyrLK. It is needed to calculate required padding for pyramid levels.
-@param maxLevel 0-based maximal pyramid level number.
-@param withDerivatives set to precompute gradients for the every pyramid level. If pyramid is
+ maxLevel 0-based maximal pyramid level number.
+ withDerivatives set to precompute gradients for the every pyramid level. If pyramid is
 constructed without the gradients then calcOpticalFlowPyrLK will calculate them internally.
-@param pyrBorder the border mode for pyramid layers.
-@param derivBorder the border mode for gradients.
-@param tryReuseInputImage put ROI of input image into the pyramid if possible. You can pass false
+ pyrBorder the border mode for pyramid layers.
+ derivBorder the border mode for gradients.
+ tryReuseInputImage put ROI of input image into the pyramid if possible. You can pass false
 to force data copying.
 @return number of levels in constructed pyramid. Can be less than maxLevel.
  */
@@ -131,33 +131,33 @@ An example using the Lucas-Kanade optical flow algorithm
 /** @brief Calculates an optical flow for a sparse feature set using the iterative Lucas-Kanade method with
 pyramids.
 
-@param prevImg first 8-bit input image or pyramid constructed by buildOpticalFlowPyramid.
-@param nextImg second input image or pyramid of the same size and the same type as prevImg.
-@param prevPts vector of 2D points for which the flow needs to be found; point coordinates must be
+ prevImg first 8-bit input image or pyramid constructed by buildOpticalFlowPyramid.
+ nextImg second input image or pyramid of the same size and the same type as prevImg.
+ prevPts vector of 2D points for which the flow needs to be found; point coordinates must be
 single-precision floating-point numbers.
-@param nextPts output vector of 2D points (with single-precision floating-point coordinates)
+ nextPts output vector of 2D points (with single-precision floating-point coordinates)
 containing the calculated new positions of input features in the second image; when
 OPTFLOW_USE_INITIAL_FLOW flag is passed, the vector must have the same size as in the input.
-@param status output status vector (of unsigned chars); each element of the vector is set to 1 if
+ status output status vector (of unsigned chars); each element of the vector is set to 1 if
 the flow for the corresponding features has been found, otherwise, it is set to 0.
-@param err output vector of errors; each element of the vector is set to an error for the
+ err output vector of errors; each element of the vector is set to an error for the
 corresponding feature, type of the error measure can be set in flags parameter; if the flow wasn't
 found then the error is not defined (use the status parameter to find such cases).
-@param winSize size of the search window at each pyramid level.
-@param maxLevel 0-based maximal pyramid level number; if set to 0, pyramids are not used (single
+ winSize size of the search window at each pyramid level.
+ maxLevel 0-based maximal pyramid level number; if set to 0, pyramids are not used (single
 level), if set to 1, two levels are used, and so on; if pyramids are passed to input then
 algorithm will use as many levels as pyramids have but no more than maxLevel.
-@param criteria parameter, specifying the termination criteria of the iterative search algorithm
+ criteria parameter, specifying the termination criteria of the iterative search algorithm
 (after the specified maximum number of iterations criteria.maxCount or when the search window
 moves by less than criteria.epsilon.
-@param flags operation flags:
+ flags operation flags:
  -   **OPTFLOW_USE_INITIAL_FLOW** uses initial estimations, stored in nextPts; if the flag is
      not set, then prevPts is copied to nextPts and is considered the initial estimate.
  -   **OPTFLOW_LK_GET_MIN_EIGENVALS** use minimum eigen values as an error measure (see
      minEigThreshold description); if the flag is not set, then L1 distance between patches
      around the original and a moved point, divided by number of pixels in a window, is used as a
      error measure.
-@param minEigThreshold the algorithm calculates the minimum eigen value of a 2x2 normal matrix of
+ minEigThreshold the algorithm calculates the minimum eigen value of a 2x2 normal matrix of
 optical flow equations (this matrix is called a spatial gradient matrix in @cite Bouguet00), divided
 by number of pixels in a window; if this value is less than minEigThreshold, then a corresponding
 feature is filtered out and its flow is not processed, so it allows to remove bad points and get a
@@ -184,24 +184,24 @@ CV_EXPORTS_W void calcOpticalFlowPyrLK( InputArray prevImg, InputArray nextImg,
 
 /** @brief Computes a dense optical flow using the Gunnar Farneback's algorithm.
 
-@param prev first 8-bit single-channel input image.
-@param next second input image of the same size and the same type as prev.
-@param flow computed flow image that has the same size as prev and type CV_32FC2.
-@param pyr_scale parameter, specifying the image scale (\<1) to build pyramids for each image;
+ prev first 8-bit single-channel input image.
+ next second input image of the same size and the same type as prev.
+ flow computed flow image that has the same size as prev and type CV_32FC2.
+ pyr_scale parameter, specifying the image scale (\<1) to build pyramids for each image;
 pyr_scale=0.5 means a classical pyramid, where each next layer is twice smaller than the previous
 one.
-@param levels number of pyramid layers including the initial image; levels=1 means that no extra
+ levels number of pyramid layers including the initial image; levels=1 means that no extra
 layers are created and only the original images are used.
-@param winsize averaging window size; larger values increase the algorithm robustness to image
+ winsize averaging window size; larger values increase the algorithm robustness to image
 noise and give more chances for fast motion detection, but yield more blurred motion field.
-@param iterations number of iterations the algorithm does at each pyramid level.
-@param poly_n size of the pixel neighborhood used to find polynomial expansion in each pixel;
+ iterations number of iterations the algorithm does at each pyramid level.
+ poly_n size of the pixel neighborhood used to find polynomial expansion in each pixel;
 larger values mean that the image will be approximated with smoother surfaces, yielding more
 robust algorithm and more blurred motion field, typically poly_n =5 or 7.
-@param poly_sigma standard deviation of the Gaussian that is used to smooth derivatives used as a
+ poly_sigma standard deviation of the Gaussian that is used to smooth derivatives used as a
 basis for the polynomial expansion; for poly_n=5, you can set poly_sigma=1.1, for poly_n=7, a
 good value would be poly_sigma=1.5.
-@param flags operation flags that can be a combination of the following:
+ flags operation flags that can be a combination of the following:
  -   **OPTFLOW_USE_INITIAL_FLOW** uses the input flow as an initial flow approximation.
  -   **OPTFLOW_FARNEBACK_GAUSSIAN** uses the Gaussian \f$\texttt{winsize}\times\texttt{winsize}\f$
      filter instead of a box filter of the same size for optical flow estimation; usually, this
@@ -227,9 +227,9 @@ CV_EXPORTS_W void calcOpticalFlowFarneback( InputArray prev, InputArray next, In
 
 /** @brief Computes an optimal affine transformation between two 2D point sets.
 
-@param src First input 2D point set stored in std::vector or Mat, or an image stored in Mat.
-@param dst Second input 2D point set of the same size and the same type as A, or another image.
-@param fullAffine If true, the function finds an optimal affine transformation with no additional
+ src First input 2D point set stored in std::vector or Mat, or an image stored in Mat.
+ dst Second input 2D point set of the same size and the same type as A, or another image.
+ fullAffine If true, the function finds an optimal affine transformation with no additional
 restrictions (6 degrees of freedom). Otherwise, the class of transformations to choose from is
 limited to combinations of translation, rotation, and uniform scaling (4 degrees of freedom).
 
@@ -267,10 +267,10 @@ enum
 
 /** @brief Computes the Enhanced Correlation Coefficient value between two images @cite EP08 .
 
-@param templateImage single-channel template image; CV_8U or CV_32F array.
-@param inputImage single-channel input image to be warped to provide an image similar to
+ templateImage single-channel template image; CV_8U or CV_32F array.
+ inputImage single-channel input image to be warped to provide an image similar to
  templateImage, same type as templateImage.
-@param inputMask An optional mask to indicate valid values of inputImage.
+ inputMask An optional mask to indicate valid values of inputImage.
 
 @sa
 findTransformECC
@@ -284,11 +284,11 @@ An example using the image alignment ECC algorithm
 
 /** @brief Finds the geometric transform (warp) between two images in terms of the ECC criterion @cite EP08 .
 
-@param templateImage single-channel template image; CV_8U or CV_32F array.
-@param inputImage single-channel input image which should be warped with the final warpMatrix in
+ templateImage single-channel template image; CV_8U or CV_32F array.
+ inputImage single-channel input image which should be warped with the final warpMatrix in
 order to provide an image similar to templateImage, same type as templateImage.
-@param warpMatrix floating-point \f$2\times 3\f$ or \f$3\times 3\f$ mapping matrix (warp).
-@param motionType parameter, specifying the type of motion:
+ warpMatrix floating-point \f$2\times 3\f$ or \f$3\times 3\f$ mapping matrix (warp).
+ motionType parameter, specifying the type of motion:
  -   **MOTION_TRANSLATION** sets a translational motion model; warpMatrix is \f$2\times 3\f$ with
      the first \f$2\times 2\f$ part being the unity matrix and the rest two parameters being
      estimated.
@@ -298,12 +298,12 @@ order to provide an image similar to templateImage, same type as templateImage.
      warpMatrix is \f$2\times 3\f$.
  -   **MOTION_HOMOGRAPHY** sets a homography as a motion model; eight parameters are
      estimated;\`warpMatrix\` is \f$3\times 3\f$.
-@param criteria parameter, specifying the termination criteria of the ECC algorithm;
+ criteria parameter, specifying the termination criteria of the ECC algorithm;
 criteria.epsilon defines the threshold of the increment in the correlation coefficient between two
 iterations (a negative criteria.epsilon makes criteria.maxcount the only termination criterion).
 Default values are shown in the declaration above.
-@param inputMask An optional mask to indicate valid values of inputImage.
-@param gaussFiltSize An optional value indicating size of gaussian blur filter; (DEFAULT: 5)
+ inputMask An optional mask to indicate valid values of inputImage.
+ gaussFiltSize An optional value indicating size of gaussian blur filter; (DEFAULT: 5)
 
 The function estimates the optimum transformation (warpMatrix) with respect to ECC criterion
 (@cite EP08), that is
@@ -362,31 +362,31 @@ class CV_EXPORTS_W KalmanFilter
 public:
     CV_WRAP KalmanFilter();
     /** @overload
-    @param dynamParams Dimensionality of the state.
-    @param measureParams Dimensionality of the measurement.
-    @param controlParams Dimensionality of the control vector.
-    @param type Type of the created matrices that should be CV_32F or CV_64F.
+     dynamParams Dimensionality of the state.
+     measureParams Dimensionality of the measurement.
+     controlParams Dimensionality of the control vector.
+     type Type of the created matrices that should be CV_32F or CV_64F.
     */
     CV_WRAP KalmanFilter( int dynamParams, int measureParams, int controlParams = 0, int type = CV_32F );
 
     /** @brief Re-initializes Kalman filter. The previous content is destroyed.
 
-    @param dynamParams Dimensionality of the state.
-    @param measureParams Dimensionality of the measurement.
-    @param controlParams Dimensionality of the control vector.
-    @param type Type of the created matrices that should be CV_32F or CV_64F.
+     dynamParams Dimensionality of the state.
+     measureParams Dimensionality of the measurement.
+     controlParams Dimensionality of the control vector.
+     type Type of the created matrices that should be CV_32F or CV_64F.
      */
     void init( int dynamParams, int measureParams, int controlParams = 0, int type = CV_32F );
 
     /** @brief Computes a predicted state.
 
-    @param control The optional input control
+     control The optional input control
      */
     CV_WRAP const Mat& predict( const Mat& control = Mat() );
 
     /** @brief Updates the predicted state from the measurement.
 
-    @param measurement The measured system parameters
+     measurement The measured system parameters
      */
     CV_WRAP const Mat& correct( const Mat& measurement );
 
@@ -412,7 +412,7 @@ public:
 
 /** @brief Read a .flo file
 
- @param path Path to the file to be loaded
+  path Path to the file to be loaded
 
  The function readOpticalFlow loads a flow field from a file and returns it as a single matrix.
  Resulting Mat has a type CV_32FC2 - floating-point, 2-channel. First channel corresponds to the
@@ -421,8 +421,8 @@ public:
 CV_EXPORTS_W Mat readOpticalFlow( const String& path );
 /** @brief Write a .flo to disk
 
- @param path Path to the file to be written
- @param flow Flow field to be stored
+  path Path to the file to be written
+  flow Flow field to be stored
 
  The function stores a flow field in a file, returns true on success, false otherwise.
  The flow field must be a 2-channel, floating-point matrix (CV_32FC2). First channel corresponds
@@ -438,9 +438,9 @@ class CV_EXPORTS_W DenseOpticalFlow : public Algorithm
 public:
     /** @brief Calculates an optical flow.
 
-    @param I0 first 8-bit single-channel input image.
-    @param I1 second input image of the same size and the same type as prev.
-    @param flow computed flow image that has the same size as prev and type CV_32FC2.
+     I0 first 8-bit single-channel input image.
+     I1 second input image of the same size and the same type as prev.
+     flow computed flow image that has the same size as prev and type CV_32FC2.
      */
     CV_WRAP virtual void calc( InputArray I0, InputArray I1, InputOutputArray flow ) = 0;
     /** @brief Releases all inner buffers.
@@ -455,13 +455,13 @@ class CV_EXPORTS_W SparseOpticalFlow : public Algorithm
 public:
     /** @brief Calculates a sparse optical flow.
 
-    @param prevImg First input image.
-    @param nextImg Second input image of the same size and the same type as prevImg.
-    @param prevPts Vector of 2D points for which the flow needs to be found.
-    @param nextPts Output vector of 2D points containing the calculated new positions of input features in the second image.
-    @param status Output status vector. Each element of the vector is set to 1 if the
+     prevImg First input image.
+     nextImg Second input image of the same size and the same type as prevImg.
+     prevPts Vector of 2D points for which the flow needs to be found.
+     nextPts Output vector of 2D points containing the calculated new positions of input features in the second image.
+     status Output status vector. Each element of the vector is set to 1 if the
                   flow for the corresponding features has been found. Otherwise, it is set to 0.
-    @param err Optional output vector that contains error response for each point (inverse confidence).
+     err Optional output vector that contains error response for each point (inverse confidence).
      */
     CV_WRAP virtual void calc(InputArray prevImg, InputArray nextImg,
                       InputArray prevPts, InputOutputArray nextPts,
@@ -666,7 +666,7 @@ public:
 
     /** @brief Creates an instance of DISOpticalFlow
 
-    @param preset one of PRESET_ULTRAFAST, PRESET_FAST and PRESET_MEDIUM
+     preset one of PRESET_ULTRAFAST, PRESET_FAST and PRESET_MEDIUM
     */
     CV_WRAP static Ptr<DISOpticalFlow> create(int preset = DISOpticalFlow::PRESET_FAST);
 };
@@ -718,15 +718,15 @@ public:
     virtual ~Tracker();
 
     /** @brief Initialize the tracker with a known bounding box that surrounded the target
-    @param image The initial frame
-    @param boundingBox The initial bounding box
+     image The initial frame
+     boundingBox The initial bounding box
     */
     CV_WRAP virtual
     void init(InputArray image, const Rect& boundingBox) = 0;
 
     /** @brief Update the tracker, find the new most likely bounding box for the target
-    @param image The current frame
-    @param boundingBox The bounding box that represent the new target location, if true was returned, not
+     image The current frame
+     boundingBox The bounding box that represent the new target location, if true was returned, not
     modified otherwise
 
     @return True means that target was located and false means that tracker cannot locate target in
@@ -768,7 +768,7 @@ public:
     };
 
     /** @brief Create MIL tracker instance
-     *  @param parameters MIL parameters TrackerMIL::Params
+     *   parameters MIL parameters TrackerMIL::Params
      */
     static CV_WRAP
     Ptr<TrackerMIL> create(const TrackerMIL::Params &parameters = TrackerMIL::Params());
@@ -809,7 +809,7 @@ public:
     };
 
     /** @brief Constructor
-    @param parameters GOTURN parameters TrackerGOTURN::Params
+     parameters GOTURN parameters TrackerGOTURN::Params
     */
     static CV_WRAP
     Ptr<TrackerGOTURN> create(const TrackerGOTURN::Params& parameters = TrackerGOTURN::Params());
@@ -836,7 +836,7 @@ public:
     };
 
     /** @brief Constructor
-    @param parameters DaSiamRPN parameters TrackerDaSiamRPN::Params
+     parameters DaSiamRPN parameters TrackerDaSiamRPN::Params
     */
     static CV_WRAP
     Ptr<TrackerDaSiamRPN> create(const TrackerDaSiamRPN::Params& parameters = TrackerDaSiamRPN::Params());
@@ -874,7 +874,7 @@ public:
     };
 
     /** @brief Constructor
-    @param parameters NanoTrack parameters TrackerNano::Params
+     parameters NanoTrack parameters TrackerNano::Params
     */
     static CV_WRAP
     Ptr<TrackerNano> create(const TrackerNano::Params& parameters = TrackerNano::Params());
@@ -911,7 +911,7 @@ public:
     };
 
     /** @brief Constructor
-    @param parameters vit tracker parameters TrackerVit::Params
+     parameters vit tracker parameters TrackerVit::Params
     */
     static CV_WRAP
     Ptr<TrackerVit> create(const TrackerVit::Params& parameters = TrackerVit::Params());

@@ -27,7 +27,7 @@ class BitSource
 
 public:
 	/**
-	* @param bytes bytes from which this will read bits. Bits will be read from the first byte first.
+	*  bytes bytes from which this will read bits. Bits will be read from the first byte first.
 	* Bits are read within a byte from most-significant to least-significant bit.
 	* IMPORTANT: Bit source DOES NOT copy data byte, thus make sure that the bytes outlive the bit source object.
 	*/
@@ -51,13 +51,13 @@ public:
 	}
 
 	/**
-	* @param numBits number of bits to read
+	*  numBits number of bits to read
 	* @return int representing the bits read. The bits will appear as the least-significant bits of the int
 	*/
 	int readBits(int numBits);
 
 	/**
-	* @param numBits number of bits to peak
+	*  numBits number of bits to peak
 	* @return int representing the bits peaked.  The bits will appear as the least-significant
 	*         bits of the int
 	*/

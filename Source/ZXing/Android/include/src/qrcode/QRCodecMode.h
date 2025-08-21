@@ -30,28 +30,28 @@ enum class CodecMode
 };
 
 /**
- * @param bits variable number of bits encoding a QR Code data mode
- * @param type type of QR Code
+ *  bits variable number of bits encoding a QR Code data mode
+ *  type type of QR Code
  * @return Mode encoded by these bits
  * @throws FormatError if bits do not correspond to a known mode
  */
 CodecMode CodecModeForBits(int bits, Type type);
 
 /**
- * @param version version in question
+ *  version version in question
  * @return number of bits used, in this QR Code symbol {@link Version}, to encode the
  *         count of characters that will follow encoded in this Mode
  */
 int CharacterCountBits(CodecMode mode, const Version& version);
 
 /**
- * @param version version in question
+ *  version version in question
  * @return number of bits used to encode a codec mode.
  */
 int CodecModeBitsLength(const Version& version);
 
 /**
- * @param version version in question
+ *  version version in question
  * @return number of bits in the Terminator code.
  */
 int TerminatorBitsLength(const Version& version);

@@ -34,7 +34,7 @@ public:
     AsyncArray getArrayResult();
 
     /** Stores asynchronous result.
-    @param[in] value result
+    [in] value result
     */
     void setValue(InputArray value);
 
@@ -42,13 +42,13 @@ public:
 
 #if CV__EXCEPTION_PTR
     /** Stores exception.
-    @param[in] exception exception to be raised in AsyncArray
+    [in] exception exception to be raised in AsyncArray
     */
     void setException(std::exception_ptr exception);
 #endif
 
     /** Stores exception.
-    @param[in] exception exception to be raised in AsyncArray
+    [in] exception exception to be raised in AsyncArray
     */
     void setException(const cv::Exception& exception);
 

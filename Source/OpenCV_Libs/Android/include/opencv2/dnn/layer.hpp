@@ -70,8 +70,8 @@ public:
     static bool isLayerRegistered(const std::string& type);
 
     /** @brief Creates instance of registered layer.
-     *  @param type type name of creating layer.
-     *  @param params parameters which will be used for layer initialization.
+     *   type type name of creating layer.
+     *   params parameters which will be used for layer initialization.
      *  @note Thread-safe.
      */
     static Ptr<Layer> createLayerInstance(const String &type, LayerParams& params);

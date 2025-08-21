@@ -24,20 +24,20 @@ public:
     /** @brief Initialize the BarcodeDetector.
      *
      * Parameters allow to load _optional_ Super Resolution DNN model for better quality.
-     * @param prototxt_path prototxt file path for the super resolution model
-     * @param model_path model file path for the super resolution model
+     *  prototxt_path prototxt file path for the super resolution model
+     *  model_path model file path for the super resolution model
      */
     CV_WRAP BarcodeDetector(const std::string &prototxt_path, const std::string &model_path);
     ~BarcodeDetector();
 
     /** @brief Decodes barcode in image once it's found by the detect() method.
      *
-     * @param img grayscale or color (BGR) image containing bar code.
-     * @param points vector of rotated rectangle vertices found by detect() method (or some other algorithm).
+     *  img grayscale or color (BGR) image containing bar code.
+     *  points vector of rotated rectangle vertices found by detect() method (or some other algorithm).
      * For N detected barcodes, the dimensions of this array should be [N][4].
      * Order of four points in vector<Point2f> is bottomLeft, topLeft, topRight, bottomRight.
-     * @param decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
-     * @param decoded_type vector strings, specifies the type of these barcodes
+     *  decoded_info UTF8-encoded output vector of string or empty vector of string if the codes cannot be decoded.
+     *  decoded_type vector strings, specifies the type of these barcodes
      * @return true if at least one valid barcode have been found
      */
     CV_WRAP bool decodeWithType(InputArray img,
@@ -47,10 +47,10 @@ public:
 
     /** @brief Both detects and decodes barcode
 
-     * @param img grayscale or color (BGR) image containing barcode.
-     * @param decoded_info UTF8-encoded output vector of string(s) or empty vector of string if the codes cannot be decoded.
-     * @param decoded_type vector of strings, specifies the type of these barcodes
-     * @param points optional output vector of vertices of the found  barcode rectangle. Will be empty if not found.
+     *  img grayscale or color (BGR) image containing barcode.
+     *  decoded_info UTF8-encoded output vector of string(s) or empty vector of string if the codes cannot be decoded.
+     *  decoded_type vector of strings, specifies the type of these barcodes
+     *  points optional output vector of vertices of the found  barcode rectangle. Will be empty if not found.
      * @return true if at least one valid barcode have been found
      */
     CV_WRAP bool detectAndDecodeWithType(InputArray img,

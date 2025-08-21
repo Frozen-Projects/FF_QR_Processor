@@ -68,8 +68,8 @@ public:
 	* least-significant. For example, appending 6 bits from 0x000001E will append the bits
 	* 0, 1, 1, 1, 1, 0 in that order.
 	*
-	* @param value {@code int} containing bits to append
-	* @param numBits bits from value to append
+	*  value {@code int} containing bits to append
+	*  numBits bits from value to append
 	*/
 	void appendBits(int value, int numBits)
 	{
@@ -89,8 +89,8 @@ public:
 	void bitwiseXOR(const BitArray& other);
 
 	/**
-	* @param bitOffset first bit to extract
-	* @param numBytes how many bytes to extract (-1 == until the end, padded with '0')
+	*  bitOffset first bit to extract
+	*  numBytes how many bytes to extract (-1 == until the end, padded with '0')
 	* @return Bytes are written most-significant bit first.
 	*/
 	ByteArray toBytes(int bitOffset = 0, int numBytes = -1) const;

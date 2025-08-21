@@ -26,9 +26,9 @@ class CV_EXPORTS_W_SIMPLE Board {
 public:
     /** @brief Common Board constructor
      *
-     * @param objPoints array of object points of all the marker corners in the board
-     * @param dictionary the dictionary of markers employed for this board
-     * @param ids vector of the identifiers of the markers in the board
+     *  objPoints array of object points of all the marker corners in the board
+     *  dictionary the dictionary of markers employed for this board
+     *  ids vector of the identifiers of the markers in the board
      */
     CV_WRAP Board(InputArrayOfArrays objPoints, const Dictionary& dictionary, InputArray ids);
 
@@ -60,17 +60,17 @@ public:
     /** @brief Given a board configuration and a set of detected markers, returns the corresponding
      * image points and object points, can be used in solvePnP()
      *
-     * @param detectedCorners List of detected marker corners of the board.
+     *  detectedCorners List of detected marker corners of the board.
      * For cv::Board and cv::GridBoard the method expects std::vector<std::vector<Point2f>> or std::vector<Mat> with Aruco marker corners.
      * For cv::CharucoBoard the method expects std::vector<Point2f> or Mat with ChAruco corners (chess board corners matched with Aruco markers).
      *
-     * @param detectedIds List of identifiers for each marker or charuco corner.
+     *  detectedIds List of identifiers for each marker or charuco corner.
      * For any Board class the method expects std::vector<int> or Mat.
      *
-     * @param objPoints Vector of marker points in the board coordinate space.
+     *  objPoints Vector of marker points in the board coordinate space.
      * For any Board class the method expects std::vector<cv::Point3f> objectPoints or cv::Mat
      *
-     * @param imgPoints Vector of marker points in the image coordinate space.
+     *  imgPoints Vector of marker points in the image coordinate space.
      * For any Board class the method expects std::vector<cv::Point2f> objectPoints or cv::Mat
      *
      * @sa solvePnP
@@ -80,11 +80,11 @@ public:
 
      /** @brief Draw a planar board
      *
-     * @param outSize size of the output image in pixels.
-     * @param img output image with the board. The size of this image will be outSize
+     *  outSize size of the output image in pixels.
+     *  img output image with the board. The size of this image will be outSize
      * and the board will be on the center, keeping the board proportions.
-     * @param marginSize minimum margins (in pixels) of the board in the output image
-     * @param borderBits width of the marker borders.
+     *  marginSize minimum margins (in pixels) of the board in the output image
+     *  borderBits width of the marker borders.
      *
      * This function return the image of the board, ready to be printed.
      */
@@ -109,11 +109,11 @@ public:
     /**
      * @brief GridBoard constructor
      *
-     * @param size number of markers in x and y directions
-     * @param markerLength marker side length (normally in meters)
-     * @param markerSeparation separation between two markers (same unit as markerLength)
-     * @param dictionary dictionary of markers indicating the type of markers
-     * @param ids set of marker ids in dictionary to use on board.
+     *  size number of markers in x and y directions
+     *  markerLength marker side length (normally in meters)
+     *  markerSeparation separation between two markers (same unit as markerLength)
+     *  dictionary dictionary of markers indicating the type of markers
+     *  ids set of marker ids in dictionary to use on board.
      */
     CV_WRAP GridBoard(const Size& size, float markerLength, float markerSeparation,
                       const Dictionary &dictionary, InputArray ids = noArray());
@@ -136,11 +136,11 @@ class CV_EXPORTS_W_SIMPLE CharucoBoard : public Board {
 public:
     /** @brief CharucoBoard constructor
      *
-     * @param size number of chessboard squares in x and y directions
-     * @param squareLength squareLength chessboard square side length (normally in meters)
-     * @param markerLength marker side length (same unit than squareLength)
-     * @param dictionary dictionary of markers indicating the type of markers
-     * @param ids array of id used markers
+     *  size number of chessboard squares in x and y directions
+     *  squareLength squareLength chessboard square side length (normally in meters)
+     *  markerLength marker side length (same unit than squareLength)
+     *  dictionary dictionary of markers indicating the type of markers
+     *  ids array of id used markers
      * The first markers in the dictionary are used to fill the white chessboard squares.
      */
     CV_WRAP CharucoBoard(const Size& size, float squareLength, float markerLength,
@@ -176,7 +176,7 @@ public:
 
     /** @brief check whether the ChArUco markers are collinear
      *
-     * @param charucoIds list of identifiers for each corner in charucoCorners per frame.
+     *  charucoIds list of identifiers for each corner in charucoCorners per frame.
      * @return bool value, 1 (true) if detected corners form a line, 0 (false) if they do not.
      * solvePnP, calibration functions will fail if the corners are collinear (true).
      *

@@ -538,8 +538,8 @@ Output image must have the same type, size, and number of channels as the input 
  - In case of floating-point computation, rounding to nearest even is procedeed
 if hardware supports it (if not - to nearest value).
  - Function textual ID is "org.opencv.imgproc.filters.sepfilter"
-@param src Source image.
-@param ddepth desired depth of the destination image (the following combinations of src.depth() and ddepth are supported:
+ src Source image.
+ ddepth desired depth of the destination image (the following combinations of src.depth() and ddepth are supported:
 
         src.depth() = CV_8U, ddepth = -1/CV_16S/CV_32F/CV_64F
         src.depth() = CV_16U/CV_16S, ddepth = -1/CV_32F/CV_64F
@@ -547,13 +547,13 @@ if hardware supports it (if not - to nearest value).
         src.depth() = CV_64F, ddepth = -1/CV_64F
 
 when ddepth=-1, the output image will have the same depth as the source)
-@param kernelX Coefficients for filtering each row.
-@param kernelY Coefficients for filtering each column.
-@param anchor Anchor position within the kernel. The default value \f$(-1,-1)\f$ means that the anchor
+ kernelX Coefficients for filtering each row.
+ kernelY Coefficients for filtering each column.
+ anchor Anchor position within the kernel. The default value \f$(-1,-1)\f$ means that the anchor
 is at the kernel center.
-@param delta Value added to the filtered results before storing them.
-@param borderType Pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ delta Value added to the filtered results before storing them.
+ borderType Pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa  boxFilter, gaussianBlur, medianBlur
  */
 GAPI_EXPORTS_W GMat sepFilter(const GMat& src, int ddepth, const Mat& kernelX, const Mat& kernelY, const Point& anchor /*FIXME: = Point(-1,-1)*/,
@@ -580,17 +580,17 @@ Output image must have the same size and number of channels an input image.
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.filter2D"
 
-@param src input image.
-@param ddepth desired depth of the destination image
-@param kernel convolution kernel (or rather a correlation kernel), a single-channel floating point
+ src input image.
+ ddepth desired depth of the destination image
+ kernel convolution kernel (or rather a correlation kernel), a single-channel floating point
 matrix; if you want to apply different kernels to different channels, split the image into
 separate color planes using split and process them individually.
-@param anchor anchor of the kernel that indicates the relative position of a filtered point within
+ anchor anchor of the kernel that indicates the relative position of a filtered point within
 the kernel; the anchor should lie within the kernel; default value (-1,-1) means that the anchor
 is at the kernel center.
-@param delta optional value added to the filtered pixels before storing them in dst.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ delta optional value added to the filtered pixels before storing them in dst.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa  sepFilter
  */
 GAPI_EXPORTS_W GMat filter2D(const GMat& src, int ddepth, const Mat& kernel, const Point& anchor = Point(-1,-1), const Scalar& delta = Scalar(0),
@@ -617,14 +617,14 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.boxfilter"
 
-@param src Source image.
-@param dtype the output image depth (-1 to set the input image data type).
-@param ksize blurring kernel size.
-@param anchor Anchor position within the kernel. The default value \f$(-1,-1)\f$ means that the anchor
+ src Source image.
+ dtype the output image depth (-1 to set the input image data type).
+ ksize blurring kernel size.
+ anchor Anchor position within the kernel. The default value \f$(-1,-1)\f$ means that the anchor
 is at the kernel center.
-@param normalize flag, specifying whether the kernel is normalized by its area or not.
-@param borderType Pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ normalize flag, specifying whether the kernel is normalized by its area or not.
+ borderType Pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa  sepFilter, gaussianBlur, medianBlur, integral
  */
 GAPI_EXPORTS_W GMat boxFilter(const GMat& src, int dtype, const Size& ksize, const Point& anchor = Point(-1,-1),
@@ -646,12 +646,12 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.blur"
 
-@param src Source image.
-@param ksize blurring kernel size.
-@param anchor anchor point; default value Point(-1,-1) means that the anchor is at the kernel
+ src Source image.
+ ksize blurring kernel size.
+ anchor anchor point; default value Point(-1,-1) means that the anchor is at the kernel
 center.
-@param borderType border mode used to extrapolate pixels outside of the image, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ borderType border mode used to extrapolate pixels outside of the image, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa  boxFilter, bilateralFilter, GaussianBlur, medianBlur
  */
 GAPI_EXPORTS_W GMat blur(const GMat& src, const Size& ksize, const Point& anchor = Point(-1,-1),
@@ -674,17 +674,17 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.gaussianBlur"
 
-@param src input image;
-@param ksize Gaussian kernel size. ksize.width and ksize.height can differ but they both must be
+ src input image;
+ ksize Gaussian kernel size. ksize.width and ksize.height can differ but they both must be
 positive and odd. Or, they can be zero's and then they are computed from sigma.
-@param sigmaX Gaussian kernel standard deviation in X direction.
-@param sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be
+ sigmaX Gaussian kernel standard deviation in X direction.
+ sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be
 equal to sigmaX, if both sigmas are zeros, they are computed from ksize.width and ksize.height,
 respectively (see cv::getGaussianKernel for details); to fully control the result regardless of
 possible future modifications of all this semantics, it is recommended to specify all of ksize,
 sigmaX, and sigmaY.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa  sepFilter, boxFilter, medianBlur
  */
 GAPI_EXPORTS_W GMat gaussianBlur(const GMat& src, const Size& ksize, double sigmaX, double sigmaY = 0,
@@ -700,8 +700,8 @@ Output image must have the same type, size, and number of channels as the input 
 The median filter uses cv::BORDER_REPLICATE internally to cope with border pixels, see cv::BorderTypes
  - Function textual ID is "org.opencv.imgproc.filters.medianBlur"
 
-@param src input matrix (image)
-@param ksize aperture linear size; it must be odd and greater than 1, for example: 3, 5, 7 ...
+ src input matrix (image)
+ ksize aperture linear size; it must be odd and greater than 1, for example: 3, 5, 7 ...
 @sa  boxFilter, gaussianBlur
  */
 GAPI_EXPORTS_W GMat medianBlur(const GMat& src, int ksize);
@@ -720,14 +720,14 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.erode"
 
-@param src input image
-@param kernel structuring element used for erosion; if `element=Mat()`, a `3 x 3` rectangular
+ src input image
+ kernel structuring element used for erosion; if `element=Mat()`, a `3 x 3` rectangular
 structuring element is used. Kernel can be created using getStructuringElement.
-@param anchor position of the anchor within the element; default value (-1, -1) means that the
+ anchor position of the anchor within the element; default value (-1, -1) means that the
 anchor is at the element center.
-@param iterations number of times erosion is applied.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of a constant border
+ iterations number of times erosion is applied.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of a constant border
 @sa  dilate, morphologyEx
  */
 GAPI_EXPORTS_W GMat erode(const GMat& src, const Mat& kernel, const Point& anchor = Point(-1,-1), int iterations = 1,
@@ -744,10 +744,10 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.erode"
 
-@param src input image
-@param iterations number of times erosion is applied.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of a constant border
+ src input image
+ iterations number of times erosion is applied.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of a constant border
 @sa  erode, dilate3x3
  */
 GAPI_EXPORTS_W GMat erode3x3(const GMat& src, int iterations = 1,
@@ -767,14 +767,14 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.dilate"
 
-@param src input image.
-@param kernel structuring element used for dilation; if elemenat=Mat(), a 3 x 3 rectangular
+ src input image.
+ kernel structuring element used for dilation; if elemenat=Mat(), a 3 x 3 rectangular
 structuring element is used. Kernel can be created using getStructuringElement
-@param anchor position of the anchor within the element; default value (-1, -1) means that the
+ anchor position of the anchor within the element; default value (-1, -1) means that the
 anchor is at the element center.
-@param iterations number of times dilation is applied.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of a constant border
+ iterations number of times dilation is applied.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of a constant border
 @sa  erode, morphologyEx, getStructuringElement
  */
 GAPI_EXPORTS_W GMat dilate(const GMat& src, const Mat& kernel, const Point& anchor = Point(-1,-1), int iterations = 1,
@@ -794,10 +794,10 @@ Output image must have the same type, size, and number of channels as the input 
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.dilate"
 
-@param src input image.
-@param iterations number of times dilation is applied.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of a constant border
+ src input image.
+ iterations number of times dilation is applied.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of a constant border
 @sa  dilate, erode3x3
  */
 
@@ -820,14 +820,14 @@ applied. For instance, an opening operation (#MORPH_OPEN) with two iterations is
 apply successively: erode -> erode -> dilate -> dilate
 (and not erode -> dilate -> erode -> dilate).
 
-@param src Input image.
-@param op Type of a morphological operation, see #MorphTypes
-@param kernel Structuring element. It can be created using #getStructuringElement.
-@param anchor Anchor position within the element. Both negative values mean that the anchor is at
+ src Input image.
+ op Type of a morphological operation, see #MorphTypes
+ kernel Structuring element. It can be created using #getStructuringElement.
+ anchor Anchor position within the element. Both negative values mean that the anchor is at
 the kernel center.
-@param iterations Number of times erosion and dilation are applied.
-@param borderType Pixel extrapolation method, see #BorderTypes. #BORDER_WRAP is not supported.
-@param borderValue Border value in case of a constant border. The default value has a special
+ iterations Number of times erosion and dilation are applied.
+ borderType Pixel extrapolation method, see #BorderTypes. #BORDER_WRAP is not supported.
+ borderValue Border value in case of a constant border. The default value has a special
 meaning.
 @sa  dilate, erode, getStructuringElement
  */
@@ -870,17 +870,17 @@ The second case corresponds to a kernel of:
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.sobel"
 
-@param src input image.
-@param ddepth output image depth, see @ref filter_depths "combinations"; in the case of
+ src input image.
+ ddepth output image depth, see @ref filter_depths "combinations"; in the case of
     8-bit input images it will result in truncated derivatives.
-@param dx order of the derivative x.
-@param dy order of the derivative y.
-@param ksize size of the extended Sobel kernel; it must be odd.
-@param scale optional scale factor for the computed derivative values; by default, no scaling is
+ dx order of the derivative x.
+ dy order of the derivative y.
+ ksize size of the extended Sobel kernel; it must be odd.
+ scale optional scale factor for the computed derivative values; by default, no scaling is
 applied (see cv::getDerivKernels for details).
-@param delta optional delta value that is added to the results prior to storing them in dst.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ delta optional delta value that is added to the results prior to storing them in dst.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa filter2D, gaussianBlur, cartToPolar
  */
 GAPI_EXPORTS_W GMat Sobel(const GMat& src, int ddepth, int dx, int dy, int ksize = 3,
@@ -922,16 +922,16 @@ The second case corresponds to a kernel of:
  - Rounding to nearest even is procedeed if hardware supports it, if not - to nearest.
  - Function textual ID is "org.opencv.imgproc.filters.sobelxy"
 
-@param src input image.
-@param ddepth output image depth, see @ref filter_depths "combinations"; in the case of
+ src input image.
+ ddepth output image depth, see @ref filter_depths "combinations"; in the case of
     8-bit input images it will result in truncated derivatives.
-@param order order of the derivatives.
-@param ksize size of the extended Sobel kernel; it must be odd.
-@param scale optional scale factor for the computed derivative values; by default, no scaling is
+ order order of the derivatives.
+ ksize size of the extended Sobel kernel; it must be odd.
+ scale optional scale factor for the computed derivative values; by default, no scaling is
 applied (see cv::getDerivKernels for details).
-@param delta optional delta value that is added to the results prior to storing them in dst.
-@param borderType pixel extrapolation method, see cv::BorderTypes
-@param borderValue border value in case of constant border type
+ delta optional delta value that is added to the results prior to storing them in dst.
+ borderType pixel extrapolation method, see cv::BorderTypes
+ borderValue border value in case of constant border type
 @sa filter2D, gaussianBlur, cartToPolar
  */
 GAPI_EXPORTS_W std::tuple<GMat, GMat> SobelXY(const GMat& src, int ddepth, int order, int ksize = 3,
@@ -953,14 +953,14 @@ with the following \f$3 \times 3\f$ aperture:
 
 @note Function textual ID is "org.opencv.imgproc.filters.laplacian"
 
-@param src Source image.
-@param ddepth Desired depth of the destination image.
-@param ksize Aperture size used to compute the second-derivative filters. See #getDerivKernels for
+ src Source image.
+ ddepth Desired depth of the destination image.
+ ksize Aperture size used to compute the second-derivative filters. See #getDerivKernels for
 details. The size must be positive and odd.
-@param scale Optional scale factor for the computed Laplacian values. By default, no scaling is
+ scale Optional scale factor for the computed Laplacian values. By default, no scaling is
 applied. See #getDerivKernels for details.
-@param delta Optional delta value that is added to the results prior to storing them in dst .
-@param borderType Pixel extrapolation method, see #BorderTypes. #BORDER_WRAP is not supported.
+ delta Optional delta value that is added to the results prior to storing them in dst .
+ borderType Pixel extrapolation method, see #BorderTypes. #BORDER_WRAP is not supported.
 @return Destination image of the same size and the same number of channels as src.
 @sa  Sobel, Scharr
  */
@@ -985,17 +985,17 @@ This filter does not work inplace.
 
 @note Function textual ID is "org.opencv.imgproc.filters.bilateralfilter"
 
-@param src Source 8-bit or floating-point, 1-channel or 3-channel image.
-@param d Diameter of each pixel neighborhood that is used during filtering. If it is non-positive,
+ src Source 8-bit or floating-point, 1-channel or 3-channel image.
+ d Diameter of each pixel neighborhood that is used during filtering. If it is non-positive,
 it is computed from sigmaSpace.
-@param sigmaColor Filter sigma in the color space. A larger value of the parameter means that
+ sigmaColor Filter sigma in the color space. A larger value of the parameter means that
 farther colors within the pixel neighborhood (see sigmaSpace) will be mixed together, resulting
 in larger areas of semi-equal color.
-@param sigmaSpace Filter sigma in the coordinate space. A larger value of the parameter means that
+ sigmaSpace Filter sigma in the coordinate space. A larger value of the parameter means that
 farther pixels will influence each other as long as their colors are close enough (see sigmaColor
 ). When d\>0, it specifies the neighborhood size regardless of sigmaSpace. Otherwise, d is
 proportional to sigmaSpace.
-@param borderType border mode used to extrapolate pixels outside of the image, see #BorderTypes
+ borderType border mode used to extrapolate pixels outside of the image, see #BorderTypes
 @return Destination image of the same size and type as src.
  */
 GAPI_EXPORTS_W GMat bilateralFilter(const GMat& src, int d, double sigmaColor, double sigmaSpace,
@@ -1014,11 +1014,11 @@ largest value is used to find initial segments of strong edges. See
 
 @note Function textual ID is "org.opencv.imgproc.feature.canny"
 
-@param image 8-bit input image.
-@param threshold1 first threshold for the hysteresis procedure.
-@param threshold2 second threshold for the hysteresis procedure.
-@param apertureSize aperture size for the Sobel operator.
-@param L2gradient a flag, indicating whether a more accurate \f$L_2\f$ norm
+ image 8-bit input image.
+ threshold1 first threshold for the hysteresis procedure.
+ threshold2 second threshold for the hysteresis procedure.
+ apertureSize aperture size for the Sobel operator.
+ L2gradient a flag, indicating whether a more accurate \f$L_2\f$ norm
 \f$=\sqrt{(dI/dx)^2 + (dI/dy)^2}\f$ should be used to calculate the image gradient magnitude (
 L2gradient=true ), or whether the default \f$L_1\f$ norm \f$=|dI/dx|+|dI/dy|\f$ is enough (
 L2gradient=false ).
@@ -1049,24 +1049,24 @@ A \> B, the vector of returned corners with qualityLevel=A will be the prefix of
 with qualityLevel=B .
  - Function textual ID is "org.opencv.imgproc.feature.goodFeaturesToTrack"
 
-@param image Input 8-bit or floating-point 32-bit, single-channel image.
-@param maxCorners Maximum number of corners to return. If there are more corners than are found,
+ image Input 8-bit or floating-point 32-bit, single-channel image.
+ maxCorners Maximum number of corners to return. If there are more corners than are found,
 the strongest of them is returned. `maxCorners <= 0` implies that no limit on the maximum is set
 and all detected corners are returned.
-@param qualityLevel Parameter characterizing the minimal accepted quality of image corners. The
+ qualityLevel Parameter characterizing the minimal accepted quality of image corners. The
 parameter value is multiplied by the best corner quality measure, which is the minimal eigenvalue
 (see #cornerMinEigenVal ) or the Harris function response (see #cornerHarris ). The corners with the
 quality measure less than the product are rejected. For example, if the best corner has the
 quality measure = 1500, and the qualityLevel=0.01 , then all the corners with the quality measure
 less than 15 are rejected.
-@param minDistance Minimum possible Euclidean distance between the returned corners.
-@param mask Optional region of interest. If the image is not empty (it needs to have the type
+ minDistance Minimum possible Euclidean distance between the returned corners.
+ mask Optional region of interest. If the image is not empty (it needs to have the type
 CV_8UC1 and the same size as image ), it specifies the region in which the corners are detected.
-@param blockSize Size of an average block for computing a derivative covariation matrix over each
+ blockSize Size of an average block for computing a derivative covariation matrix over each
 pixel neighborhood. See cornerEigenValsAndVecs .
-@param useHarrisDetector Parameter indicating whether to use a Harris detector (see #cornerHarris)
+ useHarrisDetector Parameter indicating whether to use a Harris detector (see #cornerHarris)
 or #cornerMinEigenVal.
-@param k Free parameter of the Harris detector.
+ k Free parameter of the Harris detector.
 
 @return vector of detected corners.
  */
@@ -1096,7 +1096,7 @@ The algorithm normalizes the brightness and increases the contrast of the image.
  - The returned image is of the same size and type as input.
  - Function textual ID is "org.opencv.imgproc.equalizeHist"
 
-@param src Source 8-bit single channel image.
+ src Source 8-bit single channel image.
  */
 GAPI_EXPORTS_W GMat equalizeHist(const GMat& src);
 
@@ -1110,14 +1110,14 @@ See squares.cpp in the OpenCV sample directory.
 
 @note Function textual ID is "org.opencv.imgproc.shape.findContours"
 
-@param src Input gray-scale image @ref CV_8UC1. Non-zero pixels are treated as 1's. Zero
+ src Input gray-scale image @ref CV_8UC1. Non-zero pixels are treated as 1's. Zero
 pixels remain 0's, so the image is treated as binary . You can use #compare, #inRange, #threshold ,
 #adaptiveThreshold, #Canny, and others to create a binary image out of a grayscale or color one.
 If mode equals to #RETR_CCOMP, the input can also be a 32-bit integer
 image of labels ( @ref CV_32SC1 ). If #RETR_FLOODFILL then @ref CV_32SC1 is supported only.
-@param mode Contour retrieval mode, see #RetrievalModes
-@param method Contour approximation method, see #ContourApproximationModes
-@param offset Optional offset by which every contour point is shifted. This is useful if the
+ mode Contour retrieval mode, see #RetrievalModes
+ method Contour approximation method, see #ContourApproximationModes
+ offset Optional offset by which every contour point is shifted. This is useful if the
 contours are extracted from the image ROI and then they should be analyzed in the whole image
 context.
 
@@ -1143,14 +1143,14 @@ See squares.cpp in the OpenCV sample directory.
 
 @note Function textual ID is "org.opencv.imgproc.shape.findContoursH"
 
-@param src Input gray-scale image @ref CV_8UC1. Non-zero pixels are treated as 1's. Zero
+ src Input gray-scale image @ref CV_8UC1. Non-zero pixels are treated as 1's. Zero
 pixels remain 0's, so the image is treated as binary . You can use #compare, #inRange, #threshold ,
 #adaptiveThreshold, #Canny, and others to create a binary image out of a grayscale or color one.
 If mode equals to #RETR_CCOMP, the input can also be a 32-bit integer
 image of labels ( @ref CV_32SC1 ). If #RETR_FLOODFILL -- @ref CV_32SC1 supports only.
-@param mode Contour retrieval mode, see #RetrievalModes
-@param method Contour approximation method, see #ContourApproximationModes
-@param offset Optional offset by which every contour point is shifted. This is useful if the
+ mode Contour retrieval mode, see #RetrievalModes
+ method Contour approximation method, see #ContourApproximationModes
+ offset Optional offset by which every contour point is shifted. This is useful if the
 contours are extracted from the image ROI and then they should be analyzed in the whole image
 context.
 
@@ -1186,7 +1186,7 @@ point set or non-zero pixels of gray-scale image.
 if there are 2 channels, or have 2 columns if there is a single channel. Mat should have either
 @ref CV_32S or @ref CV_32F depth
 
-@param src Input gray-scale image @ref CV_8UC1; or input set of @ref CV_32S or @ref CV_32F
+ src Input gray-scale image @ref CV_8UC1; or input set of @ref CV_32S or @ref CV_32F
 2D points stored in Mat.
  */
 GAPI_EXPORTS_W GOpaque<Rect> boundingRect(const GMat& src);
@@ -1197,7 +1197,7 @@ Calculates the up-right bounding rectangle of a point set.
 
 @note Function textual ID is "org.opencv.imgproc.shape.boundingRectVector32S"
 
-@param src Input 2D point set, stored in std::vector<cv::Point2i>.
+ src Input 2D point set, stored in std::vector<cv::Point2i>.
  */
 GAPI_EXPORTS_W GOpaque<Rect> boundingRect(const GArray<Point2i>& src);
 
@@ -1207,7 +1207,7 @@ Calculates the up-right bounding rectangle of a point set.
 
 @note Function textual ID is "org.opencv.imgproc.shape.boundingRectVector32F"
 
-@param src Input 2D point set, stored in std::vector<cv::Point2f>.
+ src Input 2D point set, stored in std::vector<cv::Point2f>.
  */
 GAPI_EXPORTS_W GOpaque<Rect> boundingRect(const GArray<Point2f>& src);
 
@@ -1238,15 +1238,15 @@ weights \f$w_i\f$ are adjusted to be inversely proportional to \f$\rho(r_i)\f$ .
  - In case of an N-dimentional points' set given, Mat should be 2-dimensional, have a single row
 or column if there are N channels, or have N columns if there is a single channel.
 
-@param src Input set of 2D points stored in one of possible containers: Mat,
+ src Input set of 2D points stored in one of possible containers: Mat,
 std::vector<cv::Point2i>, std::vector<cv::Point2f>, std::vector<cv::Point2d>.
-@param distType Distance used by the M-estimator, see #DistanceTypes. @ref DIST_USER
+ distType Distance used by the M-estimator, see #DistanceTypes. @ref DIST_USER
 and @ref DIST_C are not supported.
-@param param Numerical parameter ( C ) for some types of distances. If it is 0, an optimal value
+ param Numerical parameter ( C ) for some types of distances. If it is 0, an optimal value
 is chosen.
-@param reps Sufficient accuracy for the radius (distance between the coordinate origin and the
+ reps Sufficient accuracy for the radius (distance between the coordinate origin and the
 line). 1.0 would be a good default value for reps. If it is 0, a default value is chosen.
-@param aeps Sufficient accuracy for the angle. 0.01 would be a good default value for aeps.
+ aeps Sufficient accuracy for the angle. 0.01 would be a good default value for aeps.
 If it is 0, a default value is chosen.
 
 @return Output line parameters: a vector of 4 elements (like Vec4f) - (vx, vy, x0, y0),
@@ -1310,15 +1310,15 @@ weights \f$w_i\f$ are adjusted to be inversely proportional to \f$\rho(r_i)\f$ .
  - In case of an N-dimentional points' set given, Mat should be 2-dimensional, have a single row
 or column if there are N channels, or have N columns if there is a single channel.
 
-@param src Input set of 3D points stored in one of possible containers: Mat,
+ src Input set of 3D points stored in one of possible containers: Mat,
 std::vector<cv::Point3i>, std::vector<cv::Point3f>, std::vector<cv::Point3d>.
-@param distType Distance used by the M-estimator, see #DistanceTypes. @ref DIST_USER
+ distType Distance used by the M-estimator, see #DistanceTypes. @ref DIST_USER
 and @ref DIST_C are not supported.
-@param param Numerical parameter ( C ) for some types of distances. If it is 0, an optimal value
+ param Numerical parameter ( C ) for some types of distances. If it is 0, an optimal value
 is chosen.
-@param reps Sufficient accuracy for the radius (distance between the coordinate origin and the
+ reps Sufficient accuracy for the radius (distance between the coordinate origin and the
 line). 1.0 would be a good default value for reps. If it is 0, a default value is chosen.
-@param aeps Sufficient accuracy for the angle. 0.01 would be a good default value for aeps.
+ aeps Sufficient accuracy for the angle. 0.01 would be a good default value for aeps.
 If it is 0, a default value is chosen.
 
 @return Output line parameters: a vector of 6 elements (like Vec6f) - (vx, vy, vz, x0, y0, z0),
@@ -1369,7 +1369,7 @@ Output image is 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bgr2rgb"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa RGB2BGR
 */
 GAPI_EXPORTS_W GMat BGR2RGB(const GMat& src);
@@ -1382,7 +1382,7 @@ Resulting gray color value computed as
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2gray"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
 @sa RGB2YUV
  */
 GAPI_EXPORTS_W GMat RGB2Gray(const GMat& src);
@@ -1393,10 +1393,10 @@ Resulting gray color value computed as
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2graycustom"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
-@param rY float multiplier for R channel.
-@param gY float multiplier for G channel.
-@param bY float multiplier for B channel.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
+ rY float multiplier for R channel.
+ gY float multiplier for G channel.
+ bY float multiplier for B channel.
 @sa RGB2YUV
  */
 GAPI_EXPORTS_W GMat RGB2Gray(const GMat& src, float rY, float gY, float bY);
@@ -1409,7 +1409,7 @@ Resulting gray color value computed as
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bgr2gray"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
 @sa BGR2LUV
  */
 GAPI_EXPORTS_W GMat BGR2Gray(const GMat& src);
@@ -1426,7 +1426,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2yuv"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa YUV2RGB, RGB2Lab
 */
 GAPI_EXPORTS_W GMat RGB2YUV(const GMat& src);
@@ -1442,7 +1442,7 @@ Height of I420 output image must be equal 3/2 from height of input image.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bgr2i420"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa I4202BGR
 */
 GAPI_EXPORTS_W GMat BGR2I420(const GMat& src);
@@ -1458,7 +1458,7 @@ Height of I420 output image must be equal 3/2 from height of input image.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2i420"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa I4202RGB
 */
 GAPI_EXPORTS_W GMat RGB2I420(const GMat& src);
@@ -1474,7 +1474,7 @@ Height of BGR output image must be equal 2/3 from height of input image.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.i4202bgr"
 
-@param src input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
 @sa BGR2I420
 */
 GAPI_EXPORTS_W GMat I4202BGR(const GMat& src);
@@ -1490,7 +1490,7 @@ Height of RGB output image must be equal 2/3 from height of input image.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.i4202rgb"
 
-@param src input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
 @sa RGB2I420
 */
 GAPI_EXPORTS_W GMat I4202RGB(const GMat& src);
@@ -1504,7 +1504,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bgr2luv"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa RGB2Lab, RGB2LUV
 */
 GAPI_EXPORTS_W GMat BGR2LUV(const GMat& src);
@@ -1518,7 +1518,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.luv2bgr"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa BGR2LUV
 */
 GAPI_EXPORTS_W GMat LUV2BGR(const GMat& src);
@@ -1532,7 +1532,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.yuv2bgr"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa BGR2YUV
 */
 GAPI_EXPORTS_W GMat YUV2BGR(const GMat& src);
@@ -1546,7 +1546,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bgr2yuv"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 @sa YUV2BGR
 */
 GAPI_EXPORTS_W GMat BGR2YUV(const GMat& src);
@@ -1560,7 +1560,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC1.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2lab"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC1.
 @sa RGB2YUV, RGB2LUV
 */
 GAPI_EXPORTS_W GMat RGB2Lab(const GMat& src);
@@ -1573,7 +1573,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.yuv2rgb"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @sa RGB2Lab, RGB2YUV
 */
@@ -1587,8 +1587,8 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.nv12torgb"
 
-@param src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @sa YUV2RGB, NV12toBGR
 */
@@ -1602,8 +1602,8 @@ Output image must be 8-bit unsigned 1-channel image @ref CV_8UC1.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.nv12togray"
 
-@param src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @sa YUV2RGB, NV12toBGR
 */
@@ -1617,8 +1617,8 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.nv12tobgr"
 
-@param src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @sa YUV2BGR, NV12toRGB
 */
@@ -1632,7 +1632,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.bayergr2rgb"
 
-@param src_gr input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_gr input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
 
 @sa YUV2BGR, NV12toRGB
 */
@@ -1646,7 +1646,7 @@ Output image must be 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2hsv"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @sa YUV2BGR, NV12toRGB
 */
@@ -1660,7 +1660,7 @@ Output image must be 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.rgb2yuv422"
 
-@param src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
+ src input image: 8-bit unsigned 3-channel image @ref CV_8UC3.
 
 @sa YUV2BGR, NV12toRGB
 */
@@ -1677,8 +1677,8 @@ image type is @ref CV_8UC1.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.nv12torgbp"
 
-@param src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @sa YUV2RGB, NV12toBGRp, NV12toRGB
 */
@@ -1695,8 +1695,8 @@ image type is @ref CV_8UC1.
 
 @note Function textual ID is "org.opencv.imgproc.colorconvert.nv12torgbp"
 
-@param src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
-@param src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
+ src_y input image: 8-bit unsigned 1-channel image @ref CV_8UC1.
+ src_uv input image: 8-bit unsigned 2-channel image @ref CV_8UC2.
 
 @sa YUV2RGB, NV12toRGBp, NV12toBGR
 */
@@ -1730,15 +1730,15 @@ enlarge an image, it will generally look best with cv::INTER_CUBIC (slow) or cv:
 
 @note Function textual ID is "org.opencv.imgproc.transform.resize"
 
-@param src input image.
-@param dsize output image size; if it equals zero, it is computed as:
+ src input image.
+ dsize output image size; if it equals zero, it is computed as:
  \f[\texttt{dsize = Size(round(fx*src.cols), round(fy*src.rows))}\f]
  Either dsize or both fx and fy must be non-zero.
-@param fx scale factor along the horizontal axis; when it equals 0, it is computed as
+ fx scale factor along the horizontal axis; when it equals 0, it is computed as
 \f[\texttt{(double)dsize.width/src.cols}\f]
-@param fy scale factor along the vertical axis; when it equals 0, it is computed as
+ fy scale factor along the vertical axis; when it equals 0, it is computed as
 \f[\texttt{(double)dsize.height/src.rows}\f]
-@param interpolation interpolation method, see cv::InterpolationFlags
+ interpolation interpolation method, see cv::InterpolationFlags
 
 @sa  warpAffine, warpPerspective, remap, resizeP
  */
@@ -1754,9 +1754,9 @@ Output image size will have the size dsize, the depth of output is the same as o
 
 @note Function textual ID is "org.opencv.imgproc.transform.resizeP"
 
-@param src input image, must be of @ref CV_8UC1 type;
-@param dsize output image size;
-@param interpolation interpolation method, only cv::INTER_LINEAR is supported at the moment
+ src input image, must be of @ref CV_8UC1 type;
+ dsize output image size;
+ interpolation interpolation method, only cv::INTER_LINEAR is supported at the moment
 
 @sa  warpAffine, warpPerspective, remap, resize
  */

@@ -175,12 +175,12 @@ public:
 
         /** @brief Constructs a nearest neighbor search index for a given dataset.
 
-        @param features Matrix of containing the features(points) to index. The size of the matrix is
+         features Matrix of containing the features(points) to index. The size of the matrix is
         num_features x feature_dimensionality and the data type of the elements in the matrix must
         coincide with the type of the index.
-        @param params Structure containing the index parameters. The type of index that will be
+         params Structure containing the index parameters. The type of index that will be
         constructed depends on the type of this parameter. See the description.
-        @param distance
+         distance
 
         The method constructs a fast search structure from a set of features using the specified algorithm
         with specified parameters, as defined by params. params is a reference to one of the following class
@@ -289,13 +289,13 @@ public:
 
         /** @brief Performs a K-nearest neighbor search for a given query point using the index.
 
-        @param query The query point
-        @param indices Vector that will contain the indices of the K-nearest neighbors found. It must have
+         query The query point
+         indices Vector that will contain the indices of the K-nearest neighbors found. It must have
         at least knn size.
-        @param dists Vector that will contain the distances to the K-nearest neighbors found. It must have
+         dists Vector that will contain the distances to the K-nearest neighbors found. It must have
         at least knn size.
-        @param knn Number of nearest neighbors to search for.
-        @param params SearchParams
+         knn Number of nearest neighbors to search for.
+         params SearchParams
          */
         void knnSearch(const std::vector<ElementType>& query, std::vector<int>& indices,
                        std::vector<DistanceType>& dists, int knn, const ::cvflann::SearchParams& params);
@@ -303,12 +303,12 @@ public:
 
         /** @brief Performs a radius nearest neighbor search for a given query point using the index.
 
-        @param query The query point.
-        @param indices Vector that will contain the indices of the nearest neighbors found.
-        @param dists Vector that will contain the distances to the nearest neighbors found. It has the same
+         query The query point.
+         indices Vector that will contain the indices of the nearest neighbors found.
+         dists Vector that will contain the distances to the nearest neighbors found. It has the same
         number of elements as indices.
-        @param radius The search radius.
-        @param params SearchParams
+         radius The search radius.
+         params SearchParams
 
         This function returns the number of nearest neighbors found.
         */
@@ -565,16 +565,16 @@ private:
 
 /** @brief Clusters features using hierarchical k-means algorithm.
 
-@param features The points to be clustered. The matrix must have elements of type
+ features The points to be clustered. The matrix must have elements of type
 Distance::ElementType.
-@param centers The centers of the clusters obtained. The matrix must have type
+ centers The centers of the clusters obtained. The matrix must have type
 Distance::CentersType. The number of rows in this matrix represents the number of clusters desired,
 however, because of the way the cut in the hierarchical tree is chosen, the number of clusters
 computed will be the highest number of the form (branching-1)\*k+1 that's lower than the number of
 clusters desired, where branching is the tree's branching factor (see description of the
 KMeansIndexParams).
-@param params Parameters used in the construction of the hierarchical k-means tree.
-@param d Distance to be used for clustering.
+ params Parameters used in the construction of the hierarchical k-means tree.
+ d Distance to be used for clustering.
 
 The method clusters the given feature vectors by constructing a hierarchical k-means tree and
 choosing a cut in the tree that minimizes the cluster's variance. It returns the number of clusters

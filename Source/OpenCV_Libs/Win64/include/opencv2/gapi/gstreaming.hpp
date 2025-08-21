@@ -196,7 +196,7 @@ public:
      * start()/stop()/setSource() may be called on the same object in
      * multiple threads in your application.
      *
-     * @param ins vector of inputs to process.
+     *  ins vector of inputs to process.
      * @sa gin
      */
     void setSource(GRunArgs &&ins);
@@ -212,7 +212,7 @@ public:
      * setSource() to run the graph on a new video stream.
      *
      * @overload
-     * @param s a shared pointer to IStreamSource representing the
+     *  s a shared pointer to IStreamSource representing the
      * input video stream.
      */
     void setSource(const gapi::wip::IStreamSource::Ptr& s);
@@ -225,7 +225,7 @@ public:
      * setSource() to run the graph on a new video stream.
      *
      * @overload
-     * @param args arguments used to construct and initialize a stream
+     *  args arguments used to construct and initialize a stream
      * source.
      */
     template<typename T, typename... Args>
@@ -266,7 +266,7 @@ public:
      * vector.  If there is no data ready yet, this method blocks. Use
      * try_pull() if you need a non-blocking version.
      *
-     * @param outs vector of output parameters to obtain.
+     *  outs vector of output parameters to obtain.
      * @return true if next result has been obtained,
      *    false marks end of the stream.
      */
@@ -306,7 +306,7 @@ public:
      * vector.  If there is no data ready yet, this method blocks. Use
      * try_pull() if you need a non-blocking version.
      *
-     * @param outs vector of output parameters to obtain.
+     *  outs vector of output parameters to obtain.
      * @return true if next result has been obtained,
      *    false marks end of the stream.
      *

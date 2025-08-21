@@ -84,7 +84,7 @@ public:
 
     *It should be called at least once before the call to* minimize(), as default value is not usable.
 
-    @param f The new function to optimize.
+     f The new function to optimize.
      */
     virtual void setFunction(const Ptr<Function>& f) = 0;
 
@@ -103,7 +103,7 @@ public:
     the function values at the vertices of simplex are within termcrit.epsilon range or simplex
     becomes so small that it can enclosed in a box with termcrit.epsilon sides, whatever comes
     first.
-    @param termcrit Terminal criteria to be used, represented as cv::TermCriteria structure.
+     termcrit Terminal criteria to be used, represented as cv::TermCriteria structure.
      */
     virtual void setTermCriteria(const TermCriteria& termcrit) = 0;
 
@@ -114,7 +114,7 @@ public:
     supposed to be set via the setters before the call to this method or the default values (not
     always sensible) will be used.
 
-    @param x The initial point, that will become a centroid of an initial simplex. After the algorithm
+     x The initial point, that will become a centroid of an initial simplex. After the algorithm
     will terminate, it will be set to the point where the algorithm stops, the point of possible
     minimum.
     @return The value of a function at the point found.
@@ -157,7 +157,7 @@ class CV_EXPORTS DownhillSolver : public MinProblemSolver
 public:
     /** @brief Returns the initial step that will be used in downhill simplex algorithm.
 
-    @param step Initial step that will be used in algorithm. Note, that although corresponding setter
+     step Initial step that will be used in algorithm. Note, that although corresponding setter
     accepts column-vectors as well as row-vectors, this method will return a row-vector.
     @see DownhillSolver::setInitStep
      */
@@ -174,7 +174,7 @@ public:
     projections of the initial step of *n*-th coordinate (the result of projection is treated to be
     vector given by \f$s_i:=e_i\cdot\left<e_i\cdot s\right>\f$, where \f$e_i\f$ form canonical basis)
 
-    @param step Initial step that will be used in algorithm. Roughly said, it determines the spread
+     step Initial step that will be used in algorithm. Roughly said, it determines the spread
     (size in each dimension) of an initial simplex.
      */
     virtual void setInitStep(InputArray step)=0;
@@ -188,11 +188,11 @@ public:
     create(). Otherwise, the two ways (give parameters to createDownhillSolver() or miss them out
     and call the MinProblemSolver::setFunction() and DownhillSolver::setInitStep()) are absolutely
     equivalent (and will drop the same errors in the same way, should invalid input be detected).
-    @param f Pointer to the function that will be minimized, similarly to the one you submit via
+     f Pointer to the function that will be minimized, similarly to the one you submit via
     MinProblemSolver::setFunction.
-    @param initStep Initial step, that will be used to construct the initial simplex, similarly to the one
+     initStep Initial step, that will be used to construct the initial simplex, similarly to the one
     you submit via MinProblemSolver::setInitStep.
-    @param termcrit Terminal criteria to the algorithm, similarly to the one you submit via
+     termcrit Terminal criteria to the algorithm, similarly to the one you submit via
     MinProblemSolver::setTermCriteria.
      */
     static Ptr<DownhillSolver> create(const Ptr<MinProblemSolver::Function>& f=Ptr<MinProblemSolver::Function>(),
@@ -244,9 +244,9 @@ public:
     object, if the function was not given to create(). Otherwise, the two ways (submit it to
     create() or miss it out and call the MinProblemSolver::setFunction()) are absolutely equivalent
     (and will drop the same errors in the same way, should invalid input be detected).
-    @param f Pointer to the function that will be minimized, similarly to the one you submit via
+     f Pointer to the function that will be minimized, similarly to the one you submit via
     MinProblemSolver::setFunction.
-    @param termcrit Terminal criteria to the algorithm, similarly to the one you submit via
+     termcrit Terminal criteria to the algorithm, similarly to the one you submit via
     MinProblemSolver::setTermCriteria.
     */
     static Ptr<ConjGradSolver> create(const Ptr<MinProblemSolver::Function>& f=Ptr<ConjGradSolver::Function>(),
@@ -285,14 +285,14 @@ The particular implementation is taken almost verbatim from **Introduction to Al
 edition** by T. H. Cormen, C. E. Leiserson, R. L. Rivest and Clifford Stein. In particular, the
 Bland's rule <http://en.wikipedia.org/wiki/Bland%27s_rule> is used to prevent cycling.
 
-@param Func This row-vector corresponds to \f$c\f$ in the LP problem formulation (see above). It should
+ Func This row-vector corresponds to \f$c\f$ in the LP problem formulation (see above). It should
 contain 32- or 64-bit floating point numbers. As a convenience, column-vector may be also submitted,
 in the latter case it is understood to correspond to \f$c^T\f$.
-@param Constr `m`-by-`n+1` matrix, whose rightmost column corresponds to \f$b\f$ in formulation above
+ Constr `m`-by-`n+1` matrix, whose rightmost column corresponds to \f$b\f$ in formulation above
 and the remaining to \f$A\f$. It should contain 32- or 64-bit floating point numbers.
-@param z The solution will be returned here as a column-vector - it corresponds to \f$c\f$ in the
+ z The solution will be returned here as a column-vector - it corresponds to \f$c\f$ in the
 formulation above. It will contain 64-bit floating point numbers.
-@param constr_eps allowed numeric disparity for constraints
+ constr_eps allowed numeric disparity for constraints
 @return One of cv::SolveLPResult
  */
 CV_EXPORTS_W int solveLP(InputArray Func, InputArray Constr, OutputArray z, double constr_eps);

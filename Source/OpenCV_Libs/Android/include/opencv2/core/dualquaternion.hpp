@@ -177,8 +177,8 @@ public:
      *   \end{equation}
      * \f]
      * The p and q are the real part and dual part respectively.
-     * @param realPart a quaternion, real part of dual quaternion.
-     * @param dualPart a quaternion, dual part of dual quaternion.
+     *  realPart a quaternion, real part of dual quaternion.
+     *  dualPart a quaternion, dual part of dual quaternion.
      * @sa Quat
     */
     static DualQuat<_Tp> createFromQuat(const Quat<_Tp> &realPart, const Quat<_Tp> &dualPart);
@@ -198,9 +198,9 @@ public:
      *           + \boldsymbol{t}\cos(\frac{\theta}{2}) + \boldsymbol{u} \times \boldsymbol{t} \sin(\frac{\theta}{2})).
      *    \end{split}
      *    \end{equation}\f]
-     * @param angle rotation angle.
-     * @param axis rotation axis.
-     * @param translation a vector of length 3.
+     *  angle rotation angle.
+     *  axis rotation axis.
+     *  translation a vector of length 3.
      * @note Axis will be normalized in this function. And translation is applied
      * after the rotation. Use @ref createFromQuat(r, r * t / 2) to create a dual quaternion
      * which translation is applied before rotation.
@@ -235,7 +235,7 @@ public:
      * \f]
      * where the same subscript represent the same point. The size of A should be \f$[4,n]\f$.
      * and the same size for matrix new_A.
-     * @param _R 4x4 matrix that represents rotations and translation.
+     *  _R 4x4 matrix that represents rotations and translation.
      * @note Translation is applied after the rotation. Use createFromQuat(r, r * t / 2) to create
      * a dual quaternion which translation is applied before rotation.
      */
@@ -263,10 +263,10 @@ public:
      * \f]
      * In this representation, \f$\theta\f$ is rotation angle and \f$(\hat{l},m)\f$ is the screw axis, d is the translation distance along the axis.
      *
-     * @param angle rotation angle.
-     * @param d translation along the rotation axis.
-     * @param axis rotation axis represented by quaternion with w = 0.
-     * @param moment the moment of line, and it should be orthogonal to axis.
+     *  angle rotation angle.
+     *  d translation along the rotation axis.
+     *  axis rotation axis represented by quaternion with w = 0.
+     *  moment the moment of line, and it should be orthogonal to axis.
      * @note Translation is applied after the rotation. Use createFromQuat(r, r * t / 2) to create
      * a dual quaternion which translation is applied before rotation.
      */
@@ -296,7 +296,7 @@ public:
      * \end{split}
      * \end{equation}
      * \f]
-     * @param dq a dual quaternion.
+     *  dq a dual quaternion.
      */
     template <typename T>
     friend DualQuat<T> conjugate(const DualQuat<T> &dq);
@@ -331,7 +331,7 @@ public:
      * \end{equation}\f]
      * Thus, the translation can be obtained as follows
      * \f[t = 2qp^*.\f]
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      * @note This dual quaternion's translation is applied after the rotation.
      */
@@ -400,8 +400,8 @@ public:
      * \f[\sigma^{-1} = \frac{\sigma^*}{||\sigma||^2}, \f]
      * or equivalentlly,
      * \f[\sigma^{-1} = p^{-1} - \epsilon p^{-1}qp^{-1}.\f]
-     * @param dq a dual quaternion.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
+     *  dq a dual quaternion.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     template <typename T>
@@ -413,14 +413,14 @@ public:
      * \f[\sigma^{-1} = \frac{\sigma^*}{||\sigma||^2}, \f]
      * or equivalentlly,
      * \f[\sigma^{-1} = p^{-1} - \epsilon p^{-1}qp^{-1}.\f]
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     DualQuat<_Tp> inv(QuatAssumeType assumeUnit=QUAT_ASSUME_NOT_UNIT) const;
 
     /**
      * @brief return the dot product of two dual quaternion.
-     * @param p other dual quaternion.
+     *  p other dual quaternion.
      */
     _Tp dot(DualQuat<_Tp> p) const;
 
@@ -430,9 +430,9 @@ public:
      * \f[
      * p^t = \exp(t\ln p)
      * \f]
-     * @param dq a dual quaternion.
-     * @param t index of power function.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
+     *  dq a dual quaternion.
+     *  t index of power function.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     template <typename T>
@@ -445,8 +445,8 @@ public:
      * p^t = \exp(t\ln p)
      * \f]
      *
-     * @param t index of power function.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  t index of power function.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     DualQuat<_Tp> power(const _Tp t, QuatAssumeType assumeUnit=QUAT_ASSUME_NOT_UNIT) const;
@@ -457,9 +457,9 @@ public:
      * \f[
      * p^q = \exp(q\ln p)
      * \f]
-     * @param p a dual quaternion.
-     * @param q a dual quaternion.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion p assume to be a dual unit quaternion
+     *  p a dual quaternion.
+     *  q a dual quaternion.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion p assume to be a dual unit quaternion
      * and this function will save some computations.
      */
     template <typename T>
@@ -472,15 +472,15 @@ public:
      * p^q = \exp(q\ln p)
      * \f]
      *
-     * @param q a dual quaternion
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a dual unit quaternion
+     *  q a dual quaternion
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a dual unit quaternion
      * and this function will save some computations.
      */
     DualQuat<_Tp> power(const DualQuat<_Tp>& q, QuatAssumeType assumeUnit=QUAT_ASSUME_NOT_UNIT) const;
 
     /**
      * @brief return the value of exponential function value
-     * @param dq a dual quaternion.
+     *  dq a dual quaternion.
      */
     template <typename T>
     friend DualQuat<T> exp(const DualQuat<T> &dq);
@@ -493,8 +493,8 @@ public:
     /**
      * @brief return the value of logarithm function value
      *
-     * @param dq a dual quaternion.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
+     *  dq a dual quaternion.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, dual quaternion dq assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     template <typename T>
@@ -502,7 +502,7 @@ public:
 
     /**
      * @brief return the value of logarithm function value
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      */
     DualQuat<_Tp> log(QuatAssumeType assumeUnit=QUAT_ASSUME_NOT_UNIT) const;
@@ -531,11 +531,11 @@ public:
      * ScLERP(t;\sigma_1,\sigma_2) = \sigma_1 * (\sigma_1^{-1} * \sigma_2)^t, t\in[0,1]
      * \f]
      *
-     * @param q1 a dual quaternion represents a initial pose.
-     * @param q2 a dual quaternion represents a final pose.
-     * @param t interpolation parameter
-     * @param directChange if true, it always return the shortest path.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  q1 a dual quaternion represents a initial pose.
+     *  q2 a dual quaternion represents a final pose.
+     *  t interpolation parameter
+     *  directChange if true, it always return the shortest path.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      *
      * For example
@@ -561,10 +561,10 @@ public:
      * where \f$q_1\f$ and \f$q_2\f$ are unit dual quaternions representing the input transformations.
      * If you want to use DQB that works for more than two rigid transformations, see @ref gdqblend
      *
-     * @param q1 a unit dual quaternion representing the input transformations.
-     * @param q2 a unit dual quaternion representing the input transformations.
-     * @param t parameter \f$t\in[0,1]\f$.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
+     *  q1 a unit dual quaternion representing the input transformations.
+     *  q2 a unit dual quaternion representing the input transformations.
+     *  t parameter \f$t\in[0,1]\f$.
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, this dual quaternion assume to be a unit dual quaternion
      * and this function will save some computations.
      *
      * @sa gdqblend
@@ -580,10 +580,10 @@ public:
      * gDQB(\boldsymbol{w};{\boldsymbol{q}}_1,...,{\boldsymbol{q}}_n)=\frac{w_1{\boldsymbol{q}}_1+...+w_n{\boldsymbol{q}}_n}
      * {||w_1{\boldsymbol{q}}_1+...+w_n{\boldsymbol{q}}_n||}.
      * \f]
-     * @param dualquat vector of dual quaternions
-     * @param weights vector of weights, the size of weights should be the same as dualquat, and the weights should
+     *  dualquat vector of dual quaternions
+     *  weights vector of weights, the size of weights should be the same as dualquat, and the weights should
      * satisfy \f$\sum_0^n w_{i} = 1\f$ and \f$w_i>0\f$.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, these dual quaternions assume to be unit quaternions
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, these dual quaternions assume to be unit quaternions
      * and this function will save some computations.
      * @note the type of weights' element should be the same as the date type of dual quaternion inside the dualquat.
      */
@@ -599,10 +599,10 @@ public:
      * gDQB(\boldsymbol{w};{\boldsymbol{q}}_1,...,{\boldsymbol{q}}_n)=\frac{w_1{\boldsymbol{q}}_1+...+w_n{\boldsymbol{q}}_n}
      * {||w_1{\boldsymbol{q}}_1+...+w_n{\boldsymbol{q}}_n||}.
      * \f]
-     * @param dualquat The dual quaternions which have 8 channels and 1 row or 1 col.
-     * @param weights vector of weights, the size of weights should be the same as dualquat, and the weights should
+     *  dualquat The dual quaternions which have 8 channels and 1 row or 1 col.
+     *  weights vector of weights, the size of weights should be the same as dualquat, and the weights should
      * satisfy \f$\sum_0^n w_{i} = 1\f$ and \f$w_i>0\f$.
-     * @param assumeUnit if @ref QUAT_ASSUME_UNIT, these dual quaternions assume to be unit quaternions
+     *  assumeUnit if @ref QUAT_ASSUME_UNIT, these dual quaternions assume to be unit quaternions
      * and this function will save some computations.
      * @note the type of weights' element should be the same as the date type of dual quaternion inside the dualquat.
      */

@@ -376,7 +376,7 @@ template<typename _Tp, int n> struct v_reg
     /** @brief Constructor
 
     Initializes register with data from memory
-    @param ptr pointer to memory block with data for register */
+     ptr pointer to memory block with data for register */
     explicit v_reg(const _Tp* ptr) { for( int i = 0; i < n; i++ ) s[i] = ptr[i]; }
 
     /** @brief Constructor
@@ -1569,7 +1569,7 @@ template<typename _Tp, int n> inline void v_zip( const v_reg<_Tp, n>& a0, const 
 
 /** @brief Load register contents from memory
 
-@param ptr pointer to memory block with data
+ ptr pointer to memory block with data
 @return register object
 
 @note Returned type will be detected from passed pointer type, for example uchar ==> cv::v_uint8x16, int ==> cv::v_int32x4, etc.
@@ -1592,7 +1592,7 @@ inline v_reg<_Tp, simd128_width / sizeof(_Tp)> v_load(const _Tp* ptr)
 #if CV_SIMD256
 /** @brief Load 256-bit length register contents from memory
 
-@param ptr pointer to memory block with data
+ ptr pointer to memory block with data
 @return register object
 
 @note Returned type will be detected from passed pointer type, for example uchar ==> cv::v_uint8x32, int ==> cv::v_int32x8, etc.
@@ -1617,7 +1617,7 @@ inline v_reg<_Tp, simd256_width / sizeof(_Tp)> v256_load(const _Tp* ptr)
 #if CV_SIMD512
 /** @brief Load 512-bit length register contents from memory
 
-@param ptr pointer to memory block with data
+ ptr pointer to memory block with data
 @return register object
 
 @note Returned type will be detected from passed pointer type, for example uchar ==> cv::v_uint8x64, int ==> cv::v_int32x16, etc.
@@ -1686,7 +1686,7 @@ inline v_reg<_Tp, simd512_width / sizeof(_Tp)> v512_load_aligned(const _Tp* ptr)
 
 /** @brief Load 64-bits of data to lower part (high part is undefined).
 
-@param ptr memory block containing data for first half (0..n/2)
+ ptr memory block containing data for first half (0..n/2)
 
 @code{.cpp}
 int lo[2] = { 1, 2 };
@@ -1712,7 +1712,7 @@ inline v_reg<_Tp, simd128_width / sizeof(_Tp)> v_load_low(const _Tp* ptr)
 #if CV_SIMD256
 /** @brief Load 128-bits of data to lower part (high part is undefined).
 
-@param ptr memory block containing data for first half (0..n/2)
+ ptr memory block containing data for first half (0..n/2)
 
 @code{.cpp}
 int lo[4] = { 1, 2, 3, 4 };
@@ -1740,7 +1740,7 @@ inline v_reg<_Tp, simd256_width / sizeof(_Tp)> v256_load_low(const _Tp* ptr)
 #if CV_SIMD512
 /** @brief Load 256-bits of data to lower part (high part is undefined).
 
-@param ptr memory block containing data for first half (0..n/2)
+ ptr memory block containing data for first half (0..n/2)
 
 @code{.cpp}
 int lo[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
@@ -1767,8 +1767,8 @@ inline v_reg<_Tp, simd512_width / sizeof(_Tp)> v512_load_low(const _Tp* ptr)
 
 /** @brief Load register contents from two memory blocks
 
-@param loptr memory block containing data for first half (0..n/2)
-@param hiptr memory block containing data for second half (n/2..n)
+ loptr memory block containing data for first half (0..n/2)
+ hiptr memory block containing data for second half (n/2..n)
 
 @code{.cpp}
 int lo[2] = { 1, 2 }, hi[2] = { 3, 4 };
@@ -1796,8 +1796,8 @@ inline v_reg<_Tp, simd128_width / sizeof(_Tp)> v_load_halves(const _Tp* loptr, c
 #if CV_SIMD256
 /** @brief Load register contents from two memory blocks
 
-@param loptr memory block containing data for first half (0..n/2)
-@param hiptr memory block containing data for second half (n/2..n)
+ loptr memory block containing data for first half (0..n/2)
+ hiptr memory block containing data for second half (n/2..n)
 
 @code{.cpp}
 int lo[4] = { 1, 2, 3, 4 }, hi[4] = { 5, 6, 7, 8 };
@@ -1827,8 +1827,8 @@ inline v_reg<_Tp, simd256_width / sizeof(_Tp)> v256_load_halves(const _Tp* loptr
 #if CV_SIMD512
 /** @brief Load register contents from two memory blocks
 
-@param loptr memory block containing data for first half (0..n/2)
-@param hiptr memory block containing data for second half (n/2..n)
+ loptr memory block containing data for first half (0..n/2)
+ hiptr memory block containing data for second half (n/2..n)
 
 @code{.cpp}
 int lo[4] = { 1, 2, 3, 4, 5, 6, 7, 8 }, hi[4] = { 9, 10, 11, 12, 13, 14, 15, 16 };

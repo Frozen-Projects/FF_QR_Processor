@@ -35,8 +35,8 @@ public:
     virtual ~TrackerFeature();
 
     /** @brief Compute the features in the images collection
-    @param images The images
-    @param response The output response
+     images The images
+     response The output response
     */
     void compute(const std::vector<Mat>& images, Mat& response);
 
@@ -64,12 +64,12 @@ public:
     ~TrackerFeatureSet();
 
     /** @brief Extract features from the images collection
-    @param images The input images
+     images The input images
     */
     void extraction(const std::vector<Mat>& images);
 
     /** @brief Add TrackerFeature in the collection. Return true if TrackerFeature is added, false otherwise
-    @param feature The TrackerFeature class
+     feature The TrackerFeature class
     */
     bool addTrackerFeature(const Ptr<TrackerFeature>& feature);
 
@@ -104,10 +104,10 @@ public:
 
     Return true if samples are computed, false otherwise
 
-    @param image The current frame
-    @param boundingBox The bounding box from which regions can be calculated
+     image The current frame
+     boundingBox The bounding box from which regions can be calculated
 
-    @param sample The computed samples @cite AAM Fig. 1 variable Sk
+     sample The computed samples @cite AAM Fig. 1 variable Sk
     */
     virtual bool sampling(const Mat& image, const Rect& boundingBox, std::vector<Mat>& sample) = 0;
 };
@@ -133,8 +133,8 @@ public:
     ~TrackerSampler();
 
     /** @brief Computes the regions starting from a position in an image
-    @param image The current frame
-    @param boundingBox The bounding box from which regions can be calculated
+     image The current frame
+     boundingBox The bounding box from which regions can be calculated
     */
     void sampling(const Mat& image, Rect boundingBox);
 
@@ -147,7 +147,7 @@ public:
     const std::vector<Mat>& getSamples() const;
 
     /** @brief Add TrackerSamplerAlgorithm in the collection. Return true if sampler is added, false otherwise
-    @param sampler The TrackerSamplerAlgorithm
+     sampler The TrackerSamplerAlgorithm
     */
     bool addTrackerSamplerAlgorithm(const Ptr<TrackerSamplerAlgorithm>& sampler);
 
@@ -178,7 +178,7 @@ public:
     Point2f getTargetPosition() const;
 
     /** @brief Set the position
-    * @param position The position
+    *  position The position
     */
     void setTargetPosition(const Point2f& position);
     /** @brief Get the width of the target
@@ -187,7 +187,7 @@ public:
     int getTargetWidth() const;
 
     /** @brief Set the width of the target
-    * @param width The width of the target
+    *  width The width of the target
     */
     void setTargetWidth(int width);
     /** @brief Get the height of the target
@@ -196,7 +196,7 @@ public:
     int getTargetHeight() const;
 
     /** @brief Set the height of the target
-    * @param height The height of the target
+    *  height The height of the target
     */
     void setTargetHeight(int height);
 
@@ -233,17 +233,17 @@ public:
     virtual ~TrackerStateEstimator();
 
     /** @brief Estimate the most likely target state, return the estimated state
-    @param confidenceMaps The overall appearance model as a list of :cConfidenceMap
+     confidenceMaps The overall appearance model as a list of :cConfidenceMap
     */
     Ptr<TrackerTargetState> estimate(const std::vector<ConfidenceMap>& confidenceMaps);
 
     /** @brief Update the ConfidenceMap with the scores
-    @param confidenceMaps The overall appearance model as a list of :cConfidenceMap
+     confidenceMaps The overall appearance model as a list of :cConfidenceMap
     */
     void update(std::vector<ConfidenceMap>& confidenceMaps);
 
     /** @brief Create TrackerStateEstimator by tracker state estimator type
-    @param trackeStateEstimatorType The TrackerStateEstimator name
+     trackeStateEstimatorType The TrackerStateEstimator name
 
     The modes available now:
 
@@ -281,7 +281,7 @@ public:
     virtual ~TrackerModel();
 
     /** @brief Set TrackerEstimator, return true if the tracker state estimator is added, false otherwise
-    @param trackerStateEstimator The TrackerStateEstimator
+     trackerStateEstimator The TrackerStateEstimator
     @note You can add only one TrackerStateEstimator
     */
     bool setTrackerStateEstimator(Ptr<TrackerStateEstimator> trackerStateEstimator);
@@ -289,7 +289,7 @@ public:
     /** @brief Estimate the most likely target location
 
     @cite AAM ME, Model Estimation table I
-    @param responses Features extracted from TrackerFeatureSet
+     responses Features extracted from TrackerFeatureSet
     */
     void modelEstimation(const std::vector<Mat>& responses);
 
@@ -304,7 +304,7 @@ public:
     bool runStateEstimator();
 
     /** @brief Set the current TrackerTargetState in the Trajectory
-    @param lastTargetState The current TrackerTargetState
+     lastTargetState The current TrackerTargetState
     */
     void setLastTargetState(const Ptr<TrackerTargetState>& lastTargetState);
 
@@ -372,12 +372,12 @@ public:
     };
 
     /** @brief Constructor
-    @param parameters TrackerSamplerCSC parameters TrackerSamplerCSC::Params
+     parameters TrackerSamplerCSC parameters TrackerSamplerCSC::Params
     */
     TrackerSamplerCSC(const TrackerSamplerCSC::Params& parameters = TrackerSamplerCSC::Params());
 
     /** @brief Set the sampling mode of TrackerSamplerCSC
-    @param samplingMode The sampling mode
+     samplingMode The sampling mode
 
     The modes are:
 

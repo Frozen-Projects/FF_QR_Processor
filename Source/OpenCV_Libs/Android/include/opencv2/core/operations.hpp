@@ -482,7 +482,7 @@ int print(const Matx<_Tp, m, n>& matx, FILE* stream = stdout)
 
 The function acts like sprintf but forms and returns an STL string. It can be used to form an error
 message in the Exception constructor.
-@param fmt printf-compatible formatting specifiers.
+ fmt printf-compatible formatting specifiers.
 
 **Note**:
 |Type|Specifier|
@@ -508,10 +508,10 @@ The generic function partition implements an \f$O(N^2)\f$ algorithm for splittin
 into one or more equivalency classes, as described in
 <http://en.wikipedia.org/wiki/Disjoint-set_data_structure> . The function returns the number of
 equivalency classes.
-@param _vec Set of elements stored as a vector.
-@param labels Output vector of labels. It contains as many elements as vec. Each label labels[i] is
+ _vec Set of elements stored as a vector.
+ labels Output vector of labels. It contains as many elements as vec. Each label labels[i] is
 a 0-based cluster index of `vec[i]`.
-@param predicate Equivalence predicate (pointer to a boolean function of two arguments or an
+ predicate Equivalence predicate (pointer to a boolean function of two arguments or an
 instance of the class that has the method bool operator()(const _Tp& a, const _Tp& b) ). The
 predicate returns true when the elements are certainly in the same class, and returns false if they
 may or may not be in the same class.

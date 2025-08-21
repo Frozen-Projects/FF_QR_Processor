@@ -12,7 +12,7 @@ CV__DNN_INLINE_NS_BEGIN
 
 /**
  * @brief Skip model import after diagnostic run in readNet() functions.
- * @param[in] skip Indicates whether to skip the import.
+ * [in] skip Indicates whether to skip the import.
  *
  * This is an internal OpenCV function not intended for users.
  */

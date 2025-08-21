@@ -67,9 +67,9 @@ public:
     CV_WRAP static Ptr<ExposureCompensator> createDefault(int type);
 
     /**
-    @param corners Source image top-left corners
-    @param images Source images
-    @param masks Image masks to update (second value in pair specifies the value which should be used
+     corners Source image top-left corners
+     images Source images
+     masks Image masks to update (second value in pair specifies the value which should be used
     to detect where image is)
         */
     CV_WRAP void feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
@@ -79,10 +79,10 @@ public:
         const std::vector<std::pair<UMat, uchar> > &masks) = 0;
     /** @brief Compensate exposure in the specified image.
 
-    @param index Image index
-    @param corner Image top-left corner
-    @param image Image to process
-    @param mask Image mask
+     index Image index
+     corner Image top-left corner
+     image Image to process
+     mask Image mask
         */
     CV_WRAP virtual void apply(int index, Point corner, InputOutputArray image, InputArray mask) = 0;
     CV_WRAP virtual void getMatGains(CV_OUT std::vector<Mat>& ) {CV_Error(Error::StsInternal, "");}

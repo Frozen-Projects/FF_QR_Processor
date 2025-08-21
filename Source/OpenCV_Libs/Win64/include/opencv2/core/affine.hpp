@@ -147,8 +147,8 @@ namespace cv
          *  \end{bmatrix}
          *  \f]
          *
-         * @param R 3x3 rotation matrix.
-         * @param t 3x1 translation vector.
+         *  R 3x3 rotation matrix.
+         *  t 3x1 translation vector.
          */
         Affine3(const Mat3& R, const Vec3& t = Vec3::all(0));
 
@@ -157,9 +157,9 @@ namespace cv
          *
          * The last row of the current matrix is set to [0,0,0,1].
          *
-         * @param rvec 3x1 rotation vector. Its direction indicates the rotation axis and its length
+         *  rvec 3x1 rotation vector. Its direction indicates the rotation axis and its length
          *             indicates the rotation angle in radian (using right hand rule).
-         * @param t 3x1 translation vector.
+         *  t 3x1 translation vector.
          */
         Affine3(const Vec3& rvec, const Vec3& t = Vec3::all(0));
 
@@ -168,13 +168,13 @@ namespace cv
          *
          * The last row of the current matrix is set to [0,0,0,1] when data is not 4x4.
          *
-         * @param data 1-channel matrix.
+         *  data 1-channel matrix.
          *             when it is 4x4, it is copied to the current matrix and t is not used.
          *             When it is 3x4, it is copied to the upper part 3x4 of the current matrix and t is not used.
          *             When it is 3x3, it is copied to the upper left 3x3 part of the current matrix.
          *             When it is 3x1 or 1x3, it is treated as a rotation vector and the Rodrigues formula is used
          *                             to compute a 3x3 rotation matrix.
-         * @param t 3x1 translation vector. It is used only when data is neither 4x4 nor 3x4.
+         *  t 3x1 translation vector. It is used only when data is neither 4x4 nor 3x4.
          */
         explicit Affine3(const Mat& data, const Vec3& t = Vec3::all(0));
 
@@ -190,7 +190,7 @@ namespace cv
          * Copy the rotation matrix to the upper left 3x3 part of the current matrix.
          * The remaining elements of the current matrix are not changed.
          *
-         * @param R 3x3 rotation matrix.
+         *  R 3x3 rotation matrix.
          *
          */
         void rotation(const Mat3& R);
@@ -200,7 +200,7 @@ namespace cv
          *
          * It sets the upper left 3x3 part of the matrix. The remaining part is unaffected.
          *
-         * @param rvec 3x1 rotation vector. The direction indicates the rotation axis and
+         *  rvec 3x1 rotation vector. The direction indicates the rotation axis and
          *             its length indicates the rotation angle in radian (using the right thumb convention).
          */
         void rotation(const Vec3& rvec);
@@ -210,7 +210,7 @@ namespace cv
          *
          * It sets the upper left 3x3 part of the matrix. The remaining part is unaffected.
          *
-         * @param data 1-channel matrix.
+         *  data 1-channel matrix.
          *             When it is a 3x3 matrix, it sets the upper left 3x3 part of the current matrix.
          *             When it is a 1x3 or 3x1 matrix, it is used as a rotation vector. The Rodrigues formula
          *             is used to compute the rotation matrix and sets the upper left 3x3 part of the current matrix.
@@ -222,7 +222,7 @@ namespace cv
          *
          * It sets the upper left 3x3 part of the matrix. The remaining part is unaffected.
          *
-         * @param L 3x3 matrix.
+         *  L 3x3 matrix.
          */
         void linear(const Mat3& L);
 
@@ -231,7 +231,7 @@ namespace cv
          *
          * It sets the upper right 3x1 part of the matrix. The remaining part is unaffected.
          *
-         * @param t 3x1 translation vector.
+         *  t 3x1 translation vector.
          */
         void translation(const Vec3& t);
 

@@ -533,9 +533,9 @@ public:
     //! default constructor
     CV_WRAP RotatedRect();
     /** full constructor
-    @param center The rectangle mass center.
-    @param size Width and height of the rectangle.
-    @param angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
+     center The rectangle mass center.
+     size Width and height of the rectangle.
+     angle The rotation angle in a clockwise direction. When the angle is 0, 90, 180, 270 etc.,
     the rectangle becomes an up-right rectangle.
     */
     CV_WRAP RotatedRect(const Point2f& center, const Size2f& size, float angle);
@@ -546,7 +546,7 @@ public:
     CV_WRAP RotatedRect(const Point2f& point1, const Point2f& point2, const Point2f& point3);
 
     /** returns 4 vertices of the rotated rectangle
-    @param pts The points array for storing rectangle vertices. The order is _bottomLeft_, _topLeft_, topRight, bottomRight.
+     pts The points array for storing rectangle vertices. The order is _bottomLeft_, _topLeft_, topRight, bottomRight.
     @note _Bottom_, _Top_, _Left_ and _Right_ sides refer to the original rectangle (angle is 0),
     so after 180 degree rotation _bottomLeft_ point will be located at the top right corner of the
     rectangle.
@@ -747,22 +747,22 @@ public:
     //! the default constructor
     CV_WRAP KeyPoint();
     /**
-    @param pt x & y coordinates of the keypoint
-    @param size keypoint diameter
-    @param angle keypoint orientation
-    @param response keypoint detector response on the keypoint (that is, strength of the keypoint)
-    @param octave pyramid octave in which the keypoint has been detected
-    @param class_id object id
+     pt x & y coordinates of the keypoint
+     size keypoint diameter
+     angle keypoint orientation
+     response keypoint detector response on the keypoint (that is, strength of the keypoint)
+     octave pyramid octave in which the keypoint has been detected
+     class_id object id
      */
     KeyPoint(Point2f pt, float size, float angle=-1, float response=0, int octave=0, int class_id=-1);
     /**
-    @param x x-coordinate of the keypoint
-    @param y y-coordinate of the keypoint
-    @param size keypoint diameter
-    @param angle keypoint orientation
-    @param response keypoint detector response on the keypoint (that is, strength of the keypoint)
-    @param octave pyramid octave in which the keypoint has been detected
-    @param class_id object id
+     x x-coordinate of the keypoint
+     y y-coordinate of the keypoint
+     size keypoint diameter
+     angle keypoint orientation
+     response keypoint detector response on the keypoint (that is, strength of the keypoint)
+     octave pyramid octave in which the keypoint has been detected
+     class_id object id
      */
     CV_WRAP KeyPoint(float x, float y, float size, float angle=-1, float response=0, int octave=0, int class_id=-1);
 
@@ -772,21 +772,21 @@ public:
     This method converts vector of keypoints to vector of points or the reverse, where each keypoint is
     assigned the same size and the same orientation.
 
-    @param keypoints Keypoints obtained from any feature detection algorithm like SIFT/SURF/ORB
-    @param points2f Array of (x,y) coordinates of each keypoint
-    @param keypointIndexes Array of indexes of keypoints to be converted to points. (Acts like a mask to
+     keypoints Keypoints obtained from any feature detection algorithm like SIFT/SURF/ORB
+     points2f Array of (x,y) coordinates of each keypoint
+     keypointIndexes Array of indexes of keypoints to be converted to points. (Acts like a mask to
     convert only specified keypoints)
     */
     CV_WRAP static void convert(const std::vector<KeyPoint>& keypoints,
                                 CV_OUT std::vector<Point2f>& points2f,
                                 const std::vector<int>& keypointIndexes=std::vector<int>());
     /** @overload
-    @param points2f Array of (x,y) coordinates of each keypoint
-    @param keypoints Keypoints obtained from any feature detection algorithm like SIFT/SURF/ORB
-    @param size keypoint diameter
-    @param response keypoint detector response on the keypoint (that is, strength of the keypoint)
-    @param octave pyramid octave in which the keypoint has been detected
-    @param class_id object id
+     points2f Array of (x,y) coordinates of each keypoint
+     keypoints Keypoints obtained from any feature detection algorithm like SIFT/SURF/ORB
+     size keypoint diameter
+     response keypoint detector response on the keypoint (that is, strength of the keypoint)
+     octave pyramid octave in which the keypoint has been detected
+     class_id object id
     */
     CV_WRAP static void convert(const std::vector<Point2f>& points2f,
                                 CV_OUT std::vector<KeyPoint>& keypoints,
@@ -796,8 +796,8 @@ public:
     This method computes overlap for pair of keypoints. Overlap is the ratio between area of keypoint
     regions' intersection and area of keypoint regions' union (considering keypoint region as circle).
     If they don't overlap, we get zero. If they coincide at same location with same size, we get 1.
-    @param kp1 First keypoint
-    @param kp2 Second keypoint
+     kp1 First keypoint
+     kp2 Second keypoint
     */
     CV_WRAP static float overlap(const KeyPoint& kp1, const KeyPoint& kp2);
 
@@ -898,9 +898,9 @@ public:
     //! default constructor
     TermCriteria();
     /**
-    @param type The type of termination criteria, one of TermCriteria::Type
-    @param maxCount The maximum number of iterations or elements to compute.
-    @param epsilon The desired accuracy or change in parameters at which the iterative algorithm stops.
+     type The type of termination criteria, one of TermCriteria::Type
+     maxCount The maximum number of iterations or elements to compute.
+     epsilon The desired accuracy or change in parameters at which the iterative algorithm stops.
     */
     TermCriteria(int type, int maxCount, double epsilon);
 
@@ -2031,8 +2031,8 @@ double jaccardDistance(const Rect_<_Tp>& a, const Rect_<_Tp>& b) {
 /** @brief Finds out if there is any intersection between two rectangles
  *
  * mainly useful for language bindings
- * @param a First rectangle
- * @param b Second rectangle
+ *  a First rectangle
+ *  b Second rectangle
  * @return the area of the intersection
  */
 CV_EXPORTS_W inline double rectangleIntersectionArea(const Rect2d& a, const Rect2d& b) { return (a & b).area(); }

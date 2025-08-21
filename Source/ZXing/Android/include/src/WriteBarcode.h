@@ -50,8 +50,8 @@ public:
 /**
  * Generate barcode from unicode text
  *
- * @param contents  UTF-8 string to encode into a barcode
- * @param options  CreatorOptions (including BarcodeFormat)
+ *  contents  UTF-8 string to encode into a barcode
+ *  options  CreatorOptions (including BarcodeFormat)
  * @return #Barcode  generated barcode
  */
 Barcode CreateBarcodeFromText(std::string_view contents, const CreatorOptions& options);
@@ -59,9 +59,9 @@ Barcode CreateBarcodeFromText(std::string_view contents, const CreatorOptions& o
 /**
  * Generate barcode from raw binary data
  *
- * @param data  array of bytes to encode into a barcode
- * @param size  size of byte array
- * @param options  CreatorOptions (including BarcodeFormat)
+ *  data  array of bytes to encode into a barcode
+ *  size  size of byte array
+ *  options  CreatorOptions (including BarcodeFormat)
  * @return #Barcode  generated barcode
  */
 Barcode CreateBarcodeFromBytes(const void* data, int size, const CreatorOptions& options);
@@ -115,8 +115,8 @@ public:
 /**
  * Write barcode symbol to SVG
  *
- * @param barcode  Barcode to write
- * @param options  WriterOptions to parameterize rendering
+ *  barcode  Barcode to write
+ *  options  WriterOptions to parameterize rendering
  * @return std::string  SVG representation of barcode symbol
  */
 std::string WriteBarcodeToSVG(const Barcode& barcode, const WriterOptions& options = {});
@@ -124,8 +124,8 @@ std::string WriteBarcodeToSVG(const Barcode& barcode, const WriterOptions& optio
 /**
  * Write barcode symbol to a utf8 string using graphical characters (e.g. '▀')
  *
- * @param barcode  Barcode to write
- * @param options  WriterOptions to parameterize rendering
+ *  barcode  Barcode to write
+ *  options  WriterOptions to parameterize rendering
  * @return std::string  Utf8 string representation of barcode symbol
  */
 std::string WriteBarcodeToUtf8(const Barcode& barcode, const WriterOptions& options = {});
@@ -133,8 +133,8 @@ std::string WriteBarcodeToUtf8(const Barcode& barcode, const WriterOptions& opti
 /**
  * Write barcode symbol to Image (Bitmap)
  *
- * @param barcode  Barcode to write
- * @param options  WriterOptions to parameterize rendering
+ *  barcode  Barcode to write
+ *  options  WriterOptions to parameterize rendering
  * @return Image  Bitmap reprentation of barcode symbol
  */
 Image WriteBarcodeToImage(const Barcode& barcode, const WriterOptions& options = {});

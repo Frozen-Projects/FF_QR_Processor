@@ -222,17 +222,17 @@ Currently, the following file formats are supported:
 -   By default number of pixels must be less than 2^30. Limit can be set using system
     variable OPENCV_IO_MAX_IMAGE_PIXELS
 
-@param filename Name of file to be loaded.
-@param flags Flag that can take values of cv::ImreadModes
+ filename Name of file to be loaded.
+ flags Flag that can take values of cv::ImreadModes
 */
 CV_EXPORTS_W Mat imread( const String& filename, int flags = IMREAD_COLOR );
 
 /** @brief Loads a multi-page image from a file.
 
 The function imreadmulti loads a multi-page image from the specified file into a vector of Mat objects.
-@param filename Name of file to be loaded.
-@param mats A vector of Mat objects holding each page.
-@param flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
+ filename Name of file to be loaded.
+ mats A vector of Mat objects holding each page.
+ flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
 @sa cv::imread
 */
 CV_EXPORTS_W bool imreadmulti(const String& filename, CV_OUT std::vector<Mat>& mats, int flags = IMREAD_ANYCOLOR);
@@ -240,11 +240,11 @@ CV_EXPORTS_W bool imreadmulti(const String& filename, CV_OUT std::vector<Mat>& m
 /** @brief Loads a of images of a multi-page image from a file.
 
 The function imreadmulti loads a specified range from a multi-page image from the specified file into a vector of Mat objects.
-@param filename Name of file to be loaded.
-@param mats A vector of Mat objects holding each page.
-@param start Start index of the image to load
-@param count Count number of images to load
-@param flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
+ filename Name of file to be loaded.
+ mats A vector of Mat objects holding each page.
+ start Start index of the image to load
+ count Count number of images to load
+ flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
 @sa cv::imread
 */
 CV_EXPORTS_W bool imreadmulti(const String& filename, CV_OUT std::vector<Mat>& mats, int start, int count, int flags = IMREAD_ANYCOLOR);
@@ -252,8 +252,8 @@ CV_EXPORTS_W bool imreadmulti(const String& filename, CV_OUT std::vector<Mat>& m
 /** @brief Returns the number of images inside the give file
 
 The function imcount will return the number of pages in a multi-page image, or 1 for single-page images
-@param filename Name of file to be loaded.
-@param flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
+ filename Name of file to be loaded.
+ flags Flag that can take values of cv::ImreadModes, default with cv::IMREAD_ANYCOLOR.
 */
 CV_EXPORTS_W size_t imcount(const String& filename, int flags = IMREAD_ANYCOLOR);
 
@@ -290,9 +290,9 @@ functions to save the image to XML or YAML format.
 The sample below shows how to create a BGRA image, how to set custom compression parameters and save it to a PNG file.
 It also demonstrates how to save multiple images in a TIFF file:
 @include snippets/imgcodecs_imwrite.cpp
-@param filename Name of the file.
-@param img (Mat or vector of Mat) Image or Images to be saved.
-@param params Format-specific parameters encoded as pairs (paramId_1, paramValue_1, paramId_2, paramValue_2, ... .) see cv::ImwriteFlags
+ filename Name of the file.
+ img (Mat or vector of Mat) Image or Images to be saved.
+ params Format-specific parameters encoded as pairs (paramId_1, paramValue_1, paramId_2, paramValue_2, ... .) see cv::ImwriteFlags
 */
 CV_EXPORTS_W bool imwrite( const String& filename, InputArray img,
               const std::vector<int>& params = std::vector<int>());
@@ -313,15 +313,15 @@ contains invalid data, the function returns an empty matrix ( Mat::data==NULL ).
 See cv::imread for the list of supported formats and flags description.
 
 @note In the case of color images, the decoded images will have the channels stored in **B G R** order.
-@param buf Input array or vector of bytes.
-@param flags The same flags as in cv::imread, see cv::ImreadModes.
+ buf Input array or vector of bytes.
+ flags The same flags as in cv::imread, see cv::ImreadModes.
 */
 CV_EXPORTS_W Mat imdecode( InputArray buf, int flags );
 
 /** @overload
-@param buf Input array or vector of bytes.
-@param flags The same flags as in cv::imread, see cv::ImreadModes.
-@param dst The optional output placeholder for the decoded matrix. It can save the image
+ buf Input array or vector of bytes.
+ flags The same flags as in cv::imread, see cv::ImreadModes.
+ dst The optional output placeholder for the decoded matrix. It can save the image
 reallocations when the function is called repeatedly for images of the same size.
 */
 CV_EXPORTS Mat imdecode( InputArray buf, int flags, Mat* dst);
@@ -334,10 +334,10 @@ contains invalid data, the function returns false.
 See cv::imreadmulti for the list of supported formats and flags description.
 
 @note In the case of color images, the decoded images will have the channels stored in **B G R** order.
-@param buf Input array or vector of bytes.
-@param flags The same flags as in cv::imread, see cv::ImreadModes.
-@param mats A vector of Mat objects holding each page, if more than one.
-@param range A continuous selection of pages.
+ buf Input array or vector of bytes.
+ flags The same flags as in cv::imread, see cv::ImreadModes.
+ mats A vector of Mat objects holding each page, if more than one.
+ range A continuous selection of pages.
 */
 CV_EXPORTS_W bool imdecodemulti(InputArray buf, int flags, CV_OUT std::vector<Mat>& mats, const cv::Range& range = Range::all());
 
@@ -346,10 +346,10 @@ CV_EXPORTS_W bool imdecodemulti(InputArray buf, int flags, CV_OUT std::vector<Ma
 The function imencode compresses the image and stores it in the memory buffer that is resized to fit the
 result. See cv::imwrite for the list of supported formats and flags description.
 
-@param ext File extension that defines the output format. Must include a leading period.
-@param img Image to be written.
-@param buf Output buffer resized to fit the compressed image.
-@param params Format-specific parameters. See cv::imwrite and cv::ImwriteFlags.
+ ext File extension that defines the output format. Must include a leading period.
+ img Image to be written.
+ buf Output buffer resized to fit the compressed image.
+ params Format-specific parameters. See cv::imwrite and cv::ImwriteFlags.
 */
 CV_EXPORTS_W bool imencode( const String& ext, InputArray img,
                             CV_OUT std::vector<uchar>& buf,
@@ -357,13 +357,13 @@ CV_EXPORTS_W bool imencode( const String& ext, InputArray img,
 
 /** @brief Returns true if the specified image can be decoded by OpenCV
 
-@param filename File name of the image
+ filename File name of the image
 */
 CV_EXPORTS_W bool haveImageReader( const String& filename );
 
 /** @brief Returns true if an image with the specified filename can be encoded by OpenCV
 
- @param filename File name of the image
+  filename File name of the image
  */
 CV_EXPORTS_W bool haveImageWriter( const String& filename );
 

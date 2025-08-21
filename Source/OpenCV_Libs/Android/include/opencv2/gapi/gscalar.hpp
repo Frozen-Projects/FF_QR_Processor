@@ -65,7 +65,7 @@ public:
      * other GScalar to the object using `operator=` -- on the
      * assignment, the old GScalar value is discarded.
      *
-     * @param s a cv::Scalar value to associate with this GScalar object.
+     *  s a cv::Scalar value to associate with this GScalar object.
      */
     GAPI_WRAP
     explicit GScalar(const cv::Scalar& s);
@@ -74,7 +74,7 @@ public:
      * @overload
      * @brief Constructs a value-initialized GScalar
      *
-     * @param s a cv::Scalar value to associate with this GScalar object.
+     *  s a cv::Scalar value to associate with this GScalar object.
      */
     explicit GScalar(cv::Scalar&& s);       // Constant value move-constructor from cv::Scalar
 
@@ -82,7 +82,7 @@ public:
      * @overload
      * @brief Constructs a value-initialized GScalar
      *
-     * @param v0 A `double` value to associate with this GScalar. Note
+     *  v0 A `double` value to associate with this GScalar. Note
      *  that only the first component of a four-component cv::Scalar is
      *  set to this value, with others remain zeros.
      *

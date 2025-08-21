@@ -300,10 +300,10 @@ class KernelTypeMedium<K, std::function<R(Args...)>> :
  * Helper for G_TYPED_KERNEL declares a new G-API Operation. See [Kernel API](@ref gapi_kernel_api)
  * for more details.
  *
- * @param Class type name for this operation.
- * @param API an `std::function<>`-like signature for the operation;
+ *  Class type name for this operation.
+ *  API an `std::function<>`-like signature for the operation;
  *        return type is a single value or a tuple of multiple values.
- * @param Id string identifier for the operation. Must be unique.
+ *  Id string identifier for the operation. Must be unique.
  */
 #define G_TYPED_KERNEL_HELPER(Class, API, Id)                                               \
     G_ID_HELPER_BODY(Class, Id)                                                             \
@@ -342,7 +342,7 @@ G_TYPED_KERNEL_HELPER(Class, COMBINE_SIGNATURE(_1, _2, _3, _4, _5, _6, _7, _8, _
  * Declares a new G-API Operation. See [Kernel API](@ref gapi_kernel_api)
  * for more details.
  *
- * @param Class type name for this operation.
+ *  Class type name for this operation.
  */
 #define G_TYPED_KERNEL(Class, ...) __WRAP_VAARGS(GET_G_TYPED_KERNEL(__VA_ARGS__, \
                                                  G_TYPED_KERNEL_HELPER_10, \
@@ -362,7 +362,7 @@ G_TYPED_KERNEL_HELPER(Class, COMBINE_SIGNATURE(_1, _2, _3, _4, _5, _6, _7, _8, _
  * @deprecated This macro is deprecated in favor of `G_TYPED_KERNEL` that is used for declaring any
  * G-API Operation.
  *
- * @param Class type name for this operation.
+ *  Class type name for this operation.
  */
 #define G_TYPED_KERNEL_M G_TYPED_KERNEL
 
@@ -559,7 +559,7 @@ namespace gapi {
          *
          * Does nothing if there's no kernels of this backend in the package.
          *
-         * @param backend backend which kernels to remove
+         *  backend backend which kernels to remove
          */
         void remove(const cv::gapi::GBackend& backend);
 
@@ -624,8 +624,8 @@ namespace gapi {
         /**
          * @brief Adds a new kernel based on it's backend and id into the kernel package
          *
-         * @param backend backend associated with the kernel
-         * @param kernel_id a name/id of the kernel
+         *  backend backend associated with the kernel
+         *  kernel_id a name/id of the kernel
          */
         void include(const cv::gapi::GBackend& backend, const std::string& kernel_id);
 
@@ -641,8 +641,8 @@ namespace gapi {
         /**
          * @brief Create a new package based on `lhs` and `rhs`.
          *
-         * @param lhs "Left-hand-side" package in the process
-         * @param rhs "Right-hand-side" package in the process
+         *  lhs "Left-hand-side" package in the process
+         *  rhs "Right-hand-side" package in the process
          * @return a new kernel package.
          */
         friend GAPI_EXPORTS GKernelPackage cv::gapi::combine(const GKernelPackage  &lhs,

@@ -43,7 +43,7 @@ public:
     Constructs Params based on model information and sets default values for other
     inference description parameters.
 
-    @param model Path to model (.blob file)
+     model Path to model (.blob file)
     */
     explicit Params(const std::string &model) {
         desc.blob_file = model;
