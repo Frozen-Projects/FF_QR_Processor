@@ -7,7 +7,7 @@ namespace UnrealBuildTool.Rules
         public OpenCV_Libs(ReadOnlyTargetRules Target) : base(Target)
         {
             Type = ModuleType.External;
-            UndefinedIdentifierWarningLevel = WarningLevel.Off;
+            CppCompileWarningSettings.UndefinedIdentifierWarningLevel = WarningLevel.Off;
             bEnableExceptions = true;
             bUseRTTI = true;
 
